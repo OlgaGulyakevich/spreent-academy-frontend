@@ -26,7 +26,7 @@
 
 ```bash
 npm install
-npm run dev      # dev-сервер → localhost:3000
+npm run start      # dev-сервер → localhost:3000
 npm run build    # production-сборка → dist/
 npm run preview  # предпросмотр сборки
 ```

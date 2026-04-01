@@ -41,7 +41,6 @@ html:has(.scroll-lock) {
 
 .is-invalid {
   border-color: $color-error;
-  background-color: $color-form-error-bg;
 
   &:focus,
   &:focus-visible {
