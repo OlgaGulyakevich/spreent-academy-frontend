@@ -1,0 +1,289 @@
+// =============================================================================
+// MIXINS
+// Desktop-First approach: base styles for 1920px
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Media Queries (Responsive Breakpoints - max-width)
+// -----------------------------------------------------------------------------
+
+@use "sass:math";
+
+
+@mixin vp-1919 {
+  @media (max-width: $vp-1919) {
+    @content;
+  }
+}
+
+@mixin vp-1439 {
+  @media (max-width: $vp-1439) {
+    @content;
+  }
+}
+
+@mixin vp-1279 {
+  @media (max-width: $vp-1279) {
+    @content;
+  }
+}
+
+@mixin vp-1023 {
+  @media (max-width: $vp-1023) {
+    @content;
+  }
+}
+
+@mixin vp-767 {
+  @media (max-width: $vp-767) {
+    @content;
+  }
+}
+
+@mixin vp-374 {
+  @media (max-width: $vp-374) {
+    @content;
+  }
+}
+
+// Custom max-width breakpoint
+@mixin vp-max($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+// Custom min-width breakpoint
+@mixin vp-min($width) {
+  @media (min-width: $width) {
+    @content;
+  }
+}
+
+// Range breakpoint
+@mixin vp-between($min, $max) {
+  @media (max-width: $max) and (min-width: $min) {
+    @content;
+  }
+}
+
+// Retina media query
+@mixin retina {
+  @media (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Fluid Layout (The "Rubber" Logic)
+// -----------------------------------------------------------------------------
+
+/// Fluid interpolation between two px values across viewport range.
+/// Uses clamp() for smooth scaling. Desktop-first: base → clamp → min fallback.
+///
+/// @param {String} $property  — CSS property (e.g. font-size, padding-top)
+/// @param {Length} $min-value — value at $min-vw (px)
+/// @param {Length} $max-value — value at $max-vw (px)
+/// @param {Number} $min-vw   — min viewport, unitless (default: 480)
+/// @param {Number} $max-vw   — max viewport, unitless (default: 1440)
+///
+/// @example @include fluid-val(padding-left, 20px, 60px);
+/// @output  clamp(20px, calc(20px + 40 * (100vw - 480px) / 960), 60px)
+@mixin fluid-val($property, $min-value, $max-value, $min-vw: $min-vw-width, $max-vw: $base-vw-width) {
+  // Strip px unit: math.div(300px, 1px) = 300 (unitless number)
+  // Needed so calc does: number × length = length (valid CSS)
+  $val-diff: math.div($max-value - $min-value, 1px);
+  $vw-diff: $max-vw - $min-vw;
+
+  #{$property}: $max-value;
+
+  @include vp-max(#{$max-vw}px) {
+    #{$property}: clamp(#{$min-value}, calc(#{$min-value} + #{$val-diff} * (100vw - #{$min-vw}px) / #{$vw-diff}), #{$max-value});
+  }
+
+  @include vp-max(#{$min-vw}px) {
+    #{$property}: $min-value;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Interaction (Hover for non-touch devices only)
+// -----------------------------------------------------------------------------
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Layout Helpers
+// -----------------------------------------------------------------------------
+
+// Flex centering
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Absolute centering
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Aspect Ratio (Modern)
+@mixin aspect($ratio: 16 / 9) {
+  aspect-ratio: $ratio;
+}
+
+
+// -----------------------------------------------------------------------------
+// Overflow Prevention
+// -----------------------------------------------------------------------------
+
+@mixin flex-no-overflow {
+  >* {
+    min-width: 0;
+  }
+}
+
+@mixin grid-no-overflow {
+  >* {
+    min-width: 0;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Accessibility
+// -----------------------------------------------------------------------------
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  overflow: hidden;
+}
+
+// -----------------------------------------------------------------------------
+// Responsive Line Break Visibility (Desktop First)
+// -----------------------------------------------------------------------------
+
+@mixin br-mobile {
+  display: none;
+
+  @include vp-767 {
+    display: block;
+  }
+}
+
+@mixin br-tablet {
+  display: none;
+
+  @include vp-between(768px, 1023px) {
+    display: block;
+  }
+}
+
+@mixin br-desktop {
+  display: block;
+
+  @include vp-1023 {
+    display: none;
+  }
+}
+
+@mixin br-not-mobile {
+  display: block;
+
+  @include vp-767 {
+    display: none;
+  }
+}
+
+@mixin br-not-tablet {
+  display: block;
+
+  @include vp-between(768px, 1023px) {
+    display: none;
+  }
+}
+
+@mixin br-not-desktop {
+  display: none;
+
+  @include vp-1023 {
+    display: block;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Responsive Text Wrapping (Desktop First)
+// -----------------------------------------------------------------------------
+
+@mixin nowrap-mobile {
+  white-space: normal;
+
+  @include vp-767 {
+    white-space: nowrap;
+  }
+}
+
+@mixin nowrap-tablet {
+  white-space: normal;
+
+  @include vp-between(768px, 1023px) {
+    white-space: nowrap;
+  }
+}
+
+@mixin nowrap-desktop {
+  white-space: nowrap;
+
+  @include vp-1023 {
+    white-space: normal;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Visibility & Responsive Helpers (Desktop First)
+// -----------------------------------------------------------------------------
+
+// Hides element on mobile/tablet, shows on desktop
+@mixin hide-below-desktop {
+  @include vp-1023 {
+    display: none;
+  }
+}
+
+// Hides element on desktop, shows below (mobile/tablet)
+@mixin show-below-desktop {
+  display: none;
+
+  @include vp-1023 {
+    display: block;
+  }
+}
+
+@mixin hide-mobile {
+  @include vp-767 {
+    display: none;
+  }
+}
+
+@mixin show-mobile {
+  display: none;
+
+  @include vp-767 {
+    display: block;
+  }
+}

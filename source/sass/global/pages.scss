@@ -1,0 +1,170 @@
+// =============================================================================
+// PAGE WRAPPER STYLES
+// =============================================================================
+// ARCHITECTURE:
+// 1. html, body - core layout styles (sticky footer)
+// 2. :where(body) - reset styles of elements with LOW specificity
+// =============================================================================
+
+html {
+  height: 100%;
+  scrollbar-gutter: stable;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  margin: 0;
+}
+
+// Sticky footer layout
+main {
+  flex: 1 0 auto;
+  overflow-x: hidden; // Prevent horizontal scroll from extended backgrounds
+}
+
+.footer {
+  flex-shrink: 0;
+}
+
+// =============================================================================
+// ELEMENT RESETS (low specificity through :where)
+// =============================================================================
+// We use :where() to reduce specificity of style resets.
+// This allows components to easily override these styles.
+
+// Typography elements
+:where(body) h1,
+:where(body) h2,
+:where(body) h3,
+:where(body) h4,
+:where(body) h5,
+:where(body) h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  overflow-wrap: break-word;
+}
+
+:where(body) p {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+}
+
+:where(body) blockquote {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+}
+
+:where(body) span,
+:where(body) div {
+  overflow-wrap: break-word;
+}
+
+// Links
+:where(body) a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+
+  transition: $transition-default;
+
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 2px;
+   border-radius: inherit;
+    transition: none;
+  }
+}
+
+// Images (additional styles to global)
+:where(body) img {
+  display: block;
+}
+
+// Video
+:where(body) video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+// Buttons
+:where(body) button {
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 2px;
+    border-radius: inherit;
+  }
+}
+
+// Forms
+:where(body) input,
+:where(body) textarea,
+:where(body) select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 2px;
+    border-radius: inherit;
+  }
+}
+
+:where(body) fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+:where(body) legend {
+  padding: 0;
+}
+
+// Lists
+:where(body) ul,
+:where(body) ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:where(body) li {
+  margin: 0;
+  padding: 0;
+}
+
+// SVG
+:where(body) svg {
+  display: block;
+  fill: currentColor;
+  max-width: 100%;
+  height: auto;
+}
+
+// Swiper container and slides - Remove default outline
+:where(body) .swiper,
+:where(body) .swiper-slide {
+  outline: none;
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+}

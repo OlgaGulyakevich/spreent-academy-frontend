@@ -1,0 +1,62 @@
+{
+  "name": "spreent-academy-frontend",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "start": "vite --host --open",
+    "build": "vite build --emptyOutDir",
+    "preview": "vite preview --open",
+    "test": "backstop test --config=pp.config.cjs",
+    "convert-rastr": "node convert-rastr.js",
+    "w3c": "html-validator source --quiet",
+    "linthtml": "linthtml source",
+    "html-validate": "html-validate source/index.html",
+    "lint-bem": "node bem-tree.js",
+    "stylelint": "stylelint \"source/sass/**/*.scss\" --fix",
+    "lint-js": "eslint source/js --fix",
+    "ls-lint": "ls-lint",
+    "editorconfig": "editorconfig-cli source",
+    "lint": "npm run linthtml && npm run html-validate && npm run stylelint && npm run lint-js && npm run ls-lint && npm run editorconfig && npm run lint-bem"
+  },
+  "dependencies": {
+    "imask": "7.6.1"
+  },
+  "devDependencies": {
+    "@htmlacademy/editorconfig-cli": "3.0.0",
+    "@linthtml/linthtml": "0.9.5",
+    "@ls-lint/ls-lint": "2.3.1",
+    "@spiriit/vite-plugin-svg-spritemap": "5.0.0",
+    "autoprefixer": "10.4.27",
+    "cli-progress": "3.12.0",
+    "eslint": "8.57.0",
+    "eslint-config-htmlacademy": "10.0.1",
+    "glob": "11.0.3",
+    "gulp-html-bemlinter": "5.0.1",
+    "html-validate": "10.11.2",
+    "htmlacademy-backstopjs": "6.6.1",
+    "linthtml-config-htmlacademy": "1.1.0",
+    "sass": "1.98.0",
+    "sharp": "0.34.5",
+    "stylelint": "16.25.0",
+    "stylelint-config-htmlacademy": "4.4.0",
+    "stylelint-config-standard-scss": "16.0.0",
+    "stylelint-selector-bem-pattern": "4.0.1",
+    "svgo": "4.0.0",
+    "vinyl-fs": "4.0.2",
+    "vite": "7.2.2",
+    "vite-plugin-image-optimizer": "2.0.3",
+    "vite-plugin-minify": "2.1.0",
+    "w3c-html-validator": "2.0.1"
+  },
+
+  "engines": {
+    "node": "^22.0.0"
+  },
+  "volta": {
+    "node": "22.13.1"
+  },
+  "overrides": {
+    "es5-ext": "0.10.53"
+  }
+}

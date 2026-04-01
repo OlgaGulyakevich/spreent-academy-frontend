@@ -1,0 +1,78 @@
+// =============================================================================
+// RESPONSIVE TEXT UTILITIES
+// Utility classes for managing text behavior across breakpoints
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Line Break Visibility
+// Control <br> element visibility at different breakpoints
+// -----------------------------------------------------------------------------
+
+// Show <br> only on mobile
+.br-mobile {
+  @include br-mobile;
+}
+
+// Show <br> only on tablet
+.br-tablet {
+  @include br-tablet;
+}
+
+// Show <br> only on desktop
+.br-desktop {
+  @include br-desktop;
+}
+
+// Show <br> on tablet and desktop (not mobile)
+.br-not-mobile {
+  @include br-not-mobile;
+}
+
+// Show <br> on mobile and desktop (not tablet)
+.br-not-tablet {
+  @include br-not-tablet;
+}
+
+// Show <br> on mobile and tablet (not desktop)
+.br-not-desktop {
+  @include br-not-desktop;
+}
+
+
+// -----------------------------------------------------------------------------
+// Text Wrapping
+// Control white-space property at different breakpoints
+// -----------------------------------------------------------------------------
+
+// Nowrap on mobile
+.nowrap-mobile {
+  @include nowrap-mobile;
+}
+
+// Nowrap on tablet
+.nowrap-tablet {
+  @include nowrap-tablet;
+}
+
+// Nowrap on desktop
+.nowrap-desktop {
+  @include nowrap-desktop;
+}
+
+// Nowrap on mobile and tablet (Desktop First: normal by default, nowrap below desktop)
+.nowrap-mobile-tablet {
+  white-space: normal;
+
+  @include vp-1023 {
+    white-space: nowrap;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Text No-Wrap (All breakpoints)
+// Prevent text wrapping on all screen sizes
+// -----------------------------------------------------------------------------
+
+.text-nowrap {
+  white-space: nowrap;
+}

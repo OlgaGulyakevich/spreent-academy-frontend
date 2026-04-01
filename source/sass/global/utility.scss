@@ -1,0 +1,50 @@
+// =============================================================================
+// UTILITY CLASSES
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Accessibility
+// -----------------------------------------------------------------------------
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+
+// -----------------------------------------------------------------------------
+// Interaction & States
+// -----------------------------------------------------------------------------
+
+// iOS Safari: overflow: hidden на body не блокирует скролл viewport — нужен и на html
+html:has(.scroll-lock) {
+  overflow: hidden;
+}
+
+.scroll-lock {
+  overflow: hidden;
+  touch-action: none;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.is-visible {
+  display: block;
+}
+
+.is-disabled {
+  color: $color-disabled;
+  pointer-events: none;
+  user-select: none;
+}
+
+.is-invalid {
+  border-color: $color-error;
+  background-color: $color-form-error-bg;
+
+  &:focus,
+  &:focus-visible {
+    border-color: $color-error;
+  }
+}

@@ -1,0 +1,189 @@
+// =============================================
+// Variables
+// =============================================
+
+// ---------------------------------
+// Colors
+// ---------------------------------
+
+// Base colors
+$color-dark: #0d1627;
+$color-white: #ffffff;
+$color-black: #000000;
+$color-blue: #1859ff;       // Primary / CTA
+$color-light: #eef4f6;      // Light bg for cards, sections
+$color-secondary: #d9f243;  // Accent — yellow-lime
+$color-stroke: #dee9ed;     // Borders / dividers
+$color-indigo: #0039cc;
+$color-tag-dark: #0027b2;
+
+// Text Colors
+$color-text-h1: $color-dark;
+$color-text-h2: $color-dark;
+$color-text-h3: $color-dark;
+$color-text-main: $color-dark;
+$color-text-dark: $color-dark;
+$color-text-secondary: rgba($color-dark, 0.7);   // Подписи, muted
+$color-text-light: rgba($color-dark, 0.4);        // Ghost, зачёркнутые цены
+$color-text-accent: $color-blue;
+$color-text-white: $color-white;
+$color-text-white-muted: rgba($color-white, 0.5); // Placeholder на тёмном фоне
+$color-text-link: $color-blue;
+
+
+// Backgrounds
+$color-bg-pure-white: #ffffff;
+$color-bg-light: #eef4f6;
+$color-bg-dark: #0d1627;
+$color-bg-main: $color-bg-pure-white;
+$color-bg-header: rgba($color-white, 0.7);        // Backdrop header
+$color-bg-tag: rgba($color-indigo, 0.06);          // Tag bubble background
+$color-bg-input-dark: rgba($color-white, 0.2);     // Input на тёмном фоне
+
+// Semantic aliases (used in pages.scss / utility.scss)
+$color-accent: $color-blue;                        // focus-visible outline color
+$color-disabled: rgba($color-dark, 0.4);           // disabled state text/icon
+
+
+// Buttons — primary (#1859ff pill)
+$color-btn-primary: $color-blue;
+$color-btn-primary-hover: #0047e8;                               // Darkened ~8%
+$color-btn-primary-active: #003dcf;                              // Darkened ~15%
+$color-btn-primary-disabled: rgba($color-blue, 0.4);             // Faded, no interaction
+$shadow-btn-primary-hover: 0 6px 20px rgba(24, 89, 255, 0.4);   // Синяя тень при наведении
+
+// Buttons — secondary (#d9f243 lime pill, footer form)
+$color-btn-secondary: $color-secondary;
+$color-btn-secondary-hover: #c8e030;                             // Darkened ~8%
+$color-btn-secondary-active: #bdd920;                            // Darkened ~15%
+$color-btn-secondary-disabled: rgba($color-secondary, 0.4);      // Faded, no interaction
+$shadow-btn-secondary-hover: 0 6px 20px rgba(217, 242, 67, 0.4); // Лаймовая тень при наведении
+
+
+// Form — footer (тёмный фон $color-bg-dark)
+$color-form-input-bg: rgba($color-white, 0.2);          // Default
+$color-form-input-bg-hover: rgba($color-white, 0.25);   // Hover — чуть светлее
+$color-form-input-bg-focus: rgba($color-white, 0.28);   // Focus — ещё светлее
+$color-form-input-border-focus: rgba($color-white, 0.5); // Border при фокусе
+$color-form-input-bg-disabled: rgba($color-white, 0.1); // Disabled — почти невидим
+$color-form-placeholder: rgba($color-white, 0.5);        // Placeholder text
+$color-form-text: $color-white;                          // Введённый текст
+$color-form-error: #ff4949;                              // Ошибка валидации
+$color-error: $color-form-error;                         // alias → #ff4949 (semantic alias)
+$color-form-error-border: #ff4949;                       // Граница при ошибке
+$color-form-error-bg: rgba(255, 73, 73, 0.1);            // Фон при ошибке (лёгкий тинт) — НЕ используется на полях, только на уведомлении
+$color-notification-error-bg: #654a55;                   // Фон уведомления об ошибке отправки формы
+$color-notification-success-bg: #3d5443;                 // Фон уведомления об успешной отправке (тёмно-зелёный под стиль сайта)
+
+
+// ---------------------------------
+// Gradients
+// ---------------------------------
+$gradient-bg-community: radial-gradient(92.49% 94.44% at 2.96% 50%, #daeef4 18.98%, #eef4f6 50.96%, #fff 88.74%); // Фон pill-контейнера с аватарами в секции community
+$gradient-card-skills: linear-gradient(180deg, #002fa8 0%, #001a68 100%); // Фон карточки .about__card--skills
+
+
+// ---------------------------------
+// Border
+// ---------------------------------
+$border-width-1: 1px;
+$border-width-logos-desktop: 1.056px;
+$border-width-logos-mobile: 0.704px;
+$border-color: $color-stroke;
+$color-border-header: rgba($color-dark, 0.1);
+$color-border-header-dark: rgba($color-white, 0.15);
+
+
+// ---------------------------------
+// Typography
+// ---------------------------------
+$font-family-display: "Loos Wide", system-ui, sans-serif; // Заголовки, навигация, кнопки
+$font-family-primary: "Manrope", system-ui, sans-serif;   // Body / UI
+$font-family-base: $font-family-primary;
+$font-family-inter: "Inter", system-ui, sans-serif;       // Декоративные cursor-плашки (hero, about)
+
+
+// Font weights
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+
+
+// Base text sizes
+$font-size-t2: 18px;
+$line-height-t2: 1.4;
+
+
+// ---------------------------------
+// Breakpoints (max-width logic)
+// ---------------------------------
+$vp-1919: 1919px;
+$vp-1439: 1439px;
+$vp-1279: 1279px;
+$vp-1023: 1023px;
+$vp-767: 767px;
+$vp-374: 374px;
+$vp-320: 320px;
+
+// Base values for fluid math
+$base-vw-width: 1440;
+$min-vw-width: 480;
+
+
+// ---------------------------------
+// Spacing
+// ---------------------------------
+$spacing-5: 5px;
+$spacing-10: 10px;
+$spacing-20: 20px;
+$spacing-30: 30px;
+
+
+// ---------------------------------
+// Container
+// ---------------------------------
+$container-max-width: 1440px;
+$container-offset-desktop: 40px;
+$container-offset-mobile: 15px;
+
+
+// ---------------------------------
+// Border Radius
+// ---------------------------------
+$radius-btn: 136px;    // Кнопки (pill-shape, 135.96px из Figma)
+$radius-pill: 100px;   // Теги / badge
+$radius-card: 32px;    // Карточки секций
+$radius-image: 24px;   // Фото-контейнеры (hero, about)
+$radius-16: 16px;      // Мелкие изображения (certificate)
+
+
+// ---------------------------------
+// Shadows
+// ---------------------------------
+$shadow-cursor: 0 1px 2px 0 rgba(0, 0, 0, 0.08); // Figma cursor element
+
+
+// ---------------------------------
+// Transitions
+// ---------------------------------
+$transition-fast: 0.2s;
+$transition-base: 0.3s;
+$transition-medium: 0.4s;
+$transition-slow: 0.5s;
+$ease-default: ease;
+$ease-out: cubic-bezier(0, 0, 0.2, 1);
+$ease-out-expo: cubic-bezier(0, 0.7, 0.3, 1);
+$transition-default: $transition-base $ease-default;
+
+
+// ---------------------------------
+// Z-Index Scale
+// ---------------------------------
+$z-behind: -1;
+$z-base: 0;
+$z-dropdown: 100;
+$z-sticky: 200;
+$z-overlay: 300;
+$z-modal: 400;
