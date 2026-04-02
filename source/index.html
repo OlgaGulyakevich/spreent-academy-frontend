@@ -62,7 +62,6 @@
   <header class="header" data-test="header">
     <div class="container header__container">
 
-      <!-- Logo: href="index.html" — явная ссылка на текущую страницу (CTS-HTML-03) -->
       <a class="logo header__logo" href="index.html">
         <svg width="127" height="28" aria-hidden="true">
           <use href="./__spritemap#sprite-logo"></use>
@@ -74,7 +73,6 @@
       <nav class="main-nav header__nav" id="main-nav" aria-label="Основная навигация">
         <ul class="main-nav__list">
           <li class="main-nav__item">
-            <!-- aria-current="page" на ссылке текущей страницы (CTS-TEST-07) -->
             <a class="main-nav__link main-nav__link--active" href="index.html" aria-current="page">Об&nbsp;академии</a>
           </li>
           <li class="main-nav__item">
@@ -96,7 +94,7 @@
         <svg class="burger__icon" width="28" height="18" aria-hidden="true">
           <use href="./__spritemap#sprite-burger"></use>
         </svg>
-        <svg class="burger__close" width="28" height="22" aria-hidden="true">
+        <svg class="burger__close" width="28" height="18" aria-hidden="true">
           <use href="./__spritemap#sprite-close"></use>
         </svg>
       </button>
@@ -134,7 +132,7 @@
                 srcset="img/hero/artur@1x.webp 1x, img/hero/artur@2x.webp 2x">
               <img src="img/hero/artur@1x.jpg"
                    srcset="img/hero/artur@2x.jpg 2x"
-                   width="260" height="320" alt="">
+                   width="329" height="200" alt="">
             </picture>
             <div class="hero__label">
               <svg width="26" height="26" aria-hidden="true">
@@ -151,10 +149,10 @@
                 srcset="img/hero/sergey@1x.webp 1x, img/hero/sergey@2x.webp 2x">
               <img src="img/hero/sergey@1x.jpg"
                    srcset="img/hero/sergey@2x.jpg 2x"
-                   width="260" height="320" alt="">
+                   width="175" height="256" alt="">
             </picture>
             <div class="hero__label">
-              <svg width="24" height="25" aria-hidden="true">
+              <svg width="26" height="26" aria-hidden="true">
                 <use href="./__spritemap#sprite-cursor-arrow"></use>
               </svg>
               <span>Сергей</span>
@@ -168,10 +166,10 @@
                 srcset="img/hero/misha@1x.webp 1x, img/hero/misha@2x.webp 2x">
               <img src="img/hero/misha@1x.jpg"
                    srcset="img/hero/misha@2x.jpg 2x"
-                   width="260" height="320" alt="">
+                   width="329" height="200" alt="">
             </picture>
             <div class="hero__label">
-              <svg width="24" height="25" aria-hidden="true">
+              <svg width="26" height="26" aria-hidden="true">
                 <use href="./__spritemap#sprite-cursor-arrow"></use>
               </svg>
               <span>Миша</span>
@@ -205,7 +203,7 @@
                   srcset="img/about/teacher@1x.webp 1x, img/about/teacher@2x.webp 2x">
                 <img src="img/about/teacher@1x.png"
                      srcset="img/about/teacher@2x.png 2x"
-                     width="320" height="360" alt="">
+                     width="441" height="489" alt="">
               </picture>
             </div>
           </li>
@@ -227,7 +225,7 @@
 
               <!-- Курсор-стрелка (лайм) + плашка "You" -->
               <div class="about__card-decor-label about__card-decor-label--you">
-                <svg width="24" height="25" aria-hidden="true">
+                <svg width="26" height="26" aria-hidden="true">
                   <use href="./__spritemap#sprite-cursor-arrow"></use>
                 </svg>
                 <span>You</span>
@@ -252,7 +250,7 @@
             <!-- Анимированный круг spreent: JS вращает при скролле -->
             <div class="about__card-logo" aria-hidden="true">
               <img src="img/icons/spreent-circle.svg"
-                   width="200" height="200" alt="">
+                   width="562" height="550" alt="">
             </div>
           </li>
 
@@ -312,7 +310,7 @@
 
           <!-- Якорная ссылка на форму: плавный скролл к #footer-form -->
           <a class="community__join" href="#footer-form" aria-label="Присоединиться к сообществу">
-            <svg width="130" height="130" aria-hidden="true">
+            <svg width="110" height="110" aria-hidden="true">
               <use href="./__spritemap#sprite-plus"></use>
             </svg>
           </a>
@@ -433,12 +431,12 @@
             </svg>
           </li>
           <li class="work__logo-item work__logo-item--mish">
-            <svg width="85" height="32" aria-label="mish" role="img">
+            <svg width="83" height="32" aria-label="mish" role="img">
               <use href="./__spritemap#sprite-mish"></use>
             </svg>
           </li>
           <li class="work__logo-item work__logo-item--chulakov">
-            <svg width="142" height="16" aria-label="Chulakov" role="img">
+            <svg width="140" height="16" aria-label="Chulakov" role="img">
               <use href="./__spritemap#sprite-chulakov"></use>
             </svg>
           </li>
@@ -483,7 +481,7 @@
               srcset="img/footer/certificate@1x.webp 1x, img/footer/certificate@2x.webp 2x">
             <img src="img/footer/certificate@1x.jpg"
                  srcset="img/footer/certificate@2x.jpg 2x"
-                 width="540" height="380" alt="">
+                 width="660" height="440" alt="">
           </picture>
         </div>
 
@@ -496,24 +494,25 @@
 
         <h2 class="footer__form-title">Сделайте апгрейд карьеры</h2>
 
-        <form class="footer__form" action="https://echo.htmlacademy.ru" method="POST">
-          <div class="footer__form-fields">
+        <form action="https://echo.htmlacademy.ru" method="POST">
+          <fieldset class="footer__form-fields">
+            <legend class="visually-hidden">Контактные данные</legend>
 
             <label class="visually-hidden" for="form-name">Имя</label>
-            <input class="footer__input" id="form-name" type="text" name="name"
+            <input id="form-name" type="text" name="name"
                    placeholder="Имя" required autocomplete="name">
 
             <!-- imask: +{7} (000) 000-00-00 -->
             <label class="visually-hidden" for="form-phone">Телефон</label>
-            <input class="footer__input" id="form-phone" type="tel" name="phone"
+            <input id="form-phone" type="tel" name="phone"
                    placeholder="Телефон" required autocomplete="tel">
 
             <!-- placeholder меняется на example@domain.com при фокусе (JS) -->
             <label class="visually-hidden" for="form-email">Почта</label>
-            <input class="footer__input" id="form-email" type="email" name="email"
+            <input id="form-email" type="email" name="email"
                    placeholder="Почта" required autocomplete="email">
 
-          </div>
+          </fieldset>
 
           <button class="btn btn--secondary footer__form-btn" type="submit">
             Оставить заявку
@@ -532,7 +531,7 @@
               <use href="./__spritemap#sprite-check-mark"></use>
             </svg>
           </span>
-          <p>Спасибо! Мы&nbsp;с вами свяжемся в&nbsp;ближайшее время.</p>
+          <p>Спасибо! Мы&nbsp;с Вами свяжемся в&nbsp;ближайшее время.</p>
         </div>
 
         <div class="footer__notification footer__notification--error" role="alert" hidden>
@@ -552,7 +551,7 @@
       <div class="container footer__bottom-container">
 
         <a class="logo logo--light footer__logo" href="index.html">
-          <svg width="127" height="28" aria-hidden="true">
+          <svg width="267" height="59" aria-hidden="true">
             <use href="./__spritemap#sprite-logo"></use>
           </svg>
           <span class="visually-hidden">spreent</span>
@@ -574,7 +573,7 @@
           <a class="footer__agency" href="https://mish.design" target="_blank"
              rel="nofollow noopener noreferrer">
             <span class="footer__agency-by">by</span>
-            <svg width="85" height="32" aria-label="mish" role="img">
+            <svg width="85" height="30" aria-label="mish" role="img">
               <use href="./__spritemap#sprite-mish"></use>
             </svg>
           </a>
