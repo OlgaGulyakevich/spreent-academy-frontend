@@ -128,7 +128,7 @@
           <!-- Артур — правый верхний угол -->
           <div class="hero__photo hero__photo--artur">
             <picture>
-              <source type="image/webp"
+              <source type="image/webp" width="329" height="200"
                 srcset="img/hero/artur@1x.webp 1x, img/hero/artur@2x.webp 2x">
               <img src="img/hero/artur@1x.jpg"
                    srcset="img/hero/artur@2x.jpg 2x"
@@ -145,7 +145,7 @@
           <!-- Сергей — левый нижний угол -->
           <div class="hero__photo hero__photo--sergey">
             <picture>
-              <source type="image/webp"
+              <source type="image/webp" width="175" height="256"
                 srcset="img/hero/sergey@1x.webp 1x, img/hero/sergey@2x.webp 2x">
               <img src="img/hero/sergey@1x.jpg"
                    srcset="img/hero/sergey@2x.jpg 2x"
@@ -162,7 +162,7 @@
           <!-- Миша — правый нижний угол -->
           <div class="hero__photo hero__photo--misha">
             <picture>
-              <source type="image/webp"
+              <source type="image/webp" width="329" height="200"
                 srcset="img/hero/misha@1x.webp 1x, img/hero/misha@2x.webp 2x">
               <img src="img/hero/misha@1x.jpg"
                    srcset="img/hero/misha@2x.jpg 2x"
@@ -199,7 +199,7 @@
             <p>В&nbsp;школе преподают эксперты-практики, которые прямо сейчас работают в&nbsp;крупных компаниях индустрии</p>
             <div class="about__card-media" aria-hidden="true">
               <picture>
-                <source type="image/webp"
+                <source type="image/webp" width="441" height="489"
                   srcset="img/about/teacher@1x.webp 1x, img/about/teacher@2x.webp 2x">
                 <img src="img/about/teacher@1x.png"
                      srcset="img/about/teacher@2x.png 2x"
@@ -272,7 +272,7 @@
           <ul class="community__avatar-list">
             <li class="community__avatar-item">
               <picture>
-                <source type="image/webp"
+                <source type="image/webp" width="110" height="110"
                   srcset="img/community/avatar-1@1x.webp 1x, img/community/avatar-1@2x.webp 2x">
                 <img src="img/community/avatar-1@1x.jpg"
                      srcset="img/community/avatar-1@2x.jpg 2x"
@@ -281,7 +281,7 @@
             </li>
             <li class="community__avatar-item">
               <picture>
-                <source type="image/webp"
+                <source type="image/webp" width="110" height="110"
                   srcset="img/community/avatar-2@1x.webp 1x, img/community/avatar-2@2x.webp 2x">
                 <img src="img/community/avatar-2@1x.jpg"
                      srcset="img/community/avatar-2@2x.jpg 2x"
@@ -290,7 +290,7 @@
             </li>
             <li class="community__avatar-item">
               <picture>
-                <source type="image/webp"
+                <source type="image/webp" width="110" height="110"
                   srcset="img/community/avatar-3@1x.webp 1x, img/community/avatar-3@2x.webp 2x">
                 <img src="img/community/avatar-3@1x.jpg"
                      srcset="img/community/avatar-3@2x.jpg 2x"
@@ -299,7 +299,7 @@
             </li>
             <li class="community__avatar-item">
               <picture>
-                <source type="image/webp"
+                <source type="image/webp" width="110" height="110"
                   srcset="img/community/avatar-4@1x.webp 1x, img/community/avatar-4@2x.webp 2x">
                 <img src="img/community/avatar-4@1x.jpg"
                      srcset="img/community/avatar-4@2x.jpg 2x"
@@ -402,8 +402,7 @@
           <a class="btn btn--primary work__btn" href="#">Присоединиться</a>
         </div>
 
-        <!-- role="list" обязателен: display:contents убирает list box в Safari -->
-        <ul class="work__logos" role="list">
+        <ul class="work__logos">
           <li class="work__logo-item work__logo-item--vtb">
             <svg width="95" height="34" aria-label="ВТБ" role="img">
               <use href="./__spritemap#sprite-vtb"></use>
@@ -477,7 +476,7 @@
         <!-- Декоративная картинка сертификата -->
         <div class="footer__certificate-card" aria-hidden="true">
           <picture>
-            <source type="image/webp"
+            <source type="image/webp" width="660" height="440"
               srcset="img/footer/certificate@1x.webp 1x, img/footer/certificate@2x.webp 2x">
             <img src="img/footer/certificate@1x.jpg"
                  srcset="img/footer/certificate@2x.jpg 2x"
@@ -521,7 +520,7 @@
 
         <p class="footer__form-disclaimer">
           Нажимая кнопку «Оставить заявку», вы&nbsp;подтверждаете
-          <a href="#" class="footer__form-disclaimer-link">согласие на&nbsp;обработку персональных данных</a>
+          <a class="footer__form-disclaimer-link" href="#">согласие на&nbsp;обработку персональных данных</a>
         </p>
 
         <!-- Уведомления: скрыты по умолчанию, JS показывает после сабмита, автоскрытие через 5с -->

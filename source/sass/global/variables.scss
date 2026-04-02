@@ -50,14 +50,14 @@ $color-btn-primary: $color-blue;
 $color-btn-primary-hover: #0047e8;                               // Darkened ~8%
 $color-btn-primary-active: #003dcf;                              // Darkened ~15%
 $color-btn-primary-disabled: rgba($color-blue, 0.4);             // Faded, no interaction
-$shadow-btn-primary-hover: 0 6px 20px rgba(24, 89, 255, 0.4);   // Синяя тень при наведении
+$shadow-btn-primary-hover: 0 6px 20px rgb(24, 89, 255, 0.4);   // Синяя тень при наведении
 
 // Buttons — secondary (#d9f243 lime pill, footer form)
 $color-btn-secondary: $color-secondary;
 $color-btn-secondary-hover: #c8e030;                             // Darkened ~8%
 $color-btn-secondary-active: #bdd920;                            // Darkened ~15%
 $color-btn-secondary-disabled: rgba($color-secondary, 0.4);      // Faded, no interaction
-$shadow-btn-secondary-hover: 0 6px 20px rgba(217, 242, 67, 0.4); // Лаймовая тень при наведении
+$shadow-btn-secondary-hover: 0 6px 20px rgb(217, 242, 67, 0.4); // Лаймовая тень при наведении
 
 
 // Form — footer (тёмный фон $color-bg-dark)
@@ -71,7 +71,7 @@ $color-form-text: $color-white;                          // Введённый �
 $color-form-error: #ff4949;                              // Ошибка валидации
 $color-error: $color-form-error;                         // alias → #ff4949 (semantic alias)
 $color-form-error-border: #ff4949;                       // Граница при ошибке
-$color-form-error-bg: rgba(255, 73, 73, 0.1);            // Фон при ошибке (лёгкий тинт) — НЕ используется на полях, только на уведомлении
+$color-form-error-bg: rgb(255, 73, 73, 0.1);            // Фон при ошибке (лёгкий тинт) — НЕ используется на полях, только на уведомлении
 $color-notification-error-bg: #654a55;                   // Фон уведомления об ошибке отправки формы
 $color-notification-success-bg: #3d5443;                 // Фон уведомления об успешной отправке (тёмно-зелёный под стиль сайта)
 
@@ -79,7 +79,7 @@ $color-notification-success-bg: #3d5443;                 // Фон уведом�
 // ---------------------------------
 // Gradients
 // ---------------------------------
-$gradient-bg-community: radial-gradient(92.49% 94.44% at 2.96% 50%, #daeef4 18.98%, #eef4f6 50.96%, #fff 88.74%); // Фон pill-контейнера с аватарами в секции community
+$gradient-bg-community: radial-gradient(92.49% 94.44% at 2.96% 50%, #daeef4 18.98%, #eef4f6 50.96%, #ffffff 88.74%); // Фон pill-контейнера с аватарами в секции community
 $gradient-card-skills: linear-gradient(180deg, #002fa8 0%, #001a68 100%); // Фон карточки .about__card--skills
 
 
@@ -87,8 +87,8 @@ $gradient-card-skills: linear-gradient(180deg, #002fa8 0%, #001a68 100%); // Ф�
 // Border
 // ---------------------------------
 $border-width-1: 1px;
-$border-width-logos-desktop: 1.056px;
-$border-width-logos-mobile: 0.704px;
+$border-width-logos-desktop: 1.06px;
+$border-width-logos-mobile: 0.7px;
 $border-color: $color-stroke;
 $color-border-header: rgba($color-dark, 0.1);
 $color-border-header-dark: rgba($color-white, 0.15);
@@ -162,7 +162,7 @@ $radius-16: 16px;      // Мелкие изображения (certificate)
 // ---------------------------------
 // Shadows
 // ---------------------------------
-$shadow-cursor: 0 1px 2px 0 rgba(0, 0, 0, 0.08); // Figma cursor element
+$shadow-cursor: 0 1px 2px 0 rgb(0, 0, 0, 0.08); // Figma cursor element
 
 
 // ---------------------------------
