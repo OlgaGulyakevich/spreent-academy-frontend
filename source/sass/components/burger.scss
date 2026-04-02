@@ -1,0 +1,59 @@
+// =============================================================================
+// BURGER COMPONENT
+// =============================================================================
+// Toggle button for mobile menu. Two SVG icons inside:
+//   .burger__icon  — hamburger (visible by default)
+//   .burger__close — cross (visible when aria-expanded="true")
+// Hover: brand-blue on burger, error-red on close (semantic micro-interaction).
+
+.burger {
+  @include flex-center;
+
+  width: 40px;
+  height: 40px;
+  color: $color-dark;
+  transition:
+    color $transition-default,
+    transform $transition-default;
+
+  @include hover {
+    color: $color-blue;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus-visible {
+    border-radius: $radius-8;
+  }
+}
+
+.burger__icon {
+  transition: opacity $transition-default;
+}
+
+.burger__close {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $transition-default;
+}
+
+// Open state: toggle icon visibility + semantic hover color
+.burger[aria-expanded="true"] {
+  .burger__icon {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .burger__close {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @include hover {
+    color: $color-error;
+  }
+}

@@ -1,0 +1,75 @@
+// =============================================================================
+// BUTTON COMPONENT
+// =============================================================================
+
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 25px 16px;
+
+  @include text-ui;
+
+  border-radius: $radius-btn;
+  white-space: nowrap;
+  text-align: center;
+  transition:
+    color $transition-default,
+    background-color $transition-default,
+    box-shadow $transition-default,
+    transform $transition-default;
+
+  &:focus-visible {
+    border-radius: $radius-btn;
+  }
+
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+// Primary — blue pill, white text
+.btn--primary {
+  background-color: $color-btn-primary;
+  color: $color-text-white;
+
+  @include hover {
+    background-color: $color-btn-primary-hover;
+    box-shadow: $shadow-btn-primary-hover;
+  }
+
+  &:active {
+    background-color: $color-btn-primary-active;
+    box-shadow: none;
+  }
+}
+
+.btn--primary[disabled] {
+  background-color: $color-btn-primary-disabled;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+// Secondary — lime pill, dark text (footer form)
+.btn--secondary {
+  background-color: $color-btn-secondary;
+  color: $color-text-dark;
+
+  @include hover {
+    background-color: $color-btn-secondary-hover;
+    box-shadow: $shadow-btn-secondary-hover;
+  }
+
+  &:active {
+    background-color: $color-btn-secondary-active;
+    box-shadow: none;
+  }
+}
+
+.btn--secondary[disabled] {
+  background-color: $color-btn-secondary-disabled;
+  pointer-events: none;
+  cursor: not-allowed;
+}
