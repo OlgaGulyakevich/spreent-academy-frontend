@@ -3,11 +3,9 @@
 // =============================================================================
 // max-width caps the content area, margin: auto centers on wide screens,
 // fluid padding scales smoothly between mobile and desktop offsets.
-//
 // max-width:      1440px  ($container-max-width)
 // padding range:  15px → 40px  ($container-offset-mobile → $container-offset-desktop)
 // fluid range:    480px → 1440px
-// =============================================================================
 
 .container {
   width: 100%;
