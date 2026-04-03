@@ -12,17 +12,10 @@
   width: 40px;
   height: 40px;
   color: $color-dark;
-  transition:
-    color $transition-default,
-    transform $transition-default;
+  transition: color $transition-default;
 
   @include hover {
     color: $color-blue;
-    transform: scale(1.1);
-  }
-
-  &:active {
-    transform: scale(0.95);
   }
 
   &:focus-visible {
@@ -30,15 +23,16 @@
   }
 }
 
+// Icon swap: opacity crossfade
 .burger__icon {
-  transition: opacity $transition-default;
+  transition: opacity $transition-fast;
 }
 
 .burger__close {
   position: absolute;
   opacity: 0;
   pointer-events: none;
-  transition: opacity $transition-default;
+  transition: opacity $transition-fast;
 }
 
 // Open state: toggle icon visibility + semantic hover color

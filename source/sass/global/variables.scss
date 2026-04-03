@@ -90,7 +90,7 @@ $border-width-1: 1px;
 $border-width-logos-desktop: 1.06px;
 $border-width-logos-mobile: 0.7px;
 $border-color: $color-stroke;
-$color-border-header: rgba($color-dark, 0.1);
+$color-border-header: rgba($color-dark, 0.15);
 $color-border-header-dark: rgba($color-white, 0.15);
 
 
@@ -176,7 +176,10 @@ $transition-medium: 0.4s;
 $transition-slow: 0.5s;
 $ease-default: ease;
 $ease-out: cubic-bezier(0, 0, 0.2, 1);
-$ease-out-expo: cubic-bezier(0, 0.7, 0.3, 1);
+$ease-in-out-sine: cubic-bezier(0.45, 0, 0.55, 1); // For light rocking
+$ease-smooth: cubic-bezier(0.65, 0, 0.35, 1); // Very smooth start and end
+$ease-in: cubic-bezier(0.4, 0, 1, 1);           // Gentle start, accelerates — for closing/exit
+$ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1); // Fast start, very soft slowdown
 $transition-default: $transition-base $ease-default;
 
 

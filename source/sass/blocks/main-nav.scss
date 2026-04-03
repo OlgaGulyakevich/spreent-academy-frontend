@@ -1,0 +1,84 @@
+// =============================================================================
+// MAIN NAV BLOCK
+// =============================================================================
+// Primary site navigation. Desktop: horizontal inline. Mobile: vertical list in expanded header.
+// Hover: underline sweep L→R (matches logo paint fill direction).
+
+.main-nav__list {
+  display: flex;
+  align-items: center;
+
+  // TODO: уточнить gap по макету Figma
+  gap: 40px;
+
+  // Mobile: inner element for grid 0fr/1fr collapse trick
+  @include vp-1023 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    overflow: hidden;
+  }
+}
+
+.main-nav__link {
+  @include text-ui;
+
+  position: relative;
+  display: block;
+  padding: 1px 0;
+  color: $color-text-main;
+  transition: color $transition-default;
+
+  // Underline sweep L→R
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: $color-dark;
+    transform: scaleX(0);
+
+    // transform-origin: left;
+    transform-origin: left center;
+    transition: transform $transition-medium $ease-in-out-sine;
+  }
+
+  @include hover {
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  &:active {
+    color: $color-indigo;
+
+    &::after {
+      transform: scaleX(0);
+      transition: none;
+    }
+  }
+
+  // Mobile: larger touch targets + bigger text
+  @include vp-1023 {
+    // TODO: уточнить font-size и padding по макету Figma
+    @include fluid-val(font-size, 22px, 28px, 320, 1023);
+
+    padding: 12px 0;
+
+    &::after {
+      bottom: 8px;
+    }
+  }
+}
+
+// Active page link — indigo color only, no underline, no interaction
+.main-nav__link--active {
+  color: $color-indigo;
+  pointer-events: none;
+
+  &::after {
+    display: none;
+  }
+}

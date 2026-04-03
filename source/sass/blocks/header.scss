@@ -1,0 +1,162 @@
+// =============================================================================
+// HEADER BLOCK
+// =============================================================================
+// Sticky header with logo + nav + CTA + burger.
+// Desktop: single row, nav inline. Mobile (≤1023px): burger toggle, dropdown drawer.
+// Open state driven by CSS :has(.burger[aria-expanded="true"]) — no JS classes on header.
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: $z-sticky;
+  background-color: $color-bg-main;
+  // border-bottom: $border-width-1 solid $color-border-header;
+  transition:
+    background-color $transition-default,
+    border-color $transition-default;
+}
+
+// Scrolled state (JS adds .header--scrolled at scrollY > 40)
+.header--scrolled {
+  background-color: $color-bg-header;
+  backdrop-filter: blur(10px);
+}
+
+// Container: flex row, vertically centered
+.header__container {
+  display: flex;
+  align-items: center;
+  border-bottom: $border-width-1 solid $color-border-header;
+
+  // TODO: уточнить padding-top/bottom по макету Figma
+  @include fluid-val(padding-top, 15px, 20px);
+  @include fluid-val(padding-bottom, 15px, 20px);
+
+  @include vp-1023 {
+    flex-wrap: wrap;
+    // border-bottom: none;
+  }
+}
+
+// Logo — size override for header context
+.header__logo {
+  margin-right: auto;
+  flex-shrink: 0;
+}
+
+// Nav — pushed to right, gap between links
+.header__nav {
+  // TODO: уточнить margin-right по макету Figma
+  margin-right: 40px;
+
+  // Mobile: absolute dropdown + grid collapse (0fr → 1fr), Apple-style
+  @include vp-1023 {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: $z-dropdown;
+    display: grid;
+    grid-template-rows: 0fr;
+    margin-right: 0;
+    background-color: $color-white;
+    opacity: 0;
+    visibility: hidden;
+    // Closing transition: gentle ease-in, opacity fades after grid starts collapsing
+    transition:
+      grid-template-rows $transition-medium $ease-in,
+      opacity $transition-fast $ease-in 0.1s,
+      visibility $transition-medium;
+  }
+}
+
+// CTA button — compact size for header
+.header__cta {
+  padding: 6px 15px 7px;
+  flex-shrink: 0;
+}
+
+// Burger — hidden on desktop, vertical divider on mobile
+.header__burger {
+  display: none;
+  position: relative;
+  margin-left: 20px;
+  flex-shrink: 0;
+
+  @include vp-1023 {
+    display: flex;
+    padding-left: 0;
+    margin-left: 40px;
+
+    // Vertical divider that stretches beyond container padding
+    &::before {
+      content: "";
+      position: absolute;
+      left: -20px;
+      @include fluid-val(top, -15px, -20px);
+      @include fluid-val(bottom, -15px, -20px);
+      border-left: $border-width-1 solid $color-border-header;
+    }
+  }
+}
+
+// =============================================================================
+// MOBILE MENU — white panel + frosted glass overlay below (≤1023px)
+// =============================================================================
+// Triggered by :has(.burger[aria-expanded="true"]) — pure CSS, no JS classes.
+// Header (white) fixed at top, nav expands via grid 0fr → 1fr.
+// ::after — frosted glass overlay starts below header, covers rest of viewport.
+
+@include vp-1023 {
+  // Overlay — frosted glass below the menu, hidden by default
+  .header::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background-color: rgba($color-white, 0.7);
+    backdrop-filter: blur(40px);
+    // stylelint-disable-next-line property-no-vendor-prefix
+    -webkit-backdrop-filter: blur(40px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    // Closing transition: overlay fades gently with delay (waits for nav to start collapsing)
+    transition:
+      opacity $transition-medium $ease-in 0.05s,
+      visibility $transition-medium;
+  }
+
+  .header:has(.burger[aria-expanded="true"]) {
+    z-index: $z-overlay;
+
+    // Show frosted glass overlay below menu — opening transition: fast, no delay
+    &::after {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition:
+        opacity $transition-fast,
+        visibility 0s;
+    }
+
+    // Nav: expand grid row — opening transition overrides closing one
+    .header__nav {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      visibility: visible;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      transition:
+        grid-template-rows $transition-medium $ease-out-expo,
+        opacity $transition-fast,
+        visibility 0s;
+
+      // Pull to viewport edges, compensate with padding
+      @include fluid-val(padding-left, $container-offset-mobile, $container-offset-desktop);
+      @include fluid-val(padding-right, $container-offset-mobile, $container-offset-desktop);
+    }
+  }
+}
