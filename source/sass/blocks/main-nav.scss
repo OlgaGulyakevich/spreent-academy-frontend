@@ -18,6 +18,7 @@
   @include vp-1023 {
     flex-direction: column;
     align-items: flex-start;
+    flex-wrap: nowrap; 
     gap: 0;
     overflow: hidden;
 
