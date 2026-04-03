@@ -15,13 +15,15 @@
 // Interaction & States
 // -----------------------------------------------------------------------------
 
-// iOS Safari: overflow: hidden на body не блокирует скролл viewport — нужен и на html
+// Scroll lock: prevents scrolling while keeping position: sticky alive.
+// overflow: clip blocks scroll WITHOUT creating a scroll container,
+// so sticky elements keep working (overflow: hidden would break them).
 html:has(.scroll-lock) {
-  overflow: hidden;
+  overflow: clip;
 }
 
 .scroll-lock {
-  overflow: hidden;
+  overflow: clip;
   touch-action: none;
 }
 

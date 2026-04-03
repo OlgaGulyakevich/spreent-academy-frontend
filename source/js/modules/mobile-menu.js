@@ -53,7 +53,7 @@ const initMobileMenu = () => {
   };
 
   const handleOverlayClick = (evt) => {
-    if (!evt.target.closest('.header__container') && isOpen()) {
+    if (!evt.target.closest('.header') && isOpen()) {
       closeMenu();
     }
   };
@@ -61,7 +61,7 @@ const initMobileMenu = () => {
   burger.addEventListener('click', handleBurgerClick);
   document.addEventListener('keydown', handleKeyDown);
   nav.addEventListener('click', handleNavClick);
-  header.addEventListener('click', handleOverlayClick);
+  document.addEventListener('click', handleOverlayClick);
 };
 
 export { initMobileMenu };

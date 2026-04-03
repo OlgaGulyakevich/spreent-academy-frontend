@@ -7,9 +7,12 @@
 .main-nav__list {
   display: flex;
   align-items: center;
+  flex-wrap: wrap; 
+  justify-content: flex-end; 
+  gap: 20px;
+  max-width: 800px; 
 
-  // TODO: уточнить gap по макету Figma
-  gap: 40px;
+  @include flex-no-overflow;
 
   // Mobile: inner element for grid 0fr/1fr collapse trick
   @include vp-1023 {
@@ -17,6 +20,12 @@
     align-items: flex-start;
     gap: 0;
     overflow: hidden;
+
+    padding-top: 30px;
+    padding-bottom: 37px;
+
+    @include fluid-val(padding-left, $container-offset-mobile, $container-offset-desktop);
+    @include fluid-val(padding-right, $container-offset-mobile, $container-offset-desktop);
   }
 }
 
@@ -25,23 +34,23 @@
 
   position: relative;
   display: block;
-  padding: 1px 0;
   color: $color-text-main;
   transition: color $transition-default;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   // Underline sweep L→R
   &::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 1px;
     width: 100%;
     height: 2px;
     background-color: $color-dark;
     transform: scaleX(0);
-
-    // transform-origin: left;
-    transform-origin: left center;
+    transform-origin: left;
     transition: transform $transition-medium $ease-in-out-sine;
   }
 
@@ -62,14 +71,11 @@
 
   // Mobile: larger touch targets + bigger text
   @include vp-1023 {
-    // TODO: уточнить font-size и padding по макету Figma
-    @include fluid-val(font-size, 22px, 28px, 320, 1023);
-
-    padding: 12px 0;
-
-    &::after {
-      bottom: 8px;
-    }
+    @include fluid-val(font-size, 26px, 30px, 480, 1023);
+    @include fluid-val(font-size, 18px, 24px, 375, 430);
+    
+    line-height: 1.02;
+    padding: 5px 0;
   }
 }
 

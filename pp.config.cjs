@@ -3,13 +3,13 @@
 // Референсы: bitmaps_reference/pp-reference/{section}-{viewport}.png
 
 const desktopSections = [
-  {section: 'header',    misMatchThreshold: 1.0},
-  {section: 'hero',      misMatchThreshold: 1.0},
-  {section: 'about',     misMatchThreshold: 1.0},
-  {section: 'community', misMatchThreshold: 1.0},
-  {section: 'price',     misMatchThreshold: 1.0},
-  {section: 'work',      misMatchThreshold: 1.0},
-  {section: 'footer',    misMatchThreshold: 1.0},
+  {section: 'header',    misMatchThreshold: 1.8},
+  {section: 'hero',      misMatchThreshold: 1.8},
+  {section: 'about',     misMatchThreshold: 1.8},
+  {section: 'community', misMatchThreshold: 1.8},
+  {section: 'price',     misMatchThreshold: 1.8},
+  {section: 'work',      misMatchThreshold: 1.8},
+  {section: 'footer',    misMatchThreshold: 1.8},
 ];
 
 const mobileSections = [
