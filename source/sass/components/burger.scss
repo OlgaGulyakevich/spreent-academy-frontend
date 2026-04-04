@@ -12,7 +12,7 @@
   width: 40px;
   height: 40px;
   color: $color-dark;
-  transition: color $transition-default;
+  transition: color $transition-medium;
 
   @include hover {
     color: $color-blue;
@@ -23,28 +23,42 @@
   }
 }
 
-// Icon swap: opacity crossfade
+// Icon swap: vertical collapse + scale grow
 .burger__icon {
-  transition: opacity $transition-fast;
+  // По умолчанию (когда возвращаемся к гамбургеру) ждем пока крестик исчезнет
+  transition:
+    opacity $transition-medium $ease-in,
+    transform $transition-medium $ease-in;
+  transition-delay: 0.1s;
 }
 
 .burger__close {
   position: absolute;
   opacity: 0;
   pointer-events: none;
-  transition: opacity $transition-fast;
+  // Начинаем с более мелкого размера и легкого наклона (эффект раскрытия из бутона)
+  transform: scale(0.5) rotate(-15deg);
+  // По умолчанию (когда крестик исчезает) делаем это мгновенно
+  transition:
+    opacity $transition-medium $ease-out,
+    transform $transition-medium $ease-out;
+  transition-delay: 0s;
 }
 
 // Open state: toggle icon visibility + semantic hover color
 .burger[aria-expanded="true"] {
   .burger__icon {
     opacity: 0;
+    transform: scaleY(0); // Полоски «смыкаются» в одну линию
     pointer-events: none;
+    transition-delay: 0s; // Бургер уходит сразу при открытии
   }
 
   .burger__close {
     opacity: 1;
+    transform: scale(1) rotate(0); // Встает на место мягко раскрываясь
     pointer-events: auto;
+    transition-delay: 0.3s; // Появляемся с задержкой, чтобы сцена была чистой
   }
 
   @include hover {

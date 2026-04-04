@@ -76,9 +76,9 @@
     visibility: hidden;
     // Closing transition: gentle ease-in, opacity fades after grid starts collapsing
     transition:
-      grid-template-rows $transition-medium $ease-in,
-      opacity $transition-fast $ease-in 0.1s,
-      visibility $transition-medium;
+      grid-template-rows $transition-fast $ease-in,
+      opacity $transition-fast $ease-in,
+      visibility $transition-fast;
   }
 }
 
@@ -154,7 +154,7 @@
       visibility: visible;
       transition:
         grid-template-rows $transition-medium $ease-out-expo,
-        opacity $transition-fast,
+        opacity $transition-medium $ease-out-expo,
         visibility 0s;
     }
   }
