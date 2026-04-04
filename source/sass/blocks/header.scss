@@ -13,6 +13,19 @@
   transition:
     background-color $transition-default,
     border-color $transition-default;
+
+  // Scroll Progress Bar (Full screen width)
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: var(--scroll-progress, 0%);
+    height: 2px;
+    background-color: $color-blue;
+    transition: width 0.1s $ease-out;
+    z-index: 1;
+  }
 }
 
 // Scrolled state (JS adds .header--scrolled at scrollY > 40)
