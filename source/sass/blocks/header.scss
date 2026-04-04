@@ -37,7 +37,9 @@
 .header__container {
   display: flex;
   align-items: center;
+
   @include flex-no-overflow;
+
   padding-top: 16px;
   padding-bottom: 16px;
   position: relative;
@@ -48,11 +50,11 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-    width: 100vw; // Растягиваем на весь экран
+    width: 100vw;
     transform: translateX(-50%);
     border-bottom: $border-width-1 solid $color-border-header;
   }
- 
+
   @include vp-1023 {
     flex-wrap: wrap;
     padding-bottom: 13px;
@@ -87,6 +89,7 @@
     background-color: $color-white;
     opacity: 0;
     visibility: hidden;
+
     // Closing transition: gentle ease-in, opacity fades after grid starts collapsing
     transition:
       grid-template-rows $transition-fast $ease-in,

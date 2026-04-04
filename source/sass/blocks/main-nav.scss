@@ -7,10 +7,10 @@
 .main-nav__list {
   display: flex;
   align-items: center;
-  flex-wrap: wrap; 
-  justify-content: flex-end; 
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 20px;
-  max-width: 800px; 
+  max-width: 800px;
 
   @include flex-no-overflow;
 
@@ -18,7 +18,7 @@
   @include vp-1023 {
     flex-direction: column;
     align-items: flex-start;
-    flex-wrap: nowrap; 
+    flex-wrap: nowrap;
     gap: 0;
     overflow: hidden;
 
@@ -74,7 +74,7 @@
   @include vp-1023 {
     @include fluid-val(font-size, 26px, 30px, 480, 1023);
     @include fluid-val(font-size, 18px, 24px, 375, 430);
-    
+
     line-height: 1.02;
     padding: 5px 0;
   }

@@ -1,10 +1,6 @@
 // =============================================================================
 // BURGER COMPONENT
 // =============================================================================
-// Toggle button for mobile menu. Two SVG icons inside:
-//   .burger__icon  — hamburger (visible by default)
-//   .burger__close — cross (visible when aria-expanded="true")
-// Hover: brand-blue on burger, error-red on close (semantic micro-interaction).
 
 .burger {
   @include flex-center;
@@ -25,7 +21,6 @@
 
 // Icon swap: vertical collapse + scale grow
 .burger__icon {
-  // По умолчанию (когда возвращаемся к гамбургеру) ждем пока крестик исчезнет
   transition:
     opacity $transition-medium $ease-in,
     transform $transition-medium $ease-in;
@@ -36,9 +31,11 @@
   position: absolute;
   opacity: 0;
   pointer-events: none;
-  // Начинаем с более мелкого размера и легкого наклона (эффект раскрытия из бутона)
+
+  // Start from a smaller size and slight tilt (the effect of opening from a bud)
   transform: scale(0.5) rotate(-15deg);
-  // По умолчанию (когда крестик исчезает) делаем это мгновенно
+
+  // By default (when the cross disappears) we do this instantly
   transition:
     opacity $transition-medium $ease-out,
     transform $transition-medium $ease-out;
@@ -49,16 +46,16 @@
 .burger[aria-expanded="true"] {
   .burger__icon {
     opacity: 0;
-    transform: scaleY(0); // Полоски «смыкаются» в одну линию
+    transform: scaleY(0); // The stripes «close» into one line
     pointer-events: none;
-    transition-delay: 0s; // Бургер уходит сразу при открытии
+    transition-delay: 0s; // The burger leaves immediately when opened
   }
 
   .burger__close {
     opacity: 1;
-    transform: scale(1) rotate(0); // Встает на место мягко раскрываясь
+    transform: scale(1) rotate(0); // It settles into place softly opening
     pointer-events: auto;
-    transition-delay: 0.3s; // Появляемся с задержкой, чтобы сцена была чистой
+    transition-delay: 0.3s; // We appear with a delay to keep the scene clean
   }
 
   @include hover {
