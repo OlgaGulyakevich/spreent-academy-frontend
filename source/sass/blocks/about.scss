@@ -206,6 +206,7 @@
 .about__card-decor {
   position: absolute;
   z-index: 1;
+  isolation: isolate;
 
   // TODO: тестовые координаты — подкрутить под макет
   top: 40px;
@@ -225,9 +226,8 @@
 }
 
 // Shared: Figma selection frame (border + 4 corner handles)
-// Pseudo extends by frame-offset + half-handle so handles sit
-// centered on frame corners. Border drawn via outline with
-// negative offset to land exactly at frame-offset from shape.
+// All drawn via background-image layers (no outline/border).
+// CSS paints earlier bg layers on top → handles (1–4) above frame lines (5–8).
 .about__card-decor-circle,
 .about__card-decor-rect {
   &::before {
@@ -237,17 +237,27 @@
     right: -9px;
     bottom: -9px;
     left: -9px;
-    z-index: 1;
+    z-index: -1;
 
-    outline: 1px solid $color-blue;
-    outline-offset: -8px;
     background-image:
+      // Corner handles (on top)
       linear-gradient($color-white, $color-white),
       linear-gradient($color-white, $color-white),
       linear-gradient($color-white, $color-white),
-      linear-gradient($color-white, $color-white);
-    background-size: 16px 16px;
-    background-position: top left, top right, bottom left, bottom right;
+      linear-gradient($color-white, $color-white),
+      // Frame border lines (behind handles)
+      linear-gradient($color-blue, $color-blue),
+      linear-gradient($color-blue, $color-blue),
+      linear-gradient($color-blue, $color-blue),
+      linear-gradient($color-blue, $color-blue);
+    background-size:
+      16px 16px, 16px 16px, 16px 16px, 16px 16px,
+      calc(100% - 16px) 1px, 1px calc(100% - 16px),
+      calc(100% - 16px) 1px, 1px calc(100% - 16px);
+    background-position:
+      top left, top right, bottom left, bottom right,
+      8px 8px, right 8px top 8px,
+      left 8px bottom 8px, left 8px top 8px;
     background-repeat: no-repeat;
     pointer-events: none;
 
@@ -256,15 +266,21 @@
       right: -14px;
       bottom: -14px;
       left: -14px;
-      outline-offset: -7px;
-      background-size: 14px 14px;
+
+      background-size:
+        14px 14px, 14px 14px, 14px 14px, 14px 14px,
+        calc(100% - 14px) 1px, 1px calc(100% - 14px),
+        calc(100% - 14px) 1px, 1px calc(100% - 14px);
+      background-position:
+        top left, top right, bottom left, bottom right,
+        7px 7px, right 7px top 7px,
+        left 7px bottom 7px, left 7px top 7px;
     }
   }
 }
 
 .about__card-decor-circle {
   position: absolute;
-  z-index: 2;
 
   // TODO: тестовые координаты — подкрутить под макет
   top: 30px;
@@ -279,7 +295,6 @@
 
 .about__card-decor-rect {
   position: absolute;
-  z-index: 1;
 
   // TODO: тестовые координаты — подкрутить под макет
   top: 60px;
@@ -289,11 +304,11 @@
   aspect-ratio: 3 / 2;
 
   // ТЕЛО ПРЯМОУГОЛЬНИКА (стеклянный фон с прозрачностью)
+  // z-index не задан — рисуется в обычном слое (выше ::before рамок с z-index: -1)
   &::after {
     content: "";
     position: absolute;
     inset: 0;
-    z-index: -1;
     background: radial-gradient(108.28% 89.89% at 33.94% 20.94%, #ecf1fe 0%, #b1c6e7 100%);
     opacity: 0.13; // Прозрачность только фона
     border-radius: 50px;
@@ -362,7 +377,8 @@
   }
 
   svg {
-    color: $color-white;
+    color: $color-blue;
+    filter: drop-shadow($shadow-cursor);
   }
 }
 

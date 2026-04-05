@@ -217,9 +217,9 @@
             <!-- Декоративный UI-мокап, реализован через CSS + спрайт-иконки -->
             <div class="about__card-decor" aria-hidden="true">
 
-              <!-- CSS shapes: circle над rect, каждый со своей рамкой через ::before -->
-              <div class="about__card-decor-circle"></div>
+              <!-- CSS shapes: rect первый в DOM, circle второй → circle поверх rect -->
               <div class="about__card-decor-rect"></div>
+              <div class="about__card-decor-circle"></div>
 
               <!-- Курсор-стрелка (лайм) + плашка "You" -->
               <div class="about__card-decor-label about__card-decor-label--you">
