@@ -15,6 +15,15 @@ module.exports = async (page, scenario, vp) => {
       lazyImages.forEach((i) => {
         i.removeAttribute('loading');
       });
+
+      // Хак: прячем ползунок прокрутки прямо в браузере при прохождении тестов, 
+      // чтобы ширина viewport не съедалась на 15 пикселей.
+      const style = document.createElement('style');
+      style.innerHTML = `
+        ::-webkit-scrollbar { display: none !important; width: 0 !important; }
+        html, body { scrollbar-width: none !important; }
+      `;
+      document.head.appendChild(style);
     }, scenario);
 
     // await require('./clickAndHoverHelper')(page, scenario);

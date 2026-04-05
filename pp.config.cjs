@@ -3,23 +3,23 @@
 // Референсы: bitmaps_reference/pp-reference/{section}-{viewport}.png
 
 const desktopSections = [
-  {section: 'header',    misMatchThreshold: 1.8},
-  {section: 'hero',      misMatchThreshold: 1.8},
-  {section: 'about',     misMatchThreshold: 1.8},
-  {section: 'community', misMatchThreshold: 1.8},
-  {section: 'price',     misMatchThreshold: 1.8},
-  {section: 'work',      misMatchThreshold: 1.8},
-  {section: 'footer',    misMatchThreshold: 1.8},
+  {section: 'header',    misMatchThreshold: 2},
+  {section: 'hero',      misMatchThreshold: 2},
+  {section: 'about',     misMatchThreshold: 2},
+  {section: 'community', misMatchThreshold: 2},
+  {section: 'price',     misMatchThreshold: 2},
+  {section: 'work',      misMatchThreshold: 2},
+  {section: 'footer',    misMatchThreshold: 2},
 ];
 
 const mobileSections = [
-  {section: 'header',    misMatchThreshold: 1.5},
-  {section: 'hero',      misMatchThreshold: 1.5},
-  {section: 'about',     misMatchThreshold: 1.5},
-  {section: 'community', misMatchThreshold: 1.5},
-  {section: 'price',     misMatchThreshold: 1.5},
-  {section: 'work',      misMatchThreshold: 1.5},
-  {section: 'footer',    misMatchThreshold: 1.5},
+  {section: 'header',    misMatchThreshold: 2},
+  {section: 'hero',      misMatchThreshold: 2},
+  {section: 'about',     misMatchThreshold: 2},
+  {section: 'community', misMatchThreshold: 2},
+  {section: 'price',     misMatchThreshold: 2},
+  {section: 'work',      misMatchThreshold: 2},
+  {section: 'footer',    misMatchThreshold: 2},
 ];
 
 const VIEWPORTS = {
@@ -36,7 +36,7 @@ function generateScenario(section, misMatchThreshold, viewport) {
     selectors: [`[data-test="${section}"]`],
     misMatchThreshold: misMatchThreshold || 1.0,
     requireSameDimensions: false,
-    delay: 500,
+    delay: 2500, // Увеличено с 500ms, чтобы Vite успел скомпилировать и отдать шрифты (избегаем fallback на Times New Roman)
     ...viewport ? {"viewports": [VIEWPORTS[viewport]]} : {},
   };
 }

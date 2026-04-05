@@ -4,6 +4,7 @@
 
 .hero {
   padding-top: 34px;
+
   @include fluid-val(padding-bottom, 60px, 98px);
 
   @include vp-1023 {
@@ -48,21 +49,23 @@
   transform: translateY(-40px);
   text-align: left;
   overflow-wrap: break-word;
-  
- // Float barrier: protects the photo area while allowing bottom lines to span full width.
+
+  // Float barrier: protects the photo area while allowing bottom lines to span full width.
   &::before {
-    content: '';
+    content: "";
     float: right;
+
     @include fluid-val(width, 221px, 460px);
-    height: 50px; 
+
+    height: 50px;
   }
 
   @include vp-1023 {
     order: 2;
-    transform: translateY(1px);
+    transform: none;
     margin-bottom: 16px;
     max-width: none;
-    
+
     &::before {
       display: none;
     }
@@ -71,13 +74,14 @@
 
 .hero__title-shift {
   display: inline-block;
-  @include fluid-val(margin-left, 40px, 343px);
+
+  @include fluid-val(margin-left, 41px, 343px);
+
   transform: translateY(5px);
 
   @include vp-1023 {
     display: inline;
     transform: none;
-
 
     @include vp-max(440px) {
       margin-left: 20px;
@@ -95,13 +99,14 @@
   max-width: 440px;
   text-align: left;
   transform: translateX(-10px);
-  margin-bottom: 0; 
+  margin-bottom: 0;
 
   @include vp-1023 {
     order: 3;
     max-width: 340px;
     margin-left: 42px;
     transform: none;
+
     // margin-bottom: 25px;
   }
 }
@@ -115,7 +120,6 @@
   white-space: normal;
   margin-top: 35px;
   transform: translateX(-10px);
-
 
 
   @include vp-1023 {
@@ -134,6 +138,7 @@
   z-index: $z-base;
 
   @include fluid-val(border-radius, 16px, 24px);
+
   box-shadow: $shadow-cursor;
 
   img {
@@ -151,16 +156,18 @@
   justify-self: end;
 
   @include fluid-val(width, 221px, 329px);
+
   aspect-ratio: 329 / 200;
   flex-shrink: 0;
   transform: translateX(-113px);
 
   @include vp-max(1440px) {
-    transform: translateX(fluid-val-value(-113px, 0px, 1440, 1024));
+    transform: translateX(fluid-val-value(-113px, 0, 1440, 1024));
   }
 
   .hero__label {
     @include fluid-val(top, 46px, 62px);
+
     left: fluid-val-value(-126px, -106px, 1440, 480);
 
     @include vp-max(420px) {
@@ -186,6 +193,7 @@
   justify-self: start;
 
   @include fluid-val(width, 117px, 175px);
+
   aspect-ratio: 175 / 256;
   flex-shrink: 0;
   transform: translate(55px, 16px);
@@ -228,10 +236,11 @@
   align-self: end;
 
   @include fluid-val(width, 221px, 329px);
+
   aspect-ratio: 329 / 200;
   flex-shrink: 0;
   transform: translate(13px, 37px);
-  
+
 
   .hero__label {
     top: 50px;
@@ -254,7 +263,7 @@
     grid-row: auto;
     align-self: flex-end;
     margin-top: -67px;
-    transform: translateX(0px);
+    transform: translateX(0);
   }
 }
 

@@ -26,21 +26,22 @@
 
 
   @include fluid-val(font-size, 40px, 90px);
+
   line-height: 0.88;
-  letter-spacing: 0.001em; 
+  letter-spacing: 0.001em;
   color: $color-text-h1;
 
   @include vp-1023 {
     line-height: 1.012;
-    letter-spacing: -0.01em; 
+    letter-spacing: -0.01em;
   }
 
   @include vp-max(440px) {
-   font-size: 36px; 
+    font-size: 36px;
   }
 
   @include vp-max(375px) {
-   font-size: 26px; 
+    font-size: 26px;
   }
 }
 
