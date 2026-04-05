@@ -217,11 +217,9 @@
             <!-- Декоративный UI-мокап, реализован через CSS + спрайт-иконки -->
             <div class="about__card-decor" aria-hidden="true">
 
-              <!-- Рамка выделения: circle + rect — CSS shapes -->
-              <div class="about__card-decor-frame">
-                <div class="about__card-decor-circle"></div>
-                <div class="about__card-decor-rect"></div>
-              </div>
+              <!-- CSS shapes: circle над rect, каждый со своей рамкой через ::before -->
+              <div class="about__card-decor-circle"></div>
+              <div class="about__card-decor-rect"></div>
 
               <!-- Курсор-стрелка (лайм) + плашка "You" -->
               <div class="about__card-decor-label about__card-decor-label--you">
