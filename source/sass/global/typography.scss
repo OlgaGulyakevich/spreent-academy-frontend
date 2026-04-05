@@ -5,7 +5,7 @@
 //   Primary: "Manrope" (weight 500/600) — body, UI, tags
 //   Secondary: "Inter" (weight 500) — cursor-плашки
 // Desktop scale (1440px):
-//   title-h1:      90px / 500 / 0.88   / ls -0.01em (Loos Wide)
+//   title-h1:      90px / 500 / 0.88   / ls 0 (Loos Wide)
 //   title-h2:      46px / 500 / 1       (Loos Wide)
 //   title-h3:      34px / 500 / 1.02    (Loos Wide)
 //   title-digit:  120px / 500 / 1       / ls -0.05em (Loos Wide) — "Более 100"
@@ -28,11 +28,11 @@
   @include fluid-val(font-size, 40px, 90px);
 
   line-height: 0.88;
-  letter-spacing: 0.001em;
+  letter-spacing: 0;
   color: $color-text-h1;
 
   @include vp-1023 {
-    line-height: 1.012;
+    line-height: 1.01;
     letter-spacing: -0.01em;
   }
 

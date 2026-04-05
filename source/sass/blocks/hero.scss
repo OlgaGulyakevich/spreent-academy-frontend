@@ -12,7 +12,6 @@
   }
 
   overflow: hidden;
-  background-color: $color-white;
 }
 
 .hero__container {
@@ -293,9 +292,9 @@
     color: $color-blue;
     filter: drop-shadow(0 1px 2px rgb(0 0 0 / 15%));
   }
+}
 
-  &.hero__label--cursor svg {
-    bottom: 100%;
-    left: -23px;
-  }
+.hero__label--cursor svg {
+  bottom: 100%;
+  left: -23px;
 }

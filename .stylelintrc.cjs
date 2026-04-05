@@ -51,8 +51,10 @@ module.exports = {
     "function-no-unknown": [
       true,
       {
-        ignoreFunctions: ["adjust", "color.adjust", "scale", "color.scale"]
+        ignoreFunctions: ["adjust", "color.adjust", "scale", "color.scale", "fluid-val-value", "min", "max"]
       }
-    ]
+    ],
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true
   },
 };
