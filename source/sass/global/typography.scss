@@ -48,12 +48,22 @@
 // Figma: H2 — Loos Wide Medium, lh 1, ls 0
 // mob: 28px → desk: 46px
 @mixin title-h2 {
-  @include fluid-val(font-size, 28px, 46px);
+  @include fluid-val(font-size, 38px, 55px);
 
   font-family: $font-family-display;
   font-weight: $font-weight-medium;
-  line-height: 1;
+  line-height: 0.96;
+  letter-spacing: -0.01em;
+
   color: $color-text-h2;
+
+  @include vp-1023 {
+    line-height: 0.98;
+  }
+
+  @include vp-max(430px) {
+    font-size: fluid-val-value(24px, 32px, 375, 430);
+  }
 }
 
 // Figma: H3 — Loos Wide Medium, lh 1.02, ls 0

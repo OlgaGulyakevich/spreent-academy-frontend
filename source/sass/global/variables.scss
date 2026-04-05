@@ -37,7 +37,8 @@ $color-bg-light: #eef4f6;
 $color-bg-dark: #0d1627;
 $color-bg-main: $color-bg-pure-white;
 $color-bg-header: rgba($color-white, 0.7);        // Backdrop header
-$color-bg-tag: rgba($color-indigo, 0.06);          // Tag bubble background
+$color-bg-tag: rgba($color-indigo, 0.06);          // Tag bubble background (light theme)
+$color-bg-tag-light: rgba($color-white, 0.2);     // Tag bubble background (dark theme / skills card)
 $color-bg-input-dark: rgba($color-white, 0.2);     // Input на тёмном фоне
 
 // Semantic aliases (used in pages.scss / utility.scss)
