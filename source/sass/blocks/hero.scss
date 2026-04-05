@@ -120,11 +120,18 @@
   margin-top: 35px;
   transform: translateX(-10px);
 
+  &:active {
+    transform: translateX(-10px) scale(0.97);
+  }
 
   @include vp-1023 {
     order: 4;
     transform: translateX(42px);
     margin-top: 25px;
+
+    &:active {
+      transform: translateX(42px) scale(0.97);
+    }
   }
 }
 
