@@ -5,7 +5,7 @@
 //   Primary: "Manrope" (weight 500/600) — body, UI, tags
 //   Secondary: "Inter" (weight 500) — cursor-плашки
 // Desktop scale (1440px):
-//   title-h1:      55px / 500 / 0.96   / ls -0.01em (Loos Wide)
+//   title-h1:      90px / 500 / 0.88   / ls -0.01em (Loos Wide)
 //   title-h2:      46px / 500 / 1       (Loos Wide)
 //   title-h3:      34px / 500 / 1.02    (Loos Wide)
 //   title-digit:  120px / 500 / 1       / ls -0.05em (Loos Wide) — "Более 100"
@@ -19,15 +19,29 @@
 
 
 // Figma: H1 — Loos Wide Medium, lh 0.96, ls -1px
-// mob 480px: 40px → desk 1440px: 55px
+// mob 480px: 40px → desk 1440px: 90px
 @mixin title-h1 {
-  @include fluid-val(font-size, 40px, 55px);
-
   font-family: $font-family-display;
   font-weight: $font-weight-medium;
-  line-height: 0.96;
-  letter-spacing: -0.01em;
+
+
+  @include fluid-val(font-size, 40px, 90px);
+  line-height: 0.88;
+  letter-spacing: 0.001em; 
   color: $color-text-h1;
+
+  @include vp-1023 {
+    line-height: 1.012;
+    letter-spacing: -0.01em; 
+  }
+
+  @include vp-max(440px) {
+   font-size: 36px; 
+  }
+
+  @include vp-max(375px) {
+   font-size: 26px; 
+  }
 }
 
 // Figma: H2 — Loos Wide Medium, lh 1, ls 0
@@ -83,7 +97,7 @@
   font-family: $font-family-primary;
   font-weight: $font-weight-medium;
   line-height: 1.4;
-  color: $color-text-secondary;
+  color: $color-text-main;
 }
 
 // Figma: Text 18 — Manrope Medium, lh 1.4 (основной body-текст)

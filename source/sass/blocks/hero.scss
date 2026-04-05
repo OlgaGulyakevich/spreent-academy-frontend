@@ -1,0 +1,292 @@
+// =============================================
+// Hero Section
+// =============================================
+
+.hero {
+  padding-top: 34px;
+  @include fluid-val(padding-bottom, 60px, 98px);
+
+  @include vp-1023 {
+    padding-top: 40px;
+  }
+
+  overflow: hidden;
+  background-color: $color-white;
+}
+
+.hero__container {
+  display: grid;
+  grid-template-columns: 26% auto 42%;
+  grid-template-rows: auto auto max-content auto;
+  align-items: center;
+
+  @include grid-no-overflow;
+
+  @include vp-1023 {
+    @include flex-center;
+
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+// Making BEM children participate in the container grid
+.hero__content,
+.hero__photos {
+  display: contents;
+}
+
+// ---------------------------------
+// Text Content
+// ---------------------------------
+
+.hero h1 {
+  @include title-h1;
+
+  grid-column: 1 / -1;
+  grid-row: 2;
+  transform: translateY(-40px);
+  text-align: left;
+  overflow-wrap: break-word;
+  
+ // Float barrier: protects the photo area while allowing bottom lines to span full width.
+  &::before {
+    content: '';
+    float: right;
+    @include fluid-val(width, 221px, 460px);
+    height: 50px; 
+  }
+
+  @include vp-1023 {
+    order: 2;
+    transform: translateY(1px);
+    margin-bottom: 16px;
+    max-width: none;
+    
+    &::before {
+      display: none;
+    }
+  }
+}
+
+.hero__title-shift {
+  display: inline-block;
+  @include fluid-val(margin-left, 40px, 343px);
+  transform: translateY(5px);
+
+  @include vp-1023 {
+    display: inline;
+    transform: none;
+
+
+    @include vp-max(440px) {
+      margin-left: 20px;
+    }
+  }
+}
+
+.hero p {
+  @include text-lead;
+
+  grid-column: 2;
+  grid-row: 3;
+  align-self: flex-start;
+  width: 100%;
+  max-width: 440px;
+  text-align: left;
+  transform: translateX(-10px);
+  margin-bottom: 0; 
+
+  @include vp-1023 {
+    order: 3;
+    max-width: 340px;
+    margin-left: 42px;
+    transform: none;
+    // margin-bottom: 25px;
+  }
+}
+
+.hero__btn {
+  grid-column: 2;
+  grid-row: 4;
+  justify-self: start;
+  align-self: start;
+  max-width: 90%;
+  white-space: normal;
+  margin-top: 35px;
+  transform: translateX(-10px);
+
+
+
+  @include vp-1023 {
+    order: 4;
+    transform: translateX(42px);
+    margin-top: 25px;
+  }
+}
+
+// ---------------------------------
+// Decorative Photos
+// ---------------------------------
+
+.hero__photo {
+  position: relative;
+  z-index: $z-base;
+
+  @include fluid-val(border-radius, 16px, 24px);
+  box-shadow: $shadow-cursor;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+
+    @include fluid-val(border-radius, 16px, 24px);
+  }
+}
+
+.hero__photo--artur {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+
+  @include fluid-val(width, 221px, 329px);
+  aspect-ratio: 329 / 200;
+  flex-shrink: 0;
+  transform: translateX(-113px);
+
+  @include vp-max(1440px) {
+    transform: translateX(fluid-val-value(-113px, 0px, 1440, 1024));
+  }
+
+  .hero__label {
+    @include fluid-val(top, 46px, 62px);
+    left: fluid-val-value(-126px, -106px, 1440, 480);
+
+    @include vp-max(420px) {
+      left: -80px;
+    }
+
+    @include vp-max(320px) {
+      left: -65px;
+    }
+  }
+
+  @include vp-1023 {
+    order: 1;
+    justify-self: end;
+    margin-bottom: 29px;
+    transform: translateX(39px);
+  }
+}
+
+.hero__photo--sergey {
+  grid-column: 1;
+  grid-row: 3 / 5;
+  justify-self: start;
+
+  @include fluid-val(width, 117px, 175px);
+  aspect-ratio: 175 / 256;
+  flex-shrink: 0;
+  transform: translate(55px, 16px);
+
+
+  .hero__label {
+    bottom: -7px;
+    right: -119px;
+
+    @include vp-1023 {
+      bottom: -66px;
+      right: -92px;
+    }
+
+    @include vp-max(479px) {
+      right: 0;
+    }
+
+    @include vp-max(375px) {
+      right: 20px;
+    }
+  }
+
+  @include vp-1023 {
+    order: 5;
+    grid-row: auto;
+    margin-top: 40px;
+    transform: translateX(-166px);
+  }
+
+  @include vp-max(479px) {
+    margin-left: fluid-val-value(45px, 100px, 479, 375);
+  }
+}
+
+.hero__photo--misha {
+  grid-column: 3;
+  grid-row: 3 / 5;
+  justify-self: start;
+  align-self: end;
+
+  @include fluid-val(width, 221px, 329px);
+  aspect-ratio: 329 / 200;
+  flex-shrink: 0;
+  transform: translate(13px, 37px);
+  
+
+  .hero__label {
+    top: 50px;
+    right: -107px;
+
+    @include vp-1023 {
+      top: -55px;
+      left: 40px;
+      right: auto;
+    }
+
+    @include vp-max(375px) {
+      top: -40px;
+      left: 140px;
+    }
+  }
+
+  @include vp-1023 {
+    order: 6;
+    grid-row: auto;
+    align-self: flex-end;
+    margin-top: -67px;
+    transform: translateX(0px);
+  }
+}
+
+// ---------------------------------
+// Labels (Cursors)
+// ---------------------------------
+
+.hero__label {
+  position: absolute;
+
+  @include text-cursor;
+
+  span {
+    padding: 4px 8px;
+    background-color: $color-blue;
+    color: $color-white;
+    white-space: nowrap;
+  }
+
+  svg {
+    position: absolute;
+    bottom: calc(100% + 3px);
+    left: -26px;
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    color: $color-blue;
+    filter: drop-shadow(0 1px 2px rgb(0 0 0 / 15%));
+  }
+
+  &.hero__label--cursor svg {
+    bottom: 100%;
+    left: -23px;
+  }
+}
