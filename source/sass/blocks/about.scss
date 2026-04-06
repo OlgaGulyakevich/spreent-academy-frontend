@@ -3,7 +3,7 @@
 // =============================================
 
 .about {
-  @include fluid-val(padding-top, 92px, 137px, 480, 1440);
+  @include fluid-val(padding-top, 92px, 127px, 480, 1440);
   @include fluid-val(padding-bottom, 70px, 90px, 1024, 1440);
 
 
@@ -97,13 +97,6 @@
   }
 }
 
-// Убедимся, что декор занимает всю нижнюю часть
-.about__card-decor,
-.about__card-media {
-  //  grid-row: 4; // Всегда в последней растягиваемой строке
-  // align-self: end; // Прижимаем к низу если нужно, или растягиваем
-}
-
 // ---------------------------------
 // Tag (pill label)
 // ---------------------------------
@@ -185,6 +178,7 @@
 
   p {
     color: rgba($color-white, 0.7);
+    max-width: 276px;
   }
 
   .about__card-tag {
@@ -196,6 +190,10 @@
     grid-column: 1 / -1;
     grid-row: auto;
     order: 1;
+
+    p {
+      max-width: 100%;
+    }
   }
 }
 
@@ -210,14 +208,13 @@
   z-index: 1;
   isolation: isolate;
 
-  // TODO: тестовые координаты — подкрутить под макет
-  top: 40px;
-  right: 30px;
-  bottom: 30px;
-  left: 50%;
+
+  top: 96px;
+  right: 50px;
+  bottom: 0;
+  left: 47%;
 
   @include vp-1023 {
-    position: relative;
     top: auto;
     right: auto;
     bottom: auto;
@@ -264,10 +261,10 @@
     pointer-events: none;
 
     @include vp-1023 {
-      top: -14px;
-      right: -14px;
-      bottom: -14px;
-      left: -14px;
+      top: -8px;
+      right: -8px;
+      bottom: -8px;
+      left: -8px;
 
       background-size:
         14px 14px, 14px 14px, 14px 14px, 14px 14px,
@@ -283,44 +280,52 @@
 
 .about__card-decor-circle {
   position: absolute;
+  top: 63px;
+  left: 70px;
 
-  // TODO: тестовые координаты — подкрутить под макет
-  top: 30px;
-  left: 20px;
-
-  @include fluid-val(width, 70px, 130px);
+  @include fluid-val(width, 104px, 117px);
 
   aspect-ratio: 1;
   border-radius: 50%;
   background-color: $color-light-blue;
+  border: $border-width-1 solid $color-blue;
+
+  @include vp-1023 {
+    top: 297px;
+    left: 144px;
+  }
 }
 
 .about__card-decor-rect {
   position: absolute;
+  @include fluid-val(top, 90px, 113px, 1024, 1440);
+  @include fluid-val(left, 94px, 124px, 1024, 1440);
 
-  // TODO: тестовые координаты — подкрутить под макет
-  top: 60px;
-  left: 80px;
+  @include fluid-val(width, 218px, 246px);
+  aspect-ratio: 2 / 3;
 
-  @include fluid-val(width, 100px, 180px);
-  aspect-ratio: 3 / 2;
 
-  // ТЕЛО ПРЯМОУГОЛЬНИКА (стеклянный фон с прозрачностью)
-  // z-index не задан — рисуется в обычном слое (выше ::before рамок с z-index: -1)
+  @include vp-1023 {
+    top: 343px;
+    left: 192px;
+    
+  }
+
+  // Rectangle glass effect
   &::after {
     content: "";
     position: absolute;
     inset: 0;
     background: radial-gradient(108.28% 89.89% at 33.94% 20.94%, #ecf1fe 0%, #b1c6e7 100%);
-    opacity: 0.13; // Прозрачность только фона
-    border-radius: 50px;
+    opacity: 0.13;
+    @include fluid-val(border-radius, 44px, 50px);
     box-shadow: -67.444px 67.444px 80.933px -13.489px rgba(3, 13, 39, 0.3);
     backdrop-filter: blur(50px);
 
+
     @include vp-1023 {
-      border-radius: 44.22px;
       box-shadow: -59.644px 59.644px 71.573px -11.929px rgba(3, 13, 39, 0.3);
-      backdrop-filter: blur(44.22px);
+      backdrop-filter: blur(44px);
     }
   }
 }
@@ -336,8 +341,12 @@
 
   span {
     display: inline-block;
-    padding: 4px 8px;
+    padding: 8px 16px;
     white-space: nowrap;
+
+    @include vp-1023 {
+      padding: 6px 13px;
+    }
   }
 
   svg {
@@ -353,9 +362,18 @@
 
 // "You" — lime cursor arrow
 .about__card-decor-label--you {
-  // TODO: уточнить позицию по макету Figma
-  top: 10px;
-  right: -10px;
+  right: 87px;
+
+  @include vp-1023 {
+    top: 240px;
+    left: 274px;
+    right: auto;
+  }
+
+  @include vp-max(430px) {
+    top: 270px;
+  }
+
 
   span {
     background-color: $color-secondary;
@@ -363,24 +381,46 @@
   }
 
   svg {
+    top:  -23px;
+    left: -22px;
     color: $color-secondary;
+
+    @include vp-1023 {
+     top: -21px;
+    left: -20px;
+    }
   }
 }
 
 // "UX Lead" — blue cursor hand
 .about__card-decor-label--ux {
-  // TODO: уточнить позицию по макету Figma
-  bottom: 20px;
-  left: 30px;
+  bottom: 148px;
+
+  @include vp-1023 {
+    top: 441px;
+    left: 80px;
+  }
 
   span {
     background-color: $color-blue;
     color: $color-white;
+    padding: 2px 8px;
+
+    @include vp-1023 {
+      padding: 1px 7px;
+    }
   }
 
   svg {
+    top: -26px;
+    left: -25px;
     color: $color-blue;
     filter: drop-shadow($shadow-cursor);
+
+    @include vp-1023 {
+      top: -24px;
+      left: -22px;
+    }
   }
 }
 
@@ -415,7 +455,7 @@
   top: -93px;
   z-index: 1;
 
-  @include fluid-val(width, 450px, 563px);
+  @include fluid-val(width, 446px, 563px, 480, 1440);
 
   @include vp-max(1280px){
     @include fluid-val(left, 230px, 280px, 1024, 1280);
@@ -430,8 +470,9 @@
   }
 
   @include vp-1023 {
-  @include fluid-val(left, 111px, 460px, 480, 1023);
-  @include fluid-val(top, 215px, 240px, 480, 1023);
+  @include fluid-val(width, 446px, 563px, 480, 1440); 
+  @include fluid-val(left, 113px, 460px, 480, 1023);
+  @include fluid-val(top, 216px, 240px, 480, 1023);
   }
 
     @include vp-max(470px){
