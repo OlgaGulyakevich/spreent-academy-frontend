@@ -83,6 +83,7 @@ $color-notification-success-bg: #3d5443;                 // Фон уведом�
 // ---------------------------------
 $gradient-bg-community: radial-gradient(92.49% 94.44% at 2.96% 50%, #daeef4 18.98%, #eef4f6 50.96%, #ffffff 88.74%); // Фон pill-контейнера с аватарами в секции community
 $gradient-card-skills: linear-gradient(180deg, #002fa8 0%, #001a68 100%); // Фон карточки .about__card--skills
+$gradient-glass-rect: radial-gradient(108.28% 89.89% at 33.94% 20.94%, #ecf1fe 0%, #b1c6e7 100%); // Стеклянный эффект прямоугольника (about decor)
 
 
 // ---------------------------------
@@ -170,6 +171,8 @@ $radius-8: 8px;        // Burger / logo
 // Shadows
 // ---------------------------------
 $shadow-cursor: 0 1px 2px 0 rgb(0, 0, 0, 0.08); // Figma cursor element
+$shadow-glass-rect: -67.444px 67.444px 80.933px -13.489px rgba(3, 13, 39, 0.3); // Стеклянный прямоугольник (about decor)
+$shadow-glass-rect-mobile: -59.644px 59.644px 71.573px -11.929px rgba(3, 13, 39, 0.3);
 
 
 // ---------------------------------
