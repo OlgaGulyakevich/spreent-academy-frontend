@@ -238,25 +238,36 @@
     left: -9px;
     z-index: -1;
 
+    // 12 background layers (first = on top):
+    // 1–4: white handle fills (16×16)
+    // 5–8: blue handle borders (18×18, 1px larger each side)
+    // 9–12: frame border lines
     background-image:
-      // Corner handles (on top)
+      // Handle fills (on top)
       linear-gradient($color-white, $color-white),
       linear-gradient($color-white, $color-white),
       linear-gradient($color-white, $color-white),
       linear-gradient($color-white, $color-white),
-      // Frame border lines (behind handles)
+      // Handle borders (behind fills → 1px blue edge visible)
+      linear-gradient($color-blue, $color-blue),
+      linear-gradient($color-blue, $color-blue),
+      linear-gradient($color-blue, $color-blue),
+      linear-gradient($color-blue, $color-blue),
+      // Frame border lines
       linear-gradient($color-blue, $color-blue),
       linear-gradient($color-blue, $color-blue),
       linear-gradient($color-blue, $color-blue),
       linear-gradient($color-blue, $color-blue);
     background-size:
       16px 16px, 16px 16px, 16px 16px, 16px 16px,
+      18px 18px, 18px 18px, 18px 18px, 18px 18px,
       calc(100% - 16px) 1px, 1px calc(100% - 16px),
       calc(100% - 16px) 1px, 1px calc(100% - 16px);
     background-position:
+      1px 1px, right 1px top 1px, left 1px bottom 1px, right 1px bottom 1px,
       top left, top right, bottom left, bottom right,
-      8px 8px, right 8px top 8px,
-      left 8px bottom 8px, left 8px top 8px;
+      9px 9px, right 9px top 9px,
+      left 9px bottom 9px, left 9px top 9px;
     background-repeat: no-repeat;
     pointer-events: none;
 
@@ -267,10 +278,12 @@
       left: -8px;
 
       background-size:
+        12px 12px, 12px 12px, 12px 12px, 12px 12px,
         14px 14px, 14px 14px, 14px 14px, 14px 14px,
         calc(100% - 14px) 1px, 1px calc(100% - 14px),
         calc(100% - 14px) 1px, 1px calc(100% - 14px);
       background-position:
+        1px 1px, right 1px top 1px, left 1px bottom 1px, right 1px bottom 1px,
         top left, top right, bottom left, bottom right,
         7px 7px, right 7px top 7px,
         left 7px bottom 7px, left 7px top 7px;
