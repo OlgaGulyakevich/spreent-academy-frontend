@@ -81,7 +81,7 @@ $color-notification-success-bg: #3d5443;                 // Фон уведом�
 // ---------------------------------
 // Gradients
 // ---------------------------------
-$gradient-bg-community: radial-gradient(92.49% 94.44% at 2.96% 50%, #daeef4 18.98%, #eef4f6 50.96%, #ffffff 88.74%); // Фон pill-контейнера с аватарами в секции community
+$gradient-bg-community: radial-gradient(92.49% 94.44% at 2.96% 50%, #daeef4 28.98%, #eef4f6 55.96%, #ffffff 100%); // Фон pill-контейнера с аватарами в секции community
 $gradient-card-skills: linear-gradient(180deg, #002fa8 0%, #001a68 100%); // Фон карточки .about__card--skills
 $gradient-glass-rect: radial-gradient(108.28% 89.89% at 33.94% 20.94%, #ecf1fe 0%, #b1c6e7 100%); // Стеклянный эффект прямоугольника (about decor)
 
@@ -159,7 +159,7 @@ $container-offset-mobile: 15px;
 // Border Radius
 // ---------------------------------
 $radius-btn: 136px;    // Кнопки (pill-shape, 135.96px из Figma)
-$radius-pill: 100px;   // Теги / badge
+$radius-pill: 32px;   // Теги / badge
 $radius-card: 32px;    // Карточки секций
 $radius-image: 24px;   // Фото-контейнеры (hero, about)
 $radius-16: 16px;      // Мелкие изображения (certificate)
