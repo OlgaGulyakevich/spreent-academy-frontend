@@ -6,7 +6,7 @@
 // Open state driven by CSS :has(.burger[aria-expanded="true"]) — no JS classes on header.
 
 .header {
-  position: sticky;
+  // position: sticky; // TODO: вернуть после pixel-perfect
   top: 0;
   z-index: $z-sticky;
   background-color: $color-bg-main;

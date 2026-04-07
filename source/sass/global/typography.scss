@@ -80,24 +80,28 @@
 // Figma: Digit — Loos Wide Medium, lh 1, ls -6px (large counter "Более 100")
 // mob: 70px → desk: 120px
 @mixin title-digit {
-  @include fluid-val(font-size, 70px, 120px);
+  @include fluid-val(font-size, 90px, 120px);
 
   font-family: $font-family-display;
   font-weight: $font-weight-medium;
   line-height: 1;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.06em;
   color: $color-text-h1;
 }
 
 // Figma: Factoid — Loos Wide Medium, lh 0.88 (проценты: "78%", "89%")
 // mob: 60px → desk: 90px
 @mixin title-factoid {
-  @include fluid-val(font-size, 60px, 90px);
-
+  font-size: 90px;
   font-family: $font-family-display;
   font-weight: $font-weight-medium;
   line-height: 0.88;
   color: $color-text-h1;
+
+  @include vp-max(480px) {
+    line-height: 1;
+    letter-spacing: -0.09em;
+  }
 }
 
 // Figma: Lead 24 — Manrope Medium, lh 1.4

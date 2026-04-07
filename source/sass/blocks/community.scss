@@ -9,7 +9,7 @@
 
   @include fluid-val(padding-top, 60px, 80px);
   @include fluid-val(padding-bottom, 60px, 80px);
-  @include fluid-val(gap, 30px, 60px);
+  @include fluid-val(gap, 20px, 35px);
 
   &::before {
     content: "";
@@ -33,15 +33,16 @@
   width: fit-content;
   background: $gradient-bg-community;
   border-radius: $radius-pill;
-
-  padding: 20px 12px 10px;
+  padding: 20px 10px;
+  
+  @include fluid-val(margin-top, 30px, 35px);
 
   --avatar-size: 120px;
   --ring: 5px;
   --overlap: 40px;
 
   @include vp-767 {
-    padding: 15px 10px 5px;
+    padding: 27px 22px;
 
     --avatar-size: 90px;
     --ring: 4px;
@@ -186,19 +187,22 @@
 .community__count {
   display: flex;
   flex-direction: column;
-
-  @include fluid-val(gap, 12px, 20px);
+  gap: 5px;
 }
 
 .community__count-number {
   @include title-digit;
+
+  @include vp-max(470px) {
+    @include fluid-val(font-size, 65px, 75px, 375, 470);
+  }
 }
 
 .community__count-label {
   @include text-body;
 
   color: $color-text-secondary;
-  max-width: 260px; // TODO: уточнить по макету Figma
+  max-width: 260px;
 }
 
 // ---------------------------------
@@ -210,22 +214,27 @@
   flex-direction: column;
 
   @include fluid-val(gap, 30px, 40px);
+  @include fluid-val(margin-right, 0px, 118px);
 }
 
 .community__factoid {
   display: flex;
   flex-direction: column;
 
-  @include fluid-val(gap, 8px, 16px);
+  @include fluid-val(gap, 10px, 15px);
 }
 
 .community__factoid-number {
   @include title-factoid;
+
+   @include vp-max(470px) {
+    @include fluid-val(font-size, 65px, 75px, 375, 470);
+  }
 }
 
 .community__factoid-text {
   @include text-body;
 
   color: $color-text-secondary;
-  max-width: 290px; // TODO: уточнить по макету Figma
+  max-width: 325px;
 }
