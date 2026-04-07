@@ -8,13 +8,18 @@
   flex-direction: column;
 
   @include fluid-val(padding-top, 60px, 80px);
-  @include fluid-val(padding-bottom, 60px, 80px);
+  @include fluid-val(padding-bottom, 60px, 80px, 1024, 1440);
   @include fluid-val(gap, 20px, 35px);
+
+  @include vp-1023 {
+   @include fluid-val(padding-bottom, 117px, 130px, 480, 1023); 
+  }
 
   &::before {
     content: "";
     position: absolute;
-    top: 0;
+    @include fluid-val(top, 60px, 80px);
+
     height: $border-width-1;
     background-color: $color-stroke;
 
@@ -33,7 +38,7 @@
   width: fit-content;
   background: $gradient-bg-community;
   border-radius: $radius-pill;
-  padding: 20px 10px;
+  padding: 15px 10px 25px 5px;
   
   @include fluid-val(margin-top, 30px, 35px);
 
@@ -42,11 +47,18 @@
   --overlap: 40px;
 
   @include vp-767 {
-    padding: 27px 22px;
+    padding: 22px 10px 24px 17px;
 
     --avatar-size: 90px;
     --ring: 4px;
     --overlap: 30px;
+  }
+
+  @include vp-max(470px) {
+    padding: 27px 20px;
+
+    --avatar-size: 80px;
+    --overlap: 24px;
   }
 }
 
@@ -187,7 +199,8 @@
 .community__count {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  
+  @include fluid-val(gap, 5px, 6px);
 }
 
 .community__count-number {
@@ -215,13 +228,19 @@
 
   @include fluid-val(gap, 30px, 40px);
   @include fluid-val(margin-right, 0px, 118px);
+
+  margin-top: -12px;
+
+  @include vp-1023 {
+    margin-top: 0;
+  }
 }
 
 .community__factoid {
   display: flex;
   flex-direction: column;
 
-  @include fluid-val(gap, 10px, 15px);
+  @include fluid-val(gap, 10px, 14px);
 }
 
 .community__factoid-number {
@@ -234,6 +253,10 @@
 
 .community__factoid-text {
   @include text-body;
+
+  @include vp-1023 {
+    line-height: 1.37;
+  } 
 
   color: $color-text-secondary;
   max-width: 325px;
