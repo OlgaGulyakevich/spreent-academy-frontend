@@ -12,12 +12,13 @@
   @include fluid-val(gap, 20px, 35px);
 
   @include vp-1023 {
-   @include fluid-val(padding-bottom, 117px, 130px, 480, 1023); 
+    @include fluid-val(padding-bottom, 117px, 130px, 480, 1023);
   }
 
   &::before {
     content: "";
     position: absolute;
+
     @include fluid-val(top, 60px, 80px);
 
     height: $border-width-1;
@@ -39,7 +40,7 @@
   background: $gradient-bg-community;
   border-radius: $radius-pill;
   padding: 15px 10px 25px 5px;
-  
+
   @include fluid-val(margin-top, 30px, 35px);
 
   --avatar-size: 120px;
@@ -128,12 +129,12 @@
     linear-gradient(transparent, transparent) padding-box,
     conic-gradient(
       from var(--bg-angle),
-      $color-ice 15%, 
-      $color-secondary 25%,                                                                                                                                            
-      $color-ice 35%,      
+      $color-ice 15%,
+      $color-secondary 25%,
+      $color-ice 35%,
       $color-ice 65%,
       $color-secondary 75%,
-      $color-ice 85%   
+      $color-ice 85%
     ) border-box;
   color: $color-blue;
   transition:
@@ -199,7 +200,7 @@
 .community__count {
   display: flex;
   flex-direction: column;
-  
+
   @include fluid-val(gap, 5px, 6px);
 }
 
@@ -227,7 +228,7 @@
   flex-direction: column;
 
   @include fluid-val(gap, 30px, 40px);
-  @include fluid-val(margin-right, 0px, 118px);
+  @include fluid-val(margin-right, 0, 118px);
 
   margin-top: -12px;
 
@@ -246,7 +247,7 @@
 .community__factoid-number {
   @include title-factoid;
 
-   @include vp-max(470px) {
+  @include vp-max(470px) {
     @include fluid-val(font-size, 65px, 75px, 375, 470);
   }
 }
@@ -256,7 +257,7 @@
 
   @include vp-1023 {
     line-height: 1.37;
-  } 
+  }
 
   color: $color-text-secondary;
   max-width: 325px;
