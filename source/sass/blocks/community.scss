@@ -115,20 +115,20 @@
     linear-gradient(transparent, transparent) padding-box,
     conic-gradient(
       from var(--bg-angle),
-      $color-blue,
-      $color-blue 40%,                                                                              
-      $color-secondary 50%,                                                                         
-      $color-blue 60%,     
-      $color-blue
+      $color-ice 15%, 
+      $color-secondary 25%,                                                                                                                                            
+      $color-ice 35%,      
+      $color-ice 65%,
+      $color-secondary 75%,
+      $color-ice 85%   
     ) border-box;
   color: $color-blue;
-  // box-shadow: 0 0 16px 0 rgba($color-blue, 0.2);
   transition:
     transform $transition-default,
     background $transition-default,
     color $transition-default,
     box-shadow $transition-default;
-  animation: gradient-spin 3s infinite linear;
+  animation: gradient-spin 5s infinite $ease-material;
 
   @include hover {
     transform: scale(1.08);

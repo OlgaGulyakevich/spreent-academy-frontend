@@ -15,7 +15,8 @@ $color-light: #eef4f6;      // Light bg for cards, sections
 $color-secondary: #d9f243;  // Accent — yellow-lime
 $color-stroke: #dee9ed;     // Borders / dividers
 $color-indigo: #0039cc;
-$color-light-blue: #d1deff;     // Added for About decorative circle
+$color-light-blue: #d1deff;     // About decorative circle
+$color-ice: #feffff;            // Near-white for subtle gradient borders
 $color-tag-dark: #0027b2;
 
 // Text Colors
@@ -188,6 +189,7 @@ $ease-in-out-sine: cubic-bezier(0.45, 0, 0.55, 1); // For light rocking
 $ease-smooth: cubic-bezier(0.65, 0, 0.35, 1); // Very smooth start and end
 $ease-in: cubic-bezier(0.4, 0, 1, 1);           // Gentle start, accelerates — for closing/exit
 $ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1); // Fast start, very soft slowdown
+$ease-material: cubic-bezier(0.4, 0, 0.2, 1);  // Material Design standard easing
 $transition-default: $transition-base $ease-default;
 
 
