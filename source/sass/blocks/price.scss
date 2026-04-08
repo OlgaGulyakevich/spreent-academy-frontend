@@ -58,7 +58,6 @@
   flex-direction: column;
 
   @include fluid-val(gap, 29px, 140px);
- 
 }
 
 .price__plan-name {
@@ -89,11 +88,11 @@
 
 
   @include vp-1023 {
-      margin-bottom: 15px;
+    margin-bottom: 15px;
 
-      &:last-child {
-        margin-bottom: 0;
-      }
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
 
@@ -134,8 +133,6 @@
     mask-position: center;
     mask-size: 11px 11px;
   }
-
-
 }
 
 // ---------------------------------
@@ -147,6 +144,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+
   @include fluid-val(padding-left, 15px, 42px);
 
   @include vp-1023 {
@@ -179,6 +177,7 @@
 
 .price__label {
   @include text-ui;
+
   margin-bottom: 3px;
   color: $color-text-main;
 
@@ -209,8 +208,7 @@
 .price__current {
   @include title-h3;
 
-  overflow-wrap: break-word;
-  word-break: break-word;
+  overflow-wrap: anywhere;
 
   @include vp-1023 {
     font-size: 34px;
@@ -222,8 +220,7 @@
 
   color: $color-text-light;
   text-decoration: line-through;
-  overflow-wrap: break-word;
-  word-break: break-word;
+  overflow-wrap: anywhere;
 
   @include vp-1023 {
     display: none;
@@ -241,7 +238,7 @@
   align-self: flex-start;
   max-width: 100%;
   white-space: normal;
-  word-break: break-word;
+  overflow-wrap: anywhere;
   margin-bottom: -1px;
 
   @include vp-1023 {
