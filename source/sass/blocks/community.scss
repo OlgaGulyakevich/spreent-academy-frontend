@@ -62,7 +62,7 @@
     --overlap: 24px;
   }
 
-    @include vp-max(400px) {
+  @include vp-max(400px) {
     --avatar-size: 70px;
   }
 }

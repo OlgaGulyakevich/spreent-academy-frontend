@@ -1,0 +1,224 @@
+// =============================================
+// Price Section
+// =============================================
+
+.price__container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 61px;
+  padding-bottom: 120px;
+
+  @include vp-1023 {
+    padding-top: 63px;
+    padding-bottom: 60px;
+  }
+
+
+  @include fluid-val(gap, 30px, 50px);
+}
+
+.price__title {
+  @include title-h2;
+}
+
+// ---------------------------------
+// Card
+// ---------------------------------
+
+.price__card {
+  background-color: $color-light;
+  border-radius: $radius-card;
+  padding: 30px;
+  overflow: hidden;
+}
+
+.price__card-inner {
+  display: flex;
+  justify-content: space-between;
+
+  @include flex-no-overflow;
+  @include fluid-val(gap, 40px, 60px);
+
+  @include vp-1023 {
+    flex-direction: column;
+  }
+}
+
+// ---------------------------------
+// Plan (left side)
+// ---------------------------------
+
+.price__plan {
+  display: flex;
+  flex-direction: column;
+
+  @include fluid-val(gap, 30px, 140px);
+ 
+}
+
+.price__plan-name {
+  @include title-h3;
+}
+
+// ---------------------------------
+// Features checklist
+// ---------------------------------
+
+.price__features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include grid-no-overflow;
+  @include fluid-val(column-gap, 60px, 116px);
+
+  row-gap: 10px;                                                                                                                                                   
+  margin-bottom: 60px;
+
+  @include vp-767 {
+    grid-template-columns: 1fr;
+    row-gap: 15px;
+    margin-bottom: 0;
+  }
+}
+
+.price__features li {
+  @include text-body;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  &::before {
+    content: "";
+    flex-shrink: 0;
+    width: 21px;
+    height: 21px;
+    background-color: $color-blue;
+    border-radius: 50%;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 21px;
+    height: 21px;
+    background-color: $color-white;
+    mask-image: url("../../img/icons/check-mark.svg");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: 11px 11px;
+  }
+}
+
+// ---------------------------------
+// Pricing (right side)
+// ---------------------------------
+
+.price__pricing {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  @include fluid-val(padding-left, 30px, 40px);
+
+  @include vp-1023 {
+    padding-left: 0;
+    padding-top: 30px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: $border-width-1;
+    background-color: rgba($color-dark, 0.1);
+
+    @include vp-1023 {
+      top: 0;
+      bottom: auto;
+      left: 0;
+      right: 0;
+      width: auto;
+      height: $border-width-1;
+    }
+  }
+}
+
+.price__label {
+  @include text-ui;
+  margin-bottom: 3px;
+  color: $color-text-main;
+
+  @include vp-1023 {
+    display: none;
+  }
+}
+
+.price__amounts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  @include vp-1023 {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+.price__amount {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+
+  @include fluid-val(gap, 8px, 20px);
+}
+
+.price__current {
+  @include title-h3;
+
+  overflow-wrap: break-word;
+  word-break: break-word;
+
+  @include vp-1023 {
+    font-size: 34px;
+  }
+}
+
+.price__old {
+  @include title-h3;
+
+  color: $color-text-light;
+  text-decoration: line-through;
+  overflow-wrap: break-word;
+  word-break: break-word;
+
+  @include vp-1023 {
+    display: none;
+  }
+}
+
+.price__or {
+  @include text-small;
+
+  color: $color-text-main;
+}
+
+.price__btn {
+  margin-top: auto;
+  align-self: flex-start;
+  max-width: 100%;
+  white-space: normal;
+  word-break: break-word;
+
+  @include vp-1023 {
+    margin-top: 30px;
+    align-self: flex-end;
+  }
+}
