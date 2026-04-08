@@ -80,7 +80,6 @@
   @include vp-767 {
     columns: 1;
     margin-bottom: 32px;
-    // margin-left: 0;
   }
 }
 
@@ -249,5 +248,9 @@
     margin-top: 30px;
     align-self: flex-end;
     margin-bottom: 0;
+  }
+
+  @include vp-max(470px) {
+    width: 100%;
   }
 }
