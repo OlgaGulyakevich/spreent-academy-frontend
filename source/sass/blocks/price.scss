@@ -30,6 +30,11 @@
   border-radius: $radius-card;
   padding: 30px;
   overflow: hidden;
+  padding-right: 20px;
+
+  @include vp-1023 {
+    padding-right: 30px;
+  }
 }
 
 .price__card-inner {
@@ -65,23 +70,34 @@
 // ---------------------------------
 
 .price__features {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  columns: 2;
 
-  @include grid-no-overflow;
-  @include fluid-val(column-gap, 60px, 116px);
+  @include fluid-val(column-gap, 60px, 115px);
 
-  row-gap: 10px;                                                                                                                                                   
-  margin-bottom: 60px;
+  margin-bottom: 50px;
+  margin-left: 1px;
 
   @include vp-767 {
-    grid-template-columns: 1fr;
-    row-gap: 15px;
+    columns: 1;
     margin-bottom: 0;
+    margin-left: 0;
   }
 }
 
 .price__features li {
+  break-inside: avoid;
+  margin-bottom: 10px;
+
+
+  @include vp-1023 {
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+  }
+
+
   @include text-body;
 
   position: relative;
@@ -92,8 +108,8 @@
   &::before {
     content: "";
     flex-shrink: 0;
-    width: 21px;
-    height: 21px;
+    width: 22px;
+    height: 22px;
     background-color: $color-blue;
     border-radius: 50%;
   }
@@ -102,14 +118,16 @@
     content: "";
     position: absolute;
     left: 0;
-    width: 21px;
-    height: 21px;
+    width: 22px;
+    height: 22px;
     background-color: $color-white;
     mask-image: url("../../img/icons/check-mark.svg");
     mask-repeat: no-repeat;
     mask-position: center;
     mask-size: 11px 11px;
   }
+
+
 }
 
 // ---------------------------------
@@ -121,7 +139,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  @include fluid-val(padding-left, 30px, 40px);
+  @include fluid-val(padding-left, 15px, 42px);
 
   @include vp-1023 {
     padding-left: 0;
@@ -136,7 +154,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    bottom: 0;
+    bottom: 60px;
     width: $border-width-1;
     background-color: rgba($color-dark, 0.1);
 
@@ -216,9 +234,11 @@
   max-width: 100%;
   white-space: normal;
   word-break: break-word;
+  margin-bottom: -1px;
 
   @include vp-1023 {
     margin-top: 30px;
     align-self: flex-end;
+    margin-bottom: 0;
   }
 }
