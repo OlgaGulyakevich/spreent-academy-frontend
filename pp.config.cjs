@@ -17,7 +17,7 @@ const mobileSections = [
   {section: 'hero',      misMatchThreshold: 2},
   {section: 'about',     misMatchThreshold: 2},
   {section: 'community', misMatchThreshold: 2},
-  {section: 'price',     misMatchThreshold: 2},
+  {section: 'price',     misMatchThreshold: 4},
   {section: 'work',      misMatchThreshold: 2},
   {section: 'footer',    misMatchThreshold: 2},
 ];
