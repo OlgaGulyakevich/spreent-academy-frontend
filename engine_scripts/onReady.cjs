@@ -25,6 +25,11 @@ module.exports = async (page, scenario, vp) => {
       ].join('\n');
       document.head.appendChild(style);
 
+      // Останавливаем CSS-анимации для стабильных PP-скриншотов
+      const animStyle = document.createElement('style');
+      animStyle.textContent = '*, *::before, *::after { animation-play-state: paused !important; }';
+      document.head.appendChild(animStyle);
+
       // Убираем sticky header для всех секций кроме header,
       // чтобы он не накладывался на захватываемую секцию при скролле.
       if (scenario.label !== 'header') {
