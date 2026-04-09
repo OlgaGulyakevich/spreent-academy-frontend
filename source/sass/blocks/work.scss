@@ -32,12 +32,13 @@
   grid-column: 1 / 4;
   grid-row: 1 / 3;
 
-  @include fluid-val(padding-left, $container-offset-mobile, $container-offset-desktop);
+  @include fluid-val(padding-left, 0, $container-offset-desktop, 1024, 1440);
 
   padding-right: 30px;
   padding-bottom: 20px;
 
   @include vp-1023 {
+    gap: 19px;
     margin-bottom: 60px;
     padding-bottom: 0;
   }
@@ -182,6 +183,10 @@
     grid-row: auto;
     border-bottom-width: $border-width-logos-mobile;
     order: 8;
+
+    svg {
+      transform: scale(0.89);
+    }
   }
 }
 
@@ -208,6 +213,10 @@
     grid-row: auto;
     border-bottom-width: $border-width-logos-mobile;
     order: 9;
+
+    svg {
+      transform: scale(0.79);
+    }
 
     &::after {
       content: none;
@@ -243,6 +252,10 @@
     &::after {
       content: none;
     }
+
+    svg {
+      transform: scale(0.66);
+    }
   }
 }
 
@@ -269,6 +282,10 @@
     grid-row: auto;
     border-bottom: 0;
     order: 6;
+
+    svg {
+      transform: scale(0.64);
+    }
   }
 }
 
@@ -284,5 +301,9 @@
     border-right: 0;
     border-bottom-width: $border-width-logos-mobile;
     order: 7;
+
+    svg {
+      transform: scale(0.64);
+    }
   }
 }
