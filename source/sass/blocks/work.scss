@@ -4,7 +4,8 @@
 
 .work__container {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr)) repeat(3, 240px);
+  grid-template-rows: repeat(3, minmax(240px, auto));
   padding-left: 0;
   padding-right: 0;
 
@@ -78,8 +79,6 @@
   position: relative;
 
   @include flex-center;
-  aspect-ratio: 1;
-  // @include fluid-val(min-height, 148px, 222px);
 
   padding: 20px;
   border-top: $border-width-logos-desktop solid $color-stroke;
@@ -88,9 +87,8 @@
   @include vp-1023 {
     grid-column: auto;
     grid-row: auto;
+    aspect-ratio: 1;
     padding: 15px;
-    // min-height: auto;
-    // aspect-ratio: 1;
     border-top-width: $border-width-logos-mobile;
     border-left-width: $border-width-logos-mobile;
   }
