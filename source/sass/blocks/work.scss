@@ -4,13 +4,13 @@
 
 .work__container {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) repeat(3, 240px);
-  grid-template-rows: repeat(3, minmax(240px, auto));
+  grid-template-columns: repeat(3, minmax(0, 1fr)) repeat(3, clamp(160px, 16.67vw, 240px));
+  grid-template-rows: repeat(3, minmax(clamp(160px, 16.67vw, 240px), auto));
   padding-left: 0;
   padding-right: 0;
 
   @include fluid-val(padding-top, 60px, 80px);
-  @include fluid-val(padding-bottom, 50px, 100px);
+  @include fluid-val(padding-bottom, 60px, 80px);
 
   @include vp-1023 {
     display: block;
@@ -28,7 +28,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 15px;
+  gap: 20px;
   grid-column: 1 / 4;
   grid-row: 1 / 3;
 
@@ -38,7 +38,7 @@
   padding-bottom: 20px;
 
   @include vp-1023 {
-    margin-bottom: 30px;
+    margin-bottom: 60px;
     padding-bottom: 0;
   }
 }
@@ -48,16 +48,25 @@
 }
 
 .work__lead {
-  @include text-body;
+  @include text-lead;
 
   color: $color-text-secondary;
-  max-width: 340px;
+  max-width: 400px;
+
+  @include vp-1023 {
+    max-width: 340px;
+  }
 }
 
 .work__btn {
   max-width: 100%;
   white-space: normal;
   overflow-wrap: anywhere;
+  margin-top: 17px;
+
+  @include vp-1023 {
+    margin-top: 5px;
+  }
 }
 
 // ---------------------------------
