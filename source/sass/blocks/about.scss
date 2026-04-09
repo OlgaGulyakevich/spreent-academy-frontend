@@ -511,7 +511,7 @@
   @include vp-1023 {
     @include fluid-val(width, 446px, 563px, 480, 1440);
     @include fluid-val(left, 113px, 460px, 480, 1023);
-    @include fluid-val(top, 216px, 240px, 480, 1023);
+    @include fluid-val(top, 218px, 240px, 480, 1023);
   }
 
   @include vp-max(470px) {
