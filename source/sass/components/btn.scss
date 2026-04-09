@@ -18,14 +18,14 @@
     color $transition-default,
     background-color $transition-default,
     box-shadow $transition-default,
-    transform $transition-default;
+    transform $transition-fast $ease-spring;
 
   &:focus-visible {
     border-radius: $radius-btn;
   }
 
   &:active {
-    transform: scale(0.97);
+    transform: scale(0.95);
   }
 }
 
