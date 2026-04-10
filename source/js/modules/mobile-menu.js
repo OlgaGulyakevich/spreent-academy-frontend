@@ -1,7 +1,8 @@
 /**
  * Mobile menu toggle via burger button.
  * Uses aria-expanded on .burger — CSS :has() handles visual state.
- * Manages scroll-lock on body, closes on ESC, nav link click, and overlay click.
+ * Manages scroll-lock on body, closes on ESC, nav link click,
+ * header CTA click, and overlay click.
  *
  * @example initMobileMenu();
  */
@@ -46,8 +47,9 @@ const initMobileMenu = () => {
     }
   };
 
-  const handleNavClick = (evt) => {
-    if (evt.target.closest('.main-nav__link') && isOpen()) {
+  const handleHeaderLinkClick = (evt) => {
+    const link = evt.target.closest('.main-nav__link, .header__cta');
+    if (link && isOpen()) {
       closeMenu();
     }
   };
@@ -60,7 +62,7 @@ const initMobileMenu = () => {
 
   burger.addEventListener('click', handleBurgerClick);
   document.addEventListener('keydown', handleKeyDown);
-  nav.addEventListener('click', handleNavClick);
+  header.addEventListener('click', handleHeaderLinkClick);
   document.addEventListener('click', handleOverlayClick);
 };
 

@@ -32,7 +32,7 @@
   grid-column: 1 / 4;
   grid-row: 1 / 3;
 
-  @include fluid-val(padding-left, 0, $container-offset-desktop, 1024, 1440);
+  @include fluid-val(padding-left, 29px, $container-offset-desktop, 1024, 1440);
 
   padding-right: 30px;
   padding-bottom: 20px;
@@ -41,6 +41,7 @@
     gap: 19px;
     margin-bottom: 60px;
     padding-bottom: 0;
+    padding-left: 0;
   }
 }
 
@@ -165,26 +166,10 @@
   grid-column: 6;
   grid-row: 1;
 
-  &::after {
-    content: "";
-    position: absolute;
-    top: -$border-width-logos-desktop;
-    bottom: 0;
-    left: 100%;
-
-    @include fluid-val(width, $container-offset-mobile, $container-offset-desktop);
-
-    border-top: $border-width-logos-desktop solid $color-stroke;
-  }
-
   @include vp-1023 {
     grid-column: auto;
     grid-row: auto;
     order: 1;
-
-    &::after {
-      content: none;
-    }
   }
 }
 
@@ -222,19 +207,6 @@
   grid-row: 2;
   border-bottom: $border-width-logos-desktop solid $color-stroke;
 
-  &::after {
-    content: "";
-    position: absolute;
-    top: -$border-width-logos-desktop;
-    bottom: -$border-width-logos-desktop;
-    left: 100%;
-
-    @include fluid-val(width, $container-offset-mobile, $container-offset-desktop);
-
-    border-top: $border-width-logos-desktop solid $color-stroke;
-    border-bottom: $border-width-logos-desktop solid $color-stroke;
-  }
-
   @include vp-1023 {
     grid-column: auto;
     grid-row: auto;
@@ -243,10 +215,6 @@
 
     svg {
       transform: scale(0.79);
-    }
-
-    &::after {
-      content: none;
     }
   }
 }
@@ -258,28 +226,11 @@
   border-left: 0;
   border-bottom: $border-width-logos-desktop solid $color-stroke;
 
-  &::after {
-    content: "";
-    position: absolute;
-    top: -$border-width-logos-desktop;
-    bottom: -$border-width-logos-desktop;
-    right: 100%;
-
-    @include fluid-val(width, $container-offset-mobile, $container-offset-desktop);
-
-    border-top: $border-width-logos-desktop solid $color-stroke;
-    border-bottom: $border-width-logos-desktop solid $color-stroke;
-  }
-
   @include vp-1023 {
     grid-column: auto;
     grid-row: auto;
     border-bottom: 0;
     order: 4;
-
-    &::after {
-      content: none;
-    }
 
     svg {
       transform: scale(0.66);

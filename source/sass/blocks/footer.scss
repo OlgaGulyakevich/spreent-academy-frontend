@@ -1,0 +1,375 @@
+// =============================================
+// Footer — Certificate + Form + Bottom nav
+// =============================================
+
+.footer {
+  background-color: $color-bg-pure-white;
+}
+
+// ---------------------------------
+// Part 1: Certificate
+// ---------------------------------
+
+.footer__certificate {
+  position: relative;
+  background-color: $color-bg-pure-white;
+
+  @include vp-767 {
+    background-color: $color-light;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20%;
+    background-color: $color-bg-dark;
+  }
+}
+
+.footer__certificate-container {
+  position: relative;
+  z-index: $z-base + 1;
+}
+
+.footer__certificate-inner {
+  display: flex;
+  align-items: stretch;
+  background-color: $color-light;
+  border-radius: $radius-card;
+  overflow: hidden;
+
+  @include fluid-val(padding, 20px, 30px);
+  @include fluid-val(gap, 20px, 40px);
+
+  @include vp-1023 {
+    flex-direction: column;
+  }
+
+  @include vp-767 {
+    background-color: transparent;
+    border-radius: 0;
+    overflow: visible;
+    padding: 0;
+  }
+}
+
+.footer__certificate-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+
+  gap: 20px;
+
+  @include fluid-val(max-width, 450px, 600px);
+
+  @include vp-1023 {
+    max-width: none;
+  }
+
+  @include vp-767 {
+    @include fluid-val(padding-top, 20px, 30px, 375, 480);
+    @include fluid-val(padding-bottom, 20px, 35px, 375, 480);
+  }
+}
+
+.footer__certificate-info h2 {
+  @include title-h2;
+}
+
+.footer__certificate-info p {
+  @include text-body;
+
+  color: $color-text-secondary;
+  padding-right: 70px;
+
+  @include vp-767 {
+    padding-right: 0;
+  }
+}
+
+.footer__certificate-btn {
+  align-self: flex-start;
+  margin-top: 5px;
+
+  @include vp-767 {
+    // margin-top: 0;
+  }
+}
+
+.footer__certificate-card {
+  flex: 1;
+  min-width: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: $radius-16;
+  }
+
+  @include vp-767 {
+    background-color: $color-bg-pure-white;
+    border-radius: $radius-16;
+  }
+}
+
+// ---------------------------------
+// Part 2: Form
+// ---------------------------------
+
+.footer__form-section {
+  background-color: $color-bg-dark;
+
+  @include fluid-val(padding-top, 60px, 80px);
+  @include fluid-val(padding-bottom, 60px, 80px);
+}
+
+.footer__form-title {
+  @include title-h2;
+
+  color: $color-text-white;
+
+  @include fluid-val(margin-bottom, 30px, 40px);
+}
+
+.footer__form-fields {
+  display: flex;
+
+  @include fluid-val(gap, 10px, 15px);
+
+  @include vp-1023 {
+    flex-direction: column;
+  }
+}
+
+.footer__form-fields input {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 20px;
+  background-color: $color-form-input-bg;
+  border: $border-width-1 solid transparent;
+  border-radius: $radius-btn;
+  color: $color-form-text;
+  transition:
+    background-color $transition-default,
+    border-color $transition-default;
+
+  &::placeholder {
+    color: $color-form-placeholder;
+  }
+
+  @include hover {
+    background-color: $color-form-input-bg-hover;
+  }
+
+  &:focus {
+    background-color: $color-form-input-bg-focus;
+    border-color: $color-form-input-border-focus;
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 2px;
+    border-radius: $radius-btn;
+  }
+
+  // Error state: only red border, no bg change
+  &:invalid:not(:placeholder-shown) {
+    border-color: $color-form-error-border;
+  }
+
+  &:disabled {
+    background-color: $color-form-input-bg-disabled;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.footer__form-container form {
+  display: flex;
+  align-items: flex-start;
+
+  @include fluid-val(gap, 10px, 15px);
+
+  @include vp-1023 {
+    flex-direction: column;
+  }
+}
+
+.footer__form-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.footer__form-disclaimer {
+  @include text-small;
+
+  color: $color-text-white-muted;
+
+  @include fluid-val(margin-top, 15px, 20px);
+}
+
+.footer__form-disclaimer-link {
+  color: $color-text-white-muted;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color $transition-default;
+
+  @include hover {
+    color: $color-text-white;
+  }
+}
+
+// ---------------------------------
+// Notifications
+// ---------------------------------
+
+.footer__notification:not([hidden]) {
+  display: flex;
+  align-items: center;
+
+  @include fluid-val(gap, 12px, 16px);
+  @include fluid-val(padding, 18px, 24px);
+
+  border-radius: $radius-card;
+  margin-top: 20px;
+
+  p {
+    @include text-body;
+
+    color: $color-text-white-muted;
+  }
+}
+
+.footer__notification--success {
+  background-color: $color-notification-success-bg;
+}
+
+.footer__notification--error {
+  background-color: $color-notification-error-bg;
+}
+
+.footer__notification-icon {
+  @include flex-center;
+
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.footer__notification--success .footer__notification-icon {
+  background-color: $color-secondary;
+  color: $color-dark;
+}
+
+.footer__notification--error .footer__notification-icon {
+  background-color: $color-form-error;
+  color: $color-white;
+}
+
+// ---------------------------------
+// Part 3: Bottom nav
+// ---------------------------------
+
+.footer__bottom {
+  background-color: $color-bg-dark;
+  border-top: $border-width-1 solid rgba($color-white, 0.1);
+}
+
+.footer__bottom-container {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: start;
+
+  @include fluid-val(padding-top, 40px, 60px);
+  @include fluid-val(padding-bottom, 40px, 60px);
+  @include fluid-val(gap, 30px, 40px);
+
+  @include vp-1023 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer__logo {
+  flex-shrink: 0;
+
+  svg {
+    max-width: none;
+  }
+
+  @include vp-1023 {
+    margin-bottom: 10px;
+  }
+}
+
+.footer__nav-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @include fluid-val(column-gap, 30px, 80px);
+  @include fluid-val(row-gap, 12px, 16px);
+
+  @include vp-1023 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer__nav-link {
+  @include text-ui;
+
+  color: $color-text-white;
+  transition: opacity $transition-default;
+
+  @include hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
+
+.footer__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  align-self: stretch;
+
+  @include vp-1023 {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}
+
+.footer__copyright {
+  @include text-small;
+
+  color: $color-text-white-muted;
+}
+
+.footer__agency {
+  display: flex;
+  align-items: center;
+
+  @include fluid-val(gap, 4px, 6px);
+
+  color: $color-white;
+  transition: opacity $transition-default;
+
+  @include hover {
+    opacity: 0.7;
+  }
+}
+
+.footer__agency-by {
+  @include text-small;
+
+  color: $color-text-white-muted;
+}
