@@ -9,7 +9,14 @@
  * а длинные не «швыряли». Если открыто мобильное меню (`scroll-lock`
  * на body) — старт скролла задерживается, чтобы анимация закрытия
  * меню успела отыграть визуально. После завершения скролла фокус
- * переносится на целевую секцию для клавиатурной навигации (A11y).
+ * переносится на целевую секцию (или первое поле формы) для
+ * клавиатурной навигации.
+ *
+ * A11y / UX поведение:
+ * - При `prefers-reduced-motion: reduce` — моментальный скролл без анимации
+ * - Ручной скролл (wheel / touchmove) во время анимации — отменяет её
+ * - Новый клик во время активной анимации — отменяет предыдущую
+ * - Если уже на цели (distance === 0) — сразу фокус без rAF
  */
 
 const MIN_DURATION = 900;
@@ -20,6 +27,23 @@ const HEADER_OFFSET = 70;
 const SCROLL_LOCK_CLASS = 'scroll-lock';
 const FOCUSABLE_SELECTOR = 'a[href], button, input, select, textarea, [tabindex]';
 const FIRST_FIELD_SELECTOR = 'input:not([type="hidden"]), textarea, select';
+
+/**
+ * Монотонный счётчик активных анимаций. Каждый вызов `animateScroll`
+ * инкрементирует его и сохраняет свой токен; если в процессе rAF
+ * токен перестал совпадать с глобальным — значит, поверх запустили
+ * новую анимацию, текущую нужно отменить.
+ */
+let currentAnimationToken = 0;
+
+/**
+ * Проверяет, выставлен ли у пользователя системный флаг
+ * «уменьшить движение» (prefers-reduced-motion: reduce).
+ *
+ * @returns {boolean}
+ */
+const prefersReducedMotion = () =>
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /**
  * easeInOutQuart — плавное ускорение и замедление.
@@ -42,7 +66,9 @@ const getDuration = (distance) =>
 
 /**
  * Анимирует скролл окна от текущей позиции к целевой Y.
- * Вызывает `onComplete` после завершения анимации (если передан).
+ * Поддерживает отмену при ручном скролле пользователя (wheel/touchmove)
+ * и при запуске новой анимации поверх текущей. Вызывает `onComplete`
+ * только при успешном завершении (не при отмене).
  *
  * @param {number} targetY — целевая позиция скролла в пикселях
  * @param {Function} [onComplete] — колбэк, вызываемый по завершении анимации
@@ -50,10 +76,42 @@ const getDuration = (distance) =>
 const animateScroll = (targetY, onComplete) => {
   const startY = window.scrollY;
   const diff = targetY - startY;
+
+  // #6 Short-circuit: уже на цели
+  if (diff === 0) {
+    if (onComplete) {
+      onComplete();
+    }
+    return;
+  }
+
+  // #5 Отменяем предыдущую анимацию, инкрементируя глобальный токен
+  currentAnimationToken += 1;
+  const myToken = currentAnimationToken;
+
   const duration = getDuration(diff);
   const startTime = performance.now();
 
+  // #4 Отмена при ручном скролле
+  let cancelledByUser = false;
+  const handleManualScroll = () => {
+    cancelledByUser = true;
+  };
+  window.addEventListener('wheel', handleManualScroll, { passive: true, once: true });
+  window.addEventListener('touchmove', handleManualScroll, { passive: true, once: true });
+
+  const cleanup = () => {
+    window.removeEventListener('wheel', handleManualScroll);
+    window.removeEventListener('touchmove', handleManualScroll);
+  };
+
   const step = (currentTime) => {
+    // Проверка на отмену: либо новая анимация поверх, либо ручной скролл
+    if (myToken !== currentAnimationToken || cancelledByUser) {
+      cleanup();
+      return;
+    }
+
     const elapsed = currentTime - startTime;
     const progress = Math.min(elapsed / duration, 1);
     window.scrollTo(0, startY + diff * easeInOutQuart(progress));
@@ -63,6 +121,7 @@ const animateScroll = (targetY, onComplete) => {
       return;
     }
 
+    cleanup();
     if (onComplete) {
       onComplete();
     }
@@ -106,9 +165,28 @@ const focusTarget = (target) => {
 };
 
 /**
+ * Выполняет скролл к целевой позиции с учётом пользовательских настроек.
+ * При `prefers-reduced-motion: reduce` — моментальный скролл без анимации,
+ * иначе — плавный через `animateScroll`.
+ *
+ * @param {number} targetY — целевая Y-позиция в пикселях
+ * @param {HTMLElement} target — элемент для переноса фокуса после скролла
+ */
+const scrollToTarget = (targetY, target) => {
+  if (prefersReducedMotion()) {
+    window.scrollTo(0, targetY);
+    focusTarget(target);
+    return;
+  }
+
+  animateScroll(targetY, () => focusTarget(target));
+};
+
+/**
  * Обработчик клика по якорным ссылкам. Вычисляет целевую Y с учётом
  * высоты хедера, задерживает старт если открыто мобильное меню,
- * затем запускает анимированный скролл с фокусом по завершении.
+ * затем запускает скролл (с анимацией или моментально в зависимости
+ * от reduced-motion).
  *
  * @param {MouseEvent} evt
  */
@@ -130,9 +208,7 @@ const handleAnchorClick = (evt) => {
   const wasMenuOpen = document.body.classList.contains(SCROLL_LOCK_CLASS);
   const delay = wasMenuOpen ? MOBILE_MENU_DELAY : 0;
 
-  setTimeout(() => {
-    animateScroll(targetY, () => focusTarget(target));
-  }, delay);
+  setTimeout(() => scrollToTarget(targetY, target), delay);
 };
 
 /**

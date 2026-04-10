@@ -12,6 +12,7 @@ const SCROLL_LOCK_CLASS = 'scroll-lock';
 const LABEL_BURGER_OPEN = 'Открыть меню';
 const LABEL_BURGER_CLOSE = 'Закрыть меню';
 const MENU_LINKS_SELECTOR = '.main-nav__link, .header__cta';
+const FOCUSABLE_IN_HEADER_SELECTOR = 'a[href], button';
 
 /**
  * Инициализирует мобильное меню. Вешает слушатели на бургер, document
@@ -37,13 +38,21 @@ const initMobileMenu = () => {
   const isOpen = () => burger.getAttribute('aria-expanded') === 'true';
 
   /**
-   * Открывает меню: обновляет ARIA-атрибуты на бургере и блокирует
-   * фоновый скролл через класс `.scroll-lock` на body.
+   * Открывает меню: обновляет ARIA-атрибуты на бургере, блокирует
+   * фоновый скролл через класс `.scroll-lock` на body и переносит
+   * фокус на первую ссылку навигации (WAI-ARIA modal-like pattern).
+   * Перенос фокуса позволяет SR сразу объявить содержимое меню,
+   * а клавиатурному пользователю — начать навигацию с nav.
    */
   const openMenu = () => {
     burger.setAttribute('aria-expanded', 'true');
     burger.setAttribute('aria-label', LABEL_BURGER_CLOSE);
     document.body.classList.add(SCROLL_LOCK_CLASS);
+
+    const firstLink = nav.querySelector(FOCUSABLE_IN_HEADER_SELECTOR);
+    if (firstLink) {
+      firstLink.focus();
+    }
   };
 
   /**
@@ -67,15 +76,47 @@ const initMobileMenu = () => {
   };
 
   /**
-   * Обработчик клавиатуры — закрывает меню по ESC и возвращает фокус
-   * на бургер для клавиатурной навигации (WCAG 2.1.2).
+   * Обработчик клавиатуры для открытого меню:
+   * - ESC → закрывает меню и возвращает фокус на бургер (WCAG 2.1.2)
+   * - Tab → focus trap: циклит фокус только среди фокусабельных
+   *   элементов внутри `.header` (logo, nav-ссылки, CTA, burger).
+   *   Не даёт фокусу уйти на скрытые элементы под оверлеем.
+   *   WCAG 2.4.3 Focus Order.
    *
    * @param {KeyboardEvent} evt
    */
   const handleKeyDown = (evt) => {
-    if (evt.key === 'Escape' && isOpen()) {
+    if (!isOpen()) {
+      return;
+    }
+
+    if (evt.key === 'Escape') {
       closeMenu();
       burger.focus();
+      return;
+    }
+
+    if (evt.key !== 'Tab') {
+      return;
+    }
+
+    const focusables = header.querySelectorAll(FOCUSABLE_IN_HEADER_SELECTOR);
+    if (!focusables.length) {
+      return;
+    }
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
+    if (evt.shiftKey && document.activeElement === first) {
+      evt.preventDefault();
+      last.focus();
+      return;
+    }
+
+    if (!evt.shiftKey && document.activeElement === last) {
+      evt.preventDefault();
+      first.focus();
     }
   };
 
