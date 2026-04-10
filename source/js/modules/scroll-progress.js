@@ -1,19 +1,27 @@
 /**
- * Initializes the header scroll progress bar.
- * Calculates the total document scroll percentage and sets it as
- * the --scroll-progress CSS variable on the header element.
+ * @fileoverview Прогресс-бар скролла в хедере.
+ * Считает процент прокрутки документа и пишет его в CSS-переменную
+ * `--scroll-progress` на элементе `.header`, чтобы CSS мог отрисовать
+ * визуальный индикатор (ширина полосы, градиент и т.д.).
+ */
+
+/**
+ * Инициализирует прогресс-бар скролла. Вешает один passive-слушатель
+ * на `window.scroll` с обёрткой в `requestAnimationFrame` для 60fps,
+ * и сразу обновляет состояние при загрузке.
  *
  * @example initScrollProgress();
  */
-export const initScrollProgress = () => {
+const initScrollProgress = () => {
   const header = document.querySelector('.header');
   if (!header) {
     return;
   }
 
   /**
-   * Updates the scroll progress percentage.
-   * Runs within requestAnimationFrame for optimal 60fps performance.
+   * Считает процент прокрутки (0-100) и обновляет CSS-переменную
+   * `--scroll-progress` на хедере. Клэмп предотвращает отрицательные
+   * значения и превышение 100% при overscroll (iOS bounce).
    */
   const updateProgress = () => {
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -22,13 +30,14 @@ export const initScrollProgress = () => {
     header.style.setProperty('--scroll-progress', `${progress.toFixed(2)}%`);
   };
 
-  // Passive listener for optimized scroll performance
   window.addEventListener('scroll', () => {
     requestAnimationFrame(updateProgress);
   }, {
     passive: true,
   });
 
-  // Initial call to set state on load
+  // Начальное состояние — на случай, если страница загружена уже прокрученной
   updateProgress();
 };
+
+export { initScrollProgress };
