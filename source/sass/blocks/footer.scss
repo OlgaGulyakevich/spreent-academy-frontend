@@ -93,7 +93,10 @@
 
 .footer__certificate-btn {
   align-self: flex-start;
+  max-width: 100%; // не вылезает за карточку при длинном лейбле
   margin-top: 5px;
+  white-space: normal;
+  overflow-wrap: anywhere;
 
   @include vp-767 {
     // margin-top: 0;
@@ -208,7 +211,9 @@
 
 .footer__form-btn {
   flex-shrink: 0;
-  white-space: nowrap;
+  max-width: 100%; // safety net: не вылезает за контейнер формы при длинном лейбле
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .footer__form-disclaimer {
@@ -349,6 +354,7 @@
   @include text-ui;
 
   color: $color-text-white;
+  overflow-wrap: anywhere; // длинные слова ломаются, не вываливаются из колонки
   transition: opacity $transition-default;
 
   @include hover {
