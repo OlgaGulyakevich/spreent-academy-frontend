@@ -138,16 +138,21 @@
 
 .footer__form-fields {
   display: flex;
+  flex: 1; // Desktop (row): fieldset растёт на main-axis, занимая всё пространство после кнопки
+  min-width: 0;
 
   @include fluid-val(gap, 10px, 15px);
 
   @include vp-1023 {
     flex-direction: column;
+    flex: initial; // Mobile (column): main-axis вертикальная, сбрасываем flex-grow
+    width: 100%; // Mobile: явная полная ширина для горизонтального растяжения
   }
 }
 
 .footer__form-fields input {
   flex: 1;
+  width: 100%; // Фикс для column-mode на мобилке: инпуты с intrinsic width игнорируют align-items: stretch
   min-width: 0;
   padding: 16px 20px;
   background-color: $color-form-input-bg;
@@ -208,7 +213,7 @@
 
 .footer__form-disclaimer {
   @include text-small;
-
+  max-width: 450px;
   color: $color-text-white-muted;
 
   @include fluid-val(margin-top, 15px, 20px);
@@ -284,19 +289,31 @@
 
 .footer__bottom-container {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: auto 1fr 1fr;
+  grid-template-areas:
+    "logo       nav        nav"
+    "copyright  .          agency";
   align-items: start;
 
   @include fluid-val(padding-top, 40px, 60px);
   @include fluid-val(padding-bottom, 40px, 60px);
-  @include fluid-val(gap, 30px, 40px);
+  // ВАЖНО: column-gap должен совпадать с .footer__nav-list column-gap,
+  // тогда `by mish` встаёт ровно под вторую колонку навигации.
+  @include fluid-val(column-gap, 30px, 80px);
+  @include fluid-val(row-gap, 30px, 60px);
 
   @include vp-1023 {
-    grid-template-columns: 1fr;
+    // Мобилка: 2 колонки — copyright слева, mish справа
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "logo       logo"
+      "nav        nav"
+      "copyright  agency";
   }
 }
 
 .footer__logo {
+  grid-area: logo;
   flex-shrink: 0;
 
   svg {
@@ -306,6 +323,10 @@
   @include vp-1023 {
     margin-bottom: 10px;
   }
+}
+
+.footer__nav {
+  grid-area: nav;
 }
 
 .footer__nav-list {
@@ -335,26 +356,24 @@
   }
 }
 
+// .footer__meta «прозрачен» — его дети (copyright и agency) промотируются
+// в grid .footer__bottom-container как самостоятельные grid-items.
+// Baseline widely available (2019+). На простом div без ARIA-ролей a11y не страдает.
 .footer__meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-between;
-  align-self: stretch;
-
-  @include vp-1023 {
-    flex-direction: row;
-    align-items: flex-end;
-  }
+  display: contents;
 }
 
 .footer__copyright {
   @include text-small;
 
+  grid-area: copyright;
+  align-self: end; // Выравнивание по нижнему краю ячейки — и на десктопе (под лого), и на мобилке (напротив mish).
   color: $color-text-white-muted;
 }
 
 .footer__agency {
+  grid-area: agency;
+  justify-self: start; // На десктопе прижат к левому краю — совпадает с 2-й колонкой nav.
   display: flex;
   align-items: center;
 
@@ -365,6 +384,11 @@
 
   @include hover {
     opacity: 0.7;
+  }
+
+  @include vp-1023 {
+    justify-self: end; // На мобилке прижат к правому краю — напротив copyright.
+    align-self: end;   // Выравнивание по нижнему краю ячейки — когда copyright переносится на 2 строки, mish остаётся на уровне последней строки.
   }
 }
 
