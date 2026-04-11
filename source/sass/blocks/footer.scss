@@ -142,38 +142,41 @@
 
 .footer__form-section {
   background-color: $color-bg-dark;
-
-  @include fluid-val(padding-top, 60px, 80px);
-  @include fluid-val(padding-bottom, 60px, 80px);
+  padding-top: 90px;
+  padding-bottom: 90px;
 }
 
 .footer__form-title {
   @include title-h2;
 
   color: $color-text-white;
+  margin-bottom: 42px;
 
-  @include fluid-val(margin-bottom, 30px, 40px);
+  @include vp-1023 {
+    margin-bottom: 40px;
+  }
 }
 
 .footer__form-fields {
   display: flex;
-  flex: 1; // Desktop (row): fieldset растёт на main-axis, занимая всё пространство после кнопки
-  min-width: 0;
-
-  @include fluid-val(gap, 10px, 15px);
+  flex: 1; 
+  gap: 5px;
+  
+  @include flex-no-overflow;
 
   @include vp-1023 {
     flex-direction: column;
-    flex: initial; // Mobile (column): main-axis вертикальная, сбрасываем flex-grow
-    width: 100%; // Mobile: явная полная ширина для горизонтального растяжения
+    flex: initial; 
+    width: 100%; 
+    gap: 12px;
   }
 }
 
 .footer__form-fields input {
   flex: 1;
-  width: 100%; // Фикс для column-mode на мобилке: инпуты с intrinsic width игнорируют align-items: stretch
+  width: 100%;
   min-width: 0;
-  padding: 16px 20px;
+  padding: 15px 25px;
   background-color: $color-form-input-bg;
   border: $border-width-1 solid transparent;
   border-radius: $radius-btn;
@@ -217,27 +220,32 @@
 .footer__form-container form {
   display: flex;
   align-items: flex-start;
-
-  @include fluid-val(gap, 10px, 15px);
+  gap: 5px;
 
   @include vp-1023 {
     flex-direction: column;
+    gap: 18px;
   }
 }
 
 .footer__form-btn {
   flex-shrink: 0;
-  max-width: 100%; // safety net: не вылезает за контейнер формы при длинном лейбле
+  max-width: 100%;
   white-space: normal;
   overflow-wrap: anywhere;
+  padding: 14px 25px 15px;
+
+  @include vp-1023 {
+    padding: 14px 25px 16px;
+  }
 }
 
 .footer__form-disclaimer {
-  @include text-small;
+  @include text-tag;
   max-width: 450px;
   color: $color-text-white-muted;
 
-  @include fluid-val(margin-top, 15px, 20px);
+  @include fluid-val(margin-top, 20px, 38px, 375, 480);
 }
 
 .footer__form-disclaimer-link {
