@@ -15,6 +15,10 @@
     @include fluid-val(padding-bottom, 117px, 130px, 480, 1023);
   }
 
+  @include vp-max(470px) {
+     @include fluid-val(padding-bottom, 50px, 100px);
+  }
+
   &::before {
     content: "";
     position: absolute;

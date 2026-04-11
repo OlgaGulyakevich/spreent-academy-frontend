@@ -14,19 +14,25 @@
   position: relative;
   background-color: $color-bg-pure-white;
 
-  @include vp-767 {
-    background-color: $color-light;
-  }
-
   &::after {
     content: "";
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     right: 0;
-    height: 20%;
+    height: calc(50% + 1px);
     background-color: $color-bg-dark;
   }
+
+
+  @include vp-1023 {
+    background-color: $color-light;
+
+    &::after {
+      height: 23.3%
+    }
+  }
+
 }
 
 .footer__certificate-container {
@@ -40,19 +46,19 @@
   background-color: $color-light;
   border-radius: $radius-card;
   overflow: hidden;
+  @include fluid-val(gap, 20px, 140px, 1024, 1440);
+  padding: 28px 30px 30px;
+  
 
-  @include fluid-val(padding, 20px, 30px);
-  @include fluid-val(gap, 20px, 40px);
 
   @include vp-1023 {
     flex-direction: column;
-  }
-
-  @include vp-767 {
     background-color: transparent;
     border-radius: 0;
     overflow: visible;
     padding: 0;
+
+    @include fluid-val(gap, 40px, 54px, 375, 480);
   }
 }
 
@@ -61,23 +67,31 @@
   flex-direction: column;
   align-items: flex-start;
   flex-shrink: 0;
-
   gap: 20px;
 
-  @include fluid-val(max-width, 450px, 600px);
+  @include fluid-val(max-width, 450px, 500px);
 
   @include vp-1023 {
     max-width: none;
-  }
-
-  @include vp-767 {
-    @include fluid-val(padding-top, 20px, 30px, 375, 480);
-    @include fluid-val(padding-bottom, 20px, 35px, 375, 480);
+    padding-top: 30px;
   }
 }
 
 .footer__certificate-info h2 {
   @include title-h2;
+
+  @include fluid-val(font-size, 38px, 46px);
+  line-height: 1;
+  letter-spacing: normal;
+
+  @include vp-1023 {
+    line-height: 0.98;
+    letter-spacing:  -0.01em;
+  }
+
+  @include vp-max(430px) {
+  @include fluid-val(font-size, 24px, 32px);
+  }
 }
 
 .footer__certificate-info p {
@@ -86,7 +100,7 @@
   color: $color-text-secondary;
   padding-right: 70px;
 
-  @include vp-767 {
+  @include vp-1023 {
     padding-right: 0;
   }
 }
@@ -98,14 +112,15 @@
   white-space: normal;
   overflow-wrap: anywhere;
 
-  @include vp-767 {
-    // margin-top: 0;
+  @include vp-1023 {
+    margin-top: 5px;
   }
 }
 
 .footer__certificate-card {
   flex: 1;
   min-width: 0;
+  align-self: center;
 
   img {
     display: block;
@@ -114,7 +129,8 @@
     border-radius: $radius-16;
   }
 
-  @include vp-767 {
+  @include vp-1023 {
+    align-self: stretch; 
     background-color: $color-bg-pure-white;
     border-radius: $radius-16;
   }

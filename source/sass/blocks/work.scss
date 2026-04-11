@@ -10,7 +10,7 @@
   padding-right: 0;
 
   @include fluid-val(padding-top, 60px, 80px);
-  @include fluid-val(padding-bottom, 60px, 80px);
+  padding-bottom: fluid-val-value(80px, 123px, 1440, 480);
 
   @include vp-1023 {
     display: block;
