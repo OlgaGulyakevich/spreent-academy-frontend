@@ -316,18 +316,24 @@
 
 .footer__bottom-container {
   display: grid;
-  grid-template-columns: auto 1fr 1fr;
+  // 1-я колонка — область логотипа (fluid 360→570px ≈ 37→42%).
+  // 2-я и 3-я — nav-col1 и nav-col2, наследуются nav-list через subgrid.
+  // Agency живёт в 3-й колонке → mish автоматически под nav-col2.
+  @include fluid-val(--footer-logo-col, 360px, 475px, 1024, 1440);
+  // max-content у nav-колонок — ширина по самому длинному пункту меню.
+  // auto ведёт себя нестабильно из-за subgrid + stretch у nav-list.
+  grid-template-columns: var(--footer-logo-col) max-content max-content;
   grid-template-areas:
-    "logo       nav        nav"
-    "copyright  .          agency";
+    "logo       menu  menu"
+    "copyright  .     agency";
   align-items: start;
+  justify-content: start; // лишнее пространство — справа, колонки не раздуваются
 
-  @include fluid-val(padding-top, 40px, 60px);
+  @include fluid-val(padding-top, 40px, 40px);
   @include fluid-val(padding-bottom, 40px, 60px);
-  // ВАЖНО: column-gap должен совпадать с .footer__nav-list column-gap,
-  // тогда `by mish` встаёт ровно под вторую колонку навигации.
-  @include fluid-val(column-gap, 30px, 80px);
-  @include fluid-val(row-gap, 30px, 60px);
+  // Единственная ручка расстояния nav-col1 ↔ nav-col2 ↔ mish.
+  @include fluid-val(column-gap, 30px, 98px);
+  @include fluid-val(row-gap, 40px, 102px);
 
   @include vp-1023 {
     // Мобилка: 2 колонки — copyright слева, mish справа
@@ -336,38 +342,46 @@
       "logo       logo"
       "nav        nav"
       "copyright  agency";
+    column-gap: 30px;
   }
 }
 
 .footer__logo {
   grid-area: logo;
-  flex-shrink: 0;
+  justify-self: start; // коробка по ширине svg, не растягивается на колонку — стабильная точка отсчёта для маски
+  width: max-content;
 
   svg {
     max-width: none;
   }
-
-  @include vp-1023 {
-    margin-bottom: 10px;
-  }
 }
 
 .footer__nav {
-  grid-area: nav;
+  // На десктопе растворяемся — nav-list становится прямым grid-item parent'а
+  // и может использовать subgrid для наследования колонок.
+  display: contents;
+
+  @include vp-1023 {
+    display: block;
+    grid-area: nav;
+    padding-bottom: 59px;
+  }
 }
 
 .footer__nav-list {
+  grid-area: menu;
   display: grid;
+  // Наследуем 2 колонки parent'а (menu-start → menu-end) через subgrid.
+  // column-gap также унаследован от parent.
+  grid-template-columns: subgrid;
   // Column-major fill: DOM-порядок 1-6 заполняет сначала первую колонку сверху вниз,
   // потом вторую. Это синхронизирует визуальный reading order с tab order (WCAG 2.4.3).
-  grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, auto);
   grid-auto-flow: column;
-
-  @include fluid-val(column-gap, 30px, 80px);
-  @include fluid-val(row-gap, 12px, 16px);
+  row-gap: 15px;
 
   @include vp-1023 {
+    grid-area: auto;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-auto-flow: row;
@@ -398,36 +412,38 @@
 }
 
 .footer__copyright {
-  @include text-small;
+  @include text-tag;
 
   grid-area: copyright;
-  align-self: end; // Выравнивание по нижнему краю ячейки — и на десктопе (под лого), и на мобилке (напротив mish).
+  align-self: end;
   color: $color-text-white-muted;
 }
 
 .footer__agency {
   grid-area: agency;
-  justify-self: start; // На десктопе прижат к левому краю — совпадает с 2-й колонкой nav.
+  justify-self: start;
   display: flex;
-  align-items: center;
-
-  @include fluid-val(gap, 4px, 6px);
-
+  align-items: flex-start;
   color: $color-white;
   transition: opacity $transition-default;
+
+  svg {
+    width: 90px;
+  }
 
   @include hover {
     opacity: 0.7;
   }
 
   @include vp-1023 {
-    justify-self: end; // На мобилке прижат к правому краю — напротив copyright.
-    align-self: end;   // Выравнивание по нижнему краю ячейки — когда copyright переносится на 2 строки, mish остаётся на уровне последней строки.
+    justify-self: end;
+    align-self: end;
   }
 }
 
 .footer__agency-by {
-  @include text-small;
+  @include text-tag;
 
   color: $color-text-white-muted;
+  transform: translate(3px, -7px);
 }
