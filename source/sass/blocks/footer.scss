@@ -426,6 +426,11 @@
   align-items: flex-start;
   color: $color-white;
   transition: opacity $transition-default;
+  transform: translateY(-2px);
+
+  @include vp-1023 {
+    transform: none;
+  }
 
   svg {
     width: 90px;
