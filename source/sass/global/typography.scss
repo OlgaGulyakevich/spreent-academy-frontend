@@ -35,14 +35,6 @@
     line-height: 1.01;
     letter-spacing: -0.01em;
   }
-
-  @include vp-max(440px) {
-    font-size: 36px;
-  }
-
-  @include vp-max(375px) {
-    font-size: 26px;
-  }
 }
 
 // Figma: H2 — Loos Wide Medium, lh 1, ls 0
@@ -62,7 +54,7 @@
   }
 
   @include vp-max(430px) {
-    font-size: fluid-val-value(24px, 32px, 375, 430);
+    font-size: fluid-val-value(30px, 32px, 375, 430);
   }
 }
 
@@ -75,6 +67,10 @@
   font-weight: $font-weight-medium;
   line-height: 1.02;
   color: $color-text-h3;
+
+  @include vp-max(375px) {
+    font-size: 28px;
+  }
 }
 
 // Figma: Digit — Loos Wide Medium, lh 1, ls -6px (large counter "Более 100")

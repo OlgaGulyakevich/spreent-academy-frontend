@@ -90,7 +90,7 @@
   }
 
   @include vp-max(430px) {
-  @include fluid-val(font-size, 24px, 32px);
+    @include fluid-val(font-size, 30px, 32px, 375, 430);
   }
 }
 

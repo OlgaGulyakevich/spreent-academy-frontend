@@ -82,8 +82,8 @@
     display: inline;
     transform: none;
 
-    @include vp-max(440px) {
-      margin-left: 20px;
+    @include vp-max(430px) {
+      margin-left: 0;
     }
   }
 }
@@ -105,8 +105,10 @@
     max-width: 340px;
     margin-left: 42px;
     transform: none;
+  }
 
-    // margin-bottom: 25px;
+  @include vp-max(430px) {
+    margin-left: 0;
   }
 }
 
@@ -132,6 +134,10 @@
     &:active {
       transform: translateX(42px) scale(0.97);
     }
+  }
+
+  @include vp-max(430px) {
+    transform: none;
   }
 }
 

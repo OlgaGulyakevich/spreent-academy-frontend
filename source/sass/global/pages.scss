@@ -22,6 +22,10 @@ body {
 main {
   flex: 1 0 auto;
   overflow-x: hidden; // Prevent horizontal scroll from extended backgrounds
+  // Непрозрачный фон — перекрывает body::after (тёмная подложка под футером
+  // для iOS rubber-band). Без этого тёмный псевдоэлемент просвечивал бы
+  // сквозь прозрачные секции (.hero/.about/.community/.price/.work).
+  background-color: $color-bg-main;
 }
 
 .footer {
