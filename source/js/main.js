@@ -1,4 +1,5 @@
 import { initAboutRotate } from './modules/about-rotate.js';
+import { initCounter } from './modules/counter.js';
 import { initHeaderScroll } from './modules/header-scroll.js';
 import { initMobileMenu } from './modules/mobile-menu.js';
 import { initScrollProgress } from './modules/scroll-progress.js';
@@ -17,6 +18,7 @@ document.addEventListener('click', (e) => {
 
 window.addEventListener('load', () => {
   initAboutRotate();
+  initCounter();
   initHeaderScroll();
   initMobileMenu();
   initScrollProgress();
