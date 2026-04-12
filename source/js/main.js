@@ -1,6 +1,7 @@
 import { initHeaderScroll } from './modules/header-scroll.js';
 import { initMobileMenu } from './modules/mobile-menu.js';
 import { initScrollProgress } from './modules/scroll-progress.js';
+import { initScrollReveal } from './modules/scroll-reveal.js';
 import { initSmoothScroll } from './modules/smooth-scroll.js';
 
 /**
@@ -17,5 +18,6 @@ window.addEventListener('load', () => {
   initHeaderScroll();
   initMobileMenu();
   initScrollProgress();
+  initScrollReveal();
   initSmoothScroll();
 });

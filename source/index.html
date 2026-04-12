@@ -187,7 +187,7 @@
     <section class="about" data-test="about">
       <div class="container about__container">
 
-        <h2 class="about__title">Почему выбирают академию&nbsp;spreent</h2>
+        <h2 class="about__title" data-reveal="true">Почему выбирают академию&nbsp;spreent</h2>
 
         <ul class="about__cards">
 
@@ -344,7 +344,7 @@
 
       <div class="container price__container">
 
-        <h2 class="price__title">Стоимость обучения</h2>
+        <h2 class="price__title" data-reveal="true">Стоимость обучения</h2>
 
         <div class="price__card">
           <div class="price__card-inner">
@@ -394,7 +394,7 @@
       <div class="container work__container">
 
         <div class="work__content">
-          <h2 class="work__title">Где работают<br class="br-not-mobile"> наши&nbsp;выпускники</h2>
+          <h2 class="work__title" data-reveal="true">Где работают<br class="br-not-mobile"> наши&nbsp;выпускники</h2>
           <p class="work__lead">Начните работать в&nbsp;крупнейших компаниях индустрии</p>
           <a class="btn btn--primary work__btn" href="#footer-form">Присоединиться</a>
         </div>
@@ -462,17 +462,17 @@
     <!-- Часть 1: Сертификат (светлый фон) -->
     <section class="footer__certificate">
       <div class="container footer__certificate-container">
-        <div class="footer__certificate-inner">
+        <div class="footer__certificate-inner" data-reveal-stagger="120" data-reveal-threshold="0.8" data-reveal-threshold-mobile="0.6">
 
           <!-- CMS area: h2 и p стилизуются каскадом от .footer__certificate-info -->
           <div class="footer__certificate-info">
-            <h2>Получи сертификат об&nbsp;успешном<br class="br-not-mobile"> завершении курса</h2>
-            <p>Обучение ведётся на&nbsp;основании лицензии государственного образца</p>
-            <a class="btn btn--primary footer__certificate-btn" href="#footer-form">Начать учиться</a>
+            <h2 data-reveal="true" data-reveal-type="clip">Получи сертификат об&nbsp;успешном<br class="br-not-mobile"> завершении курса</h2>
+            <p data-reveal="true" data-reveal-type="fade">Обучение ведётся на&nbsp;основании лицензии государственного образца</p>
+            <a class="btn btn--primary footer__certificate-btn" data-reveal="true" href="#footer-form">Начать учиться</a>
           </div>
 
           <!-- Декоративная картинка сертификата -->
-          <div class="footer__certificate-card" aria-hidden="true">
+          <div class="footer__certificate-card" data-reveal="true" data-reveal-type="scale" data-reveal-delay="0" aria-hidden="true">
             <picture>
               <source type="image/webp" width="660" height="440"
                 srcset="img/footer/certificate@1x.webp 1x, img/footer/certificate@2x.webp 2x">
@@ -490,7 +490,7 @@
     <section class="footer__form-section" id="footer-form">
       <div class="container footer__form-container">
 
-        <h2 class="footer__form-title">Сделайте апгрейд карьеры</h2>
+        <h2 class="footer__form-title" data-reveal="true">Сделайте апгрейд карьеры</h2>
 
         <form action="https://echo.htmlacademy.ru" method="POST">
           <fieldset class="footer__form-fields">

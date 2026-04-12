@@ -49,3 +49,63 @@ html:has(.scroll-lock) {
     border-color: $color-error;
   }
 }
+
+// -----------------------------------------------------------------------------
+// Scroll Reveal
+// -----------------------------------------------------------------------------
+// .reveal-init is added by JS — without JS, elements stay visible
+// (progressive enhancement). CSS handles the transition.
+
+[data-reveal="true"].reveal-init {
+  opacity: 0;
+  transform: translateY(50%);
+  transition:
+    opacity $transition-medium $ease-out,
+    transform $transition-medium $ease-out;
+}
+
+[data-reveal="true"].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// Scale variant — element grows from 0 to full size (certificate image)
+[data-reveal-type="scale"].reveal-init {
+  opacity: 0;
+  transform: scale(0);
+  transition:
+    opacity $transition-medium $ease-out,
+    transform $transition-slow $ease-out-expo;
+}
+
+[data-reveal-type="scale"].is-revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+// Clip variant — first line visible, rest masked. h2 starts shifted down
+// (under p zone), slides up into place while mask opens.
+[data-reveal-type="clip"].reveal-init {
+  opacity: 1;
+  clip-path: inset(0 0 65% 0);
+  transform: translateY(100%);
+  transition:
+    clip-path $transition-medium $ease-out,
+    transform $transition-medium $ease-out;
+}
+
+[data-reveal-type="clip"].is-revealed {
+  clip-path: inset(0);
+  transform: translateY(0);
+}
+
+// Fade variant — opacity only, no movement (text "appears" in place)
+[data-reveal-type="fade"].reveal-init {
+  opacity: 0;
+  transform: none;
+  transition: opacity $transition-medium $ease-out;
+}
+
+[data-reveal-type="fade"].is-revealed {
+  opacity: 1;
+}
