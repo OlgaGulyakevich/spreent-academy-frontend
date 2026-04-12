@@ -49,6 +49,9 @@
   <link rel="preload" href="fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="preload" href="fonts/LoosWide-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 
+  <!-- Hero image preload (LCP candidate) -->
+  <link rel="preload" href="img/hero/artur@1x.webp" as="image" type="image/webp">
+
   <!-- Styles -->
   <link rel="stylesheet" href="sass/style.scss">
 </head>
@@ -132,7 +135,7 @@
                 srcset="img/hero/artur@1x.webp 1x, img/hero/artur@2x.webp 2x">
               <img src="img/hero/artur@1x.jpg"
                    srcset="img/hero/artur@2x.jpg 2x"
-                   width="329" height="200" alt="">
+                   width="329" height="200" alt="" fetchpriority="high">
             </picture>
             <div class="hero__label">
               <svg width="26" height="26" aria-hidden="true">
@@ -203,7 +206,7 @@
                   srcset="img/about/teacher@1x.webp 1x, img/about/teacher@2x.webp 2x">
                 <img src="img/about/teacher@1x.png"
                      srcset="img/about/teacher@2x.png 2x"
-                     width="441" height="489" alt="">
+                     width="441" height="489" alt="" loading="lazy">
               </picture>
             </div>
           </li>
@@ -248,7 +251,7 @@
             <!-- Анимированный круг spreent: JS вращает при скролле -->
             <div class="about__card-logo" aria-hidden="true">
               <img src="img/icons/spreent-circle.svg"
-                   width="562" height="552" alt="">
+                   width="562" height="552" alt="" loading="lazy">
             </div>
           </li>
 
@@ -273,7 +276,7 @@
                 srcset="img/community/avatar-1@1x.webp 1x, img/community/avatar-1@2x.webp 2x">
               <img src="img/community/avatar-1@1x.jpg"
                    srcset="img/community/avatar-1@2x.jpg 2x"
-                   width="110" height="110" alt="Выпускник академии">
+                   width="110" height="110" alt="Выпускник академии" loading="lazy">
             </picture>
           </li>
           <li class="community__avatar-item">
@@ -282,7 +285,7 @@
                 srcset="img/community/avatar-2@1x.webp 1x, img/community/avatar-2@2x.webp 2x">
               <img src="img/community/avatar-2@1x.jpg"
                    srcset="img/community/avatar-2@2x.jpg 2x"
-                   width="110" height="110" alt="Выпускник академии">
+                   width="110" height="110" alt="Выпускник академии" loading="lazy">
             </picture>
           </li>
           <li class="community__avatar-item">
@@ -291,7 +294,7 @@
                 srcset="img/community/avatar-3@1x.webp 1x, img/community/avatar-3@2x.webp 2x">
               <img src="img/community/avatar-3@1x.jpg"
                    srcset="img/community/avatar-3@2x.jpg 2x"
-                   width="110" height="110" alt="Выпускник академии">
+                   width="110" height="110" alt="Выпускник академии" loading="lazy">
             </picture>
           </li>
           <li class="community__avatar-item">
@@ -300,7 +303,7 @@
                 srcset="img/community/avatar-4@1x.webp 1x, img/community/avatar-4@2x.webp 2x">
               <img src="img/community/avatar-4@1x.jpg"
                    srcset="img/community/avatar-4@2x.jpg 2x"
-                   width="110" height="110" alt="Выпускник академии">
+                   width="110" height="110" alt="Выпускник академии" loading="lazy">
             </picture>
           </li>
           <li class="community__avatar-item community__avatar-item--join">
@@ -478,7 +481,7 @@
                 srcset="img/footer/certificate@1x.webp 1x, img/footer/certificate@2x.webp 2x">
               <img src="img/footer/certificate@1x.jpg"
                    srcset="img/footer/certificate@2x.jpg 2x"
-                   width="660" height="440" alt="">
+                   width="660" height="440" alt="" loading="lazy">
             </picture>
           </div>
 

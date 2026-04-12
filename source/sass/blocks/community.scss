@@ -152,6 +152,10 @@
     box-shadow $transition-default;
   animation: gradient-spin 5s infinite $ease-material;
 
+  @include vp-1023 {
+    animation: none;
+  }
+
   @include hover {
     transform: scale(1.08);
     background:
