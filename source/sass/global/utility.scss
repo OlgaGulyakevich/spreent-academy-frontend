@@ -92,6 +92,18 @@ html:has(.scroll-lock) {
   transition:
     clip-path $transition-medium $ease-out,
     transform $transition-medium $ease-out;
+
+  @include vp-1023 {
+    clip-path: inset(0 0 55% 0);
+  }
+
+  @include vp-max(768px) {
+    clip-path: inset(0 0 50% 0);
+  }
+
+  @include vp-767 {
+    clip-path: inset(0 0 65% 0);
+  }
 }
 
 [data-reveal-type="clip"].is-revealed {
