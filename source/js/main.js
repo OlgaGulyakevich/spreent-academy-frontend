@@ -1,6 +1,7 @@
 import { initAboutParallax } from './modules/about-parallax.js';
 import { initAboutRotate } from './modules/about-rotate.js';
 import { initCounter } from './modules/counter.js';
+import { initFormSubmit } from './modules/form-submit.js';
 import { initFormValidation } from './modules/form-validation.js';
 import { initHeaderScroll } from './modules/header-scroll.js';
 import { initHeroParallax } from './modules/hero-parallax.js';
@@ -25,6 +26,7 @@ window.addEventListener('load', () => {
   initAboutRotate();
   initCounter();
   initFormValidation();
+  initFormSubmit();
   initHeaderScroll();
   initHeroParallax();
   initMagneticButton();

@@ -141,6 +141,7 @@
 // ---------------------------------
 
 .footer__form-section {
+  position: relative;
   background-color: $color-bg-dark;
   padding-top: 90px;
   padding-bottom: 90px;
@@ -292,21 +293,36 @@
 // Notifications
 // ---------------------------------
 
-.footer__notification:not([hidden]) {
+.footer__notification {
+  position: absolute;
+  bottom: 0;
   display: flex;
   align-items: center;
 
+  @include fluid-val(left, $container-offset-mobile, $container-offset-desktop);
+  @include fluid-val(right, $container-offset-mobile, $container-offset-desktop);
   @include fluid-val(gap, 12px, 16px);
-  @include fluid-val(padding, 18px, 24px);
+  @include fluid-val(padding, 14px, 20px);
 
   border-radius: $radius-card;
-  margin-top: 20px;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition:
+    opacity $transition-default,
+    transform $transition-default;
 
   p {
     @include text-body;
 
     color: $color-text-white-muted;
   }
+}
+
+.footer__notification.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .footer__notification--success {
