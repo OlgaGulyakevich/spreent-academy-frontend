@@ -8,8 +8,8 @@
 
 const CARD_SELECTORS = [
   { selector: '.about__card--teachers', speed: 0.15 },
-  { selector: '.about__card--skills', speed: -0.05 },
-  { selector: '.about__card--knowledge', speed: -0.08 },
+  { selector: '.about__card--skills', speed: 0.04 },
+  { selector: '.about__card--knowledge', speed: 0.02 },
 ];
 
 const SECTION_SELECTOR = '.about';
@@ -90,9 +90,7 @@ const initAboutParallax = () => {
     }
 
     const rect = section.getBoundingClientRect();
-    const sectionCenter = rect.top + rect.height / 2;
-    const viewportCenter = window.innerHeight / 2;
-    const scrolled = Math.max(0, viewportCenter - sectionCenter);
+    const scrolled = Math.max(0, window.innerHeight - rect.top);
 
     cards.forEach((card) => {
       card.targetY = scrolled * card.speed;
