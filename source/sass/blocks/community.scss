@@ -16,7 +16,7 @@
   }
 
   @include vp-max(470px) {
-     @include fluid-val(padding-bottom, 50px, 100px);
+    @include fluid-val(padding-bottom, 50px, 100px);
   }
 
   &::before {

@@ -29,10 +29,9 @@
     background-color: $color-light;
 
     &::after {
-      height: 23.3%
+      height: 23.3%;
     }
   }
-
 }
 
 .footer__certificate-container {
@@ -46,9 +45,10 @@
   background-color: $color-light;
   border-radius: $radius-card;
   overflow: hidden;
+
   @include fluid-val(gap, 20px, 140px, 1024, 1440);
+
   padding: 28px 30px 30px;
-  
 
 
   @include vp-1023 {
@@ -79,14 +79,14 @@
 
 .footer__certificate-info h2 {
   @include title-h2;
-
   @include fluid-val(font-size, 38px, 46px);
+
   line-height: 1;
   letter-spacing: normal;
 
   @include vp-1023 {
     line-height: 0.98;
-    letter-spacing:  -0.01em;
+    letter-spacing: -0.01em;
   }
 
   @include vp-max(430px) {
@@ -107,7 +107,7 @@
 
 .footer__certificate-btn {
   align-self: flex-start;
-  max-width: 100%; // не вылезает за карточку при длинном лейбле
+  max-width: 100%;
   margin-top: 5px;
   white-space: normal;
   overflow-wrap: anywhere;
@@ -130,7 +130,7 @@
   }
 
   @include vp-1023 {
-    align-self: stretch; 
+    align-self: stretch;
     background-color: $color-bg-pure-white;
     border-radius: $radius-16;
   }
@@ -159,15 +159,15 @@
 
 .footer__form-fields {
   display: flex;
-  flex: 1; 
+  flex: 1;
   gap: 5px;
-  
+
   @include flex-no-overflow;
 
   @include vp-1023 {
     flex-direction: column;
-    flex: initial; 
-    width: 100%; 
+    flex: initial;
+    width: 100%;
     gap: 12px;
   }
 }
@@ -242,6 +242,7 @@
 
 .footer__form-disclaimer {
   @include text-tag;
+
   max-width: 450px;
   color: $color-text-white-muted;
 
@@ -316,39 +317,39 @@
 
 .footer__bottom-container {
   display: grid;
-  // 1-я колонка — область логотипа (fluid 360→570px ≈ 37→42%).
-  // 2-я и 3-я — nav-col1 и nav-col2, наследуются nav-list через subgrid.
-  // Agency живёт в 3-й колонке → mish автоматически под nav-col2.
-  @include fluid-val(--footer-logo-col, 360px, 475px, 1024, 1440);
-  // max-content у nav-колонок — ширина по самому длинному пункту меню.
-  // auto ведёт себя нестабильно из-за subgrid + stretch у nav-list.
-  grid-template-columns: var(--footer-logo-col) max-content max-content;
-  grid-template-areas:
-    "logo       menu  menu"
-    "copyright  .     agency";
-  align-items: start;
-  justify-content: start; // лишнее пространство — справа, колонки не раздуваются
 
+  // 1-я колонка — область логотипа (fluid 360→475px ≈ 37→42%).
+  // 2-я и 3-я — nav-колонки с жёстким cap на 320px, защита от длинных слов
+  // в меню (overflow-wrap: anywhere на ссылке подхватит перенос).
+  grid-template-columns:
+    fluid-val-value(360px, 475px, 1024, 1440)
+    fit-content(320px)
+    fit-content(320px);
+  grid-template-areas:
+    "logo      menu menu"
+    "copyright .    agency";
+  align-items: start;
+  justify-content: start;
+
+  @include grid-no-overflow;
   @include fluid-val(padding-top, 40px, 40px);
   @include fluid-val(padding-bottom, 40px, 60px);
-  // Единственная ручка расстояния nav-col1 ↔ nav-col2 ↔ mish.
   @include fluid-val(column-gap, 30px, 98px);
   @include fluid-val(row-gap, 40px, 102px);
 
   @include vp-1023 {
-    // Мобилка: 2 колонки — copyright слева, mish справа
     grid-template-columns: 1fr auto;
     grid-template-areas:
-      "logo       logo"
-      "nav        nav"
-      "copyright  agency";
+      "logo      logo"
+      "nav       nav"
+      "copyright agency";
     column-gap: 30px;
   }
 }
 
 .footer__logo {
   grid-area: logo;
-  justify-self: start; // коробка по ширине svg, не растягивается на колонку — стабильная точка отсчёта для маски
+  justify-self: start;
   width: max-content;
 
   svg {
@@ -357,8 +358,6 @@
 }
 
 .footer__nav {
-  // На десктопе растворяемся — nav-list становится прямым grid-item parent'а
-  // и может использовать subgrid для наследования колонок.
   display: contents;
 
   @include vp-1023 {
@@ -371,11 +370,7 @@
 .footer__nav-list {
   grid-area: menu;
   display: grid;
-  // Наследуем 2 колонки parent'а (menu-start → menu-end) через subgrid.
-  // column-gap также унаследован от parent.
   grid-template-columns: subgrid;
-  // Column-major fill: DOM-порядок 1-6 заполняет сначала первую колонку сверху вниз,
-  // потом вторую. Это синхронизирует визуальный reading order с tab order (WCAG 2.4.3).
   grid-template-rows: repeat(3, auto);
   grid-auto-flow: column;
   row-gap: 15px;
@@ -392,7 +387,7 @@
   @include text-ui;
 
   color: $color-text-white;
-  overflow-wrap: anywhere; // длинные слова ломаются, не вываливаются из колонки
+  overflow-wrap: anywhere;
   transition: opacity $transition-default;
 
   @include hover {
@@ -404,9 +399,6 @@
   }
 }
 
-// .footer__meta «прозрачен» — его дети (copyright и agency) промотируются
-// в grid .footer__bottom-container как самостоятельные grid-items.
-// Baseline widely available (2019+). На простом div без ARIA-ролей a11y не страдает.
 .footer__meta {
   display: contents;
 }

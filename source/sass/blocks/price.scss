@@ -9,8 +9,8 @@
   padding-bottom: 120px;
 
   @include vp-1023 {
-      @include fluid-val(padding-top, 30px, 63px, 375, 480);
-      @include fluid-val(padding-bottom, 30px, 60px, 375, 480);
+    @include fluid-val(padding-top, 30px, 63px, 375, 480);
+    @include fluid-val(padding-bottom, 30px, 60px, 375, 480);
   }
 
 
