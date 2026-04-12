@@ -73,10 +73,10 @@ $ease-apple: cubic-bezier(0.19, 1, 0.22, 1);
   &::after {
     background:
       linear-gradient(105deg,
-      color.adjust($color-secondary, $lightness: -20%) 0%,
+      color.adjust($color-secondary, $lightness: -15%) 0%,
       $color-secondary 25%,
-      rgba($color-white, 0.55) 35%,
-      $color-secondary 45%,
+      color.adjust($color-secondary, $lightness: 10%) 45%,
+      $color-secondary 50%,
       transparent 50%,
       transparent 100%);
     background-size: 250% 100%;
@@ -86,7 +86,8 @@ $ease-apple: cubic-bezier(0.19, 1, 0.22, 1);
   }
 
   @include hover {
-    filter: drop-shadow(0 0 8px rgba($color-secondary, 0.4));
+    filter: drop-shadow(0 0 3px rgba($color-secondary, 0.4));
+    transition: filter 0.4s ease-out 0.4s;
 
     &::after {
       background-position: 0 0;
