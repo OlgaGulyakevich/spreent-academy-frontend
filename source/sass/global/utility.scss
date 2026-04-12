@@ -107,7 +107,7 @@ html:has(.scroll-lock) {
 }
 
 [data-reveal-type="clip"].is-revealed {
-  clip-path: inset(0);
+  clip-path: inset(-5%);
   transform: translateY(0);
 }
 
