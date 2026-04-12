@@ -1,0 +1,446 @@
+// =============================================
+// Footer — Certificate + Form + Bottom nav
+// =============================================
+
+.footer {
+  background-color: $color-bg-pure-white;
+}
+
+// ---------------------------------
+// Part 1: Certificate
+// ---------------------------------
+
+.footer__certificate {
+  position: relative;
+  background-color: $color-bg-pure-white;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: calc(50% + 1px);
+    background-color: $color-bg-dark;
+  }
+
+
+  @include vp-1023 {
+    background-color: $color-light;
+
+    &::after {
+      height: 23.3%;
+    }
+  }
+}
+
+.footer__certificate-container {
+  position: relative;
+  z-index: $z-base + 1;
+}
+
+.footer__certificate-inner {
+  display: flex;
+  align-items: stretch;
+  background-color: $color-light;
+  border-radius: $radius-card;
+  overflow: hidden;
+
+  @include fluid-val(gap, 20px, 140px, 1024, 1440);
+
+  padding: 28px 30px 30px;
+
+
+  @include vp-1023 {
+    flex-direction: column;
+    background-color: transparent;
+    border-radius: 0;
+    overflow: visible;
+    padding: 0;
+
+    @include fluid-val(gap, 40px, 54px, 375, 480);
+  }
+}
+
+.footer__certificate-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+  gap: 20px;
+
+  @include fluid-val(max-width, 450px, 500px);
+
+  @include vp-1023 {
+    max-width: none;
+    padding-top: 30px;
+  }
+}
+
+.footer__certificate-info h2 {
+  @include title-h2;
+  @include fluid-val(font-size, 38px, 46px);
+
+  line-height: 1;
+  letter-spacing: normal;
+
+  @include vp-1023 {
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+  }
+
+  @include vp-max(430px) {
+    @include fluid-val(font-size, 30px, 32px, 375, 430);
+  }
+}
+
+.footer__certificate-info p {
+  @include text-body;
+
+  color: $color-text-secondary;
+  padding-right: 70px;
+
+  @include vp-1023 {
+    padding-right: 0;
+  }
+}
+
+.footer__certificate-btn {
+  align-self: flex-start;
+  max-width: 100%;
+  margin-top: 5px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+
+  @include vp-1023 {
+    margin-top: 5px;
+  }
+}
+
+.footer__certificate-card {
+  flex: 1;
+  min-width: 0;
+  align-self: center;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: $radius-16;
+  }
+
+  @include vp-1023 {
+    align-self: stretch;
+    background-color: $color-bg-pure-white;
+    border-radius: $radius-16;
+  }
+}
+
+// ---------------------------------
+// Part 2: Form
+// ---------------------------------
+
+.footer__form-section {
+  background-color: $color-bg-dark;
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+.footer__form-title {
+  @include title-h2;
+
+  color: $color-text-white;
+  margin-bottom: 42px;
+
+  @include vp-1023 {
+    margin-bottom: 40px;
+  }
+}
+
+.footer__form-fields {
+  display: flex;
+  flex: 1;
+  gap: 5px;
+
+  @include flex-no-overflow;
+
+  @include vp-1023 {
+    flex-direction: column;
+    flex: initial;
+    width: 100%;
+    gap: 12px;
+  }
+}
+
+.footer__form-fields input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  padding: 15px 25px;
+  background-color: $color-form-input-bg;
+  border: $border-width-1 solid transparent;
+  border-radius: $radius-btn;
+  color: $color-form-text;
+  transition:
+    background-color $transition-default,
+    border-color $transition-default;
+
+  &::placeholder {
+    color: $color-form-placeholder;
+  }
+
+  @include hover {
+    background-color: $color-form-input-bg-hover;
+  }
+
+  &:focus {
+    background-color: $color-form-input-bg-focus;
+    border-color: $color-form-input-border-focus;
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 2px;
+    border-radius: $radius-btn;
+  }
+
+  // Error state: only red border, no bg change
+  &:invalid:not(:placeholder-shown) {
+    border-color: $color-form-error-border;
+  }
+
+  &:disabled {
+    background-color: $color-form-input-bg-disabled;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.footer__form-container form {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+
+  @include vp-1023 {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+
+.footer__form-btn {
+  flex-shrink: 0;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  padding: 14px 25px 15px;
+
+  @include vp-1023 {
+    padding: 14px 25px 16px;
+  }
+}
+
+.footer__form-disclaimer {
+  @include text-tag;
+
+  max-width: 450px;
+  color: $color-text-white-muted;
+
+  @include fluid-val(margin-top, 20px, 38px, 375, 480);
+}
+
+.footer__form-disclaimer-link {
+  color: $color-text-white-muted;
+  transition: color $transition-default;
+
+  @include hover {
+    color: $color-text-white;
+  }
+}
+
+// ---------------------------------
+// Notifications
+// ---------------------------------
+
+.footer__notification:not([hidden]) {
+  display: flex;
+  align-items: center;
+
+  @include fluid-val(gap, 12px, 16px);
+  @include fluid-val(padding, 18px, 24px);
+
+  border-radius: $radius-card;
+  margin-top: 20px;
+
+  p {
+    @include text-body;
+
+    color: $color-text-white-muted;
+  }
+}
+
+.footer__notification--success {
+  background-color: $color-notification-success-bg;
+}
+
+.footer__notification--error {
+  background-color: $color-notification-error-bg;
+}
+
+.footer__notification-icon {
+  @include flex-center;
+
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.footer__notification--success .footer__notification-icon {
+  background-color: $color-secondary;
+  color: $color-dark;
+}
+
+.footer__notification--error .footer__notification-icon {
+  background-color: $color-form-error;
+  color: $color-white;
+}
+
+// ---------------------------------
+// Part 3: Bottom nav
+// ---------------------------------
+
+.footer__bottom {
+  background-color: $color-bg-dark;
+  border-top: $border-width-1 solid rgba($color-white, 0.1);
+}
+
+.footer__bottom-container {
+  display: grid;
+
+  // 1-я колонка — область логотипа (fluid 360→475px ≈ 37→42%).
+  // 2-я и 3-я — nav-колонки с жёстким cap на 320px, защита от длинных слов
+  // в меню (overflow-wrap: anywhere на ссылке подхватит перенос).
+  grid-template-columns:
+    fluid-val-value(360px, 475px, 1024, 1440)
+    fit-content(320px)
+    fit-content(320px);
+  grid-template-areas:
+    "logo      menu menu"
+    "copyright .    agency";
+  align-items: start;
+  justify-content: start;
+
+  @include grid-no-overflow;
+  @include fluid-val(padding-top, 40px, 40px);
+  @include fluid-val(padding-bottom, 40px, 60px);
+  @include fluid-val(column-gap, 30px, 98px);
+  @include fluid-val(row-gap, 40px, 102px);
+
+  @include vp-1023 {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "logo      logo"
+      "nav       nav"
+      "copyright agency";
+    column-gap: 30px;
+  }
+}
+
+.footer__logo {
+  grid-area: logo;
+  justify-self: start;
+  width: max-content;
+
+  svg {
+    max-width: none;
+  }
+}
+
+.footer__nav {
+  display: contents;
+
+  @include vp-1023 {
+    display: block;
+    grid-area: nav;
+    padding-bottom: 59px;
+  }
+}
+
+.footer__nav-list {
+  grid-area: menu;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
+  row-gap: 15px;
+
+  @include vp-1023 {
+    grid-area: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-auto-flow: row;
+  }
+}
+
+.footer__nav-link {
+  @include text-ui;
+
+  color: $color-text-white;
+  overflow-wrap: anywhere;
+  transition: opacity $transition-default;
+
+  @include hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
+
+.footer__meta {
+  display: contents;
+}
+
+.footer__copyright {
+  @include text-tag;
+
+  grid-area: copyright;
+  align-self: end;
+  color: $color-text-white-muted;
+}
+
+.footer__agency {
+  grid-area: agency;
+  justify-self: start;
+  display: flex;
+  align-items: flex-start;
+  color: $color-white;
+  transition: opacity $transition-default;
+  transform: translateY(-2px);
+
+  @include vp-1023 {
+    transform: none;
+  }
+
+  svg {
+    width: 90px;
+  }
+
+  @include hover {
+    opacity: 0.7;
+  }
+
+  @include vp-1023 {
+    justify-self: end;
+    align-self: end;
+  }
+}
+
+.footer__agency-by {
+  @include text-tag;
+
+  color: $color-text-white-muted;
+  transform: translate(3px, -7px);
+}

@@ -1,0 +1,65 @@
+// =============================================================================
+// BURGER COMPONENT
+// =============================================================================
+
+.burger {
+  @include flex-center;
+
+  width: 40px;
+  height: 40px;
+  color: $color-dark;
+  transition: color $transition-medium;
+
+  @include hover {
+    color: $color-blue;
+  }
+
+  &:focus-visible {
+    border-radius: $radius-8;
+  }
+}
+
+// Icon swap: vertical collapse + scale grow
+.burger__icon {
+  transition:
+    opacity $transition-medium $ease-out,
+    transform $transition-medium $ease-spring;
+  transition-delay: 0.1s;
+}
+
+.burger__close {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+
+  // Start from a smaller size and slight tilt (the effect of opening from a bud)
+  transform: scale(0.5) rotate(-15deg);
+
+  // By default (when the cross disappears) we do this instantly
+  transition:
+    opacity $transition-medium $ease-out,
+    transform $transition-medium $ease-out;
+  transition-delay: 0s;
+}
+
+// Open state: toggle icon visibility + semantic hover color
+.burger[aria-expanded="true"] {
+  .burger__icon {
+    opacity: 0;
+    transform: scaleY(0); // The stripes «close» into one line
+    pointer-events: none;
+    transition-delay: 0s; // The burger leaves immediately when opened
+  }
+
+  .burger__close {
+    opacity: 1;
+    transform: scale(1) rotate(0); // It settles into place softly opening
+    pointer-events: auto;
+    transition-delay: 0.3s; // We appear with a delay to keep the scene clean
+    transition-timing-function: $ease-spring; // Overshoot: cross «pops» into place
+  }
+
+  @include hover {
+    color: $color-error;
+  }
+}

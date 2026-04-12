@@ -1,0 +1,272 @@
+// =============================================
+// Community Section
+// =============================================
+
+.community__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  @include fluid-val(padding-top, 60px, 80px);
+  @include fluid-val(padding-bottom, 60px, 80px, 1024, 1440);
+  @include fluid-val(gap, 20px, 35px);
+
+  @include vp-1023 {
+    @include fluid-val(padding-bottom, 117px, 130px, 480, 1023);
+  }
+
+  @include vp-max(470px) {
+    @include fluid-val(padding-bottom, 50px, 100px);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+
+    @include fluid-val(top, 60px, 80px);
+
+    height: $border-width-1;
+    background-color: $color-stroke;
+
+    @include fluid-val(left, $container-offset-mobile, $container-offset-desktop);
+    @include fluid-val(right, $container-offset-mobile, $container-offset-desktop);
+  }
+}
+
+// ---------------------------------
+// Avatars pill with gradient
+// ---------------------------------
+
+.community__avatar-list {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  background: $gradient-bg-community;
+  border-radius: $radius-pill;
+  padding: 15px 10px 25px 5px;
+
+  @include fluid-val(margin-top, 30px, 35px);
+
+  --avatar-size: 120px;
+  --ring: 5px;
+  --overlap: 40px;
+
+  @include vp-767 {
+    padding: 22px 10px 24px 17px;
+
+    --avatar-size: 90px;
+    --ring: 4px;
+    --overlap: 30px;
+  }
+
+  @include vp-max(470px) {
+    padding: 27px 20px;
+
+    --avatar-size: 80px;
+    --overlap: 24px;
+  }
+
+  @include vp-max(400px) {
+    --avatar-size: 70px;
+  }
+}
+
+.community__avatar-item {
+  flex-shrink: 0;
+  width: calc(var(--avatar-size) + var(--ring) * 2);
+  height: calc(var(--avatar-size) + var(--ring) * 2);
+  padding: var(--ring);
+  border-radius: 50%;
+
+  &:not(:first-child) {
+    margin-left: calc(var(--overlap) * -1);
+  }
+
+  // Transparent ring: mask cuts a circle where the next avatar overlaps,
+  // revealing the gradient background through the gap
+  &:not(:last-child) {
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-mask-image:
+      radial-gradient(
+        circle at calc(100% - var(--overlap) + var(--avatar-size) / 2 + var(--ring)) 50%,
+        transparent calc(var(--avatar-size) / 2 + var(--ring)),
+        $color-black calc(var(--avatar-size) / 2 + var(--ring) + 1px)
+      );
+    mask-image:
+      radial-gradient(
+        circle at calc(100% - var(--overlap) + var(--avatar-size) / 2 + var(--ring)) 50%,
+        transparent calc(var(--avatar-size) / 2 + var(--ring)),
+        $color-black calc(var(--avatar-size) / 2 + var(--ring) + 1px)
+      );
+  }
+}
+
+.community__avatar-item--join {
+  position: relative;
+  z-index: $z-base + 1;
+  padding: 0;
+}
+
+.community__avatar-item img {
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+// ---------------------------------
+// Join button — circle with "+" icon
+// ---------------------------------
+
+// Progressive enhancement: @property enables conic-gradient angle animation.
+// Fallback: static gradient border (still looks good, just doesn't spin).
+@property --bg-angle {
+  inherits: false;
+  initial-value: 0deg;
+  syntax: "<angle>";
+}
+
+.community__join {
+  @include flex-center;
+
+  width: 100%;
+  height: 100%;
+  border: var(--ring) solid transparent;
+  border-radius: 50%;
+  background:
+    linear-gradient(transparent, transparent) padding-box,
+    conic-gradient(
+      from var(--bg-angle),
+      $color-ice 15%,
+      $color-secondary 25%,
+      $color-ice 35%,
+      $color-ice 65%,
+      $color-secondary 75%,
+      $color-ice 85%
+    ) border-box;
+  color: $color-blue;
+  transition:
+    transform $transition-default,
+    background $transition-default,
+    color $transition-default,
+    box-shadow $transition-default;
+  animation: gradient-spin 5s infinite $ease-material;
+
+  @include hover {
+    transform: scale(1.08);
+    background:
+      $color-secondary padding-box,
+      $color-secondary border-box;
+    box-shadow: 0 0 24px 0 rgba($color-blue, 0.4);
+    animation: none;
+  }
+
+  &:active {
+    transform: scale(0.95);
+    background:
+      $color-btn-secondary-active padding-box,
+      $color-btn-secondary-active border-box;
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    border-radius: 50%;
+  }
+}
+
+.community__join svg {
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+}
+
+// ---------------------------------
+// Join button animations
+// ---------------------------------
+
+@keyframes gradient-spin {
+  to {
+    --bg-angle: 360deg;
+  }
+}
+
+// ---------------------------------
+// Stats: counter + factoids
+// ---------------------------------
+
+.community__stats {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  @include fluid-val(gap, 30px, 60px);
+
+  @include vp-1023 {
+    flex-direction: column;
+  }
+}
+
+.community__count {
+  display: flex;
+  flex-direction: column;
+
+  @include fluid-val(gap, 5px, 6px);
+}
+
+.community__count-number {
+  @include title-digit;
+
+  @include vp-max(470px) {
+    @include fluid-val(font-size, 65px, 75px, 375, 470);
+  }
+}
+
+.community__count-label {
+  @include text-body;
+
+  color: $color-text-secondary;
+  max-width: 260px;
+}
+
+// ---------------------------------
+// Factoids (78%, 89%)
+// ---------------------------------
+
+.community__factoids {
+  display: flex;
+  flex-direction: column;
+
+  @include fluid-val(gap, 30px, 40px);
+  @include fluid-val(margin-right, 0, 118px);
+
+  margin-top: -12px;
+
+  @include vp-1023 {
+    margin-top: 0;
+  }
+}
+
+.community__factoid {
+  display: flex;
+  flex-direction: column;
+
+  @include fluid-val(gap, 10px, 14px);
+}
+
+.community__factoid-number {
+  @include title-factoid;
+
+  @include vp-max(470px) {
+    @include fluid-val(font-size, 65px, 75px, 375, 470);
+  }
+}
+
+.community__factoid-text {
+  @include text-body;
+
+  @include vp-1023 {
+    line-height: 1.37;
+  }
+
+  color: $color-text-secondary;
+  max-width: 325px;
+}

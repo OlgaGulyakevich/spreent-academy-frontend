@@ -1,7 +1,8 @@
 // =============================================================================
 // GLOBAL STYLES
 // =============================================================================
-// Scope: box-sizing reset, smooth scroll, base img normalization.
+// Scope: box-sizing reset, scroll padding, base img normalization.
+// Smooth scroll — custom JS implementation in modules/smooth-scroll.js.
 // Page structure (sticky footer, flex layout) — in pages.scss.
 // Typography base on body — in pages.scss via @include text-body.
 // =============================================================================
@@ -13,11 +14,11 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 70px;
 }
 
 body {
+  position: relative; // создаёт stacking context для ::after с z-index: -1
   min-width: $vp-320;
 
   @include text-body;
@@ -27,6 +28,21 @@ body {
   // Smooth font rendering
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  // Тёмная «подложка» под футером на iOS rubber-band — фиксированный слой
+  // у нижнего края viewport, закрывает белую полоску при overscroll.
+  // z-index: -1 + position: relative на body = под контентом, над body-фоном.
+  &::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 40vh;
+    background-color: $color-bg-dark;
+    z-index: -1;
+    pointer-events: none;
+  }
 }
 
 

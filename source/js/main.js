@@ -1,16 +1,21 @@
-// import { initMenu } from './modules/menu.js';
-// import { initMenuHeight } from './modules/menu-height.js';
-// import { initKeyboardNav } from './modules/keyboard-nav.js';
-// import { initCoursesSlider } from './modules/slider-courses.js';
-// import { initBanner } from './modules/slider-banner.js';
-// import { initTagEqualizer } from './modules/tag-equalizer.js';
+import { initHeaderScroll } from './modules/header-scroll.js';
+import { initMobileMenu } from './modules/mobile-menu.js';
+import { initScrollProgress } from './modules/scroll-progress.js';
+import { initSmoothScroll } from './modules/smooth-scroll.js';
 
-// // Initialize all modules
-// document.addEventListener('DOMContentLoaded', () => {
-//   initMenu();
-//   initMenuHeight();
-//   initKeyboardNav();
-//   initCoursesSlider();
-//   initBanner();
-//   initTagEqualizer();
-// });
+/**
+ * Main window load handler—initializes all required modules.
+ */
+// Prevent scroll-to-top on placeholder links
+document.addEventListener('click', (e) => {
+  if (e.target.closest('a[href="#"]')) {
+    e.preventDefault();
+  }
+});
+
+window.addEventListener('load', () => {
+  initHeaderScroll();
+  initMobileMenu();
+  initScrollProgress();
+  initSmoothScroll();
+});

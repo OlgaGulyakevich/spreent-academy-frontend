@@ -1,0 +1,177 @@
+// =============================================================================
+// HEADER BLOCK
+// =============================================================================
+// Sticky header with logo + nav + CTA + burger.
+// Desktop: single row, nav inline. Mobile (≤1023px): burger toggle, dropdown drawer.
+// Open state driven by CSS :has(.burger[aria-expanded="true"]) — no JS classes on header.
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: $z-sticky;
+  background-color: $color-bg-main;
+  transition:
+    background-color $transition-default,
+    border-color $transition-default;
+
+  // Scroll Progress Bar (Full screen width)
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: var(--scroll-progress, 0%);
+    height: 2px;
+    background-color: $color-blue;
+    transition: width 0.1s $ease-out;
+    z-index: 1;
+  }
+}
+
+// Scrolled state (JS adds .header--scrolled at scrollY > 40)
+.header--scrolled {
+  background-color: $color-bg-header;
+  backdrop-filter: blur(20px);
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+
+  @include flex-no-overflow;
+
+  padding-top: 16px;
+  padding-bottom: 16px;
+  position: relative;
+
+  // Horizontal divider
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    border-bottom: $border-width-1 solid $color-border-header;
+  }
+
+  @include vp-1023 {
+    flex-wrap: wrap;
+    padding-bottom: 13px;
+  }
+}
+
+.header__logo {
+  margin-right: auto;
+  flex-shrink: 0;
+  margin-top: 4px;
+
+  @include vp-1023 {
+    margin-top: 1px;
+  }
+}
+
+.header__nav {
+  margin-right: $spacing-100;
+  margin-left: $spacing-30;
+
+  // Mobile: absolute dropdown + grid collapse (0fr → 1fr)
+  @include vp-1023 {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: $z-dropdown;
+    display: grid;
+    grid-template-rows: 0fr;
+    margin-right: 0;
+    margin-left: 0;
+    background-color: $color-white;
+    opacity: 0;
+    visibility: hidden;
+
+    // Closing transition: gentle ease-in, opacity fades after grid starts collapsing
+    transition:
+      grid-template-rows $transition-fast $ease-in,
+      opacity $transition-fast $ease-in,
+      visibility $transition-fast;
+  }
+}
+
+// CTA button — compact size for header
+.header__cta {
+  padding: 5px 15px 6px;
+  flex-shrink: 0;
+  min-width: 98px;
+  margin-top: 1px;
+
+  @include vp-1023 {
+    margin-top: -2px;
+  }
+}
+
+// Burger — hidden on desktop
+.header__burger {
+  display: none;
+  position: relative;
+  flex-shrink: 0;
+
+  @include vp-1023 {
+    display: flex;
+    margin-left: 37px;
+    margin-right: -3px;
+
+    // Vertical divider
+    &::before {
+      content: "";
+      position: absolute;
+      left: -17px;
+      top: -$spacing-15;
+      bottom: -13px;
+      border-left: $border-width-1 solid $color-border-header;
+    }
+  }
+}
+
+// =============================================================================
+// MOBILE MENU OVERLAY — on body::before (≤1023px)
+// =============================================================================
+// Overlay lives on BODY, not inside header. This guarantees position: fixed
+// is viewport-relative — no sticky/backdrop-filter containing block issues.
+// z-index sits between page content (auto) and header ($z-overlay when open).
+
+@include vp-1023 {
+  // stylelint-disable-next-line selector-no-qualifying-type
+  body:has(.burger[aria-expanded="true"])::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: $z-sticky;
+    background-color: rgba($color-white, 0.7);
+    backdrop-filter: blur(40px);
+    // stylelint-disable-next-line property-no-vendor-prefix
+    -webkit-backdrop-filter: blur(40px);
+    pointer-events: auto;
+  }
+
+  .header:has(.burger[aria-expanded="true"]) {
+    z-index: $z-overlay;
+
+    // Reset header's own backdrop-filter so overlay can blur page content directly
+    backdrop-filter: none;
+    // stylelint-disable-next-line property-no-vendor-prefix
+    -webkit-backdrop-filter: none;
+    background-color: $color-bg-main;
+
+    // Nav: expand grid row — opening transition overrides closing one
+    .header__nav {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      visibility: visible;
+      transition:
+        grid-template-rows $transition-medium $ease-out-expo,
+        opacity $transition-medium $ease-out-expo,
+        visibility 0s;
+    }
+  }
+}

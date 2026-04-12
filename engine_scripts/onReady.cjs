@@ -15,6 +15,29 @@ module.exports = async (page, scenario, vp) => {
       lazyImages.forEach((i) => {
         i.removeAttribute('loading');
       });
+
+      // Хак: прячем ползунок прокрутки прямо в браузере при прохождении тестов,
+      // чтобы ширина viewport не съедалась на 15 пикселей.
+      const style = document.createElement('style');
+      style.textContent = [
+        '::-webkit-scrollbar { display: none !important; width: 0 !important; }',
+        'html, body { scrollbar-width: none !important; }',
+      ].join('\n');
+      document.head.appendChild(style);
+
+      // Останавливаем CSS-анимации для стабильных PP-скриншотов
+      const animStyle = document.createElement('style');
+      animStyle.textContent = '*, *::before, *::after { animation-play-state: paused !important; }';
+      document.head.appendChild(animStyle);
+
+      // Убираем sticky header для всех секций кроме header,
+      // чтобы он не накладывался на захватываемую секцию при скролле.
+      if (scenario.label !== 'header') {
+        const header = document.querySelector('[data-test="header"]');
+        if (header) {
+          header.style.position = 'relative';
+        }
+      }
     }, scenario);
 
     // await require('./clickAndHoverHelper')(page, scenario);

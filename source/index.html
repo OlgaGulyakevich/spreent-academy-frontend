@@ -10,7 +10,7 @@
   <meta name="description" content="Spreent Academy — Учеба построена на принципах реальной работы в ИТ и дизайне. Учим систематизировать знания и выстраивать процессы.">
   <meta name="keywords" content="курсы, обучение, образование, онлайн-курсы, дизайн, ИТ, UX, UI, Spreent Academy">
   <meta name="application-name" content="Spreent Academy">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#0d1627">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -85,16 +85,16 @@
       </nav>
 
       <!-- CTA button: всегда видна (desktop + mobile) -->
-      <a class="btn btn--primary header__cta" href="#">Начать</a>
+      <a class="btn btn--primary header__cta" href="#footer-form">Начать</a>
 
       <!-- Burger: только mobile/tablet (≤1023px) -->
       <button class="burger header__burger" type="button"
               aria-label="Открыть меню" aria-expanded="false"
               aria-controls="main-nav">
-        <svg class="burger__icon" width="28" height="18" aria-hidden="true">
+        <svg class="burger__icon" width="30" height="18" aria-hidden="true">
           <use href="./__spritemap#sprite-burger"></use>
         </svg>
-        <svg class="burger__close" width="28" height="18" aria-hidden="true">
+        <svg class="burger__close" width="30" height="18" aria-hidden="true">
           <use href="./__spritemap#sprite-close"></use>
         </svg>
       </button>
@@ -117,9 +117,9 @@
 
         <!-- CMS area: h1 и p стилизуются каскадом от .hero__content -->
         <div class="hero__content">
-          <h1>—&thinsp;Опыт, практика,<br class="br-not-mobile"> актуальные знания</h1>
+          <h1>—Опыт, практика,<br class="br-not-mobile"> <span class="hero__title-shift">актуальные знания</span></h1>
           <p>Главные ценности, вокруг которых строится обучение в&nbsp;spreent</p>
-          <a class="btn btn--primary hero__btn" href="#">Начать учиться</a>
+          <a class="btn btn--primary hero__btn" href="#footer-form">Начать учиться</a>
         </div>
 
         <!-- Декоративные фото выпускников, aria-hidden — скринридерам не нужны -->
@@ -151,7 +151,7 @@
                    srcset="img/hero/sergey@2x.jpg 2x"
                    width="175" height="256" alt="">
             </picture>
-            <div class="hero__label">
+            <div class="hero__label hero__label--cursor">
               <svg width="26" height="26" aria-hidden="true">
                 <use href="./__spritemap#sprite-cursor-arrow"></use>
               </svg>
@@ -168,7 +168,7 @@
                    srcset="img/hero/misha@2x.jpg 2x"
                    width="329" height="200" alt="">
             </picture>
-            <div class="hero__label">
+            <div class="hero__label hero__label--cursor">
               <svg width="26" height="26" aria-hidden="true">
                 <use href="./__spritemap#sprite-cursor-arrow"></use>
               </svg>
@@ -217,11 +217,9 @@
             <!-- Декоративный UI-мокап, реализован через CSS + спрайт-иконки -->
             <div class="about__card-decor" aria-hidden="true">
 
-              <!-- Рамка выделения: circle + rect — CSS shapes -->
-              <div class="about__card-decor-frame">
-                <div class="about__card-decor-circle"></div>
-                <div class="about__card-decor-rect"></div>
-              </div>
+              <!-- CSS shapes: rect первый в DOM, circle второй → circle поверх rect -->
+              <div class="about__card-decor-rect"></div>
+              <div class="about__card-decor-circle"></div>
 
               <!-- Курсор-стрелка (лайм) + плашка "You" -->
               <div class="about__card-decor-label about__card-decor-label--you">
@@ -268,53 +266,51 @@
         <h2 class="visually-hidden">Наши выпускники</h2>
 
         <!-- Аватары в pill-контейнере с градиентным фоном -->
-        <div class="community__avatars">
-          <ul class="community__avatar-list">
-            <li class="community__avatar-item">
-              <picture>
-                <source type="image/webp" width="110" height="110"
-                  srcset="img/community/avatar-1@1x.webp 1x, img/community/avatar-1@2x.webp 2x">
-                <img src="img/community/avatar-1@1x.jpg"
-                     srcset="img/community/avatar-1@2x.jpg 2x"
-                     width="110" height="110" alt="Выпускник академии">
-              </picture>
-            </li>
-            <li class="community__avatar-item">
-              <picture>
-                <source type="image/webp" width="110" height="110"
-                  srcset="img/community/avatar-2@1x.webp 1x, img/community/avatar-2@2x.webp 2x">
-                <img src="img/community/avatar-2@1x.jpg"
-                     srcset="img/community/avatar-2@2x.jpg 2x"
-                     width="110" height="110" alt="Выпускник академии">
-              </picture>
-            </li>
-            <li class="community__avatar-item">
-              <picture>
-                <source type="image/webp" width="110" height="110"
-                  srcset="img/community/avatar-3@1x.webp 1x, img/community/avatar-3@2x.webp 2x">
-                <img src="img/community/avatar-3@1x.jpg"
-                     srcset="img/community/avatar-3@2x.jpg 2x"
-                     width="110" height="110" alt="Выпускник академии">
-              </picture>
-            </li>
-            <li class="community__avatar-item">
-              <picture>
-                <source type="image/webp" width="110" height="110"
-                  srcset="img/community/avatar-4@1x.webp 1x, img/community/avatar-4@2x.webp 2x">
-                <img src="img/community/avatar-4@1x.jpg"
-                     srcset="img/community/avatar-4@2x.jpg 2x"
-                     width="110" height="110" alt="Выпускник академии">
-              </picture>
-            </li>
-          </ul>
-
-          <!-- Якорная ссылка на форму: плавный скролл к #footer-form -->
-          <a class="community__join" href="#footer-form" aria-label="Присоединиться к сообществу">
-            <svg width="110" height="110" aria-hidden="true">
-              <use href="./__spritemap#sprite-plus"></use>
-            </svg>
-          </a>
-        </div>
+        <ul class="community__avatar-list">
+          <li class="community__avatar-item">
+            <picture>
+              <source type="image/webp" width="110" height="110"
+                srcset="img/community/avatar-1@1x.webp 1x, img/community/avatar-1@2x.webp 2x">
+              <img src="img/community/avatar-1@1x.jpg"
+                   srcset="img/community/avatar-1@2x.jpg 2x"
+                   width="110" height="110" alt="Выпускник академии">
+            </picture>
+          </li>
+          <li class="community__avatar-item">
+            <picture>
+              <source type="image/webp" width="110" height="110"
+                srcset="img/community/avatar-2@1x.webp 1x, img/community/avatar-2@2x.webp 2x">
+              <img src="img/community/avatar-2@1x.jpg"
+                   srcset="img/community/avatar-2@2x.jpg 2x"
+                   width="110" height="110" alt="Выпускник академии">
+            </picture>
+          </li>
+          <li class="community__avatar-item">
+            <picture>
+              <source type="image/webp" width="110" height="110"
+                srcset="img/community/avatar-3@1x.webp 1x, img/community/avatar-3@2x.webp 2x">
+              <img src="img/community/avatar-3@1x.jpg"
+                   srcset="img/community/avatar-3@2x.jpg 2x"
+                   width="110" height="110" alt="Выпускник академии">
+            </picture>
+          </li>
+          <li class="community__avatar-item">
+            <picture>
+              <source type="image/webp" width="110" height="110"
+                srcset="img/community/avatar-4@1x.webp 1x, img/community/avatar-4@2x.webp 2x">
+              <img src="img/community/avatar-4@1x.jpg"
+                   srcset="img/community/avatar-4@2x.jpg 2x"
+                   width="110" height="110" alt="Выпускник академии">
+            </picture>
+          </li>
+          <li class="community__avatar-item community__avatar-item--join">
+            <a class="community__join" href="#footer-form" aria-label="Присоединиться к сообществу">
+              <svg width="24" height="24" aria-hidden="true">
+                <use href="./__spritemap#sprite-plus"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
 
         <div class="community__stats">
 
@@ -332,7 +328,7 @@
             </li>
             <li class="community__factoid">
               <p class="community__factoid-number">89%</p>
-              <p class="community__factoid-text">отмечают качество и&nbsp;пользу знаний, полученных в&nbsp;spreent</p>
+              <p class="community__factoid-text">отмечают качество и&nbsp;пользу  <br> знаний, полученных в&nbsp;spreent</p>
             </li>
           </ul>
 
@@ -345,6 +341,7 @@
     <!-- ============================================ -->
 
     <section class="price" data-test="price">
+
       <div class="container price__container">
 
         <h2 class="price__title">Стоимость обучения</h2>
@@ -380,7 +377,7 @@
                   <span class="price__old">552&nbsp;000&nbsp;₸</span>
                 </p>
               </div>
-              <a class="btn btn--primary price__btn" href="#">Купить курс</a>
+              <a class="btn btn--primary price__btn" href="#footer-form">Купить курс</a>
             </div>
 
           </div>
@@ -397,9 +394,9 @@
       <div class="container work__container">
 
         <div class="work__content">
-          <h2 class="work__title">Где работают<br class="br-not-mobile"> наши выпускники</h2>
+          <h2 class="work__title">Где работают<br class="br-not-mobile"> наши&nbsp;выпускники</h2>
           <p class="work__lead">Начните работать в&nbsp;крупнейших компаниях индустрии</p>
-          <a class="btn btn--primary work__btn" href="#">Присоединиться</a>
+          <a class="btn btn--primary work__btn" href="#footer-form">Присоединиться</a>
         </div>
 
         <ul class="work__logos">
@@ -430,7 +427,7 @@
             </svg>
           </li>
           <li class="work__logo-item work__logo-item--mish">
-            <svg width="83" height="32" aria-label="mish" role="img">
+            <svg width="84" height="32" aria-label="mish" role="img">
               <use href="./__spritemap#sprite-mish"></use>
             </svg>
           </li>
@@ -465,25 +462,27 @@
     <!-- Часть 1: Сертификат (светлый фон) -->
     <section class="footer__certificate">
       <div class="container footer__certificate-container">
+        <div class="footer__certificate-inner">
 
-        <!-- CMS area: h2 и p стилизуются каскадом от .footer__certificate-info -->
-        <div class="footer__certificate-info">
-          <h2>Получи сертификат об&nbsp;успешном завершении курса</h2>
-          <p>Обучение ведётся на&nbsp;основании лицензии государственного образца</p>
-          <a class="btn btn--primary footer__certificate-btn" href="#">Начать учиться</a>
+          <!-- CMS area: h2 и p стилизуются каскадом от .footer__certificate-info -->
+          <div class="footer__certificate-info">
+            <h2>Получи сертификат об&nbsp;успешном<br class="br-not-mobile"> завершении курса</h2>
+            <p>Обучение ведётся на&nbsp;основании лицензии государственного образца</p>
+            <a class="btn btn--primary footer__certificate-btn" href="#footer-form">Начать учиться</a>
+          </div>
+
+          <!-- Декоративная картинка сертификата -->
+          <div class="footer__certificate-card" aria-hidden="true">
+            <picture>
+              <source type="image/webp" width="660" height="440"
+                srcset="img/footer/certificate@1x.webp 1x, img/footer/certificate@2x.webp 2x">
+              <img src="img/footer/certificate@1x.jpg"
+                   srcset="img/footer/certificate@2x.jpg 2x"
+                   width="660" height="440" alt="">
+            </picture>
+          </div>
+
         </div>
-
-        <!-- Декоративная картинка сертификата -->
-        <div class="footer__certificate-card" aria-hidden="true">
-          <picture>
-            <source type="image/webp" width="660" height="440"
-              srcset="img/footer/certificate@1x.webp 1x, img/footer/certificate@2x.webp 2x">
-            <img src="img/footer/certificate@1x.jpg"
-                 srcset="img/footer/certificate@2x.jpg 2x"
-                 width="660" height="440" alt="">
-          </picture>
-        </div>
-
       </div>
     </section>
 

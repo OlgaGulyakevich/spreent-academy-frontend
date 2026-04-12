@@ -43,8 +43,18 @@ module.exports = {
           "after-comment",
           "inside-single-line-block",
           "after-declaration",
+          "after-comment"
         ],
       },
     ],
+    // Разрешаем использование современных функций Sass модулей
+    "function-no-unknown": [
+      true,
+      {
+        ignoreFunctions: ["adjust", "color.adjust", "scale", "color.scale", "fluid-val-value", "min", "max"]
+      }
+    ],
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true
   },
 };

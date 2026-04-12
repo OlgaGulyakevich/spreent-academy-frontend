@@ -9,6 +9,11 @@
 html {
   height: 100%;
   scrollbar-gutter: stable;
+
+  // Клипуем горизонтальное переполнение на уровне корня — защита от случайных
+  // элементов, вылезающих вправо. Без этого body::after (тёмная подложка под
+  // футером) просвечивает в зоне горизонтального скролла.
+  overflow-x: clip;
 }
 
 body {
@@ -22,6 +27,10 @@ body {
 main {
   flex: 1 0 auto;
   overflow-x: hidden; // Prevent horizontal scroll from extended backgrounds
+  // Непрозрачный фон — перекрывает body::after (тёмная подложка под футером
+  // для iOS rubber-band). Без этого тёмный псевдоэлемент просвечивал бы
+  // сквозь прозрачные секции (.hero/.about/.community/.price/.work).
+  background-color: $color-bg-main;
 }
 
 .footer {
@@ -71,13 +80,14 @@ main {
   color: inherit;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 
   transition: $transition-default;
 
   &:focus-visible {
     outline: 2px solid $color-accent;
     outline-offset: 2px;
-    border-radius: inherit;
+    border-radius: $radius-4;
     transition: none;
   }
 }
@@ -104,6 +114,7 @@ main {
   border: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 
   &:focus-visible {
     outline: 2px solid $color-accent;

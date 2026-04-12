@@ -106,6 +106,22 @@
   }
 }
 
+/// Returns a CSS clamp() expression for fluid scaling.
+/// Useful for being used inside other functions like translate(), rgba(), etc.
+///
+/// @param {Length} $min-value — value at $min-vw (px)
+/// @param {Length} $max-value — value at $max-vw (px)
+/// @param {Number} $min-vw   — min viewport, unitless (default: 480)
+/// @param {Number} $max-vw   — max viewport, unitless (default: 1440)
+///
+/// @return {String} — clamp() expression
+@function fluid-val-value($min-value, $max-value, $min-vw: $min-vw-width, $max-vw: $base-vw-width) {
+  $val-diff: math.div($max-value - $min-value, 1px);
+  $vw-diff: $max-vw - $min-vw;
+
+  @return clamp(#{$min-value}, calc(#{$min-value} + #{$val-diff} * (100vw - #{$min-vw}px) / #{$vw-diff}), #{$max-value});
+}
+
 // -----------------------------------------------------------------------------
 // Interaction (Hover for non-touch devices only)
 // -----------------------------------------------------------------------------

@@ -3,8 +3,9 @@
 // Font families:
 //   Display: "Loos Wide" (weight 500) — headings, nav, buttons
 //   Primary: "Manrope" (weight 500/600) — body, UI, tags
+//   Secondary: "Inter" (weight 500) — cursor-плашки
 // Desktop scale (1440px):
-//   title-h1:      55px / 500 / 0.96   / ls -0.01em (Loos Wide)
+//   title-h1:      90px / 500 / 0.88   / ls 0 (Loos Wide)
 //   title-h2:      46px / 500 / 1       (Loos Wide)
 //   title-h3:      34px / 500 / 1.02    (Loos Wide)
 //   title-digit:  120px / 500 / 1       / ls -0.05em (Loos Wide) — "Более 100"
@@ -14,29 +15,51 @@
 //   text-ui:       18px / 500 / 1.4     (Loos Wide) — nav, buttons
 //   text-small:    16px / 500 / 1.4     (Manrope)
 //   text-tag:      14px / 600 / 1.3     / ls 0.01em (Manrope)
+//   text-cursor:   16px / 500 / 1.5     / ls 0.01em (Inter)
 
 
 // Figma: H1 — Loos Wide Medium, lh 0.96, ls -1px
-// mob 480px: 40px → desk 1440px: 55px
+// mob 480px: 40px → desk 1440px: 90px
 @mixin title-h1 {
-  @include fluid-val(font-size, 40px, 55px);
-
   font-family: $font-family-display;
   font-weight: $font-weight-medium;
-  line-height: 0.96;
-  letter-spacing: -0.01em;
+
+
+  @include fluid-val(font-size, 40px, 90px);
+
+  line-height: 0.88;
+  letter-spacing: 0;
   color: $color-text-h1;
+
+  @include vp-1023 {
+    line-height: 1.01;
+    letter-spacing: -0.01em;
+  }
+
+  @include vp-max(479px) {
+    @include fluid-val(font-size, 32px, 40px, 375, 480);
+  }
 }
 
 // Figma: H2 — Loos Wide Medium, lh 1, ls 0
 // mob: 28px → desk: 46px
 @mixin title-h2 {
-  @include fluid-val(font-size, 28px, 46px);
+  @include fluid-val(font-size, 38px, 55px);
 
   font-family: $font-family-display;
   font-weight: $font-weight-medium;
-  line-height: 1;
+  line-height: 0.96;
+  letter-spacing: -0.01em;
+
   color: $color-text-h2;
+
+  @include vp-1023 {
+    line-height: 0.98;
+  }
+
+  @include vp-max(430px) {
+    font-size: fluid-val-value(30px, 32px, 375, 430);
+  }
 }
 
 // Figma: H3 — Loos Wide Medium, lh 1.02, ls 0
@@ -48,29 +71,37 @@
   font-weight: $font-weight-medium;
   line-height: 1.02;
   color: $color-text-h3;
+
+  @include vp-max(375px) {
+    font-size: 28px;
+  }
 }
 
 // Figma: Digit — Loos Wide Medium, lh 1, ls -6px (large counter "Более 100")
 // mob: 70px → desk: 120px
 @mixin title-digit {
-  @include fluid-val(font-size, 70px, 120px);
+  @include fluid-val(font-size, 90px, 120px);
 
   font-family: $font-family-display;
   font-weight: $font-weight-medium;
   line-height: 1;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.06em;
   color: $color-text-h1;
 }
 
 // Figma: Factoid — Loos Wide Medium, lh 0.88 (проценты: "78%", "89%")
 // mob: 60px → desk: 90px
 @mixin title-factoid {
-  @include fluid-val(font-size, 60px, 90px);
-
+  font-size: 90px;
   font-family: $font-family-display;
   font-weight: $font-weight-medium;
   line-height: 0.88;
   color: $color-text-h1;
+
+  @include vp-max(480px) {
+    line-height: 1;
+    letter-spacing: -0.06em;
+  }
 }
 
 // Figma: Lead 24 — Manrope Medium, lh 1.4
@@ -81,7 +112,7 @@
   font-family: $font-family-primary;
   font-weight: $font-weight-medium;
   line-height: 1.4;
-  color: $color-text-secondary;
+  color: $color-text-main;
 }
 
 // Figma: Text 18 — Manrope Medium, lh 1.4 (основной body-текст)
@@ -118,4 +149,14 @@
   line-height: 1.3;
   letter-spacing: 0.01em;
   color: $color-text-dark;
+}
+
+// Figma: Cursor — Inter 500, 16px, lh 1.5, ls 0.01em
+@mixin text-cursor {
+  font-family: $font-family-secondary;
+  font-weight: $font-weight-medium;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: $color-text-white;
 }
