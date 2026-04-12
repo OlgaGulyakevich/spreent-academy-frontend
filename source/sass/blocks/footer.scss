@@ -172,8 +172,13 @@
   }
 }
 
-.footer__form-fields input {
+.footer__form-field {
+  position: relative;
   flex: 1;
+  min-width: 0;
+}
+
+.footer__form-fields input {
   width: 100%;
   min-width: 0;
   padding: 15px 25px;
@@ -205,16 +210,41 @@
     border-radius: $radius-btn;
   }
 
-  // Error state: only red border, no bg change
-  &:invalid:not(:placeholder-shown) {
-    border-color: $color-form-error-border;
-  }
-
   &:disabled {
     background-color: $color-form-input-bg-disabled;
     cursor: not-allowed;
     opacity: 0.5;
   }
+}
+
+.footer__form-fields .is-invalid {
+  border-color: $color-form-error-border;
+}
+
+.footer__form-error {
+  @include text-tag;
+
+  position: absolute;
+  top: 100%;
+  left: 25px;
+  right: 0;
+  color: $color-form-error;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition:
+    opacity $transition-default,
+    transform $transition-default;
+
+  @include vp-1023 {
+    font-size: 12px;
+    top: 88%;
+  }
+}
+
+.footer__form-error.is-visible {
+  opacity: 1;
+  transform: translateY(4px);
 }
 
 .footer__form-container form {

@@ -9,7 +9,7 @@
 const BUTTON_SELECTOR = '.hero__btn';
 const ATTRACT_RADIUS = 100;
 const MAX_OFFSET = 15;
-const LERP_FACTOR = 0.15; 
+const LERP_FACTOR = 0.15;
 
 /**
  * Linear interpolation.

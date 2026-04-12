@@ -496,19 +496,26 @@
           <fieldset class="footer__form-fields">
             <legend class="visually-hidden">Контактные данные</legend>
 
-            <label class="visually-hidden" for="form-name">Имя</label>
-            <input id="form-name" type="text" name="name"
-                   placeholder="Имя" required autocomplete="name">
+            <div class="footer__form-field">
+              <label class="visually-hidden" for="form-name">Имя</label>
+              <input id="form-name" type="text" name="name"
+                     placeholder="Имя" required minlength="2" autocomplete="name">
+              <span class="footer__form-error" aria-live="polite"></span>
+            </div>
 
-            <!-- imask: +{7} (000) 000-00-00 -->
-            <label class="visually-hidden" for="form-phone">Телефон</label>
-            <input id="form-phone" type="tel" name="phone"
-                   placeholder="Телефон" required autocomplete="tel">
+            <div class="footer__form-field">
+              <label class="visually-hidden" for="form-phone">Телефон</label>
+              <input id="form-phone" type="tel" name="phone"
+                     placeholder="Телефон" required autocomplete="tel">
+              <span class="footer__form-error" aria-live="polite"></span>
+            </div>
 
-            <!-- placeholder меняется на example@domain.com при фокусе (JS) -->
-            <label class="visually-hidden" for="form-email">Почта</label>
-            <input id="form-email" type="email" name="email"
-                   placeholder="Почта" required autocomplete="email">
+            <div class="footer__form-field">
+              <label class="visually-hidden" for="form-email">Почта</label>
+              <input id="form-email" type="email" name="email"
+                     placeholder="Почта" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" autocomplete="email">
+              <span class="footer__form-error" aria-live="polite"></span>
+            </div>
 
           </fieldset>
 
