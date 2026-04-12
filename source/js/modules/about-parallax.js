@@ -8,8 +8,8 @@
 
 const CARD_SELECTORS = [
   { selector: '.about__card--teachers', speed: 0.03 },
-  { selector: '.about__card--skills', speed: -0.05 },
-  { selector: '.about__card--knowledge', speed: -0.09 },
+  { selector: '.about__card--skills', speed: -0.04 },
+  { selector: '.about__card--knowledge', speed: -0.06 },
 ];
 
 const SECTION_SELECTOR = '.about';

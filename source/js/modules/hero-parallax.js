@@ -7,9 +7,9 @@
  */
 
 const PHOTO_SELECTORS = [
-  { selector: '.hero__photo--artur', scrollSpeed: 0.06, mouseSpeed: 0.025 },
-  { selector: '.hero__photo--sergey', scrollSpeed: 0.03, mouseSpeed: 0.015 },
-  { selector: '.hero__photo--misha', scrollSpeed: 0.08, mouseSpeed: 0.035 },
+  { selector: '.hero__photo--artur', scrollSpeed: 0.06, mouseSpeed: 0.015 },
+  { selector: '.hero__photo--sergey', scrollSpeed: 0.03, mouseSpeed: 0.01 },
+  { selector: '.hero__photo--misha', scrollSpeed: 0.08, mouseSpeed: 0.02 },
 ];
 
 const SECTION_SELECTOR = '.hero';
