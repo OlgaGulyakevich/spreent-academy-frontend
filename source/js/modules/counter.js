@@ -1,7 +1,8 @@
 /**
  * Counter — count-up animation for community factoid numbers.
- * Triggers once when .community section enters viewport.
- * "Более 100" stays static; "78%" and "89%" animate from 0.
+ * Observes .community__factoids (threshold 0.5); on first intersection,
+ * animates "78%" and "89%" from 0 with 250ms stagger between them.
+ * Initial "0%" set at init time to avoid flash on reload.
  * @module counter
  */
 

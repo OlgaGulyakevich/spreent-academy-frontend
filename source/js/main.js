@@ -1,6 +1,8 @@
+import { initAboutParallax } from './modules/about-parallax.js';
 import { initAboutRotate } from './modules/about-rotate.js';
 import { initCounter } from './modules/counter.js';
 import { initHeaderScroll } from './modules/header-scroll.js';
+import { initHeroParallax } from './modules/hero-parallax.js';
 import { initMobileMenu } from './modules/mobile-menu.js';
 import { initScrollProgress } from './modules/scroll-progress.js';
 import { initScrollReveal } from './modules/scroll-reveal.js';
@@ -17,9 +19,11 @@ document.addEventListener('click', (e) => {
 });
 
 window.addEventListener('load', () => {
+  initAboutParallax();
   initAboutRotate();
   initCounter();
   initHeaderScroll();
+  initHeroParallax();
   initMobileMenu();
   initScrollProgress();
   initScrollReveal();
