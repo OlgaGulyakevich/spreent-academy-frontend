@@ -35,6 +35,10 @@
     line-height: 1.01;
     letter-spacing: -0.01em;
   }
+
+  @include vp-max(479px) {
+    @include fluid-val(font-size, 32px, 40px, 375, 480);
+  }
 }
 
 // Figma: H2 — Loos Wide Medium, lh 1, ls 0
