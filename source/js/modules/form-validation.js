@@ -14,6 +14,7 @@ const NAME_SELECTOR = '#form-name';
 const ERROR_CLASS = 'footer__form-error';
 const ERROR_VISIBLE_CLASS = 'is-visible';
 const INVALID_CLASS = 'is-invalid';
+const RESET_EVENT = 'form:reset';
 const EMAIL_PLACEHOLDER_DEFAULT = 'Почта';
 const EMAIL_PLACEHOLDER_FOCUS = 'example@domain.com';
 const PHONE_MASK_OPTIONS = {
@@ -308,6 +309,16 @@ const initFormValidation = () => {
 
   if (form) {
     initSubmitValidation(form, phoneMaskData);
+
+    form.addEventListener(RESET_EVENT, () => {
+      const inputs = form.querySelectorAll('input');
+      inputs.forEach((input) => hideError(input));
+
+      if (phoneMaskData) {
+        phoneMaskData.mask.updateOptions({ lazy: true });
+        phoneMaskData.mask.value = '';
+      }
+    });
   }
 };
 

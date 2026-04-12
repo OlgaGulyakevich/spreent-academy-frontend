@@ -1,7 +1,7 @@
 /**
  * Form Submit — fetch-based form submission with notifications.
  * Sends FormData via fetch to form.action, shows success/error notification.
- * Auto-hides notification after 5 seconds. Resets form on success.
+ * Auto-hides notification after 5 seconds. Resets form + dispatches form:reset on success.
  * @module form-submit
  */
 
@@ -10,9 +10,11 @@ const SUCCESS_SELECTOR = '.footer__notification--success';
 const ERROR_SELECTOR = '.footer__notification--error';
 const INVALID_CLASS = 'is-invalid';
 const VISIBLE_CLASS = 'is-visible';
+const RESET_EVENT = 'form:reset';
 const AUTO_HIDE_DELAY = 5000;
 
 let hideTimeout = null;
+let isSubmitting = false;
 
 /**
  * Shows a notification element with animation.
@@ -31,7 +33,6 @@ const hideNotification = (notification) => {
   notification.classList.remove(VISIBLE_CLASS);
   notification.setAttribute('aria-hidden', 'true');
 };
-
 
 /**
  * Shows the target notification, hides the other, sets auto-hide timer.
@@ -62,6 +63,12 @@ const displayNotification = (target, other) => {
 const handleSubmit = async (evt, form, successEl, errorEl) => {
   evt.preventDefault();
 
+  if (isSubmitting) {
+    return;
+  }
+
+  isSubmitting = true;
+
   const submitBtn = form.querySelector('[type="submit"]');
 
   if (submitBtn) {
@@ -77,12 +84,15 @@ const handleSubmit = async (evt, form, successEl, errorEl) => {
     if (response.ok) {
       displayNotification(successEl, errorEl);
       form.reset();
+      form.dispatchEvent(new CustomEvent(RESET_EVENT));
     } else {
       displayNotification(errorEl, successEl);
     }
   } catch {
     displayNotification(errorEl, successEl);
   } finally {
+    isSubmitting = false;
+
     if (submitBtn) {
       submitBtn.disabled = false;
     }
