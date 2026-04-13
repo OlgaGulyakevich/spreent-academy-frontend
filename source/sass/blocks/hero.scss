@@ -99,7 +99,7 @@
   width: 100%;
   max-width: 440px;
   text-align: left;
-  transform: translateX(-10px);
+  margin-left: -10px;
   margin-bottom: 0;
   animation: hero-fade-in $transition-medium $ease-out 0.15s both;
 
@@ -107,7 +107,6 @@
     order: 3;
     max-width: 340px;
     margin-left: 42px;
-    transform: none;
     animation-name: hero-fade-in-mobile;
   }
 }
@@ -120,20 +119,20 @@
   max-width: 90%;
   white-space: normal;
   margin-top: 35px;
-  transform: translateX(-10px);
+  margin-left: -10px;
   animation: hero-fade-in-btn $transition-medium $ease-out 0.3s both;
 
   &:active {
-    transform: translateX(-10px) scale(0.97);
+    transform: scale(0.95);
   }
 
   @include vp-1023 {
     order: 4;
-    transform: translateX(42px);
+    margin-left: 42px;
     margin-top: 25px;
 
     &:active {
-      transform: translateX(42px) scale(0.97);
+      transform: scale(0.95);
     }
   }
 }

@@ -39,18 +39,12 @@ const initMobileMenu = () => {
 
   /**
    * Opens menu: updates ARIA attributes on burger, locks background
-   * scroll via `.scroll-lock` on body, and moves focus to the first
-   * nav link (WAI-ARIA modal-like pattern).
+   * scroll via `.scroll-lock` on body.
    */
   const openMenu = () => {
     burger.setAttribute('aria-expanded', 'true');
     burger.setAttribute('aria-label', LABEL_BURGER_CLOSE);
     document.body.classList.add(SCROLL_LOCK_CLASS);
-
-    const firstLink = nav.querySelector(FOCUSABLE_IN_HEADER_SELECTOR);
-    if (firstLink) {
-      firstLink.focus();
-    }
   };
 
   /**
