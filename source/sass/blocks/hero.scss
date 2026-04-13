@@ -2,6 +2,50 @@
 // Hero Section
 // =============================================
 
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    translate: 0 30%;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes hero-fade-in-mobile {
+  from {
+    opacity: 0;
+    translate: 0 10%;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes hero-fade-in-btn {
+  from {
+    opacity: 0;
+    translate: 0 50%;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1,
+  .hero p,
+  .hero__btn {
+    animation: none;
+  }
+}
+
 .hero {
   padding-top: 34px;
 
@@ -48,6 +92,7 @@
   transform: translateY(-40px);
   text-align: left;
   overflow-wrap: break-word;
+  animation: hero-fade-in $transition-medium $ease-out both;
 
   // Float barrier: protects the photo area while allowing bottom lines to span full width.
   &::before {
@@ -64,6 +109,7 @@
     transform: none;
     margin-bottom: 16px;
     max-width: none;
+    animation-name: hero-fade-in-mobile;
 
     &::before {
       display: none;
@@ -99,12 +145,14 @@
   text-align: left;
   transform: translateX(-10px);
   margin-bottom: 0;
+  animation: hero-fade-in $transition-medium $ease-out 0.15s both;
 
   @include vp-1023 {
     order: 3;
     max-width: 340px;
     margin-left: 42px;
     transform: none;
+    animation-name: hero-fade-in-mobile;
   }
 }
 
@@ -117,6 +165,7 @@
   white-space: normal;
   margin-top: 35px;
   transform: translateX(-10px);
+  animation: hero-fade-in-btn $transition-medium $ease-out 0.3s both;
 
   &:active {
     transform: translateX(-10px) scale(0.97);

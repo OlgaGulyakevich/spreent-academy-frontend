@@ -14,6 +14,7 @@ export default {
     // ViteMinifyPlugin({}),
     ViteImageOptimizer({
       test: /\.(jpe?g|png|svg)$/i,
+      exclude: [/spreent-circle/],
       includePublic: false,
       logStats: true,
       ansiColors: true,
@@ -26,7 +27,7 @@ export default {
               overrides: {
                 cleanupNumericValues: false,
                 convertPathData: {
-                  floatPrecision: 2,
+                  floatPrecision: 5,
                   forceAbsolutePath: false,
                   utilizeAbsolute: false,
                 },
@@ -35,8 +36,7 @@ export default {
               },
             },
           },
-          'removeDimensions',
-        ],
+          ],
       },
       png: {
         // https://sharp.pixelplumbing.com/api-output#png

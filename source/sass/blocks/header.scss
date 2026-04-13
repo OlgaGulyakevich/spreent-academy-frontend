@@ -30,7 +30,9 @@
 
 // Scrolled state (JS adds .header--scrolled at scrollY > 40)
 .header--scrolled {
-  background-color: $color-bg-header;
+  background-color: rgba($color-white, 0.75);
+  // stylelint-disable-next-line property-no-vendor-prefix
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
 }
 

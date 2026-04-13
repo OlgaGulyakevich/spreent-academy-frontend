@@ -49,6 +49,9 @@
   <link rel="preload" href="fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="preload" href="fonts/LoosWide-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 
+  <!-- Hero image preload (LCP candidate) -->
+  <link rel="preload" href="img/hero/artur@1x.webp" as="image" type="image/webp">
+
   <!-- Styles -->
   <link rel="stylesheet" href="sass/style.scss">
 </head>
@@ -132,7 +135,7 @@
                 srcset="img/hero/artur@1x.webp 1x, img/hero/artur@2x.webp 2x">
               <img src="img/hero/artur@1x.jpg"
                    srcset="img/hero/artur@2x.jpg 2x"
-                   width="329" height="200" alt="">
+                   width="329" height="200" alt="" fetchpriority="high">
             </picture>
             <div class="hero__label">
               <svg width="26" height="26" aria-hidden="true">
@@ -187,7 +190,7 @@
     <section class="about" data-test="about">
       <div class="container about__container">
 
-        <h2 class="about__title">Почему выбирают академию&nbsp;spreent</h2>
+        <h2 class="about__title" data-reveal="true">Почему выбирают академию&nbsp;spreent</h2>
 
         <ul class="about__cards">
 
@@ -203,7 +206,7 @@
                   srcset="img/about/teacher@1x.webp 1x, img/about/teacher@2x.webp 2x">
                 <img src="img/about/teacher@1x.png"
                      srcset="img/about/teacher@2x.png 2x"
-                     width="441" height="489" alt="">
+                     width="441" height="489" alt="" loading="lazy">
               </picture>
             </div>
           </li>
@@ -248,7 +251,7 @@
             <!-- Анимированный круг spreent: JS вращает при скролле -->
             <div class="about__card-logo" aria-hidden="true">
               <img src="img/icons/spreent-circle.svg"
-                   width="562" height="552" alt="">
+                   width="562" height="552" alt="" loading="lazy">
             </div>
           </li>
 
@@ -273,7 +276,7 @@
                 srcset="img/community/avatar-1@1x.webp 1x, img/community/avatar-1@2x.webp 2x">
               <img src="img/community/avatar-1@1x.jpg"
                    srcset="img/community/avatar-1@2x.jpg 2x"
-                   width="110" height="110" alt="Выпускник академии">
+                   width="110" height="110" alt="Выпускник академии" loading="lazy">
             </picture>
           </li>
           <li class="community__avatar-item">
@@ -282,7 +285,7 @@
                 srcset="img/community/avatar-2@1x.webp 1x, img/community/avatar-2@2x.webp 2x">
               <img src="img/community/avatar-2@1x.jpg"
                    srcset="img/community/avatar-2@2x.jpg 2x"
-                   width="110" height="110" alt="Выпускник академии">
+                   width="110" height="110" alt="Выпускник академии" loading="lazy">
             </picture>
           </li>
           <li class="community__avatar-item">
@@ -291,7 +294,7 @@
                 srcset="img/community/avatar-3@1x.webp 1x, img/community/avatar-3@2x.webp 2x">
               <img src="img/community/avatar-3@1x.jpg"
                    srcset="img/community/avatar-3@2x.jpg 2x"
-                   width="110" height="110" alt="Выпускник академии">
+                   width="110" height="110" alt="Выпускник академии" loading="lazy">
             </picture>
           </li>
           <li class="community__avatar-item">
@@ -300,7 +303,7 @@
                 srcset="img/community/avatar-4@1x.webp 1x, img/community/avatar-4@2x.webp 2x">
               <img src="img/community/avatar-4@1x.jpg"
                    srcset="img/community/avatar-4@2x.jpg 2x"
-                   width="110" height="110" alt="Выпускник академии">
+                   width="110" height="110" alt="Выпускник академии" loading="lazy">
             </picture>
           </li>
           <li class="community__avatar-item community__avatar-item--join">
@@ -344,7 +347,7 @@
 
       <div class="container price__container">
 
-        <h2 class="price__title">Стоимость обучения</h2>
+        <h2 class="price__title" data-reveal="true">Стоимость обучения</h2>
 
         <div class="price__card">
           <div class="price__card-inner">
@@ -394,7 +397,7 @@
       <div class="container work__container">
 
         <div class="work__content">
-          <h2 class="work__title">Где работают<br class="br-not-mobile"> наши&nbsp;выпускники</h2>
+          <h2 class="work__title" data-reveal="true">Где работают<br class="br-not-mobile"> наши&nbsp;выпускники</h2>
           <p class="work__lead">Начните работать в&nbsp;крупнейших компаниях индустрии</p>
           <a class="btn btn--primary work__btn" href="#footer-form">Присоединиться</a>
         </div>
@@ -462,23 +465,23 @@
     <!-- Часть 1: Сертификат (светлый фон) -->
     <section class="footer__certificate">
       <div class="container footer__certificate-container">
-        <div class="footer__certificate-inner">
+        <div class="footer__certificate-inner" data-reveal-stagger="120" data-reveal-threshold="0.8" data-reveal-threshold-mobile="0.6">
 
           <!-- CMS area: h2 и p стилизуются каскадом от .footer__certificate-info -->
           <div class="footer__certificate-info">
-            <h2>Получи сертификат об&nbsp;успешном<br class="br-not-mobile"> завершении курса</h2>
-            <p>Обучение ведётся на&nbsp;основании лицензии государственного образца</p>
-            <a class="btn btn--primary footer__certificate-btn" href="#footer-form">Начать учиться</a>
+            <h2 data-reveal="true" data-reveal-type="clip">Получи сертификат<br> об&nbsp;успешном завершении курса</h2>
+            <p data-reveal="true" data-reveal-type="fade">Обучение ведётся на&nbsp;основании лицензии государственного образца</p>
+            <a class="btn btn--primary footer__certificate-btn" data-reveal="true" href="#footer-form">Начать учиться</a>
           </div>
 
           <!-- Декоративная картинка сертификата -->
-          <div class="footer__certificate-card" aria-hidden="true">
+          <div class="footer__certificate-card" data-reveal="true" data-reveal-type="scale" data-reveal-delay="0" aria-hidden="true">
             <picture>
               <source type="image/webp" width="660" height="440"
                 srcset="img/footer/certificate@1x.webp 1x, img/footer/certificate@2x.webp 2x">
               <img src="img/footer/certificate@1x.jpg"
                    srcset="img/footer/certificate@2x.jpg 2x"
-                   width="660" height="440" alt="">
+                   width="660" height="440" alt="" loading="lazy">
             </picture>
           </div>
 
@@ -490,25 +493,32 @@
     <section class="footer__form-section" id="footer-form">
       <div class="container footer__form-container">
 
-        <h2 class="footer__form-title">Сделайте апгрейд карьеры</h2>
+        <h2 class="footer__form-title" data-reveal="true">Сделайте апгрейд карьеры</h2>
 
         <form action="https://echo.htmlacademy.ru" method="POST">
           <fieldset class="footer__form-fields">
             <legend class="visually-hidden">Контактные данные</legend>
 
-            <label class="visually-hidden" for="form-name">Имя</label>
-            <input id="form-name" type="text" name="name"
-                   placeholder="Имя" required autocomplete="name">
+            <div class="footer__form-field">
+              <label class="visually-hidden" for="form-name">Имя</label>
+              <input id="form-name" type="text" name="name"
+                     placeholder="Имя" required minlength="2" autocomplete="name">
+              <span class="footer__form-error" aria-live="polite"></span>
+            </div>
 
-            <!-- imask: +{7} (000) 000-00-00 -->
-            <label class="visually-hidden" for="form-phone">Телефон</label>
-            <input id="form-phone" type="tel" name="phone"
-                   placeholder="Телефон" required autocomplete="tel">
+            <div class="footer__form-field">
+              <label class="visually-hidden" for="form-phone">Телефон</label>
+              <input id="form-phone" type="tel" name="phone"
+                     placeholder="Телефон" required autocomplete="tel">
+              <span class="footer__form-error" aria-live="polite"></span>
+            </div>
 
-            <!-- placeholder меняется на example@domain.com при фокусе (JS) -->
-            <label class="visually-hidden" for="form-email">Почта</label>
-            <input id="form-email" type="email" name="email"
-                   placeholder="Почта" required autocomplete="email">
+            <div class="footer__form-field">
+              <label class="visually-hidden" for="form-email">Почта</label>
+              <input id="form-email" type="email" name="email"
+                     placeholder="Почта" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" autocomplete="email">
+              <span class="footer__form-error" aria-live="polite"></span>
+            </div>
 
           </fieldset>
 
@@ -523,7 +533,7 @@
         </p>
 
         <!-- Уведомления: скрыты по умолчанию, JS показывает после сабмита, автоскрытие через 5с -->
-        <div class="footer__notification footer__notification--success" role="alert" hidden>
+        <div class="footer__notification footer__notification--success" role="alert" aria-hidden="true">
           <span class="footer__notification-icon">
             <svg width="11" height="8" aria-hidden="true">
               <use href="./__spritemap#sprite-check-mark"></use>
@@ -532,7 +542,7 @@
           <p>Спасибо! Мы&nbsp;с Вами свяжемся в&nbsp;ближайшее время.</p>
         </div>
 
-        <div class="footer__notification footer__notification--error" role="alert" hidden>
+        <div class="footer__notification footer__notification--error" role="alert" aria-hidden="true">
           <span class="footer__notification-icon">
             <svg width="14" height="14" aria-hidden="true">
               <use href="./__spritemap#sprite-close"></use>

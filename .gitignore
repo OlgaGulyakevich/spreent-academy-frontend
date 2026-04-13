@@ -28,7 +28,6 @@ dist/
 build/
 coverage/
 backstop_data/
-bitmaps_reference/
 .cache/
 
 # Testing

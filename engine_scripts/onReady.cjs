@@ -25,10 +25,36 @@ module.exports = async (page, scenario, vp) => {
       ].join('\n');
       document.head.appendChild(style);
 
-      // Останавливаем CSS-анимации для стабильных PP-скриншотов
+      // PP-стабилизация: отключаем все анимации и transitions
       const animStyle = document.createElement('style');
-      animStyle.textContent = '*, *::before, *::after { animation-play-state: paused !important; }';
+      animStyle.textContent = [
+        '*, *::before, *::after {',
+        '  animation: none !important;',
+        '  transition: none !important;',
+        '}',
+        // Scroll-reveal: финальное состояние (видимый, без смещения)
+        '.reveal-init {',
+        '  opacity: 1 !important;',
+        '  transform: unset !important;',
+        '  clip-path: none !important;',
+        '  translate: none !important;',
+        '}',
+      ].join('\n');
       document.head.appendChild(animStyle);
+
+      // Counter: восстанавливаем реальные значения из data-атрибутов
+      document.querySelectorAll('[data-counter-value]').forEach((el) => {
+        const value = el.dataset.counterValue;
+        const suffix = el.dataset.counterSuffix || '';
+        if (value) {
+          el.textContent = value + suffix;
+        }
+      });
+
+      // Parallax/magnetic: убираем inline translate
+      document.querySelectorAll('.hero__photo, .about__card, .hero__btn').forEach((el) => {
+        el.style.translate = '';
+      });
 
       // Убираем sticky header для всех секций кроме header,
       // чтобы он не накладывался на захватываемую секцию при скролле.
