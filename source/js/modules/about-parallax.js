@@ -84,8 +84,18 @@ const initAboutParallax = () => {
     }
   };
 
+  const resetCards = () => {
+    cards.forEach((card) => {
+      card.currentY = 0;
+      card.targetY = 0;
+      card.el.style.translate = '';
+    });
+    ticking = false;
+  };
+
   const handleScroll = () => {
     if (window.innerWidth < MOBILE_BREAKPOINT) {
+      resetCards();
       return;
     }
 
