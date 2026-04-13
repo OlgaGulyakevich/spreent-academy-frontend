@@ -11,9 +11,6 @@ import { initScrollProgress } from './modules/scroll-progress.js';
 import { initScrollReveal } from './modules/scroll-reveal.js';
 import { initSmoothScroll } from './modules/smooth-scroll.js';
 
-/**
- * Main window load handler—initializes all required modules.
- */
 // Prevent scroll-to-top on placeholder links
 document.addEventListener('click', (e) => {
   if (e.target.closest('a[href="#"]')) {

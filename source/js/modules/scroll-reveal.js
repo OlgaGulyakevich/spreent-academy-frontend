@@ -1,5 +1,5 @@
 /**
- * Scroll Reveal — shows elements on scroll via IntersectionObserver.
+ * @fileoverview Scroll Reveal — shows elements on scroll via IntersectionObserver.
  *
  * Two modes:
  * 1. Standalone: each [data-reveal="true"] is observed individually.

@@ -1,5 +1,5 @@
 /**
- * Form Submit — fetch-based form submission with notifications.
+ * @fileoverview Form Submit — fetch-based form submission with notifications.
  * Sends FormData via fetch to form.action, shows success/error notification.
  * Auto-hides notification after 5 seconds. Resets form + dispatches form:reset on success.
  * @module form-submit

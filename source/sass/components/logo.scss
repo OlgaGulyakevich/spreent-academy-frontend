@@ -4,11 +4,6 @@
 // LOGO COMPONENT (Paint Fill & Reveal)
 // =============================================================================
 
-// Маска по форме логотипа
-$logo-mask: "../../img/sprite/logo/logo.svg";
-
-// Apple-style easing: быстрый старт, мягкое торможение
-$ease-apple: cubic-bezier(0.19, 1, 0.22, 1);
 
 .logo {
   position: relative;
@@ -43,7 +38,10 @@ $ease-apple: cubic-bezier(0.19, 1, 0.22, 1);
     background-size: 250% 100%;
     background-position: 100% 0;
 
-    mask: url($logo-mask) no-repeat 0 0 / 100% 100%;
+    mask-image: url("../../img/sprite/logo/logo.svg");
+    mask-repeat: no-repeat;
+    mask-position: 0 0;
+    mask-size: 100% 100%;
 
     transition: background-position 0.9s $ease-apple;
   }

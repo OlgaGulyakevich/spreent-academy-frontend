@@ -1,14 +1,14 @@
 /**
- * @fileoverview Прогресс-бар скролла в хедере.
- * Считает процент прокрутки документа и пишет его в CSS-переменную
- * `--scroll-progress` на элементе `.header`, чтобы CSS мог отрисовать
- * визуальный индикатор (ширина полосы, градиент и т.д.).
+ * @fileoverview Header scroll progress bar.
+ * Calculates document scroll percentage and writes it to CSS variable
+ * `--scroll-progress` on `.header` element, so CSS can render
+ * a visual indicator (bar width, gradient, etc.).
  */
 
 /**
- * Инициализирует прогресс-бар скролла. Вешает один passive-слушатель
- * на `window.scroll` с обёрткой в `requestAnimationFrame` для 60fps,
- * и сразу обновляет состояние при загрузке.
+ * Initializes scroll progress bar. Attaches a single passive listener
+ * on `window.scroll` wrapped in `requestAnimationFrame` for 60fps,
+ * and updates state immediately on load.
  *
  * @example initScrollProgress();
  */
@@ -19,9 +19,9 @@ const initScrollProgress = () => {
   }
 
   /**
-   * Считает процент прокрутки (0-100) и обновляет CSS-переменную
-   * `--scroll-progress` на хедере. Клэмп предотвращает отрицательные
-   * значения и превышение 100% при overscroll (iOS bounce).
+   * Calculates scroll percentage (0-100) and updates CSS variable
+   * `--scroll-progress` on header. Clamp prevents negative values
+   * and exceeding 100% on overscroll (iOS bounce).
    */
   const updateProgress = () => {
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -36,7 +36,7 @@ const initScrollProgress = () => {
     passive: true,
   });
 
-  // Начальное состояние — на случай, если страница загружена уже прокрученной
+  // Initial state — in case page is loaded already scrolled
   updateProgress();
 };
 

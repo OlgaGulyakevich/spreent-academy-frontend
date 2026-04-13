@@ -369,10 +369,6 @@
 
 .footer__bottom-container {
   display: grid;
-
-  // 1-я колонка — область логотипа (fluid 360→475px ≈ 37→42%).
-  // 2-я и 3-я — nav-колонки с жёстким cap на 320px, защита от длинных слов
-  // в меню (overflow-wrap: anywhere на ссылке подхватит перенос).
   grid-template-columns:
     fluid-val-value(360px, 475px, 1024, 1440)
     fit-content(320px)

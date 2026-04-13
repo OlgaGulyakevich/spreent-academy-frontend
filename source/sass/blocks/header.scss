@@ -46,7 +46,6 @@
   padding-bottom: 16px;
   position: relative;
 
-  // Horizontal divider
   &::after {
     content: "";
     position: absolute;
@@ -100,7 +99,7 @@
   }
 }
 
-// CTA button — compact size for header
+// CTA button
 .header__cta {
   padding: 5px 15px 6px;
   flex-shrink: 0;
@@ -112,7 +111,7 @@
   }
 }
 
-// Burger — hidden on desktop
+// Burger
 .header__burger {
   display: none;
   position: relative;
@@ -123,7 +122,6 @@
     margin-left: 37px;
     margin-right: -3px;
 
-    // Vertical divider
     &::before {
       content: "";
       position: absolute;
@@ -138,9 +136,6 @@
 // =============================================================================
 // MOBILE MENU OVERLAY — on body::before (≤1023px)
 // =============================================================================
-// Overlay lives on BODY, not inside header. This guarantees position: fixed
-// is viewport-relative — no sticky/backdrop-filter containing block issues.
-// z-index sits between page content (auto) and header ($z-overlay when open).
 
 @include vp-1023 {
   // stylelint-disable-next-line selector-no-qualifying-type
@@ -158,14 +153,11 @@
 
   .header:has(.burger[aria-expanded="true"]) {
     z-index: $z-overlay;
-
-    // Reset header's own backdrop-filter so overlay can blur page content directly
     backdrop-filter: none;
     // stylelint-disable-next-line property-no-vendor-prefix
     -webkit-backdrop-filter: none;
     background-color: $color-bg-main;
 
-    // Nav: expand grid row — opening transition overrides closing one
     .header__nav {
       grid-template-rows: 1fr;
       opacity: 1;

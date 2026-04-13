@@ -1,11 +1,11 @@
 /**
- * @fileoverview Мобильное меню — переключение оверлея по клику на бургер.
+ * @fileoverview Mobile menu — toggles overlay on burger click.
  *
- * Использует `aria-expanded` на `.burger` как единственный источник истины
- * состояния; CSS `:has()` рисует визуальное состояние по этому атрибуту.
- * Управляет классом `.scroll-lock` на `<body>` для блокировки фоновой
- * прокрутки пока меню открыто. Закрывается по ESC, клику на nav-ссылку,
- * клику на header CTA и клику по оверлею (вне области хедера).
+ * Uses `aria-expanded` on `.burger` as single source of truth;
+ * CSS `:has()` renders visual state from this attribute.
+ * Manages `.scroll-lock` on `<body>` to prevent background scroll
+ * while menu is open. Closes on ESC, nav link click, header CTA click,
+ * and overlay click (outside header area).
  */
 
 const SCROLL_LOCK_CLASS = 'scroll-lock';
@@ -15,9 +15,9 @@ const MENU_LINKS_SELECTOR = '.main-nav__link, .header__cta';
 const FOCUSABLE_IN_HEADER_SELECTOR = 'a[href], button';
 
 /**
- * Инициализирует мобильное меню. Вешает слушатели на бургер, document
- * (ESC, оверлей-клик) и header (закрытие по клику на nav-ссылку / CTA).
- * Все обработчики добавляются один раз — соответствует CTS-JS-Б26.
+ * Initializes mobile menu. Attaches listeners on burger, document
+ * (ESC, overlay click) and header (close on nav link / CTA click).
+ * All handlers are added once (CTS-JS-Б26).
  *
  * @example initMobileMenu();
  */
@@ -31,18 +31,16 @@ const initMobileMenu = () => {
   }
 
   /**
-   * Проверяет, открыто ли меню в данный момент.
+   * Checks whether the menu is currently open.
    *
-   * @returns {boolean} `true` если `aria-expanded="true"` на бургере
+   * @returns {boolean} `true` if `aria-expanded="true"` on burger
    */
   const isOpen = () => burger.getAttribute('aria-expanded') === 'true';
 
   /**
-   * Открывает меню: обновляет ARIA-атрибуты на бургере, блокирует
-   * фоновый скролл через класс `.scroll-lock` на body и переносит
-   * фокус на первую ссылку навигации (WAI-ARIA modal-like pattern).
-   * Перенос фокуса позволяет SR сразу объявить содержимое меню,
-   * а клавиатурному пользователю — начать навигацию с nav.
+   * Opens menu: updates ARIA attributes on burger, locks background
+   * scroll via `.scroll-lock` on body, and moves focus to the first
+   * nav link (WAI-ARIA modal-like pattern).
    */
   const openMenu = () => {
     burger.setAttribute('aria-expanded', 'true');
@@ -56,7 +54,7 @@ const initMobileMenu = () => {
   };
 
   /**
-   * Закрывает меню: сбрасывает ARIA-атрибуты и снимает `.scroll-lock`.
+   * Closes menu: resets ARIA attributes and removes `.scroll-lock`.
    */
   const closeMenu = () => {
     burger.setAttribute('aria-expanded', 'false');
@@ -65,7 +63,7 @@ const initMobileMenu = () => {
   };
 
   /**
-   * Обработчик клика по бургеру — переключает состояние меню.
+   * Burger click handler — toggles menu state.
    */
   const handleBurgerClick = () => {
     if (isOpen()) {
@@ -76,11 +74,11 @@ const initMobileMenu = () => {
   };
 
   /**
-   * Обработчик клавиатуры для открытого меню:
-   * - ESC → закрывает меню и возвращает фокус на бургер (WCAG 2.1.2)
-   * - Tab → focus trap: циклит фокус только среди фокусабельных
-   *   элементов внутри `.header` (logo, nav-ссылки, CTA, burger).
-   *   Не даёт фокусу уйти на скрытые элементы под оверлеем.
+   * Keyboard handler for open menu:
+   * - ESC → closes menu and returns focus to burger (WCAG 2.1.2)
+   * - Tab → focus trap: cycles focus among focusable elements
+   *   inside `.header` (logo, nav links, CTA, burger).
+   *   Prevents focus from reaching hidden elements under overlay.
    *   WCAG 2.4.3 Focus Order.
    *
    * @param {KeyboardEvent} evt
@@ -121,9 +119,8 @@ const initMobileMenu = () => {
   };
 
   /**
-   * Обработчик клика по ссылкам внутри хедера. Закрывает меню при клике
-   * на nav-ссылку или CTA-кнопку, чтобы пользователь увидел целевую
-   * секцию после якорного перехода.
+   * Header link click handler. Closes menu on nav link or CTA click
+   * so the user sees the target section after anchor navigation.
    *
    * @param {MouseEvent} evt
    */
@@ -135,8 +132,8 @@ const initMobileMenu = () => {
   };
 
   /**
-   * Обработчик клика по оверлею. Закрывает меню, если клик был
-   * за пределами хедера (т.е. по затемнённой области оверлея).
+   * Overlay click handler. Closes menu if click was outside
+   * header area (i.e. on the dimmed overlay region).
    *
    * @param {MouseEvent} evt
    */

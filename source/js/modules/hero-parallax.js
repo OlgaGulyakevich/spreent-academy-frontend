@@ -1,5 +1,5 @@
 /**
- * Hero Parallax — depth effect on hero photos via two additive layers.
+ * @fileoverview Hero Parallax — depth effect on hero photos via two additive layers.
  * Scroll (all devices): photos shift vertically at different speeds.
  * Mouse (desktop only): photos respond to cursor position over hero.
  * Uses CSS `translate` (not `transform`) to avoid conflicts with CSS positioning.

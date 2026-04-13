@@ -19,8 +19,7 @@
   <meta property="og:description"
     content="Учеба построена на принципах реальной работы в ИТ и дизайне. Опытные преподаватели и актуальные знания.">
   <meta property="og:site_name" content="Spreent Academy">
-  <!-- TODO: Uncomment when production domain is known -->
-  <!-- <meta property="og:url" content="https://spreent.academy/"> -->
+  <meta property="og:url" content="https://spreent-academy-frontend.vercel.app/">
   <meta property="og:image" content="/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -30,13 +29,11 @@
   <meta name="twitter:title" content="Spreent Academy — качественное обучение дизайну">
   <meta name="twitter:description"
     content="Учеба построена на принципах реальной работы в ИТ и дизайне.">
-  <!-- TODO: Uncomment when production domain is known -->
-  <!-- <meta name="twitter:url" content="https://spreent.academy/"> -->
+  <meta name="twitter:url" content="https://spreent-academy-frontend.vercel.app/">
   <meta name="twitter:image" content="/og-image.jpg">
 
   <!-- Canonical -->
-  <!-- TODO: Uncomment when production domain is known -->
-  <!-- <link rel="canonical" href="https://spreent.academy/"> -->
+  <link rel="canonical" href="https://spreent-academy-frontend.vercel.app/">
 
   <!-- Favicons -->
   <link rel="icon" href="favicon.ico" sizes="any">
@@ -72,7 +69,6 @@
         <span class="visually-hidden">spreent</span>
       </a>
 
-      <!-- Единственный nav: на desktop — inline в header, на mobile — скрыт до открытия бургера -->
       <nav class="main-nav header__nav" id="main-nav" aria-label="Основная навигация">
         <ul class="main-nav__list">
           <li class="main-nav__item">
@@ -87,10 +83,8 @@
         </ul>
       </nav>
 
-      <!-- CTA button: всегда видна (desktop + mobile) -->
       <a class="btn btn--primary header__cta" href="#footer-form">Начать</a>
 
-      <!-- Burger: только mobile/tablet (≤1023px) -->
       <button class="burger header__burger" type="button"
               aria-label="Открыть меню" aria-expanded="false"
               aria-controls="main-nav">
@@ -118,17 +112,14 @@
     <section class="hero" data-test="hero">
       <div class="container hero__container">
 
-        <!-- CMS area: h1 и p стилизуются каскадом от .hero__content -->
         <div class="hero__content">
           <h1>—Опыт, практика,<br class="br-not-mobile"> <span class="hero__title-shift">актуальные знания</span></h1>
           <p>Главные ценности, вокруг которых строится обучение в&nbsp;spreent</p>
           <a class="btn btn--primary hero__btn" href="#footer-form">Начать учиться</a>
         </div>
 
-        <!-- Декоративные фото выпускников, aria-hidden — скринридерам не нужны -->
         <div class="hero__photos" aria-hidden="true">
 
-          <!-- Артур — правый верхний угол -->
           <div class="hero__photo hero__photo--artur">
             <picture>
               <source type="image/webp" width="329" height="200"
@@ -145,7 +136,6 @@
             </div>
           </div>
 
-          <!-- Сергей — левый нижний угол -->
           <div class="hero__photo hero__photo--sergey">
             <picture>
               <source type="image/webp" width="175" height="256"
@@ -162,7 +152,6 @@
             </div>
           </div>
 
-          <!-- Миша — правый нижний угол -->
           <div class="hero__photo hero__photo--misha">
             <picture>
               <source type="image/webp" width="329" height="200"
@@ -194,10 +183,8 @@
 
         <ul class="about__cards">
 
-          <!-- Карточка 1: Опытные преподаватели (lime bg) -->
           <li class="about__card about__card--teachers">
             <div class="about__card-tag">Кто будет учить?</div>
-            <!-- h3 без класса — каскад от .about__card -->
             <h3>Опытные преподаватели</h3>
             <p>В&nbsp;школе преподают эксперты-практики, которые прямо сейчас работают в&nbsp;крупных компаниях индустрии</p>
             <div class="about__card-media" aria-hidden="true">
@@ -211,20 +198,16 @@
             </div>
           </li>
 
-          <!-- Карточка 2: Практические навыки (blue bg) -->
           <li class="about__card about__card--skills">
             <div class="about__card-tag">Что я получу?</div>
             <h3>Практические навыки</h3>
             <p>Даем конкретные знания по&nbsp;профессии. Тренируемся на&nbsp;реальных проектах и&nbsp;делаем свой продукт</p>
 
-            <!-- Декоративный UI-мокап, реализован через CSS + спрайт-иконки -->
             <div class="about__card-decor" aria-hidden="true">
 
-              <!-- CSS shapes: rect первый в DOM, circle второй → circle поверх rect -->
               <div class="about__card-decor-rect"></div>
               <div class="about__card-decor-circle"></div>
 
-              <!-- Курсор-стрелка (лайм) + плашка "You" -->
               <div class="about__card-decor-label about__card-decor-label--you">
                 <svg width="26" height="26" aria-hidden="true">
                   <use href="./__spritemap#sprite-cursor-arrow"></use>
@@ -232,7 +215,6 @@
                 <span>You</span>
               </div>
 
-              <!-- Курсор-рука (белый) + плашка "UX Lead" -->
               <div class="about__card-decor-label about__card-decor-label--ux">
                 <svg width="26" height="26" aria-hidden="true">
                   <use href="./__spritemap#sprite-cursor-hand"></use>
@@ -243,12 +225,10 @@
             </div>
           </li>
 
-          <!-- Карточка 3: Актуальные знания (light bg) -->
           <li class="about__card about__card--knowledge">
             <div class="about__card-tag">Что мне дадут?</div>
             <h3>Актуальные знания</h3>
             <p>Знаем, какие навыки нужны работодателям. Составляем программы, ориентируясь на&nbsp;тенденции рынка</p>
-            <!-- Анимированный круг spreent: JS вращает при скролле -->
             <div class="about__card-logo" aria-hidden="true">
               <img src="img/icons/spreent-circle.svg"
                    width="562" height="552" alt="" loading="lazy">
@@ -268,7 +248,6 @@
 
         <h2 class="visually-hidden">Наши выпускники</h2>
 
-        <!-- Аватары в pill-контейнере с градиентным фоном -->
         <ul class="community__avatar-list">
           <li class="community__avatar-item">
             <picture>
@@ -317,13 +296,11 @@
 
         <div class="community__stats">
 
-          <!-- Большой счётчик -->
           <div class="community__count">
             <p class="community__count-number">Более&nbsp;100</p>
             <p class="community__count-label">выпускников за&nbsp;все время работы академии</p>
           </div>
 
-          <!-- Два factoid -->
           <ul class="community__factoids">
             <li class="community__factoid">
               <p class="community__factoid-number">78%</p>
@@ -352,10 +329,8 @@
         <div class="price__card">
           <div class="price__card-inner">
 
-            <!-- Левая часть: название плана + фичи -->
             <div class="price__plan">
               <h3 class="price__plan-name">Базовый план</h3>
-              <!-- Чекмарки — два псевдоэлемента ::before (круг) + ::after (mask check-mark.svg) -->
               <ul class="price__features">
                 <li>Доступ к&nbsp;материалам навсегда</li>
                 <li>С&nbsp;обратной связью и&nbsp;д/з</li>
@@ -366,7 +341,6 @@
               </ul>
             </div>
 
-            <!-- Правая часть: цена + кнопка -->
             <div class="price__pricing">
               <p class="price__label">Стоимость</p>
               <div class="price__amounts">
@@ -462,19 +436,16 @@
 
   <footer class="footer" data-test="footer">
 
-    <!-- Часть 1: Сертификат (светлый фон) -->
     <section class="footer__certificate">
       <div class="container footer__certificate-container">
         <div class="footer__certificate-inner" data-reveal-stagger="120" data-reveal-threshold="0.8" data-reveal-threshold-mobile="0.6">
 
-          <!-- CMS area: h2 и p стилизуются каскадом от .footer__certificate-info -->
           <div class="footer__certificate-info">
             <h2 data-reveal="true" data-reveal-type="clip">Получи сертификат<br> об&nbsp;успешном завершении курса</h2>
             <p data-reveal="true" data-reveal-type="fade">Обучение ведётся на&nbsp;основании лицензии государственного образца</p>
             <a class="btn btn--primary footer__certificate-btn" data-reveal="true" href="#footer-form">Начать учиться</a>
           </div>
 
-          <!-- Декоративная картинка сертификата -->
           <div class="footer__certificate-card" data-reveal="true" data-reveal-type="scale" data-reveal-delay="0" aria-hidden="true">
             <picture>
               <source type="image/webp" width="660" height="440"
@@ -489,7 +460,6 @@
       </div>
     </section>
 
-    <!-- Часть 2: Форма (тёмный фон) -->
     <section class="footer__form-section" id="footer-form">
       <div class="container footer__form-container">
 
@@ -532,7 +502,6 @@
           <a class="footer__form-disclaimer-link" href="#">согласие на&nbsp;обработку персональных данных</a>
         </p>
 
-        <!-- Уведомления: скрыты по умолчанию, JS показывает после сабмита, автоскрытие через 5с -->
         <div class="footer__notification footer__notification--success" role="alert" aria-hidden="true">
           <span class="footer__notification-icon">
             <svg width="11" height="8" aria-hidden="true">
@@ -554,7 +523,6 @@
       </div>
     </section>
 
-    <!-- Часть 3: Нижняя навигация (тёмный фон) -->
     <div class="footer__bottom">
       <div class="container footer__bottom-container">
 

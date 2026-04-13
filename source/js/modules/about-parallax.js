@@ -1,5 +1,5 @@
 /**
- * About Parallax — scroll-driven depth effect on about cards.
+ * @fileoverview About Parallax — scroll-driven depth effect on about cards.
  * Teachers (lime) drifts down slowly, skills/knowledge rise at different speeds.
  * Desktop only (disabled below 1024px). Starts when section enters viewport.
  * Uses CSS `translate` property (not `transform`) to avoid conflicts.

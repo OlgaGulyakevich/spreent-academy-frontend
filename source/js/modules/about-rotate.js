@@ -1,5 +1,5 @@
 /**
- * About Circle Rotate — rotates spreent logo in sync with scroll.
+ * @fileoverview About Circle Rotate — rotates spreent logo in sync with scroll.
  * Scroll down → clockwise, scroll up → counter-clockwise.
  * Uses requestAnimationFrame for throttling.
  * @module about-rotate

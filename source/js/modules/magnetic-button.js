@@ -1,5 +1,5 @@
 /**
- * Magnetic Button — CTA pulls toward cursor when nearby.
+ * @fileoverview Magnetic Button — CTA pulls toward cursor when nearby.
  * Desktop only (hover: hover). Activates within ATTRACT_RADIUS,
  * shifts up to MAX_OFFSET px. Uses CSS `translate` to avoid
  * conflicts with existing `transform` on .hero__btn.

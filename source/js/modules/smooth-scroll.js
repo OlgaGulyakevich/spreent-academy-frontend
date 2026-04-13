@@ -1,22 +1,20 @@
 /**
- * @fileoverview Кастомный плавный скролл к якорям.
+ * @fileoverview Custom smooth scroll to anchors.
  *
- * Перехватывает клики на `a[href^="#"]` (кроме `href="#"`), отменяет
- * нативный скролл и анимирует через `requestAnimationFrame` с кривой
- * `easeInOutQuart` — мягкий старт, cruise, мягкое прибытие (по ощущению
- * как Lenis / нативный браузерный smooth scroll). Длительность
- * масштабируется от дистанции, чтобы короткие переходы не затягивались,
- * а длинные не «швыряли». Если открыто мобильное меню (`scroll-lock`
- * на body) — старт скролла задерживается, чтобы анимация закрытия
- * меню успела отыграть визуально. После завершения скролла фокус
- * переносится на целевую секцию (или первое поле формы) для
- * клавиатурной навигации.
+ * Intercepts clicks on `a[href^="#"]` (except `href="#"`), cancels native
+ * scroll and animates via `requestAnimationFrame` with `easeInOutQuart`
+ * curve — soft start, cruise, soft arrival (feels like Lenis / native
+ * browser smooth scroll). Duration scales with distance so short jumps
+ * don't drag and long ones don't feel abrupt. If mobile menu is open
+ * (`scroll-lock` on body) — scroll start is delayed to let menu close
+ * animation play out. After scroll completes, focus moves to target
+ * section (or first form field) for keyboard navigation.
  *
- * A11y / UX поведение:
- * - При `prefers-reduced-motion: reduce` — моментальный скролл без анимации
- * - Ручной скролл (wheel / touchmove) во время анимации — отменяет её
- * - Новый клик во время активной анимации — отменяет предыдущую
- * - Если уже на цели (distance === 0) — сразу фокус без rAF
+ * A11y / UX behavior:
+ * - `prefers-reduced-motion: reduce` → instant scroll, no animation
+ * - Manual scroll (wheel / touchmove) during animation → cancels it
+ * - New click during active animation → cancels previous
+ * - Already at target (distance === 0) → focus immediately, no rAF
  */
 
 const MIN_DURATION = 900;
@@ -29,16 +27,15 @@ const FOCUSABLE_SELECTOR = 'a[href], button, input, select, textarea, [tabindex]
 const FIRST_FIELD_SELECTOR = 'input:not([type="hidden"]), textarea, select';
 
 /**
- * Монотонный счётчик активных анимаций. Каждый вызов `animateScroll`
- * инкрементирует его и сохраняет свой токен; если в процессе rAF
- * токен перестал совпадать с глобальным — значит, поверх запустили
- * новую анимацию, текущую нужно отменить.
+ * Monotonic counter for active animations. Each `animateScroll` call
+ * increments it and saves its own token; if during rAF the token
+ * no longer matches the global one — a newer animation was started,
+ * current one should cancel.
  */
 let currentAnimationToken = 0;
 
 /**
- * Проверяет, выставлен ли у пользователя системный флаг
- * «уменьшить движение» (prefers-reduced-motion: reduce).
+ * Checks if user has `prefers-reduced-motion: reduce` enabled.
  *
  * @returns {boolean}
  */
@@ -46,38 +43,37 @@ const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /**
- * easeInOutQuart — плавное ускорение и замедление.
- * Мягче чем cubic; по ощущению близко к нативному браузерному smooth scroll.
+ * easeInOutQuart — smooth acceleration and deceleration.
+ * Softer than cubic; feels close to native browser smooth scroll.
  *
- * @param {number} t — прогресс от 0 до 1
- * @returns {number} сглаженный прогресс
+ * @param {number} t — progress from 0 to 1
+ * @returns {number} eased progress
  */
 const easeInOutQuart = (t) =>
   (t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2);
 
 /**
- * Считает длительность анимации на основе дистанции скролла, с клэмпом [MIN, MAX].
+ * Calculates animation duration based on scroll distance, clamped to [MIN, MAX].
  *
- * @param {number} distance — абсолютная дистанция скролла в пикселях
- * @returns {number} длительность в мс
+ * @param {number} distance — absolute scroll distance in pixels
+ * @returns {number} duration in ms
  */
 const getDuration = (distance) =>
   Math.min(MAX_DURATION, Math.max(MIN_DURATION, Math.abs(distance) / PX_PER_MS));
 
 /**
- * Анимирует скролл окна от текущей позиции к целевой Y.
- * Поддерживает отмену при ручном скролле пользователя (wheel/touchmove)
- * и при запуске новой анимации поверх текущей. Вызывает `onComplete`
- * только при успешном завершении (не при отмене).
+ * Animates window scroll from current position to target Y.
+ * Supports cancellation on manual user scroll (wheel/touchmove)
+ * and when a new animation is started on top. Calls `onComplete`
+ * only on successful finish (not on cancel).
  *
- * @param {number} targetY — целевая позиция скролла в пикселях
- * @param {Function} [onComplete] — колбэк, вызываемый по завершении анимации
+ * @param {number} targetY — target scroll position in pixels
+ * @param {Function} [onComplete] — callback invoked on animation end
  */
 const animateScroll = (targetY, onComplete) => {
   const startY = window.scrollY;
   const diff = targetY - startY;
 
-  // #6 Short-circuit: уже на цели
   if (diff === 0) {
     if (onComplete) {
       onComplete();
@@ -85,14 +81,14 @@ const animateScroll = (targetY, onComplete) => {
     return;
   }
 
-  // #5 Отменяем предыдущую анимацию, инкрементируя глобальный токен
+  // Cancel previous animation by incrementing global token
   currentAnimationToken += 1;
   const myToken = currentAnimationToken;
 
   const duration = getDuration(diff);
   const startTime = performance.now();
 
-  // #4 Отмена при ручном скролле
+  // Cancel on manual scroll
   let cancelledByUser = false;
   const handleManualScroll = () => {
     cancelledByUser = true;
@@ -106,7 +102,6 @@ const animateScroll = (targetY, onComplete) => {
   };
 
   const step = (currentTime) => {
-    // Проверка на отмену: либо новая анимация поверх, либо ручной скролл
     if (myToken !== currentAnimationToken || cancelledByUser) {
       cleanup();
       return;
@@ -131,17 +126,15 @@ const animateScroll = (targetY, onComplete) => {
 };
 
 /**
- * Переносит фокус на целевой элемент после скролла для клавиатурной
- * навигации (WCAG 2.4.3 Focus Order).
+ * Moves focus to target element after scroll for keyboard
+ * navigation (WCAG 2.4.3 Focus Order).
  *
- * Логика выбора элемента для фокуса:
- * 1. Если целевой элемент — форма или содержит `<form>` → фокусим первое
- *    поле ввода этой формы (пользователь сразу может начать заполнять).
- * 2. Иначе — фокусим сам target. Если он не фокусабелен по умолчанию,
- *    временно добавляем `tabindex="-1"` и снимаем по `blur`, чтобы не
- *    мусорить DOM и не ломать Tab-навигацию.
+ * Focus target logic:
+ * 1. If target is a form or contains `<form>` → focus first input field.
+ * 2. Otherwise → focus target itself. If not natively focusable,
+ *    temporarily adds `tabindex="-1"` and removes it on blur.
  *
- * @param {HTMLElement} target — элемент, до которого был скролл
+ * @param {HTMLElement} target — element scrolled to
  */
 const focusTarget = (target) => {
   const form = target.tagName === 'FORM' ? target : target.querySelector('form');
@@ -165,12 +158,12 @@ const focusTarget = (target) => {
 };
 
 /**
- * Выполняет скролл к целевой позиции с учётом пользовательских настроек.
- * При `prefers-reduced-motion: reduce` — моментальный скролл без анимации,
- * иначе — плавный через `animateScroll`.
+ * Scrolls to target position respecting user preferences.
+ * With `prefers-reduced-motion: reduce` — instant scroll,
+ * otherwise — animated via `animateScroll`.
  *
- * @param {number} targetY — целевая Y-позиция в пикселях
- * @param {HTMLElement} target — элемент для переноса фокуса после скролла
+ * @param {number} targetY — target Y position in pixels
+ * @param {HTMLElement} target — element to focus after scroll
  */
 const scrollToTarget = (targetY, target) => {
   if (prefersReducedMotion()) {
@@ -183,10 +176,9 @@ const scrollToTarget = (targetY, target) => {
 };
 
 /**
- * Обработчик клика по якорным ссылкам. Вычисляет целевую Y с учётом
- * высоты хедера, задерживает старт если открыто мобильное меню,
- * затем запускает скролл (с анимацией или моментально в зависимости
- * от reduced-motion).
+ * Anchor click handler. Calculates target Y accounting for header
+ * height, delays start if mobile menu is open, then triggers scroll
+ * (animated or instant depending on reduced-motion).
  *
  * @param {MouseEvent} evt
  */
@@ -212,16 +204,15 @@ const handleAnchorClick = (evt) => {
 };
 
 /**
- * Инициализирует плавный скролл. Вешает один слушатель на `document`
- * в capture phase (делегирование). Capture phase нужна, чтобы
- * прочитать `scroll-lock` на body ДО того, как `mobile-menu.js`
- * успеет снять класс в bubble-фазе — иначе `wasMenuOpen` всегда
- * будет `false` на клике по `.header__cta` из открытого меню,
- * и задержка `MOBILE_MENU_DELAY` не применится.
+ * Initializes smooth scroll. Attaches a single listener on `document`
+ * in capture phase (delegation). Capture phase is needed to read
+ * `scroll-lock` on body BEFORE `mobile-menu.js` removes it in
+ * bubble phase — otherwise `wasMenuOpen` would always be `false`
+ * on `.header__cta` click from open menu, and `MOBILE_MENU_DELAY`
+ * wouldn't apply.
  *
- * Делегирование: один обработчик вместо N на каждой ссылке —
- * соблюдение CTS-JS-Б26 (минимум обработчиков), плюс работает
- * с динамически добавленными ссылками.
+ * Delegation: one handler instead of N per link — follows CTS-JS-Б26
+ * (minimal handlers), plus works with dynamically added links.
  *
  * @example initSmoothScroll();
  */

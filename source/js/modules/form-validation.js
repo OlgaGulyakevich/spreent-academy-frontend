@@ -1,5 +1,5 @@
 /**
- * Form Validation — phone mask, email placeholder swap, inline error messages.
+ * @fileoverview Form Validation — phone mask, email placeholder swap, inline error messages.
  * Phone: imask with +7 (000) 000-00-00 pattern.
  * Email: placeholder changes to example@domain.com on focus, back to «Почта» on blur.
  * Errors: red border via .is-invalid + text message under each invalid field on blur.

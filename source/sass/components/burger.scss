@@ -46,17 +46,17 @@
 .burger[aria-expanded="true"] {
   .burger__icon {
     opacity: 0;
-    transform: scaleY(0); // The stripes «close» into one line
+    transform: scaleY(0);
     pointer-events: none;
-    transition-delay: 0s; // The burger leaves immediately when opened
+    transition-delay: 0s;
   }
 
   .burger__close {
     opacity: 1;
-    transform: scale(1) rotate(0); // It settles into place softly opening
+    transform: scale(1) rotate(0);
     pointer-events: auto;
-    transition-delay: 0.3s; // We appear with a delay to keep the scene clean
-    transition-timing-function: $ease-spring; // Overshoot: cross «pops» into place
+    transition-delay: 0.3s;
+    transition-timing-function: $ease-spring;
   }
 
   @include hover {

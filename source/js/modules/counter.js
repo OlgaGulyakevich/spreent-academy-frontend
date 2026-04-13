@@ -1,5 +1,5 @@
 /**
- * Counter — count-up animation for community factoid numbers.
+ * @fileoverview Counter — count-up animation for community factoid numbers.
  * Observes .community__factoids (threshold 0.5); on first intersection,
  * animates "78%" and "89%" from 0 with 250ms stagger between them.
  * Initial "0%" set at init time to avoid flash on reload.
