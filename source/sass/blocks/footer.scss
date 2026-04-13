@@ -3,6 +3,8 @@
 // =============================================
 
 .footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1200px;
   background-color: $color-bg-pure-white;
 }
 

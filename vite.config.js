@@ -14,7 +14,7 @@ export default {
     // ViteMinifyPlugin({}),
     ViteImageOptimizer({
       test: /\.(jpe?g|png|svg)$/i,
-      exclude: [/spreent-circle/],
+      exclude: /spreent-circle/,
       includePublic: false,
       logStats: true,
       ansiColors: true,
