@@ -365,11 +365,13 @@
     @include fluid-val(border-radius, 44px, 50px);
 
     box-shadow: $shadow-glass-rect;
+    // stylelint-disable-next-line property-no-vendor-prefix
     -webkit-backdrop-filter: blur(50px);
     backdrop-filter: blur(50px);
 
     @include vp-1023 {
       box-shadow: $shadow-glass-rect-mobile;
+      // stylelint-disable-next-line property-no-vendor-prefix
       -webkit-backdrop-filter: blur(44px);
       backdrop-filter: blur(44px);
     }

@@ -42,13 +42,20 @@ module.exports = async (page, scenario, vp) => {
       ].join('\n');
       document.head.appendChild(animStyle);
 
-      // Counter: восстанавливаем реальные значения из data-атрибутов
+      // Counter: восстанавливаем реальные значения и удаляем data-атрибут,
+      // чтобы IntersectionObserver не перезапустил JS-анимацию (requestAnimationFrame)
       document.querySelectorAll('[data-counter-value]').forEach((el) => {
         const value = el.dataset.counterValue;
         const suffix = el.dataset.counterSuffix || '';
         if (value) {
           el.textContent = value + suffix;
         }
+        delete el.dataset.counterValue;
+      });
+
+      // content-visibility: auto мешает BackstopJS — секции не рендерятся вовремя
+      document.querySelectorAll('.price, .work, .footer').forEach((el) => {
+        el.style.contentVisibility = 'visible';
       });
 
       // Parallax/magnetic: убираем inline translate
