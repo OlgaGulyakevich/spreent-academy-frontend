@@ -67,6 +67,7 @@ npm run w3c           # W3C HTML валидация
 - **Ссылки навигации**: underline sweep слева направо через `::after` (`scaleX 0 -> 1`)
 - **Логотип**: Paint Fill & Reveal — эффект «заливки» букв через CSS `mask-image` + gradient sweep + `drop-shadow` glow
 - **Бургер**: морфинг collapse & bloom (схлопывание `scaleY(0)` -> появление крестика с rotate), цветовая семантика (синий на hover в закрытом, красный — в открытом)
+- **Header**: frosted glass при скролле — `backdrop-filter: blur(20px)` + полупрозрачный фон, scroll progress bar через CSS-переменную `--scroll-progress`
 - **focus-visible**: 2px solid accent outline на всех интерактивных элементах
 - **Hover** только через `@media (hover: hover)` — touch-устройства не затрагиваются
 
