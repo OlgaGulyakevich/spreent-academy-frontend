@@ -1,4 +1,4 @@
-# Spreent Academy
+e # Spreent Academy
 
 Верстка главной страницы сервиса-агрегатора по подбору образовательных курсов.
 Конкурсная работа — [Чемпионат по верстке HTML Academy #3](https://up.htmlacademy.ru/olympics/4).
