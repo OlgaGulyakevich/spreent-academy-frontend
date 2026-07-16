@@ -46,9 +46,13 @@
     "vinyl-fs": "4.0.2",
     "vite": "7.2.2",
     "vite-plugin-image-optimizer": "2.0.3",
-    "vite-plugin-minify": "2.1.0",
     "w3c-html-validator": "2.0.1"
   },
+  "browserslist": [
+    "last 3 Chrome versions",
+    "last 3 Firefox versions",
+    "last 3 Safari major versions"
+  ],
 
   "engines": {
     "node": "^22.0.0"
