@@ -2,6 +2,8 @@
  * @fileoverview About Circle Rotate — rotates spreent logo in sync with scroll.
  * Scroll down → clockwise, scroll up → counter-clockwise.
  * Uses requestAnimationFrame for throttling.
+ * JS writes the angle to the CSS custom property `--rotation`;
+ * the transform itself lives in about.scss (data/presentation split).
  * @module about-rotate
  */
 
@@ -34,7 +36,7 @@ const initAboutRotate = () => {
 
       currentRotation += delta * ROTATION_SPEED;
       lastScrollY = window.scrollY;
-      image.style.transform = `rotate(${currentRotation}deg)`;
+      image.style.setProperty('--rotation', `${currentRotation}deg`);
 
       ticking = false;
     });

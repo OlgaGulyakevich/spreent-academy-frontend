@@ -513,6 +513,7 @@
   img {
     width: 100%;
     height: auto;
+    transform: rotate(var(--rotation, 0deg));
   }
 
   @include vp-1023 {
@@ -527,5 +528,11 @@
     top: fluid-val-value(267px, 215px, 375, 470);
 
     @include fluid-val(width, 340px, 440px, 375, 470);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__card-logo img {
+    transform: none;
   }
 }

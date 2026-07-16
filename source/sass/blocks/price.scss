@@ -3,8 +3,11 @@
 // =============================================
 
 .price {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 800px;
+  // Baseline: content-visibility — Newly Available (Safari 18), поэтому за @supports
+  @supports (content-visibility: auto) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+  }
 }
 
 .price__container {
