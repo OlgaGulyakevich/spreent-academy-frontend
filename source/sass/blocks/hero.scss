@@ -122,6 +122,9 @@
   margin-left: -10px;
   animation: hero-fade-in-btn $transition-medium $ease-out 0.3s both;
 
+  // Magnetic effect: данные пишет magnetic-button.js, представление здесь
+  translate: var(--magnetic-x, 0) var(--magnetic-y, 0);
+
   &:active {
     transform: scale(0.95);
   }

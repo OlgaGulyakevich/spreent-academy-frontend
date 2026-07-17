@@ -1,14 +1,18 @@
 /**
  * @fileoverview Magnetic Button — CTA pulls toward cursor when nearby.
- * Desktop only (hover: hover). Activates within ATTRACT_RADIUS,
- * shifts up to MAX_OFFSET px. Uses CSS `translate` to avoid
- * conflicts with existing `transform` on .hero__btn.
+ * Desktop only (hover: hover). Activates within ATTRACT_RADIUS;
+ * pull peaks at half the radius (~12px with PULL_FACTOR 0.4) and
+ * fades to 0 both at the button center and at the radius edge.
+ * JS writes the offset to CSS custom
+ * properties `--magnetic-x` / `--magnetic-y`; the `translate` itself
+ * lives in hero.scss (data/presentation split, composes with
+ * `transform: scale()` on :active).
  * @module magnetic-button
  */
 
 const BUTTON_SELECTOR = '.hero__btn';
-const ATTRACT_RADIUS = 100;
-const MAX_OFFSET = 15;
+const ATTRACT_RADIUS = 120;
+const PULL_FACTOR = 0.4;
 const LERP_FACTOR = 0.15;
 
 /**
@@ -52,10 +56,16 @@ const initMagneticButton = () => {
     currentY = lerp(currentY, targetY, LERP_FACTOR);
 
     if (Math.abs(currentX - targetX) > 0.1 || Math.abs(currentY - targetY) > 0.1) {
-      button.style.translate = `${currentX}px ${currentY}px`;
+      button.style.setProperty('--magnetic-x', `${currentX}px`);
+      button.style.setProperty('--magnetic-y', `${currentY}px`);
       requestAnimationFrame(animate);
+    } else if (targetX === 0 && targetY === 0) {
+      button.style.removeProperty('--magnetic-x');
+      button.style.removeProperty('--magnetic-y');
+      ticking = false;
     } else {
-      button.style.translate = targetX === 0 && targetY === 0 ? '' : `${targetX}px ${targetY}px`;
+      button.style.setProperty('--magnetic-x', `${targetX}px`);
+      button.style.setProperty('--magnetic-y', `${targetY}px`);
       ticking = false;
     }
   };
@@ -78,8 +88,8 @@ const initMagneticButton = () => {
     if (distance < ATTRACT_RADIUS) {
       const strength = 1 - distance / ATTRACT_RADIUS;
 
-      targetX = distX * strength * (MAX_OFFSET / ATTRACT_RADIUS);
-      targetY = distY * strength * (MAX_OFFSET / ATTRACT_RADIUS);
+      targetX = distX * strength * PULL_FACTOR;
+      targetY = distY * strength * PULL_FACTOR;
     } else {
       targetX = 0;
       targetY = 0;
