@@ -9,8 +9,8 @@
  */
 
 const SCROLL_LOCK_CLASS = 'scroll-lock';
-const LABEL_BURGER_OPEN = 'Открыть меню';
-const LABEL_BURGER_CLOSE = 'Закрыть меню';
+const LABEL_BURGER_OPEN = 'Open menu';
+const LABEL_BURGER_CLOSE = 'Close menu';
 const MENU_LINKS_SELECTOR = '.main-nav__link, .header__cta';
 const FOCUSABLE_IN_HEADER_SELECTOR = 'a[href], button';
 

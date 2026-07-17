@@ -87,23 +87,14 @@ html:has(.scroll-lock) {
 // (under p zone), slides up into place while mask opens.
 [data-reveal-type="clip"].reveal-init {
   opacity: 1;
-  clip-path: inset(0 0 65% 0);
+
+  // ровно первая строка видна (заголовок с line-height: 1 → строка = 1em) —
+  // не зависит от языка, переносов и вьюпорта, в отличие от %-высоты блока
+  clip-path: inset(0 0 calc(100% - 1em) 0);
   transform: translateY(100%);
   transition:
     clip-path $transition-medium $ease-out,
     transform $transition-medium $ease-out;
-
-  @include vp-1023 {
-    clip-path: inset(0 0 55% 0);
-  }
-
-  @include vp-max(768px) {
-    clip-path: inset(0 0 50% 0);
-  }
-
-  @include vp-767 {
-    clip-path: inset(0 0 65% 0);
-  }
 }
 
 [data-reveal-type="clip"].is-revealed {

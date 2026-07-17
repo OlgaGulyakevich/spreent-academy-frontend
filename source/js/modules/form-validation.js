@@ -1,7 +1,7 @@
 /**
  * @fileoverview Form Validation — phone mask, email placeholder swap, inline error messages.
  * Phone: imask with +7 (000) 000-00-00 pattern.
- * Email: placeholder changes to example@domain.com on focus, back to «Почта» on blur.
+ * Email: placeholder changes to example@domain.com on focus, back to "Email" on blur.
  * Errors: red border via .is-invalid + text message under each invalid field on blur.
  * @module form-validation
  */
@@ -15,7 +15,7 @@ const ERROR_CLASS = 'footer__form-error';
 const ERROR_VISIBLE_CLASS = 'is-visible';
 const INVALID_CLASS = 'is-invalid';
 const RESET_EVENT = 'form:reset';
-const EMAIL_PLACEHOLDER_DEFAULT = 'Почта';
+const EMAIL_PLACEHOLDER_DEFAULT = 'Email';
 const EMAIL_PLACEHOLDER_FOCUS = 'example@domain.com';
 const PHONE_MASK_OPTIONS = {
   mask: '+0 (000) 000-00-00',
@@ -27,17 +27,17 @@ const PHONE_DIGITS_REQUIRED = 11;
 
 const ERROR_MESSAGES = {
   name: {
-    valueMissing: 'Введите ваше имя',
-    tooShort: 'Имя должно содержать минимум 2 символа',
+    valueMissing: 'Enter your name',
+    tooShort: 'Name must be at least 2 characters long',
   },
   phone: {
-    valueMissing: 'Введите номер телефона',
-    tooShort: 'Введите полный номер телефона',
+    valueMissing: 'Enter your phone number',
+    tooShort: 'Enter your full phone number',
   },
   email: {
-    valueMissing: 'Введите адрес электронной почты',
-    typeMismatch: 'Введите корректный адрес электронной почты',
-    patternMismatch: 'Введите корректный адрес электронной почты',
+    valueMissing: 'Enter your email address',
+    typeMismatch: 'Enter a valid email address',
+    patternMismatch: 'Enter a valid email address',
   },
 };
 

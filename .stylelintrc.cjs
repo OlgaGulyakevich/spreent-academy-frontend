@@ -55,6 +55,17 @@ module.exports = {
       }
     ],
     "at-rule-no-unknown": null,
-    "scss/at-rule-no-unknown": true
+    "scss/at-rule-no-unknown": true,
+    // Внутри math-функций голый 0 — это <number>, а не <length>: смешение типов
+    // делает весь clamp()/calc() невалидным, и браузер молча отбрасывает свойство.
+    // Без ignoreFunctions правило при --fix срезало px у нуля и ломало формулы
+    // (кейс: translateX(clamp(-113px, …, 0)) — фото hero стояло без интерполяции).
+    "length-zero-no-unit": [
+      true,
+      {
+        ignore: ["custom-properties"],
+        ignoreFunctions: ["clamp", "calc", "min", "max", "fluid-val-value"]
+      }
+    ]
   },
 };

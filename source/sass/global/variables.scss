@@ -25,11 +25,11 @@ $color-text-h2: $color-dark;
 $color-text-h3: $color-dark;
 $color-text-main: $color-dark;
 $color-text-dark: $color-dark;
-$color-text-secondary: rgba($color-dark, 0.7);   // Подписи, muted
-$color-text-light: rgba($color-dark, 0.4);        // Ghost, зачёркнутые цены
+$color-text-secondary: rgba($color-dark, 0.7);   // labels, muted
+$color-text-light: rgba($color-dark, 0.4);        // Ghost, strikethrough text
 $color-text-accent: $color-blue;
 $color-text-white: $color-white;
-$color-text-white-muted: rgba($color-white, 0.5); // Placeholder на тёмном фоне
+$color-text-white-muted: rgba($color-white, 0.5); // Placeholder on the dark background
 $color-text-link: $color-blue;
 
 
@@ -60,7 +60,10 @@ $color-btn-secondary: $color-secondary;
 $color-btn-secondary-hover: #c8e030;                             // Darkened ~8%
 $color-btn-secondary-active: #bdd920;                            // Darkened ~15%
 $color-btn-secondary-disabled: rgba($color-secondary, 0.4);      // Faded, no interaction
-$shadow-btn-secondary-hover: 0 6px 20px rgb(217, 242, 67, 0.4); // Лаймовая тень при наведении
+$shadow-btn-secondary-hover: 0 6px 20px rgb(217, 242, 67, 0.4); // Lime shadow on hover
+
+// Minimum width for CTA with short text (Join, Buy Now)
+$btn-min-width: 160px;
 
 
 // Form — footer (тёмный фон $color-bg-dark)

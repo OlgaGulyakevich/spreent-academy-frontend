@@ -242,6 +242,7 @@
 }
 
 .price__btn {
+  min-width: $btn-min-width;
   margin-top: auto;
   align-self: flex-start;
   max-width: 100%;

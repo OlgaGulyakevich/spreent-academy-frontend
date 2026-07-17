@@ -50,20 +50,20 @@
   overflow-wrap: break-word;
   animation: hero-fade-in $transition-medium $ease-out both;
 
-  // Float barrier: protects the photo area while allowing bottom lines to span full width.
   &::before {
     content: "";
     float: right;
 
-    @include fluid-val(width, 221px, 460px);
+    @include fluid-val(width, 300px, 450px, 1024, 1440);
 
     height: 50px;
   }
 
+
   @include vp-1023 {
     order: 2;
     transform: none;
-    margin-bottom: 16px;
+    margin-bottom: 30px;
     max-width: none;
     animation-name: hero-fade-in-mobile;
 
@@ -76,17 +76,14 @@
 .hero__title-shift {
   display: inline-block;
 
-  @include fluid-val(margin-left, 41px, 343px);
+  @include fluid-val(margin-left, 100px, 200px, 1024, 1440);
 
   transform: translateY(5px);
 
   @include vp-1023 {
     display: inline;
     transform: none;
-
-    @include vp-max(430px) {
-      margin-left: 0;
-    }
+    margin-left: 0;
   }
 }
 
@@ -105,8 +102,9 @@
 
   @include vp-1023 {
     order: 3;
-    max-width: 340px;
-    margin-left: 42px;
+
+    @include fluid-val(margin-left, 10px, 42px, 320, 1023);
+
     animation-name: hero-fade-in-mobile;
   }
 }
@@ -173,7 +171,7 @@
   transform: translateX(-113px);
 
   @include vp-max(1440px) {
-    transform: translateX(fluid-val-value(-113px, 0, 1440, 1024));
+    transform: translateX(fluid-val-value(-113px, 0px, 1440, 1024));
   }
 
   .hero__label {

@@ -70,6 +70,13 @@
   @include vp-1023 {
     margin-top: 1px;
   }
+
+  // Плавное сжатие лого 480→320 (127→96px): EN-CTA «Get Started» шире RU «Начать»,
+  // на узких вьюпортах ряд обязан влезать без переноса бургера. Выше 480 clamp держит 127.
+  svg {
+    @include fluid-val(width, 96px, 127px, 320, 480);
+    @include fluid-val(height, 21px, 28px, 320, 480);
+  }
 }
 
 .header__nav {
@@ -106,8 +113,16 @@
   min-width: 98px;
   margin-top: 1px;
 
+  // Плавная компактность 480→320 (кегль 18→16, бока 15→10) — синхронно с лого и бургером
+  @include fluid-val(font-size, 16px, 18px, 320, 480);
+  @include fluid-val(padding-left, 10px, 15px, 320, 480);
+  @include fluid-val(padding-right, 10px, 15px, 320, 480);
+
   @include vp-1023 {
     margin-top: -2px;
+
+    // Гарантированный воздух от лого, когда auto-margin схлопывается
+    margin-left: $spacing-10;
   }
 }
 
@@ -119,16 +134,19 @@
 
   @include vp-1023 {
     display: flex;
-    margin-left: 37px;
     margin-right: -3px;
+
+    @include fluid-val(margin-left, 22px, 37px, 320, 480);
 
     &::before {
       content: "";
       position: absolute;
-      left: -17px;
       top: -$spacing-15;
       bottom: -13px;
       border-left: $border-width-1 solid $color-border-header;
+
+      // Разделитель остаётся ~по центру сжимающегося промежутка
+      @include fluid-val(left, -11px, -17px, 320, 480);
     }
   }
 }

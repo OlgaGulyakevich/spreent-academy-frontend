@@ -70,6 +70,7 @@
 }
 
 .work__btn {
+  min-width: $btn-min-width;
   max-width: 100%;
   white-space: normal;
   overflow-wrap: anywhere;
@@ -146,7 +147,7 @@
 // Desktop grid placement + mobile order
 // ---------------------------------
 
-.work__logo-item--vtb {
+.work__logo-item--google {
   animation: cell-glow 9s 0s infinite;
   grid-column: 4;
   grid-row: 1;
@@ -158,7 +159,7 @@
   }
 }
 
-.work__logo-item--mts {
+.work__logo-item--epam {
   animation: cell-glow 9s 0.8s infinite;
   grid-column: 5;
   grid-row: 1;
@@ -167,10 +168,14 @@
     grid-column: auto;
     grid-row: auto;
     order: 2;
+
+    svg {
+      transform: scale(0.64);
+    }
   }
 }
 
-.work__logo-item--sber {
+.work__logo-item--netflix {
   animation: cell-glow 9s 1.6s infinite;
   grid-column: 6;
   grid-row: 1;
@@ -192,7 +197,7 @@
   }
 }
 
-.work__logo-item--sportmaster {
+.work__logo-item--booking {
   animation: cell-glow 9s 2.4s infinite;
   grid-column: 5;
   grid-row: 2;
@@ -279,7 +284,7 @@
   }
 }
 
-.work__logo-item--epam {
+.work__logo-item--ibm {
   animation: cell-glow 9s 6.4s infinite;
   grid-column: 4;
   grid-row: 3;
@@ -292,9 +297,5 @@
     border-right: 0;
     border-bottom-width: $border-width-logos-mobile;
     order: 7;
-
-    svg {
-      transform: scale(0.64);
-    }
   }
 }

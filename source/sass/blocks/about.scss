@@ -505,7 +505,12 @@
 
   @include vp-max(1280px) {
     @include fluid-val(left, 230px, 280px, 1024, 1280);
-    @include fluid-val(top, 0, -93px, 1024, 1280);
+
+    // Тот же баг, что был у hero-фото: голый 0 внутри clamp = <number> → весь clamp
+    // невалиден (нужен 0px), плюс clamp(min > max) всегда отдаёт min. Реверс vw-аргументов
+    // даёт валидный clamp(-93px, …, 0px): 0 на 1024 → -93 на 1280.
+    top: fluid-val-value(-93px, 0px, 1280, 1024);
+
     @include fluid-val(width, 440px, 540px, 1024, 1280);
   }
 
