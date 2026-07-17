@@ -422,6 +422,10 @@
     top: 270px;
   }
 
+  @include vp-max(320px) {
+    left: 200px; // тег You остаётся в границах карточки
+  }
+
   span {
     background-color: $color-secondary;
     color: $color-dark;

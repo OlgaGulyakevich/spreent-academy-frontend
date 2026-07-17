@@ -69,6 +69,11 @@
   @include vp-max(400px) {
     --avatar-size: 70px;
   }
+
+  // 320: 5 аватаров при 70px дают ~334px — контейнер шире экрана, «+» прижат к краю
+  @include vp-max(320px) {
+    --avatar-size: 60px;
+  }
 }
 
 .community__avatar-item {
