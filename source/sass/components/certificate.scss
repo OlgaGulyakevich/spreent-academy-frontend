@@ -1,0 +1,182 @@
+// =============================================================================
+// CERTIFICATE CARD — свёрстанная карточка сертификата (замена RU-растра)
+// Живёт в footer__certificate-card (layout — от родителя), см. roadmap 1.6
+// =============================================================================
+
+.certificate {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  aspect-ratio: 660 / 440; // пропорции прежнего растра — геометрия секции не меняется
+  background-color: $color-bg-pure-white;
+  border-radius: $radius-16;
+  color: $color-dark;
+
+  @include fluid-val(padding, 20px, 40px, 320, 1440);
+}
+
+// ---------------------------------
+// Header: logo + profession tag
+// ---------------------------------
+
+.certificate__header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @include fluid-val(gap, 8px, 14px, 320, 1440);
+}
+
+.certificate__logo {
+  color: $color-dark;
+
+  @include fluid-val(width, 70px, 106px, 320, 1440);
+
+  height: auto;
+}
+
+.certificate__tag {
+  @include text-tag;
+
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 4px 12px;
+  border-radius: $radius-pill;
+  background-color: $color-bg-tag;
+  color: $color-text-link;
+
+  @include fluid-val(font-size, 10px, 14px, 320, 1440);
+}
+
+// ---------------------------------
+// Title + note
+// ---------------------------------
+
+.certificate__title {
+  font-family: $font-family-display;
+  font-weight: $font-weight-medium;
+  line-height: 1;
+  letter-spacing: -0.01em;
+
+  @include fluid-val(font-size, 34px, 72px, 320, 1440);
+  @include fluid-val(margin-top, 8px, 18px, 320, 1440);
+}
+
+.certificate__note {
+  @include text-small;
+
+  color: $color-text-secondary;
+
+  @include fluid-val(font-size, 11px, 16px, 320, 1440);
+  @include fluid-val(margin-top, 6px, 14px, 320, 1440);
+}
+
+// ---------------------------------
+// Details (dl): awarded to / date / author
+// Стилизация dt/dd каскадом — бесклассовые по паттерну форм
+// ---------------------------------
+
+.certificate__details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  margin: 0;
+  margin-top: auto;
+
+  @include fluid-val(column-gap, 24px, 56px, 320, 1440);
+  @include fluid-val(row-gap, 10px, 18px, 320, 1440);
+}
+
+// Name — full width
+.certificate__field--name {
+  grid-column: 1 / -1;
+}
+
+.certificate__field {
+  dt {
+    @include text-tag;
+
+    color: $color-text-secondary;
+    font-weight: $font-weight-medium;
+
+    @include fluid-val(font-size, 9px, 13px, 320, 1440);
+  }
+
+  dd {
+    margin: 0;
+    font-family: $font-family-display;
+    font-weight: $font-weight-medium;
+    line-height: 1.1;
+
+    @include fluid-val(font-size, 13px, 18px, 320, 1440);
+    @include fluid-val(margin-top, 2px, 6px, 320, 1440);
+  }
+}
+
+.certificate__field--name dd {
+  @include fluid-val(font-size, 20px, 30px, 320, 1440);
+}
+
+// ---------------------------------
+// Stamp — ЧБ-печать (inline SVG, текст по дугам)
+// ---------------------------------
+
+.certificate__stamp {
+  position: absolute;
+  bottom: 6%;
+  right: 5%;
+  transform: rotate(-14deg);
+  color: $color-dark; // ЧБ по дизайну: кольцо и ядро — тёмные, S — белая
+
+  @include fluid-val(width, 96px, 190px, 320, 1440);
+
+  height: auto;
+}
+
+.certificate__stamp-ring {
+  fill: $color-bg-pure-white;
+  stroke: currentColor;
+  stroke-width: 3px;
+}
+
+.certificate__stamp-core {
+  fill: currentColor;
+}
+
+// Верхняя дуга — крупный строчный wordmark; stroke добавляет вес
+// (в проекте только Medium 500 — обводка чище синтетического bold)
+.certificate__stamp-top {
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 0.6px;
+  font-family: $font-family-display;
+  font-size: 20px;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.01em;
+}
+
+// Нижняя дуга — мелкий caps-слоган; сидит на одном оптическом кольце с верхней
+.certificate__stamp-bottom {
+  fill: currentColor;
+  font-family: $font-family-display;
+  font-size: 8.5px;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+// Точки-разделители на «экваторе» между дугами
+.certificate__stamp-dot {
+  fill: currentColor;
+  font-family: $font-family-display;
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+}
+
+.certificate__stamp-letter {
+  fill: $color-bg-pure-white;
+  font-family: $font-family-display;
+  font-size: 96px;
+  font-weight: $font-weight-medium;
+}

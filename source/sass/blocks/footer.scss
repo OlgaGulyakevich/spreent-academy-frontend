@@ -128,17 +128,8 @@
   min-width: 0;
   align-self: center;
 
-  img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: $radius-16;
-  }
-
   @include vp-1023 {
     align-self: stretch;
-    background-color: $color-bg-pure-white;
-    border-radius: $radius-16;
   }
 }
 

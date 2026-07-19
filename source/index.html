@@ -441,19 +441,56 @@
         <div class="footer__certificate-inner" data-reveal-stagger="120" data-reveal-threshold="0.8" data-reveal-threshold-mobile="0.6">
 
           <div class="footer__certificate-info">
-            <h2 data-reveal="true" data-reveal-type="clip">Get Your Course<br> Completion Certificate</h2>
+            <h2 data-reveal="true" data-reveal-type="clip">Get Your Course<br> <span class="nowrap-desktop">Completion Certificate</span></h2>
             <p data-reveal="true" data-reveal-type="fade">Training is conducted under a&nbsp;state-issued educational license</p>
             <a class="btn btn--primary footer__certificate-btn" data-reveal="true" href="#footer-form">Start Learning</a>
           </div>
 
-          <div class="footer__certificate-card" data-reveal="true" data-reveal-type="scale" data-reveal-delay="0" aria-hidden="true">
-            <picture>
-              <source type="image/webp" width="660" height="440"
-                srcset="img/footer/certificate@1x.webp 1x, img/footer/certificate@2x.webp 2x">
-              <img src="img/footer/certificate@1x.jpg"
-                   srcset="img/footer/certificate@2x.jpg 2x"
-                   width="660" height="440" alt="" loading="lazy">
-            </picture>
+          <div class="footer__certificate-card certificate" data-reveal="true" data-reveal-type="scale" data-reveal-delay="0" aria-hidden="true">
+
+            <div class="certificate__header">
+              <svg class="certificate__logo" width="106" height="23">
+                <use href="./__spritemap#sprite-logo"></use>
+              </svg>
+              <span class="certificate__tag">Profession: Systems Analyst</span>
+            </div>
+
+            <p class="certificate__title">Certificate</p>
+            <p class="certificate__note">Top performance on the course</p>
+
+            <dl class="certificate__details">
+              <div class="certificate__field certificate__field--name">
+                <dt>Awarded to</dt>
+                <dd>Ilya Petrov</dd>
+              </div>
+              <div class="certificate__field">
+                <dt>Completion date</dt>
+                <dd>July 15, 2024</dd>
+              </div>
+              <div class="certificate__field">
+                <dt>Course author</dt>
+                <dd>Innokentiy Bodrov</dd>
+              </div>
+            </dl>
+
+            <svg class="certificate__stamp" width="200" height="200" viewBox="0 0 200 200">
+              <defs>
+                <path id="stamp-arc-top" d="M 21,100 a 79,79 0 1 1 158,0 a 79,79 0 1 1 -158,0"></path>
+                <path id="stamp-arc-bottom" d="M 11,100 a 89,89 0 1 0 178,0 a 89,89 0 1 0 -178,0"></path>
+              </defs>
+              <circle class="certificate__stamp-ring" cx="100" cy="100" r="97"></circle>
+              <circle class="certificate__stamp-core" cx="100" cy="100" r="70"></circle>
+              <text class="certificate__stamp-top">
+                <textpath href="#stamp-arc-top" startoffset="25%" text-anchor="middle">spreent academy</textpath>
+              </text>
+              <text class="certificate__stamp-bottom">
+                <textpath href="#stamp-arc-bottom" startoffset="25%" text-anchor="middle">upgrade your career through practice</textpath>
+              </text>
+              <text class="certificate__stamp-dot" x="14" y="100" text-anchor="middle" dominant-baseline="central">·</text>
+              <text class="certificate__stamp-dot" x="186" y="100" text-anchor="middle" dominant-baseline="central">·</text>
+              <text class="certificate__stamp-letter" x="100" y="100" text-anchor="middle" dominant-baseline="central">S</text>
+            </svg>
+
           </div>
 
         </div>
