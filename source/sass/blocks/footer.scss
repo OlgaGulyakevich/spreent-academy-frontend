@@ -77,6 +77,11 @@
 
   @include fluid-val(max-width, 450px, 500px);
 
+  // 1024–1279: колонка уже → карточке +50–70px ширины (печать не наезжает на контент)
+  @include vp-min(1024px) {
+    @include fluid-val(max-width, 400px, 500px, 1024, 1440);
+  }
+
   @include vp-1023 {
     max-width: none;
     padding-top: 30px;
@@ -89,6 +94,12 @@
 
   line-height: 1;
   letter-spacing: normal;
+
+  // ≥1024 колонка узкая (450→500), а «Completion Certificate» — nowrap:
+  // единая формула держит строку в колонке (на 1024: 410px ≤ 450), на 1440 = базовые 46
+  @include vp-min(1024px) {
+    @include fluid-val(font-size, 34px, 46px, 1024, 1440);
+  }
 
   @include vp-1023 {
     line-height: 0.98;
