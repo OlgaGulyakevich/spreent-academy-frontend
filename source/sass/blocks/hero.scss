@@ -184,7 +184,7 @@
     }
 
     @include vp-max(320px) {
-      left: -50px; // рука-курсор не прилипает к левому краю экрана
+      left: -60px;
     }
   }
 
@@ -220,8 +220,11 @@
 
   @include vp-max(479px) {
     margin-left: fluid-val-value(45px, 100px, 479, 375);
-  }
 
+    @include vp-max(320px) {
+      transform: translateX(-140px);
+    }
+  }
 
   .hero__label {
     bottom: -7px;
@@ -241,7 +244,8 @@
     }
 
     @include vp-max(320px) {
-      right: -5px; // стрелка-курсор (левее лейбла на 23px) не обрезается краем экрана
+      right: 20px;
+      bottom: -100px;
     }
   }
 }

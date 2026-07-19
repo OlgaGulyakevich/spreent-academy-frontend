@@ -66,7 +66,8 @@
   min-height: 500px;
 
   @include vp-1023 {
-    min-height: 600px;
+    @include fluid-val(min-height, 500px, 600px, 320, 480);
+
     grid-template-rows: auto auto auto 1fr;
   }
 
@@ -423,7 +424,8 @@
   }
 
   @include vp-max(320px) {
-    left: 200px; // тег You остаётся в границах карточки
+    left: 200px;
+    top: 240px;
   }
 
   span {
