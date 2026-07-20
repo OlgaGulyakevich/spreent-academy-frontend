@@ -1,6 +1,8 @@
 // Company logos for the "Where Our Graduates Work" grid.
 // Discriminated union: an item is EITHER a real logo (all fields) OR an empty
-// grid spacer ({ empty: true }) — impossible mixes won't compile (CRITERIA-TS §4).
+// grid spacer ({ empty: true }). The `empty` flag is the discriminant TS narrows
+// on, so invalid mixes (a spacer with a label, or a logo without its size) won't
+// compile.
 export type WorkLogo =
   | { empty: true }
   | {
