@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
 ---
 
 <BaseLayout
@@ -10,101 +11,7 @@ import Header from "../components/Header.astro";
   <Header />
 
   <main>
-    <!-- ============================================ -->
-    <!-- HERO                                         -->
-    <!-- ============================================ -->
-
-    <section class="hero" data-test="hero">
-      <div class="container hero__container">
-        <div class="hero__content">
-          <h1>
-            —Skills, practice,<br class="br-not-mobile" />
-            <span class="hero__title-shift">modern knowledge</span>
-          </h1>
-          <p>
-            Core values that shape<br class="br-mobile" /> every course at&nbsp;spreent
-          </p>
-          <a class="btn btn--primary hero__btn" href="#footer-form"
-            >Start Learning</a
-          >
-        </div>
-
-        <div class="hero__photos" aria-hidden="true">
-          <div class="hero__photo hero__photo--artur">
-            <picture>
-              <source
-                type="image/webp"
-                width="329"
-                height="200"
-                srcset="img/hero/artur@1x.webp 1x, img/hero/artur@2x.webp 2x"
-              />
-              <img
-                src="img/hero/artur@1x.jpg"
-                srcset="img/hero/artur@2x.jpg 2x"
-                width="329"
-                height="200"
-                alt=""
-                fetchpriority="high"
-              />
-            </picture>
-            <div class="hero__label">
-              <svg width="26" height="26" aria-hidden="true">
-                <use href="./__spritemap#sprite-cursor-hand"></use>
-              </svg>
-              <span>Artur</span>
-            </div>
-          </div>
-
-          <div class="hero__photo hero__photo--sergey">
-            <picture>
-              <source
-                type="image/webp"
-                width="175"
-                height="256"
-                srcset="img/hero/sergey@1x.webp 1x, img/hero/sergey@2x.webp 2x"
-              />
-              <img
-                src="img/hero/sergey@1x.jpg"
-                srcset="img/hero/sergey@2x.jpg 2x"
-                width="175"
-                height="256"
-                alt=""
-              />
-            </picture>
-            <div class="hero__label hero__label--cursor">
-              <svg width="26" height="26" aria-hidden="true">
-                <use href="./__spritemap#sprite-cursor-arrow"></use>
-              </svg>
-              <span>Sergey</span>
-            </div>
-          </div>
-
-          <div class="hero__photo hero__photo--misha">
-            <picture>
-              <source
-                type="image/webp"
-                width="329"
-                height="200"
-                srcset="img/hero/misha@1x.webp 1x, img/hero/misha@2x.webp 2x"
-              />
-              <img
-                src="img/hero/misha@1x.jpg"
-                srcset="img/hero/misha@2x.jpg 2x"
-                width="329"
-                height="200"
-                alt=""
-              />
-            </picture>
-            <div class="hero__label hero__label--cursor">
-              <svg width="26" height="26" aria-hidden="true">
-                <use href="./__spritemap#sprite-cursor-arrow"></use>
-              </svg>
-              <span>Misha</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <Hero />
 
     <!-- ============================================ -->
     <!-- ABOUT                                        -->
