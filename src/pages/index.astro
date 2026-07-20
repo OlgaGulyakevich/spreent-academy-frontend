@@ -1,65 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
 ---
 
 <BaseLayout
   title="Spreent Academy — Online Education Courses"
   description="Find the best online courses for your career at Spreent Academy. Expert instructors, real projects, lifetime access."
 >
-  <!-- ============================================ -->
-  <!-- HEADER                                       -->
-  <!-- ============================================ -->
-
-  <header class="header" data-test="header">
-    <div class="container header__container">
-      <a class="logo header__logo" href="/">
-        <svg width="127" height="28" aria-hidden="true">
-          <use href="./__spritemap#sprite-logo"></use>
-        </svg>
-        <span class="visually-hidden">spreent</span>
-      </a>
-
-      <nav
-        class="main-nav header__nav"
-        id="main-nav"
-        aria-label="Main navigation"
-      >
-        <ul class="main-nav__list">
-          <li class="main-nav__item">
-            <a
-              class="main-nav__link main-nav__link--active"
-              href="/"
-              aria-current="page">About</a
-            >
-          </li>
-          <li class="main-nav__item">
-            <a class="main-nav__link" href="#">Courses</a>
-          </li>
-          <li class="main-nav__item">
-            <a class="main-nav__link" href="#">Corporate Training</a>
-          </li>
-        </ul>
-      </nav>
-
-      <a class="btn btn--primary header__cta" href="#footer-form">Get Started</a
-      >
-
-      <button
-        class="burger header__burger"
-        type="button"
-        aria-label="Open menu"
-        aria-expanded="false"
-        aria-controls="main-nav"
-      >
-        <svg class="burger__icon" width="30" height="18" aria-hidden="true">
-          <use href="./__spritemap#sprite-burger"></use>
-        </svg>
-        <svg class="burger__close" width="30" height="18" aria-hidden="true">
-          <use href="./__spritemap#sprite-close"></use>
-        </svg>
-      </button>
-    </div>
-  </header>
+  <Header />
 
   <main>
     <!-- ============================================ -->

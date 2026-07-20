@@ -2,6 +2,7 @@ ls:
   src:
     .dir: kebab-case # applies for the current directory and all their subdirectories
     .js: kebab-case
+    .ts: kebab-case
     .css: kebab-case
     .scss: kebab-case
     .astro: PascalCase | kebab-case # components PascalCase, pages kebab-case

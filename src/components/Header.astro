@@ -1,0 +1,44 @@
+---
+import { Icon } from 'astro-icon/components';
+import { navLinks } from '../data/nav-links';
+---
+
+<header class="header" data-test="header">
+  <div class="container header__container">
+    <a class="logo header__logo" href="/">
+      <Icon name="logo" width="127" height="28" aria-hidden="true" />
+      <span class="visually-hidden">spreent</span>
+    </a>
+
+    <nav class="main-nav header__nav" id="main-nav" aria-label="Main navigation">
+      <ul class="main-nav__list">
+        {
+          navLinks.map((link) => (
+            <li class="main-nav__item">
+              <a
+                class:list={['main-nav__link', { 'main-nav__link--active': link.active }]}
+                href={link.href}
+                aria-current={link.active ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <a class="btn btn--primary header__cta" href="#footer-form">Get Started</a>
+
+    <button
+      class="burger header__burger"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="main-nav"
+    >
+      <Icon class="burger__icon" name="burger" width="30" height="18" aria-hidden="true" />
+      <Icon class="burger__close" name="close" width="30" height="18" aria-hidden="true" />
+    </button>
+  </div>
+</header>
