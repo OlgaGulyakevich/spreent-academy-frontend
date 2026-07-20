@@ -32,6 +32,9 @@ coverage/
 backstop_data/
 .cache/
 
+# Astro generated types
+.astro/
+
 # Testing
 chrome/
 

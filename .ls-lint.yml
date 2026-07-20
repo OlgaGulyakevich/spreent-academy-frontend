@@ -1,10 +1,10 @@
 ls:
-  source:
+  src:
     .dir: kebab-case # applies for the current directory and all their subdirectories
     .js: kebab-case
     .css: kebab-case
     .scss: kebab-case
-    .html: kebab-case
+    .astro: PascalCase | kebab-case # components PascalCase, pages kebab-case
 ignore:
-  - source/js/vendor
-  - source/sass/vendor
+  - src/scripts/vendor
+  - src/sass/vendor

@@ -1,60 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- SEO Meta Tags -->
-  <title>Spreent Academy — Online Education Courses</title>
-  <meta name="description" content="Find the best online courses for your career at Spreent Academy. Expert instructors, real projects, lifetime access.">
-  <meta name="keywords" content="courses, online learning, education, design, IT, UX, UI, Spreent Academy">
-  <meta name="application-name" content="Spreent Academy">
-  <meta name="theme-color" content="#0d1627">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:title" content="Spreent Academy — Online Education Courses">
-  <meta property="og:description"
-    content="Find the best online courses for your career at Spreent Academy.">
-  <meta property="og:site_name" content="Spreent Academy">
-  <meta property="og:url" content="https://spreent-academy-frontend.vercel.app/">
-  <meta property="og:image" content="/og-image.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Spreent Academy — Online Education Courses">
-  <meta name="twitter:description"
-    content="Find the best online courses for your career at Spreent Academy.">
-  <meta name="twitter:url" content="https://spreent-academy-frontend.vercel.app/">
-  <meta name="twitter:image" content="/og-image.jpg">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://spreent-academy-frontend.vercel.app/">
-
-  <!-- Favicons -->
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" href="favicons/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="favicons/favicon-96x96.png" sizes="96x96" type="image/png">
-  <link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
-  <link rel="manifest" href="site.webmanifest" crossorigin="use-credentials">
-
-  <!-- Font Preload (critical fonts only) -->
-  <link rel="preload" href="fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-  <link rel="preload" href="fonts/LoosWide-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-
-  <!-- Hero image preload (LCP candidate) -->
-  <link rel="preload" href="img/hero/artur@1x.webp" as="image" type="image/webp">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="sass/style.scss">
-</head>
-
-<body>
-
+<BaseLayout
+  title="Spreent Academy — Online Education Courses"
+  description="Find the best online courses for your career at Spreent Academy. Expert instructors, real projects, lifetime access."
+>
   <!-- ============================================ -->
   <!-- HEADER                                       -->
   <!-- ============================================ -->
@@ -62,7 +13,7 @@
   <header class="header" data-test="header">
     <div class="container header__container">
 
-      <a class="logo header__logo" href="index.html">
+      <a class="logo header__logo" href="/">
         <svg width="127" height="28" aria-hidden="true">
           <use href="./__spritemap#sprite-logo"></use>
         </svg>
@@ -72,7 +23,7 @@
       <nav class="main-nav header__nav" id="main-nav" aria-label="Main navigation">
         <ul class="main-nav__list">
           <li class="main-nav__item">
-            <a class="main-nav__link main-nav__link--active" href="index.html" aria-current="page">About</a>
+            <a class="main-nav__link main-nav__link--active" href="/" aria-current="page">About</a>
           </li>
           <li class="main-nav__item">
             <a class="main-nav__link" href="#">Courses</a>
@@ -98,10 +49,6 @@
 
     </div>
   </header>
-
-  <!-- ============================================ -->
-  <!-- MAIN CONTENT                                 -->
-  <!-- ============================================ -->
 
   <main>
 
@@ -563,7 +510,7 @@
     <div class="footer__bottom">
       <div class="container footer__bottom-container">
 
-        <a class="logo logo--light footer__logo" href="index.html">
+        <a class="logo logo--light footer__logo" href="/">
           <svg width="267" height="59" aria-hidden="true">
             <use href="./__spritemap#sprite-logo"></use>
           </svg>
@@ -596,12 +543,4 @@
     </div>
 
   </footer>
-
-  <!-- ============================================ -->
-  <!-- SCRIPTS                                      -->
-  <!-- ============================================ -->
-
-  <script type="module" src="js/main.js"></script>
-</body>
-
-</html>
+</BaseLayout>
