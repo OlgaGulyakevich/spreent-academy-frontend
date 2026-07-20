@@ -1,0 +1,68 @@
+---
+import { Icon } from 'astro-icon/components';
+
+// 4 graduate avatars — identical markup, differ only by number → data-driven
+const avatars = [1, 2, 3, 4];
+---
+
+<section class="community" data-test="community">
+  <div class="container community__container">
+    <h2 class="visually-hidden">Our Graduates</h2>
+
+    <ul class="community__avatar-list">
+      {
+        avatars.map((n) => (
+          <li class="community__avatar-item">
+            <picture>
+              <source
+                type="image/webp"
+                width="110"
+                height="110"
+                srcset={`img/community/avatar-${n}@1x.webp 1x, img/community/avatar-${n}@2x.webp 2x`}
+              />
+              <img
+                src={`img/community/avatar-${n}@1x.jpg`}
+                srcset={`img/community/avatar-${n}@2x.jpg 2x`}
+                width="110"
+                height="110"
+                alt="Academy graduate"
+                loading="lazy"
+              />
+            </picture>
+          </li>
+        ))
+      }
+      <li class="community__avatar-item community__avatar-item--join">
+        <a
+          class="community__join"
+          href="#footer-form"
+          aria-label="Join the community"
+        >
+          <Icon name="plus" width="24" height="24" aria-hidden="true" />
+        </a>
+      </li>
+    </ul>
+
+    <div class="community__stats">
+      <div class="community__count">
+        <p class="community__count-number">Over&nbsp;100</p>
+        <p class="community__count-label">graduates since the academy launched</p>
+      </div>
+
+      <ul class="community__factoids">
+        <li class="community__factoid">
+          <p class="community__factoid-number">78%</p>
+          <p class="community__factoid-text">
+            would recommend Spreent Academy to their friends and&nbsp;colleagues
+          </p>
+        </li>
+        <li class="community__factoid">
+          <p class="community__factoid-number">89%</p>
+          <p class="community__factoid-text">
+            rate the quality and value <br /> of knowledge gained at&nbsp;spreent
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

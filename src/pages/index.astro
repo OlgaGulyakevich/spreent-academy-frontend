@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
+import Community from "../components/Community.astro";
 ---
 
 <BaseLayout
@@ -16,126 +17,7 @@ import About from "../components/About.astro";
 
     <About />
 
-    <!-- ============================================ -->
-    <!-- COMMUNITY                                    -->
-    <!-- ============================================ -->
-
-    <section class="community" data-test="community">
-      <div class="container community__container">
-        <h2 class="visually-hidden">Our Graduates</h2>
-
-        <ul class="community__avatar-list">
-          <li class="community__avatar-item">
-            <picture>
-              <source
-                type="image/webp"
-                width="110"
-                height="110"
-                srcset="img/community/avatar-1@1x.webp 1x, img/community/avatar-1@2x.webp 2x"
-              />
-              <img
-                src="img/community/avatar-1@1x.jpg"
-                srcset="img/community/avatar-1@2x.jpg 2x"
-                width="110"
-                height="110"
-                alt="Academy graduate"
-                loading="lazy"
-              />
-            </picture>
-          </li>
-          <li class="community__avatar-item">
-            <picture>
-              <source
-                type="image/webp"
-                width="110"
-                height="110"
-                srcset="img/community/avatar-2@1x.webp 1x, img/community/avatar-2@2x.webp 2x"
-              />
-              <img
-                src="img/community/avatar-2@1x.jpg"
-                srcset="img/community/avatar-2@2x.jpg 2x"
-                width="110"
-                height="110"
-                alt="Academy graduate"
-                loading="lazy"
-              />
-            </picture>
-          </li>
-          <li class="community__avatar-item">
-            <picture>
-              <source
-                type="image/webp"
-                width="110"
-                height="110"
-                srcset="img/community/avatar-3@1x.webp 1x, img/community/avatar-3@2x.webp 2x"
-              />
-              <img
-                src="img/community/avatar-3@1x.jpg"
-                srcset="img/community/avatar-3@2x.jpg 2x"
-                width="110"
-                height="110"
-                alt="Academy graduate"
-                loading="lazy"
-              />
-            </picture>
-          </li>
-          <li class="community__avatar-item">
-            <picture>
-              <source
-                type="image/webp"
-                width="110"
-                height="110"
-                srcset="img/community/avatar-4@1x.webp 1x, img/community/avatar-4@2x.webp 2x"
-              />
-              <img
-                src="img/community/avatar-4@1x.jpg"
-                srcset="img/community/avatar-4@2x.jpg 2x"
-                width="110"
-                height="110"
-                alt="Academy graduate"
-                loading="lazy"
-              />
-            </picture>
-          </li>
-          <li class="community__avatar-item community__avatar-item--join">
-            <a
-              class="community__join"
-              href="#footer-form"
-              aria-label="Join the community"
-            >
-              <svg width="24" height="24" aria-hidden="true">
-                <use href="./__spritemap#sprite-plus"></use>
-              </svg>
-            </a>
-          </li>
-        </ul>
-
-        <div class="community__stats">
-          <div class="community__count">
-            <p class="community__count-number">Over&nbsp;100</p>
-            <p class="community__count-label">
-              graduates since the academy launched
-            </p>
-          </div>
-
-          <ul class="community__factoids">
-            <li class="community__factoid">
-              <p class="community__factoid-number">78%</p>
-              <p class="community__factoid-text">
-                would recommend Spreent Academy to their friends
-                and&nbsp;colleagues
-              </p>
-            </li>
-            <li class="community__factoid">
-              <p class="community__factoid-number">89%</p>
-              <p class="community__factoid-text">
-                rate the quality and value <br /> of knowledge gained at&nbsp;spreent
-              </p>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    <Community />
 
     <!-- ============================================ -->
     <!-- PRICE                                        -->
