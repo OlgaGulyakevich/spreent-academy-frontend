@@ -1,0 +1,42 @@
+---
+import { Icon } from 'astro-icon/components';
+import { footerLinks } from '../data/footer-links';
+---
+
+<div class="footer__bottom">
+  <div class="container footer__bottom-container">
+    <a class="logo logo--light footer__logo" href="/">
+      <Icon name="logo" width="267" height="59" aria-hidden="true" />
+      <span class="visually-hidden">spreent</span>
+    </a>
+
+    <nav class="footer__nav" aria-label="Footer navigation">
+      <ul class="footer__nav-list">
+        {
+          footerLinks.map((link) => (
+            <li>
+              <a class="footer__nav-link" href={link.href}>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="footer__meta">
+      <p class="footer__copyright">
+        Bohdan Honcharenko Academy&nbsp;&copy;&nbsp;2024
+      </p>
+      <a
+        class="footer__agency"
+        href="https://mish.design"
+        target="_blank"
+        rel="nofollow noopener noreferrer"
+      >
+        <span class="footer__agency-by">by</span>
+        <Icon name="mish" width="85" height="30" aria-label="mish" role="img" />
+      </a>
+    </div>
+  </div>
+</div>

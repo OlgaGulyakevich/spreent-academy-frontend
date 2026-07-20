@@ -1,0 +1,63 @@
+---
+import { Icon } from 'astro-icon/components';
+import CertificateStamp from './CertificateStamp.astro';
+---
+
+<section class="footer__certificate">
+  <div class="container footer__certificate-container">
+    <div
+      class="footer__certificate-inner"
+      data-reveal-stagger="120"
+      data-reveal-threshold="0.8"
+      data-reveal-threshold-mobile="0.6"
+    >
+      <div class="footer__certificate-info">
+        <h2 data-reveal="true" data-reveal-type="clip">
+          Get Your Course<br />
+          <span class="nowrap-desktop">Completion Certificate</span>
+        </h2>
+        <p data-reveal="true" data-reveal-type="fade">
+          Training is conducted under a&nbsp;state-issued educational license
+        </p>
+        <a
+          class="btn btn--primary footer__certificate-btn"
+          data-reveal="true"
+          href="#footer-form">Start Learning</a
+        >
+      </div>
+
+      <div
+        class="footer__certificate-card certificate"
+        data-reveal="true"
+        data-reveal-type="scale"
+        data-reveal-delay="0"
+        aria-hidden="true"
+      >
+        <div class="certificate__header">
+          <Icon class="certificate__logo" name="logo" width="106" height="23" />
+          <span class="certificate__tag">Profession: Systems Analyst</span>
+        </div>
+
+        <p class="certificate__title">Certificate</p>
+        <p class="certificate__note">Top performance on the course</p>
+
+        <dl class="certificate__details">
+          <div class="certificate__field certificate__field--name">
+            <dt>Awarded to</dt>
+            <dd>Ilya Petrov</dd>
+          </div>
+          <div class="certificate__field">
+            <dt>Completion date</dt>
+            <dd>July 15, 2024</dd>
+          </div>
+          <div class="certificate__field">
+            <dt>Course author</dt>
+            <dd>Innokentiy Bodrov</dd>
+          </div>
+        </dl>
+
+        <CertificateStamp />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,49 @@
+---
+// Decorative black-and-white certificate stamp — inline SVG, text on circular
+// paths. Kept inline (not astro-icon/external) so it inherits the page font and
+// the certificate__stamp-* CSS classes. Wrapping certificate card is aria-hidden.
+---
+
+<svg class="certificate__stamp" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <path
+      id="stamp-arc-top"
+      d="M 21,100 a 79,79 0 1 1 158,0 a 79,79 0 1 1 -158,0"></path>
+    <path
+      id="stamp-arc-bottom"
+      d="M 11,100 a 89,89 0 1 0 178,0 a 89,89 0 1 0 -178,0"></path>
+  </defs>
+  <circle class="certificate__stamp-ring" cx="100" cy="100" r="97"></circle>
+  <circle class="certificate__stamp-core" cx="100" cy="100" r="70"></circle>
+  <text class="certificate__stamp-top">
+    <textpath href="#stamp-arc-top" startoffset="25%" text-anchor="middle"
+      >spreent academy</textpath
+    >
+  </text>
+  <text class="certificate__stamp-bottom">
+    <textpath href="#stamp-arc-bottom" startoffset="25%" text-anchor="middle"
+      >upgrade your career through practice</textpath
+    >
+  </text>
+  <text
+    class="certificate__stamp-dot"
+    x="14"
+    y="100"
+    text-anchor="middle"
+    dominant-baseline="central">·</text
+  >
+  <text
+    class="certificate__stamp-dot"
+    x="186"
+    y="100"
+    text-anchor="middle"
+    dominant-baseline="central">·</text
+  >
+  <text
+    class="certificate__stamp-letter"
+    x="100"
+    y="100"
+    text-anchor="middle"
+    dominant-baseline="central">S</text
+  >
+</svg>

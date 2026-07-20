@@ -1,0 +1,89 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section class="footer__form-section" id="footer-form">
+  <div class="container footer__form-container">
+    <h2 class="footer__form-title" data-reveal="true">Upgrade Your Career</h2>
+
+    <form action="https://echo.htmlacademy.ru" method="POST">
+      <fieldset class="footer__form-fields">
+        <legend class="visually-hidden">Contact details</legend>
+
+        <div class="footer__form-field">
+          <label class="visually-hidden" for="form-name">Name</label>
+          <input
+            id="form-name"
+            type="text"
+            name="name"
+            placeholder="Name"
+            required
+            minlength="2"
+            autocomplete="name"
+          />
+          <span class="footer__form-error" aria-live="polite"></span>
+        </div>
+
+        <div class="footer__form-field">
+          <label class="visually-hidden" for="form-phone">Phone</label>
+          <input
+            id="form-phone"
+            type="tel"
+            name="phone"
+            placeholder="Phone"
+            required
+            autocomplete="tel"
+          />
+          <span class="footer__form-error" aria-live="polite"></span>
+        </div>
+
+        <div class="footer__form-field">
+          <label class="visually-hidden" for="form-email">Email</label>
+          <input
+            id="form-email"
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+            autocomplete="email"
+          />
+          <span class="footer__form-error" aria-live="polite"></span>
+        </div>
+      </fieldset>
+
+      <button class="btn btn--secondary footer__form-btn" type="submit">
+        Send Request
+      </button>
+    </form>
+
+    <p class="footer__form-disclaimer">
+      By clicking Send Request, you&nbsp;agree to the
+      <a class="footer__form-disclaimer-link" href="#"
+        >processing of&nbsp;your personal data</a
+      >
+    </p>
+
+    <div
+      class="footer__notification footer__notification--success"
+      role="alert"
+      aria-hidden="true"
+    >
+      <span class="footer__notification-icon">
+        <Icon name="check-mark" width="11" height="8" aria-hidden="true" />
+      </span>
+      <p>Thank you! We'll be in&nbsp;touch shortly.</p>
+    </div>
+
+    <div
+      class="footer__notification footer__notification--error"
+      role="alert"
+      aria-hidden="true"
+    >
+      <span class="footer__notification-icon">
+        <Icon name="close" width="14" height="14" aria-hidden="true" />
+      </span>
+      <p>Something went wrong. Please try&nbsp;again.</p>
+    </div>
+  </div>
+</section>
