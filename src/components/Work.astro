@@ -1,0 +1,39 @@
+---
+import { Icon } from 'astro-icon/components';
+import { workLogos } from '../data/work-logos';
+---
+
+<section class="work" data-test="work">
+  <div class="container work__container">
+    <div class="work__content">
+      <h2 class="work__title" data-reveal="true">
+        Where Our<br class="br-not-mobile" /> Graduates&nbsp;Work
+      </h2>
+      <p class="work__lead">
+        Start your career at&nbsp;<span class="text-nowrap">industry-leading</span
+        > companies
+      </p>
+      <a class="btn btn--primary work__btn" href="#footer-form">Join Us</a>
+    </div>
+
+    <ul class="work__logos">
+      {
+        workLogos.map((logo) =>
+          logo.empty ? (
+            <li class="work__logo-item work__logo-item--empty" aria-hidden="true" />
+          ) : (
+            <li class:list={['work__logo-item', `work__logo-item--${logo.modifier}`]}>
+              <Icon
+                name={logo.icon}
+                width={logo.width}
+                height={logo.height}
+                aria-label={logo.label}
+                role="img"
+              />
+            </li>
+          ),
+        )
+      }
+    </ul>
+  </div>
+</section>
