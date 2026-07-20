@@ -1,0 +1,7 @@
+dist
+node_modules
+node_modules.nosync
+public
+backstop_data
+.astro
+package-lock.json

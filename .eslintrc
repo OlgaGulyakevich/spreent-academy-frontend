@@ -8,4 +8,18 @@ env:
   es6: true
   browser: true
 
-extends: "htmlacademy/vanilla"
+extends:
+  - "htmlacademy/vanilla"   # JS rules for vanilla modules
+  - "prettier"              # turn off eslint formatting rules — Prettier owns formatting
+
+# .astro files need the Astro parser; their frontmatter is TypeScript,
+# so the inner parser is @typescript-eslint/parser
+overrides:
+  - files: ["*.astro"]
+    parser: "astro-eslint-parser"
+    parserOptions:
+      parser: "@typescript-eslint/parser"
+      extraFileExtensions: [".astro"]
+    extends:
+      - "plugin:astro/recommended"
+      - "prettier"

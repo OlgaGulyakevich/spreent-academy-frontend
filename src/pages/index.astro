@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
@@ -12,7 +12,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <header class="header" data-test="header">
     <div class="container header__container">
-
       <a class="logo header__logo" href="/">
         <svg width="127" height="28" aria-hidden="true">
           <use href="./__spritemap#sprite-logo"></use>
@@ -20,10 +19,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <span class="visually-hidden">spreent</span>
       </a>
 
-      <nav class="main-nav header__nav" id="main-nav" aria-label="Main navigation">
+      <nav
+        class="main-nav header__nav"
+        id="main-nav"
+        aria-label="Main navigation"
+      >
         <ul class="main-nav__list">
           <li class="main-nav__item">
-            <a class="main-nav__link main-nav__link--active" href="/" aria-current="page">About</a>
+            <a
+              class="main-nav__link main-nav__link--active"
+              href="/"
+              aria-current="page">About</a
+            >
           </li>
           <li class="main-nav__item">
             <a class="main-nav__link" href="#">Courses</a>
@@ -34,11 +41,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </ul>
       </nav>
 
-      <a class="btn btn--primary header__cta" href="#footer-form">Get Started</a>
+      <a class="btn btn--primary header__cta" href="#footer-form">Get Started</a
+      >
 
-      <button class="burger header__burger" type="button"
-              aria-label="Open menu" aria-expanded="false"
-              aria-controls="main-nav">
+      <button
+        class="burger header__burger"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="main-nav"
+      >
         <svg class="burger__icon" width="30" height="18" aria-hidden="true">
           <use href="./__spritemap#sprite-burger"></use>
         </svg>
@@ -46,34 +58,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <use href="./__spritemap#sprite-close"></use>
         </svg>
       </button>
-
     </div>
   </header>
 
   <main>
-
     <!-- ============================================ -->
     <!-- HERO                                         -->
     <!-- ============================================ -->
 
     <section class="hero" data-test="hero">
       <div class="container hero__container">
-
         <div class="hero__content">
-          <h1>—Skills, practice,<br class="br-not-mobile"> <span class="hero__title-shift">modern knowledge</span></h1>
-          <p>Core values that shape<br class="br-mobile"> every course at&nbsp;spreent</p>
-          <a class="btn btn--primary hero__btn" href="#footer-form">Start Learning</a>
+          <h1>
+            —Skills, practice,<br class="br-not-mobile" />
+            <span class="hero__title-shift">modern knowledge</span>
+          </h1>
+          <p>
+            Core values that shape<br class="br-mobile" /> every course at&nbsp;spreent
+          </p>
+          <a class="btn btn--primary hero__btn" href="#footer-form"
+            >Start Learning</a
+          >
         </div>
 
         <div class="hero__photos" aria-hidden="true">
-
           <div class="hero__photo hero__photo--artur">
             <picture>
-              <source type="image/webp" width="329" height="200"
-                srcset="img/hero/artur@1x.webp 1x, img/hero/artur@2x.webp 2x">
-              <img src="img/hero/artur@1x.jpg"
-                   srcset="img/hero/artur@2x.jpg 2x"
-                   width="329" height="200" alt="" fetchpriority="high">
+              <source
+                type="image/webp"
+                width="329"
+                height="200"
+                srcset="img/hero/artur@1x.webp 1x, img/hero/artur@2x.webp 2x"
+              />
+              <img
+                src="img/hero/artur@1x.jpg"
+                srcset="img/hero/artur@2x.jpg 2x"
+                width="329"
+                height="200"
+                alt=""
+                fetchpriority="high"
+              />
             </picture>
             <div class="hero__label">
               <svg width="26" height="26" aria-hidden="true">
@@ -85,11 +109,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
           <div class="hero__photo hero__photo--sergey">
             <picture>
-              <source type="image/webp" width="175" height="256"
-                srcset="img/hero/sergey@1x.webp 1x, img/hero/sergey@2x.webp 2x">
-              <img src="img/hero/sergey@1x.jpg"
-                   srcset="img/hero/sergey@2x.jpg 2x"
-                   width="175" height="256" alt="">
+              <source
+                type="image/webp"
+                width="175"
+                height="256"
+                srcset="img/hero/sergey@1x.webp 1x, img/hero/sergey@2x.webp 2x"
+              />
+              <img
+                src="img/hero/sergey@1x.jpg"
+                srcset="img/hero/sergey@2x.jpg 2x"
+                width="175"
+                height="256"
+                alt=""
+              />
             </picture>
             <div class="hero__label hero__label--cursor">
               <svg width="26" height="26" aria-hidden="true">
@@ -101,11 +133,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
           <div class="hero__photo hero__photo--misha">
             <picture>
-              <source type="image/webp" width="329" height="200"
-                srcset="img/hero/misha@1x.webp 1x, img/hero/misha@2x.webp 2x">
-              <img src="img/hero/misha@1x.jpg"
-                   srcset="img/hero/misha@2x.jpg 2x"
-                   width="329" height="200" alt="">
+              <source
+                type="image/webp"
+                width="329"
+                height="200"
+                srcset="img/hero/misha@1x.webp 1x, img/hero/misha@2x.webp 2x"
+              />
+              <img
+                src="img/hero/misha@1x.jpg"
+                srcset="img/hero/misha@2x.jpg 2x"
+                width="329"
+                height="200"
+                alt=""
+              />
             </picture>
             <div class="hero__label hero__label--cursor">
               <svg width="26" height="26" aria-hidden="true">
@@ -114,7 +154,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <span>Misha</span>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -125,22 +164,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <section class="about" data-test="about">
       <div class="container about__container">
-
-        <h2 class="about__title" data-reveal="true">Why Choose Spreent&nbsp;Academy</h2>
+        <h2 class="about__title" data-reveal="true">
+          Why Choose Spreent&nbsp;Academy
+        </h2>
 
         <ul class="about__cards">
-
           <li class="about__card about__card--teachers">
             <div class="about__card-tag">Who will teach you?</div>
             <h3>Expert Instructors</h3>
-            <p>Courses are taught by practicing experts currently working at&nbsp;industry-leading companies</p>
+            <p>
+              Courses are taught by practicing experts currently working
+              at&nbsp;industry-leading companies
+            </p>
             <div class="about__card-media" aria-hidden="true">
               <picture>
-                <source type="image/webp" width="441" height="489"
-                  srcset="img/about/teacher@1x.webp 1x, img/about/teacher@2x.webp 2x">
-                <img src="img/about/teacher@1x.png"
-                     srcset="img/about/teacher@2x.png 2x"
-                     width="441" height="489" alt="" loading="lazy">
+                <source
+                  type="image/webp"
+                  width="441"
+                  height="489"
+                  srcset="img/about/teacher@1x.webp 1x, img/about/teacher@2x.webp 2x"
+                />
+                <img
+                  src="img/about/teacher@1x.png"
+                  srcset="img/about/teacher@2x.png 2x"
+                  width="441"
+                  height="489"
+                  alt=""
+                  loading="lazy"
+                />
               </picture>
             </div>
           </li>
@@ -148,10 +199,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <li class="about__card about__card--skills">
             <div class="about__card-tag">What will I gain?</div>
             <h3>Hands-On Skills</h3>
-            <p>Hands-on, profession-specific knowledge. Train on&nbsp;real projects and build your own product</p>
+            <p>
+              Hands-on, profession-specific knowledge. Train on&nbsp;real
+              projects and build your own product
+            </p>
 
             <div class="about__card-decor" aria-hidden="true">
-
               <div class="about__card-decor-rect"></div>
               <div class="about__card-decor-circle"></div>
 
@@ -168,20 +221,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 </svg>
                 <span>UX Lead</span>
               </div>
-
             </div>
           </li>
 
           <li class="about__card about__card--knowledge">
             <div class="about__card-tag">What will I learn?</div>
             <h3>Modern Knowledge</h3>
-            <p>We know what employers need and build curricula around current market trends</p>
+            <p>
+              We know what employers need and build curricula around current
+              market trends
+            </p>
             <div class="about__card-logo" aria-hidden="true">
-              <img src="img/icons/spreent-circle.svg"
-                   width="562" height="552" alt="" loading="lazy">
+              <img
+                src="img/icons/spreent-circle.svg"
+                width="562"
+                height="552"
+                alt=""
+                loading="lazy"
+              />
             </div>
           </li>
-
         </ul>
       </div>
     </section>
@@ -192,48 +251,87 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <section class="community" data-test="community">
       <div class="container community__container">
-
         <h2 class="visually-hidden">Our Graduates</h2>
 
         <ul class="community__avatar-list">
           <li class="community__avatar-item">
             <picture>
-              <source type="image/webp" width="110" height="110"
-                srcset="img/community/avatar-1@1x.webp 1x, img/community/avatar-1@2x.webp 2x">
-              <img src="img/community/avatar-1@1x.jpg"
-                   srcset="img/community/avatar-1@2x.jpg 2x"
-                   width="110" height="110" alt="Academy graduate" loading="lazy">
+              <source
+                type="image/webp"
+                width="110"
+                height="110"
+                srcset="img/community/avatar-1@1x.webp 1x, img/community/avatar-1@2x.webp 2x"
+              />
+              <img
+                src="img/community/avatar-1@1x.jpg"
+                srcset="img/community/avatar-1@2x.jpg 2x"
+                width="110"
+                height="110"
+                alt="Academy graduate"
+                loading="lazy"
+              />
             </picture>
           </li>
           <li class="community__avatar-item">
             <picture>
-              <source type="image/webp" width="110" height="110"
-                srcset="img/community/avatar-2@1x.webp 1x, img/community/avatar-2@2x.webp 2x">
-              <img src="img/community/avatar-2@1x.jpg"
-                   srcset="img/community/avatar-2@2x.jpg 2x"
-                   width="110" height="110" alt="Academy graduate" loading="lazy">
+              <source
+                type="image/webp"
+                width="110"
+                height="110"
+                srcset="img/community/avatar-2@1x.webp 1x, img/community/avatar-2@2x.webp 2x"
+              />
+              <img
+                src="img/community/avatar-2@1x.jpg"
+                srcset="img/community/avatar-2@2x.jpg 2x"
+                width="110"
+                height="110"
+                alt="Academy graduate"
+                loading="lazy"
+              />
             </picture>
           </li>
           <li class="community__avatar-item">
             <picture>
-              <source type="image/webp" width="110" height="110"
-                srcset="img/community/avatar-3@1x.webp 1x, img/community/avatar-3@2x.webp 2x">
-              <img src="img/community/avatar-3@1x.jpg"
-                   srcset="img/community/avatar-3@2x.jpg 2x"
-                   width="110" height="110" alt="Academy graduate" loading="lazy">
+              <source
+                type="image/webp"
+                width="110"
+                height="110"
+                srcset="img/community/avatar-3@1x.webp 1x, img/community/avatar-3@2x.webp 2x"
+              />
+              <img
+                src="img/community/avatar-3@1x.jpg"
+                srcset="img/community/avatar-3@2x.jpg 2x"
+                width="110"
+                height="110"
+                alt="Academy graduate"
+                loading="lazy"
+              />
             </picture>
           </li>
           <li class="community__avatar-item">
             <picture>
-              <source type="image/webp" width="110" height="110"
-                srcset="img/community/avatar-4@1x.webp 1x, img/community/avatar-4@2x.webp 2x">
-              <img src="img/community/avatar-4@1x.jpg"
-                   srcset="img/community/avatar-4@2x.jpg 2x"
-                   width="110" height="110" alt="Academy graduate" loading="lazy">
+              <source
+                type="image/webp"
+                width="110"
+                height="110"
+                srcset="img/community/avatar-4@1x.webp 1x, img/community/avatar-4@2x.webp 2x"
+              />
+              <img
+                src="img/community/avatar-4@1x.jpg"
+                srcset="img/community/avatar-4@2x.jpg 2x"
+                width="110"
+                height="110"
+                alt="Academy graduate"
+                loading="lazy"
+              />
             </picture>
           </li>
           <li class="community__avatar-item community__avatar-item--join">
-            <a class="community__join" href="#footer-form" aria-label="Join the community">
+            <a
+              class="community__join"
+              href="#footer-form"
+              aria-label="Join the community"
+            >
               <svg width="24" height="24" aria-hidden="true">
                 <use href="./__spritemap#sprite-plus"></use>
               </svg>
@@ -242,23 +340,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </ul>
 
         <div class="community__stats">
-
           <div class="community__count">
             <p class="community__count-number">Over&nbsp;100</p>
-            <p class="community__count-label">graduates since the academy launched</p>
+            <p class="community__count-label">
+              graduates since the academy launched
+            </p>
           </div>
 
           <ul class="community__factoids">
             <li class="community__factoid">
               <p class="community__factoid-number">78%</p>
-              <p class="community__factoid-text">would recommend Spreent Academy to their friends and&nbsp;colleagues</p>
+              <p class="community__factoid-text">
+                would recommend Spreent Academy to their friends
+                and&nbsp;colleagues
+              </p>
             </li>
             <li class="community__factoid">
               <p class="community__factoid-number">89%</p>
-              <p class="community__factoid-text">rate the quality and value <br> of knowledge gained at&nbsp;spreent</p>
+              <p class="community__factoid-text">
+                rate the quality and value <br /> of knowledge gained at&nbsp;spreent
+              </p>
             </li>
           </ul>
-
         </div>
       </div>
     </section>
@@ -268,14 +371,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- ============================================ -->
 
     <section class="price" data-test="price">
-
       <div class="container price__container">
-
         <h2 class="price__title" data-reveal="true">Pricing</h2>
 
         <div class="price__card">
           <div class="price__card-inner">
-
             <div class="price__plan">
               <h3 class="price__plan-name">Basic Plan</h3>
               <ul class="price__features">
@@ -301,12 +401,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   <span class="price__old">552&nbsp;000&nbsp;₸</span>
                 </p>
               </div>
-              <a class="btn btn--primary price__btn" href="#footer-form">Buy Now</a>
+              <a class="btn btn--primary price__btn" href="#footer-form"
+                >Buy Now</a
+              >
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
 
@@ -316,10 +416,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <section class="work" data-test="work">
       <div class="container work__container">
-
         <div class="work__content">
-          <h2 class="work__title" data-reveal="true">Where Our<br class="br-not-mobile"> Graduates&nbsp;Work</h2>
-          <p class="work__lead">Start your career at&nbsp;<span class="text-nowrap">industry-leading</span> companies</p>
+          <h2 class="work__title" data-reveal="true">
+            Where Our<br class="br-not-mobile" /> Graduates&nbsp;Work
+          </h2>
+          <p class="work__lead">
+            Start your career at&nbsp;<span class="text-nowrap"
+              >industry-leading</span
+            > companies
+          </p>
           <a class="btn btn--primary work__btn" href="#footer-form">Join Us</a>
         </div>
 
@@ -339,7 +444,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <use href="./__spritemap#sprite-netflix"></use>
             </svg>
           </li>
-          <li class="work__logo-item work__logo-item--empty" aria-hidden="true"></li>
+          <li class="work__logo-item work__logo-item--empty" aria-hidden="true">
+          </li>
           <li class="work__logo-item work__logo-item--booking">
             <svg width="165" height="28" aria-label="Booking.com" role="img">
               <use href="./__spritemap#sprite-booking"></use>
@@ -371,10 +477,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </svg>
           </li>
         </ul>
-
       </div>
     </section>
-
   </main>
 
   <!-- ============================================ -->
@@ -382,19 +486,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- ============================================ -->
 
   <footer class="footer" data-test="footer">
-
     <section class="footer__certificate">
       <div class="container footer__certificate-container">
-        <div class="footer__certificate-inner" data-reveal-stagger="120" data-reveal-threshold="0.8" data-reveal-threshold-mobile="0.6">
-
+        <div
+          class="footer__certificate-inner"
+          data-reveal-stagger="120"
+          data-reveal-threshold="0.8"
+          data-reveal-threshold-mobile="0.6"
+        >
           <div class="footer__certificate-info">
-            <h2 data-reveal="true" data-reveal-type="clip">Get Your Course<br> <span class="nowrap-desktop">Completion Certificate</span></h2>
-            <p data-reveal="true" data-reveal-type="fade">Training is conducted under a&nbsp;state-issued educational license</p>
-            <a class="btn btn--primary footer__certificate-btn" data-reveal="true" href="#footer-form">Start Learning</a>
+            <h2 data-reveal="true" data-reveal-type="clip">
+              Get Your Course<br />
+              <span class="nowrap-desktop">Completion Certificate</span>
+            </h2>
+            <p data-reveal="true" data-reveal-type="fade">
+              Training is conducted under a&nbsp;state-issued educational
+              license
+            </p>
+            <a
+              class="btn btn--primary footer__certificate-btn"
+              data-reveal="true"
+              href="#footer-form">Start Learning</a
+            >
           </div>
 
-          <div class="footer__certificate-card certificate" data-reveal="true" data-reveal-type="scale" data-reveal-delay="0" aria-hidden="true">
-
+          <div
+            class="footer__certificate-card certificate"
+            data-reveal="true"
+            data-reveal-type="scale"
+            data-reveal-delay="0"
+            aria-hidden="true"
+          >
             <div class="certificate__header">
               <svg class="certificate__logo" width="106" height="23">
                 <use href="./__spritemap#sprite-logo"></use>
@@ -420,34 +542,71 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </div>
             </dl>
 
-            <svg class="certificate__stamp" width="200" height="200" viewBox="0 0 200 200">
+            <svg
+              class="certificate__stamp"
+              width="200"
+              height="200"
+              viewBox="0 0 200 200"
+            >
               <defs>
-                <path id="stamp-arc-top" d="M 21,100 a 79,79 0 1 1 158,0 a 79,79 0 1 1 -158,0"></path>
-                <path id="stamp-arc-bottom" d="M 11,100 a 89,89 0 1 0 178,0 a 89,89 0 1 0 -178,0"></path>
+                <path
+                  id="stamp-arc-top"
+                  d="M 21,100 a 79,79 0 1 1 158,0 a 79,79 0 1 1 -158,0"></path>
+                <path
+                  id="stamp-arc-bottom"
+                  d="M 11,100 a 89,89 0 1 0 178,0 a 89,89 0 1 0 -178,0"></path>
               </defs>
-              <circle class="certificate__stamp-ring" cx="100" cy="100" r="97"></circle>
-              <circle class="certificate__stamp-core" cx="100" cy="100" r="70"></circle>
+              <circle class="certificate__stamp-ring" cx="100" cy="100" r="97"
+              ></circle>
+              <circle class="certificate__stamp-core" cx="100" cy="100" r="70"
+              ></circle>
               <text class="certificate__stamp-top">
-                <textpath href="#stamp-arc-top" startoffset="25%" text-anchor="middle">spreent academy</textpath>
+                <textpath
+                  href="#stamp-arc-top"
+                  startoffset="25%"
+                  text-anchor="middle">spreent academy</textpath
+                >
               </text>
               <text class="certificate__stamp-bottom">
-                <textpath href="#stamp-arc-bottom" startoffset="25%" text-anchor="middle">upgrade your career through practice</textpath>
+                <textpath
+                  href="#stamp-arc-bottom"
+                  startoffset="25%"
+                  text-anchor="middle"
+                  >upgrade your career through practice</textpath
+                >
               </text>
-              <text class="certificate__stamp-dot" x="14" y="100" text-anchor="middle" dominant-baseline="central">·</text>
-              <text class="certificate__stamp-dot" x="186" y="100" text-anchor="middle" dominant-baseline="central">·</text>
-              <text class="certificate__stamp-letter" x="100" y="100" text-anchor="middle" dominant-baseline="central">S</text>
+              <text
+                class="certificate__stamp-dot"
+                x="14"
+                y="100"
+                text-anchor="middle"
+                dominant-baseline="central">·</text
+              >
+              <text
+                class="certificate__stamp-dot"
+                x="186"
+                y="100"
+                text-anchor="middle"
+                dominant-baseline="central">·</text
+              >
+              <text
+                class="certificate__stamp-letter"
+                x="100"
+                y="100"
+                text-anchor="middle"
+                dominant-baseline="central">S</text
+              >
             </svg>
-
           </div>
-
         </div>
       </div>
     </section>
 
     <section class="footer__form-section" id="footer-form">
       <div class="container footer__form-container">
-
-        <h2 class="footer__form-title" data-reveal="true">Upgrade Your Career</h2>
+        <h2 class="footer__form-title" data-reveal="true">
+          Upgrade Your Career
+        </h2>
 
         <form action="https://echo.htmlacademy.ru" method="POST">
           <fieldset class="footer__form-fields">
@@ -455,25 +614,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
             <div class="footer__form-field">
               <label class="visually-hidden" for="form-name">Name</label>
-              <input id="form-name" type="text" name="name"
-                     placeholder="Name" required minlength="2" autocomplete="name">
+              <input
+                id="form-name"
+                type="text"
+                name="name"
+                placeholder="Name"
+                required
+                minlength="2"
+                autocomplete="name"
+              />
               <span class="footer__form-error" aria-live="polite"></span>
             </div>
 
             <div class="footer__form-field">
               <label class="visually-hidden" for="form-phone">Phone</label>
-              <input id="form-phone" type="tel" name="phone"
-                     placeholder="Phone" required autocomplete="tel">
+              <input
+                id="form-phone"
+                type="tel"
+                name="phone"
+                placeholder="Phone"
+                required
+                autocomplete="tel"
+              />
               <span class="footer__form-error" aria-live="polite"></span>
             </div>
 
             <div class="footer__form-field">
               <label class="visually-hidden" for="form-email">Email</label>
-              <input id="form-email" type="email" name="email"
-                     placeholder="Email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" autocomplete="email">
+              <input
+                id="form-email"
+                type="email"
+                name="email"
+                placeholder="Email"
+                required
+                pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                autocomplete="email"
+              />
               <span class="footer__form-error" aria-live="polite"></span>
             </div>
-
           </fieldset>
 
           <button class="btn btn--secondary footer__form-btn" type="submit">
@@ -483,10 +661,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
         <p class="footer__form-disclaimer">
           By clicking Send Request, you&nbsp;agree to the
-          <a class="footer__form-disclaimer-link" href="#">processing of&nbsp;your personal data</a>
+          <a class="footer__form-disclaimer-link" href="#"
+            >processing of&nbsp;your personal data</a
+          >
         </p>
 
-        <div class="footer__notification footer__notification--success" role="alert" aria-hidden="true">
+        <div
+          class="footer__notification footer__notification--success"
+          role="alert"
+          aria-hidden="true"
+        >
           <span class="footer__notification-icon">
             <svg width="11" height="8" aria-hidden="true">
               <use href="./__spritemap#sprite-check-mark"></use>
@@ -495,7 +679,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <p>Thank you! We'll be in&nbsp;touch shortly.</p>
         </div>
 
-        <div class="footer__notification footer__notification--error" role="alert" aria-hidden="true">
+        <div
+          class="footer__notification footer__notification--error"
+          role="alert"
+          aria-hidden="true"
+        >
           <span class="footer__notification-icon">
             <svg width="14" height="14" aria-hidden="true">
               <use href="./__spritemap#sprite-close"></use>
@@ -503,13 +691,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </span>
           <p>Something went wrong. Please try&nbsp;again.</p>
         </div>
-
       </div>
     </section>
 
     <div class="footer__bottom">
       <div class="container footer__bottom-container">
-
         <a class="logo logo--light footer__logo" href="/">
           <svg width="267" height="59" aria-hidden="true">
             <use href="./__spritemap#sprite-logo"></use>
@@ -529,18 +715,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </nav>
 
         <div class="footer__meta">
-          <p class="footer__copyright">Bohdan Honcharenko Academy&nbsp;&copy;&nbsp;2024</p>
-          <a class="footer__agency" href="https://mish.design" target="_blank"
-             rel="nofollow noopener noreferrer">
+          <p class="footer__copyright">
+            Bohdan Honcharenko Academy&nbsp;&copy;&nbsp;2024
+          </p>
+          <a
+            class="footer__agency"
+            href="https://mish.design"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >
             <span class="footer__agency-by">by</span>
             <svg width="85" height="30" aria-label="mish" role="img">
               <use href="./__spritemap#sprite-mish"></use>
             </svg>
           </a>
         </div>
-
       </div>
     </div>
-
   </footer>
 </BaseLayout>
