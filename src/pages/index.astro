@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
 import Community from "../components/Community.astro";
+import Price from "../components/Price.astro";
 ---
 
 <BaseLayout
@@ -19,49 +20,7 @@ import Community from "../components/Community.astro";
 
     <Community />
 
-    <!-- ============================================ -->
-    <!-- PRICE                                        -->
-    <!-- ============================================ -->
-
-    <section class="price" data-test="price">
-      <div class="container price__container">
-        <h2 class="price__title" data-reveal="true">Pricing</h2>
-
-        <div class="price__card">
-          <div class="price__card-inner">
-            <div class="price__plan">
-              <h3 class="price__plan-name">Basic Plan</h3>
-              <ul class="price__features">
-                <li>Lifetime access to&nbsp;materials</li>
-                <li>With feedback and&nbsp;assignments</li>
-                <li>Portfolio and resume review</li>
-                <li>Start immediately or with a&nbsp;group</li>
-                <li>24% discount when paying in&nbsp;full</li>
-                <li>Certificate upon completion</li>
-              </ul>
-            </div>
-
-            <div class="price__pricing">
-              <p class="price__label">Price</p>
-              <div class="price__amounts">
-                <p class="price__amount">
-                  <span class="price__current">83&nbsp;890&nbsp;₽</span>
-                  <span class="price__old">110&nbsp;388&nbsp;₽</span>
-                </p>
-                <p class="price__or">or</p>
-                <p class="price__amount">
-                  <span class="price__current">419&nbsp;000&nbsp;₸</span>
-                  <span class="price__old">552&nbsp;000&nbsp;₸</span>
-                </p>
-              </div>
-              <a class="btn btn--primary price__btn" href="#footer-form"
-                >Buy Now</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <Price />
 
     <!-- ============================================ -->
     <!-- WORK                                         -->
