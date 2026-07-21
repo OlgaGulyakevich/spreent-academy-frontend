@@ -2,14 +2,6 @@
 // Work Section
 // =============================================
 
-.work {
-  // Baseline: content-visibility — Newly Available (Safari 18), поэтому за @supports
-  @supports (content-visibility: auto) {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 800px;
-  }
-}
-
 .work__container {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr)) repeat(3, clamp(160px, 16.67vw, 240px));

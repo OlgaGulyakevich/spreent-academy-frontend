@@ -4,12 +4,6 @@
 
 .footer {
   background-color: $color-bg-pure-white;
-
-  // Baseline: content-visibility — Newly Available (Safari 18), поэтому за @supports
-  @supports (content-visibility: auto) {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 1200px;
-  }
 }
 
 // ---------------------------------
