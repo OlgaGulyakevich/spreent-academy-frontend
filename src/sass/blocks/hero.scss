@@ -67,6 +67,14 @@
     max-width: none;
     animation-name: hero-fade-in-mobile;
 
+    // Balance line lengths on mobile → avoids orphaned last words like "knowledge"
+    // (progressive enhancement: falls back to normal wrapping where unsupported)
+    text-wrap: balance;
+
+    // Shrink on narrow screens so "modern knowledge" fits one line (2-line wrap
+    // like 480), instead of orphaning "knowledge". Clamps to 40px at ≥480.
+    @include fluid-val(font-size, 29px, 40px, 320, 480);
+
     &::before {
       display: none;
     }

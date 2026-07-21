@@ -52,6 +52,10 @@
     "node": "22.13.1"
   },
   "overrides": {
-    "es5-ext": "0.10.53"
+    "es5-ext": "0.10.53",
+    "cookie": "2.0.1",
+    "express": {
+      "cookie": "0.7.2"
+    }
   }
 }

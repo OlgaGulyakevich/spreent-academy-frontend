@@ -5,10 +5,10 @@ export type FooterLink = {
 };
 
 export const footerLinks: FooterLink[] = [
-  { label: 'About', href: '/' },
-  { label: 'Corporate Training', href: '/' },
-  { label: 'Payment', href: '/' },
-  { label: 'My Account', href: '/' },
-  { label: 'Contact\u00A0Us', href: '#footer-form' }, // real anchor - the contact form
-  { label: 'Privacy Policy', href: '/' },
+  { label: "About", href: "/" },
+  { label: "Corporate Training", href: "/" },
+  { label: "Payment", href: "/" },
+  { label: "My Account", href: "/" },
+  { label: "Contact\u00A0Us", href: "#footer-form" }, // real anchor - the contact form
+  { label: "Privacy Policy", href: "/" },
 ];

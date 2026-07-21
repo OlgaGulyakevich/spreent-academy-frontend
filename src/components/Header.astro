@@ -1,6 +1,6 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { navLinks } from '../data/nav-links';
+import { Icon } from "astro-icon/components";
+import { navLinks } from "../data/nav-links";
 ---
 
 <header class="header" data-test="header">
@@ -10,15 +10,22 @@ import { navLinks } from '../data/nav-links';
       <span class="visually-hidden">spreent</span>
     </a>
 
-    <nav class="main-nav header__nav" id="main-nav" aria-label="Main navigation">
+    <nav
+      class="main-nav header__nav"
+      id="main-nav"
+      aria-label="Main navigation"
+    >
       <ul class="main-nav__list">
         {
           navLinks.map((link) => (
             <li class="main-nav__item">
               <a
-                class:list={['main-nav__link', { 'main-nav__link--active': link.active }]}
+                class:list={[
+                  "main-nav__link",
+                  { "main-nav__link--active": link.active },
+                ]}
                 href={link.href}
-                aria-current={link.active ? 'page' : undefined}
+                aria-current={link.active ? "page" : undefined}
               >
                 {link.label}
               </a>
@@ -37,8 +44,20 @@ import { navLinks } from '../data/nav-links';
       aria-expanded="false"
       aria-controls="main-nav"
     >
-      <Icon class="burger__icon" name="burger" width="30" height="18" aria-hidden="true" />
-      <Icon class="burger__close" name="close" width="30" height="18" aria-hidden="true" />
+      <Icon
+        class="burger__icon"
+        name="burger"
+        width="30"
+        height="18"
+        aria-hidden="true"
+      />
+      <Icon
+        class="burger__close"
+        name="close"
+        width="30"
+        height="18"
+        aria-hidden="true"
+      />
     </button>
   </div>
 </header>

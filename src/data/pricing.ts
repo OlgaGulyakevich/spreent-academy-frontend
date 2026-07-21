@@ -8,15 +8,15 @@ export type PriceAmount = {
 };
 
 export const features: string[] = [
-  'Lifetime access to\u00A0materials',
-  'With feedback and\u00A0assignments',
-  'Portfolio and resume review',
-  'Start immediately or with a\u00A0group',
-  '24% discount when paying in\u00A0full',
-  'Certificate upon completion',
+  "Lifetime access to\u00A0materials",
+  "With feedback and\u00A0assignments",
+  "Portfolio and resume review",
+  "Start immediately or with a\u00A0group",
+  "24% discount when paying in\u00A0full",
+  "Certificate upon completion",
 ];
 
 export const amounts: PriceAmount[] = [
-  { current: '83\u00A0890\u00A0₽', old: '110\u00A0388\u00A0₽' },
-  { current: '419\u00A0000\u00A0₸', old: '552\u00A0000\u00A0₸' },
+  { current: "83\u00A0890\u00A0₽", old: "110\u00A0388\u00A0₽" },
+  { current: "419\u00A0000\u00A0₸", old: "552\u00A0000\u00A0₸" },
 ];
