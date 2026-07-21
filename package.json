@@ -13,7 +13,7 @@
     "lint-js": "eslint src --ext .js,.astro --fix",
     "ls-lint": "ls-lint",
     "format": "prettier --write \"src/**/*.{astro,ts}\"",
-    "lint": "npm run check && npm run stylelint && npm run lint-js && npm run ls-lint"
+    "lint": "npm run format && npm run check && npm run stylelint && npm run lint-js && npm run ls-lint"
   },
   "dependencies": {
     "imask": "7.6.1"
