@@ -9,6 +9,8 @@
  * @module about-rotate
  */
 
+import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+
 const SELECTOR = '.about__card-logo img';
 const ROTATION_SPEED = 0.15;
 
@@ -16,9 +18,7 @@ const ROTATION_SPEED = 0.15;
  * Initializes scroll-driven rotation on the about section circle logo.
  */
 const initAboutRotate = () => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion()) {
     return;
   }
 

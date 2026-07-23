@@ -17,6 +17,8 @@
  * - Already at target (distance === 0) → focus immediately, no rAF
  */
 
+import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+
 const MIN_DURATION = 900;
 const MAX_DURATION = 1800;
 const PX_PER_MS = 2.0;
@@ -33,14 +35,6 @@ const FIRST_FIELD_SELECTOR = 'input:not([type="hidden"]), textarea, select';
  * current one should cancel.
  */
 let currentAnimationToken = 0;
-
-/**
- * Checks if user has `prefers-reduced-motion: reduce` enabled.
- *
- * @returns {boolean}
- */
-const prefersReducedMotion = () =>
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /**
  * easeInOutQuart — smooth acceleration and deceleration.

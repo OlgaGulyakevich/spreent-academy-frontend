@@ -6,6 +6,9 @@
  * @module hero-parallax
  */
 
+import { lerp } from '../utils/lerp.js';
+import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+
 const PHOTO_SELECTORS = [
   { selector: '.hero__photo--artur', scrollSpeed: 0.06, mouseSpeed: 0.015 },
   { selector: '.hero__photo--sergey', scrollSpeed: 0.03, mouseSpeed: 0.01 },
@@ -17,21 +20,10 @@ const MOBILE_BREAKPOINT = 1024;
 const LERP_FACTOR = 0.08;
 
 /**
- * Linear interpolation — smooths movement between current and target.
- * @param {number} current - Current value
- * @param {number} target - Target value
- * @param {number} factor - Smoothing factor (0–1, lower = smoother)
- * @returns {number}
- */
-const lerp = (current, target, factor) => current + (target - current) * factor;
-
-/**
  * Initializes hero parallax effect.
  */
 const initHeroParallax = () => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion()) {
     return;
   }
 

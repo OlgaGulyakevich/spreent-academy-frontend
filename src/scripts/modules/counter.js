@@ -7,6 +7,8 @@
  * @module counter
  */
 
+import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+
 const FACTOIDS_SELECTOR = '.community__factoids';
 const NUMBER_SELECTOR = '.community__factoid-number';
 const DURATION_MS = 1200;
@@ -71,9 +73,7 @@ const animateCounter = (el) => {
  * on first intersection, animates factoid numbers with stagger.
  */
 const initCounter = () => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion()) {
     return;
   }
 

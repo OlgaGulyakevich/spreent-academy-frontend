@@ -14,6 +14,8 @@
  * @module scroll-reveal
  */
 
+import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+
 const SELECTORS = {
   REVEAL: '[data-reveal="true"]',
   STAGGER: '[data-reveal-stagger]',
@@ -113,9 +115,7 @@ const handleIntersection = (entries, observer) => {
  * Respects prefers-reduced-motion — skips animation entirely.
  */
 const initScrollReveal = () => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion()) {
     return;
   }
 

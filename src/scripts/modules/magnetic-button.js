@@ -10,28 +10,21 @@
  * @module magnetic-button
  */
 
+import { lerp } from '../utils/lerp.js';
+import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+
 const BUTTON_SELECTOR = '.hero__btn';
 const ATTRACT_RADIUS = 120;
 const PULL_FACTOR = 0.4;
 const LERP_FACTOR = 0.15;
 
 /**
- * Linear interpolation.
- * @param {number} current - Current value
- * @param {number} target - Target value
- * @param {number} factor - Smoothing (0–1)
- * @returns {number}
- */
-const lerp = (current, target, factor) => current + (target - current) * factor;
-
-/**
  * Initializes magnetic button effect on hero CTA.
  */
 const initMagneticButton = () => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hasHover = window.matchMedia('(hover: hover)').matches;
 
-  if (prefersReducedMotion || !hasHover) {
+  if (prefersReducedMotion() || !hasHover) {
     return;
   }
 

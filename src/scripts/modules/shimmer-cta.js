@@ -9,6 +9,8 @@
  * @module shimmer-cta
  */
 
+import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+
 const BUTTON_SELECTOR = '.footer__form-btn';
 const SHIMMER_CLASS = 'is-shimmer';
 const DWELL_DELAY_MS = 2000; // wait until the user has settled on the form and is deciding
@@ -20,9 +22,7 @@ const OBSERVER_OPTIONS = { threshold: 1 };
  * button is absent.
  */
 const initShimmerCta = () => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion()) {
     return;
   }
 

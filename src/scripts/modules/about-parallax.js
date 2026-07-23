@@ -6,6 +6,9 @@
  * @module about-parallax
  */
 
+import { lerp } from '../utils/lerp.js';
+import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+
 const CARD_SELECTORS = [
   { selector: '.about__card--teachers', speed: 0.15 },
   { selector: '.about__card--skills', speed: 0.04 },
@@ -17,21 +20,10 @@ const MOBILE_BREAKPOINT = 1024;
 const LERP_FACTOR = 0.08;
 
 /**
- * Linear interpolation.
- * @param {number} current - Current value
- * @param {number} target - Target value
- * @param {number} factor - Smoothing (0–1)
- * @returns {number}
- */
-const lerp = (current, target, factor) => current + (target - current) * factor;
-
-/**
  * Initializes about cards parallax effect.
  */
 const initAboutParallax = () => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion()) {
     return;
   }
 
