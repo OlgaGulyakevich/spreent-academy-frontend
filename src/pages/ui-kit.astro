@@ -9,12 +9,42 @@ import { features, amounts } from "../data/pricing";
 const colors = [
   { mod: "blue", token: "$color-blue", hex: "#1859ff", role: "Primary / CTA" },
   { mod: "indigo", token: "$color-indigo", hex: "#0039cc", role: "Deep blue" },
-  { mod: "dark", token: "$color-dark", hex: "#0d1627", role: "Base dark / text" },
-  { mod: "secondary", token: "$color-secondary", hex: "#d9f243", role: "Accent lime" },
-  { mod: "light", token: "$color-light", hex: "#eef4f6", role: "Light background" },
-  { mod: "stroke", token: "$color-stroke", hex: "#dee9ed", role: "Borders / dividers" },
-  { mod: "light-blue", token: "$color-light-blue", hex: "#d1deff", role: "Decorative" },
-  { mod: "error", token: "$color-error", hex: "#ff4949", role: "Validation error" },
+  {
+    mod: "dark",
+    token: "$color-dark",
+    hex: "#0d1627",
+    role: "Base dark / text",
+  },
+  {
+    mod: "secondary",
+    token: "$color-secondary",
+    hex: "#d9f243",
+    role: "Accent lime",
+  },
+  {
+    mod: "light",
+    token: "$color-light",
+    hex: "#eef4f6",
+    role: "Light background",
+  },
+  {
+    mod: "stroke",
+    token: "$color-stroke",
+    hex: "#dee9ed",
+    role: "Borders / dividers",
+  },
+  {
+    mod: "light-blue",
+    token: "$color-light-blue",
+    hex: "#d1deff",
+    role: "Decorative",
+  },
+  {
+    mod: "error",
+    token: "$color-error",
+    hex: "#ff4949",
+    role: "Validation error",
+  },
   { mod: "white", token: "$color-white", hex: "#ffffff", role: "White" },
 ];
 
@@ -22,7 +52,14 @@ const colors = [
 const iconGroups = [
   {
     title: "Interface",
-    names: ["burger", "check-mark", "close", "cursor-arrow", "cursor-hand", "plus"],
+    names: [
+      "burger",
+      "check-mark",
+      "close",
+      "cursor-arrow",
+      "cursor-hand",
+      "plus",
+    ],
   },
   {
     title: "Logos",
@@ -43,86 +80,115 @@ const iconGroups = [
 
 // Motion catalog — the public record of the site's animation engineering
 // (physics-based easing, GPU-only props, reduced-motion on every effect).
+// Ordered top → bottom of the landing (header → hero → … → footer), with the
+// cross-cutting effects grouped as "Global" at the end — so the catalog reads
+// as a scroll-map of the live page's motion.
 const motion = [
   {
-    effect: "Magnetic button",
-    what: "Hero CTA drifts toward the cursor",
-    principle: "lerp + rAF (spring-like); GPU translate, hover-only, reduced-motion",
-  },
-  {
-    effect: "Parallax",
-    what: "Hero photos & about cards shift on scroll + mouse",
-    principle: "additive layers, lerp smoothing; GPU translate, passive, reduced-motion",
-  },
-  {
-    effect: "Scroll-reveal",
-    what: "Sections fade & slide up as they enter view",
-    principle: "IntersectionObserver, 70ms stagger; opacity/transform, reduced-motion",
-  },
-  {
-    effect: "Count-up",
-    what: "Community stats animate 0 → 78% / 89%",
-    principle: "ease-out cubic, once on view; reduced-motion → jumps to final value",
-  },
-  {
-    effect: "Scroll progress",
-    what: "Bar fills across the header on scroll",
-    principle: "transform scaleX (not width) → runs on the GPU",
-  },
-  {
     effect: "Sticky header + blur",
+    where: "Header",
     what: "Header sticks, gains a frosted blur once scrolled",
     principle: "backdrop-filter; the colour fade is kept under reduced-motion",
   },
   {
-    effect: "Logo rotation",
-    what: "About circle logo spins with scroll direction",
-    principle: "JS writes --rotation, CSS applies it; GPU, reduced-motion",
-  },
-  {
-    effect: "Shimmer CTA",
-    what: "One-time glint on Submit once the user settles on it",
-    principle: "IO + 2s dwell + cancel on scroll-away / form engage; GPU, reduced-motion",
+    effect: "Scroll progress",
+    where: "Header",
+    what: "Bar fills across the header on scroll",
+    principle: "transform scaleX (not width) → runs on the GPU",
   },
   {
     effect: "Burger ↔ X",
+    where: "Header",
     what: "Icon morphs, timed to land with the drawer",
-    principle: "transitions (interruptible) + spring pop; reduced-motion → plain crossfade",
+    principle:
+      "transitions (interruptible) + spring pop; reduced-motion → plain crossfade",
   },
   {
     effect: "Mobile drawer",
+    where: "Header",
     what: "Menu grows open, fades-then-snaps closed",
-    principle: "grid 0fr→1fr; ease-out (never ease-in); fade-then-snap avoids flicker",
+    principle:
+      "grid 0fr→1fr; ease-out (never ease-in); fade-then-snap avoids flicker",
   },
   {
     effect: "Frosted glass menu",
+    where: "Header",
     what: "Blurred translucent backdrop behind the open menu",
     principle: "backdrop-filter: blur + a solid fallback colour",
   },
   {
     effect: "Nav underline",
+    where: "Header",
     what: "Underline sweeps left→right on hover",
     principle: "scaleX from left, interruptible; GPU, hover-gated",
   },
   {
+    effect: "Magnetic button",
+    where: "Hero",
+    what: "Hero CTA drifts toward the cursor",
+    principle:
+      "lerp + rAF (spring-like); GPU translate, hover-only, reduced-motion",
+  },
+  {
+    effect: "Parallax",
+    where: "Hero + About",
+    what: "Hero photos & about cards shift on scroll + mouse",
+    principle:
+      "additive layers, lerp smoothing; GPU translate, passive, reduced-motion",
+  },
+  {
+    effect: "Logo rotation",
+    where: "About",
+    what: "About circle logo spins with scroll direction",
+    principle: "JS writes --rotation, CSS applies it; GPU, reduced-motion",
+  },
+  {
+    effect: "Count-up",
+    where: "Community",
+    what: "Community stats animate 0 → 78% / 89%",
+    principle:
+      "ease-out cubic, once on view; reduced-motion → jumps to final value",
+  },
+  {
+    effect: "Gradient-spin",
+    where: "Community",
+    what: "Conic-gradient border rotates on the community +",
+    principle:
+      "@property + linear (continuous motion); reduced-motion → static",
+  },
+  {
+    effect: "Ambient glow",
+    where: "Work",
+    what: "Soft glow sweeps across the work logos",
+    principle:
+      "opacity of a pseudo-element (not box-shadow) → GPU; reduced-motion",
+  },
+  {
+    effect: "Shimmer CTA",
+    where: "Footer",
+    what: "One-time glint on Submit once the user settles on it",
+    principle:
+      "IO + 2s dwell + cancel on scroll-away / form engage; GPU, reduced-motion",
+  },
+  {
+    effect: "Scroll-reveal",
+    where: "Global",
+    what: "Sections fade & slide up as they enter view",
+    principle:
+      "IntersectionObserver, 70ms stagger; opacity/transform, reduced-motion",
+  },
+  {
     effect: "Button press",
+    where: "Global",
     what: "Tactile scale on :active, plus hover / focus states",
     principle: "spring easing, scale(0.95); GPU press feedback",
   },
   {
-    effect: "Ambient glow",
-    what: "Soft glow sweeps across the work logos",
-    principle: "opacity of a pseudo-element (not box-shadow) → GPU; reduced-motion",
-  },
-  {
-    effect: "Gradient-spin",
-    what: "Conic-gradient border rotates on the community +",
-    principle: "@property + linear (continuous motion); reduced-motion → static",
-  },
-  {
     effect: "Smooth scroll",
+    where: "Global",
     what: "Eased scroll to anchor links",
-    principle: "rAF easeInOutQuart, interruptible; reduced-motion → instant jump",
+    principle:
+      "rAF easeInOutQuart, interruptible; reduced-motion → instant jump",
   },
 ];
 ---
@@ -161,7 +227,9 @@ const motion = [
 
           <div class="ui-kit__type-row">
             <span class="ui-kit__type-label">title-h3</span>
-            <p class="ui-kit__type-sample ui-kit__type-sample--h3">Basic Plan</p>
+            <p class="ui-kit__type-sample ui-kit__type-sample--h3">
+              Basic Plan
+            </p>
           </div>
 
           <div class="ui-kit__type-row">
@@ -190,7 +258,9 @@ const motion = [
 
           <div class="ui-kit__type-row">
             <span class="ui-kit__type-label">text-ui</span>
-            <p class="ui-kit__type-sample ui-kit__type-sample--ui">Get Started</p>
+            <p class="ui-kit__type-sample ui-kit__type-sample--ui">
+              Get Started
+            </p>
           </div>
 
           <div class="ui-kit__type-row">
@@ -215,7 +285,7 @@ const motion = [
           {
             colors.map((color) => (
               <div class="ui-kit__swatch-item">
-                <div class={`ui-kit__swatch ui-kit__swatch--${color.mod}`}></div>
+                <div class={`ui-kit__swatch ui-kit__swatch--${color.mod}`} />
                 <p class="ui-kit__swatch-token">{color.token}</p>
                 <p class="ui-kit__swatch-role">{color.role}</p>
                 <p class="ui-kit__swatch-hex">{color.hex}</p>
@@ -233,7 +303,8 @@ const motion = [
           <div class="ui-kit__button-group">
             <span class="ui-kit__button-label">btn--primary</span>
             <div class="ui-kit__button-row">
-              <button class="btn btn--primary" type="button">Get Started</button>
+              <button class="btn btn--primary" type="button">Get Started</button
+              >
               <button class="btn btn--primary" type="button" disabled>
                 Disabled
               </button>
@@ -243,7 +314,9 @@ const motion = [
           <div class="ui-kit__button-group">
             <span class="ui-kit__button-label">btn--secondary</span>
             <div class="ui-kit__button-row">
-              <button class="btn btn--secondary" type="button">Send Request</button>
+              <button class="btn btn--secondary" type="button"
+                >Send Request</button
+              >
               <button class="btn btn--secondary" type="button" disabled>
                 Disabled
               </button>
@@ -302,7 +375,12 @@ const motion = [
               class="footer__notification footer__notification--success ui-kit__notification"
             >
               <span class="footer__notification-icon">
-                <Icon name="check-mark" width="11" height="8" aria-hidden="true" />
+                <Icon
+                  name="check-mark"
+                  width="11"
+                  height="8"
+                  aria-hidden="true"
+                />
               </span>
               <p>Thank you! We'll be in&nbsp;touch shortly.</p>
             </div>
@@ -368,7 +446,8 @@ const motion = [
                   width="106"
                   height="23"
                 />
-                <span class="certificate__tag">Profession: Systems Analyst</span>
+                <span class="certificate__tag">Profession: Systems Analyst</span
+                >
               </div>
 
               <p class="certificate__title">Certificate</p>
@@ -395,9 +474,9 @@ const motion = [
         </div>
 
         <p class="ui-kit__note">
-          The <code class="ui-kit__code">about</code> cards are decorative and
-          animation-driven (rotating logo, parallax) — see them live in the Motion
-          section below and on the landing.
+          The <code class="ui-kit__code">about</code> cards are decorative and animation-driven
+          (rotating logo, parallax) — see them live in the Motion section below and
+          on the landing.
         </p>
       </section>
 
@@ -429,11 +508,14 @@ const motion = [
         <h2 class="ui-kit__section-title">Motion</h2>
 
         <p class="ui-kit__motion-intro">
-          Every animation is physics-based (strong easing / springs), runs only on
+          Every animation is physics-based (strong easing / springs), runs only
+          on
           <code class="ui-kit__code">transform</code> &amp;
           <code class="ui-kit__code">opacity</code> (GPU), and respects
-          <code class="ui-kit__code">prefers-reduced-motion</code>. Best experienced
-          live on the <a class="ui-kit__link" href="/">landing page</a>.
+          <code class="ui-kit__code">prefers-reduced-motion</code>. Best
+          experienced live on the <a class="ui-kit__link" href="/"
+            >landing&nbsp;page</a
+          >.
         </p>
 
         <div class="ui-kit__motion-table-wrap">
@@ -441,6 +523,7 @@ const motion = [
             <thead>
               <tr>
                 <th>Effect</th>
+                <th>Where</th>
                 <th>What it does</th>
                 <th>Principle &amp; a11y</th>
               </tr>
@@ -450,6 +533,7 @@ const motion = [
                 motion.map((row) => (
                   <tr>
                     <td>{row.effect}</td>
+                    <td class="ui-kit__motion-where">{row.where}</td>
                     <td>{row.what}</td>
                     <td>{row.principle}</td>
                   </tr>

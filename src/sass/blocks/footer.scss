@@ -322,10 +322,17 @@
 
 .footer__form-disclaimer-link {
   color: $color-text-white-muted;
-  transition: color $transition-default;
+  transition:
+    color $transition-default,
+    opacity $transition-fast;
 
   @include hover {
     color: $color-text-white;
+  }
+
+  // Press feedback that also fires on mobile tap (hover is desktop-only)
+  &:active {
+    opacity: 0.7;
   }
 }
 

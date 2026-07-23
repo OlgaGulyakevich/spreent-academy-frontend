@@ -238,6 +238,7 @@
   border-radius: $radius-4;
   background-color: $color-light;
   color: $color-text-main;
+  white-space: nowrap; // keep each code token on one line (no mid-token break)
 }
 
 // ---------------------------------
@@ -251,9 +252,11 @@
   background-color: $color-bg-dark;
 }
 
-// Stack the fields (footer row → column) with room for the absolute error message
+// Grid (overrides the footer's flex) → fields take their natural height, so the
+// footer's flex:1 doesn't stretch them and the absolute error (top: 100%) sits snug
+// under the input. Gap leaves room for that absolute error before the next field.
 .ui-kit__form-fields {
-  flex-direction: column;
+  display: grid;
   gap: 40px;
   max-width: 420px;
 }
@@ -381,10 +384,18 @@
   color: $color-text-link;
   text-decoration: underline;
   text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
+  text-underline-offset: 5px;
+  transition:
+    color $transition-default,
+    opacity $transition-fast;
 
   @include hover {
     color: $color-btn-primary-hover;
+  }
+
+  // Press feedback that also fires on mobile tap (hover is desktop-only)
+  &:active {
+    opacity: 0.7;
   }
 }
 
@@ -395,7 +406,7 @@
 
 .ui-kit__motion-table {
   width: 100%;
-  min-width: 560px;
+  min-width: 640px;
   border-collapse: collapse;
   text-align: left;
 
@@ -420,4 +431,10 @@
 
     color: $color-text-main;
   }
+}
+
+// Section label — reads as metadata, not primary content
+.ui-kit__motion-where {
+  color: $color-text-secondary;
+  white-space: nowrap;
 }
