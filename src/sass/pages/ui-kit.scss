@@ -1,0 +1,423 @@
+// =============================================
+// UI Kit page — design system & component showcase
+// =============================================
+
+// Token name / hex in monospace — reads as "code / a name" (UI Kit convention)
+@mixin ui-kit-mono($size: 13px) {
+  font-family: ui-monospace, monospace;
+  font-size: $size;
+}
+
+.ui-kit {
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+// ---------------------------------
+// Page header
+// ---------------------------------
+
+.ui-kit__header {
+  margin-bottom: 60px;
+  padding-bottom: 30px;
+  border-bottom: $border-width-1 solid $color-stroke;
+}
+
+.ui-kit__title {
+  @include title-h2;
+}
+
+.ui-kit__subtitle {
+  @include text-lead;
+
+  margin-top: 12px;
+  color: $color-text-secondary;
+}
+
+// ---------------------------------
+// Section
+// ---------------------------------
+
+.ui-kit__section {
+  margin-bottom: 70px;
+}
+
+.ui-kit__section-title {
+  @include text-tag;
+
+  margin-bottom: 30px;
+  padding-bottom: 12px;
+  border-bottom: $border-width-1 solid $color-stroke;
+  color: $color-text-light;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+// ---------------------------------
+// Typography samples
+// ---------------------------------
+
+.ui-kit__type-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.ui-kit__type-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 24px;
+  align-items: baseline;
+
+  @include vp-767 {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+.ui-kit__type-label {
+  @include ui-kit-mono;
+
+  color: $color-text-light;
+}
+
+.ui-kit__type-sample--h1 {
+  @include title-h1;
+}
+
+.ui-kit__type-sample--h2 {
+  @include title-h2;
+}
+
+.ui-kit__type-sample--h3 {
+  @include title-h3;
+}
+
+.ui-kit__type-sample--digit {
+  @include title-digit;
+}
+
+.ui-kit__type-sample--factoid {
+  @include title-factoid;
+}
+
+.ui-kit__type-sample--lead {
+  @include text-lead;
+}
+
+.ui-kit__type-sample--body {
+  @include text-body;
+}
+
+.ui-kit__type-sample--ui {
+  @include text-ui;
+}
+
+.ui-kit__type-sample--small {
+  @include text-small;
+}
+
+.ui-kit__type-sample--tag {
+  @include text-tag;
+}
+
+// ---------------------------------
+// Color swatches
+// ---------------------------------
+
+.ui-kit__swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.ui-kit__swatch {
+  height: 88px;
+  margin-bottom: 12px;
+  border: $border-width-1 solid $color-stroke;
+  border-radius: $radius-8;
+}
+
+.ui-kit__swatch-token {
+  @include ui-kit-mono;
+
+  color: $color-text-main;
+}
+
+.ui-kit__swatch-role {
+  @include text-small;
+
+  margin-top: 2px;
+  color: $color-text-secondary;
+}
+
+.ui-kit__swatch-hex {
+  @include ui-kit-mono(12px);
+
+  margin-top: 2px;
+  color: $color-text-light;
+  text-transform: uppercase;
+}
+
+.ui-kit__swatch--blue {
+  background-color: $color-blue;
+}
+
+.ui-kit__swatch--indigo {
+  background-color: $color-indigo;
+}
+
+.ui-kit__swatch--dark {
+  background-color: $color-dark;
+}
+
+.ui-kit__swatch--secondary {
+  background-color: $color-secondary;
+}
+
+.ui-kit__swatch--light {
+  background-color: $color-light;
+}
+
+.ui-kit__swatch--stroke {
+  background-color: $color-stroke;
+}
+
+.ui-kit__swatch--light-blue {
+  background-color: $color-light-blue;
+}
+
+.ui-kit__swatch--error {
+  background-color: $color-error;
+}
+
+.ui-kit__swatch--white {
+  background-color: $color-white;
+}
+
+// ---------------------------------
+// Buttons
+// ---------------------------------
+
+.ui-kit__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.ui-kit__button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ui-kit__button-label {
+  @include ui-kit-mono;
+
+  color: $color-text-light;
+}
+
+.ui-kit__button-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.ui-kit__note {
+  @include text-small;
+
+  margin-top: 24px;
+  color: $color-text-secondary;
+}
+
+.ui-kit__code {
+  @include ui-kit-mono(13px);
+
+  padding: 2px 6px;
+  border-radius: $radius-4;
+  background-color: $color-light;
+  color: $color-text-main;
+}
+
+// ---------------------------------
+// Form elements (shown on the footer's dark context) + notifications
+// ---------------------------------
+
+.ui-kit__form-panel {
+  @include fluid-val(padding, 16px, 40px, 320, 1440);
+
+  border-radius: $radius-card;
+  background-color: $color-bg-dark;
+}
+
+// Stack the fields (footer row → column) with room for the absolute error message
+.ui-kit__form-fields {
+  flex-direction: column;
+  gap: 40px;
+  max-width: 420px;
+}
+
+.ui-kit__notifications {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+  max-width: 480px;
+}
+
+// Force the (normally hidden, absolute) notifications into static, visible flow
+.ui-kit__notification {
+  position: static;
+  max-width: none;
+  margin-inline: 0;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+// ---------------------------------
+// Cards
+// ---------------------------------
+
+.ui-kit__card-item {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+// Generic monospace label (token / component name)
+.ui-kit__label {
+  @include ui-kit-mono;
+
+  color: $color-text-light;
+}
+
+.ui-kit__card-item + .ui-kit__card-item {
+  margin-top: 50px;
+}
+
+// Certificate is white → show it on the light-gray panel (its real footer context).
+// Desktop: panel hugs the card (fit-content). Mobile: full width + smaller padding,
+// so the narrow card keeps enough room and its 34px title fits.
+// Full-width stage (like the form panel), card sits left, gray fills the rest.
+.ui-kit__certificate-panel {
+  background-color: $color-light;
+
+  // Padding scales smoothly (fluid), min 8px at 320 so the 34px title still fits.
+  @include fluid-val(padding, 8px, 40px, 320, 1440);
+
+  // Concentric corners: panel radius = card radius (16px) + padding, so where the
+  // card sits near a panel corner the two curves stay parallel (no "resonance").
+  @include fluid-val(border-radius, 24px, 56px, 320, 1440);
+}
+
+// Fixed width (not fit-content-driven) so aspect-ratio 660/440 computes a clean
+// height and the absolute stamp lands bottom-right — exactly like the landing.
+.ui-kit__certificate {
+  width: 700px;
+  max-width: 100%;
+}
+
+// ---------------------------------
+// Icons
+// ---------------------------------
+
+.ui-kit__icon-group + .ui-kit__icon-group {
+  margin-top: 40px;
+}
+
+.ui-kit__subsection-title {
+  @include text-ui;
+
+  margin-bottom: 20px;
+}
+
+.ui-kit__icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 20px;
+}
+
+.ui-kit__icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 12px;
+  border: $border-width-1 solid $color-stroke;
+  border-radius: $radius-8;
+  text-align: center;
+}
+
+.ui-kit__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  color: $color-dark;
+}
+
+.ui-kit__icon-svg {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 32px;
+}
+
+// ---------------------------------
+// Motion catalog
+// ---------------------------------
+
+.ui-kit__motion-intro {
+  @include text-body;
+
+  max-width: 720px;
+  margin-bottom: 30px;
+  color: $color-text-secondary;
+}
+
+.ui-kit__link {
+  color: $color-text-link;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+
+  @include hover {
+    color: $color-btn-primary-hover;
+  }
+}
+
+// Wide table scrolls inside its own container on narrow screens
+.ui-kit__motion-table-wrap {
+  overflow-x: auto;
+}
+
+.ui-kit__motion-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  text-align: left;
+
+  th,
+  td {
+    padding: 14px 16px;
+    border-bottom: $border-width-1 solid $color-stroke;
+    vertical-align: top;
+  }
+
+  th {
+    @include text-tag;
+
+    color: $color-text-light;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  td {
+    @include text-small;
+
+    color: $color-text-main;
+  }
+}

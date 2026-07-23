@@ -1,0 +1,464 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+import CertificateStamp from "../components/CertificateStamp.astro";
+import { features, amounts } from "../data/pricing";
+
+// Core palette (swatch background comes from the real token via a modifier class —
+// no inline style, so it stays within our strict CSP style-src 'self').
+const colors = [
+  { mod: "blue", token: "$color-blue", hex: "#1859ff", role: "Primary / CTA" },
+  { mod: "indigo", token: "$color-indigo", hex: "#0039cc", role: "Deep blue" },
+  { mod: "dark", token: "$color-dark", hex: "#0d1627", role: "Base dark / text" },
+  { mod: "secondary", token: "$color-secondary", hex: "#d9f243", role: "Accent lime" },
+  { mod: "light", token: "$color-light", hex: "#eef4f6", role: "Light background" },
+  { mod: "stroke", token: "$color-stroke", hex: "#dee9ed", role: "Borders / dividers" },
+  { mod: "light-blue", token: "$color-light-blue", hex: "#d1deff", role: "Decorative" },
+  { mod: "error", token: "$color-error", hex: "#ff4949", role: "Validation error" },
+  { mod: "white", token: "$color-white", hex: "#ffffff", role: "White" },
+];
+
+// SVG icons in src/icons/, grouped by role: interface UI vs brand logos
+const iconGroups = [
+  {
+    title: "Interface",
+    names: ["burger", "check-mark", "close", "cursor-arrow", "cursor-hand", "plus"],
+  },
+  {
+    title: "Logos",
+    names: [
+      "logo",
+      "booking",
+      "chulakov",
+      "epam",
+      "google",
+      "ibm",
+      "mish",
+      "netflix",
+      "rustore",
+      "vc",
+    ],
+  },
+];
+
+// Motion catalog — the public record of the site's animation engineering
+// (physics-based easing, GPU-only props, reduced-motion on every effect).
+const motion = [
+  {
+    effect: "Magnetic button",
+    what: "Hero CTA drifts toward the cursor",
+    principle: "lerp + rAF (spring-like); GPU translate, hover-only, reduced-motion",
+  },
+  {
+    effect: "Parallax",
+    what: "Hero photos & about cards shift on scroll + mouse",
+    principle: "additive layers, lerp smoothing; GPU translate, passive, reduced-motion",
+  },
+  {
+    effect: "Scroll-reveal",
+    what: "Sections fade & slide up as they enter view",
+    principle: "IntersectionObserver, 70ms stagger; opacity/transform, reduced-motion",
+  },
+  {
+    effect: "Count-up",
+    what: "Community stats animate 0 → 78% / 89%",
+    principle: "ease-out cubic, once on view; reduced-motion → jumps to final value",
+  },
+  {
+    effect: "Scroll progress",
+    what: "Bar fills across the header on scroll",
+    principle: "transform scaleX (not width) → runs on the GPU",
+  },
+  {
+    effect: "Sticky header + blur",
+    what: "Header sticks, gains a frosted blur once scrolled",
+    principle: "backdrop-filter; the colour fade is kept under reduced-motion",
+  },
+  {
+    effect: "Logo rotation",
+    what: "About circle logo spins with scroll direction",
+    principle: "JS writes --rotation, CSS applies it; GPU, reduced-motion",
+  },
+  {
+    effect: "Shimmer CTA",
+    what: "One-time glint on Submit once the user settles on it",
+    principle: "IO + 2s dwell + cancel on scroll-away / form engage; GPU, reduced-motion",
+  },
+  {
+    effect: "Burger ↔ X",
+    what: "Icon morphs, timed to land with the drawer",
+    principle: "transitions (interruptible) + spring pop; reduced-motion → plain crossfade",
+  },
+  {
+    effect: "Mobile drawer",
+    what: "Menu grows open, fades-then-snaps closed",
+    principle: "grid 0fr→1fr; ease-out (never ease-in); fade-then-snap avoids flicker",
+  },
+  {
+    effect: "Frosted glass menu",
+    what: "Blurred translucent backdrop behind the open menu",
+    principle: "backdrop-filter: blur + a solid fallback colour",
+  },
+  {
+    effect: "Nav underline",
+    what: "Underline sweeps left→right on hover",
+    principle: "scaleX from left, interruptible; GPU, hover-gated",
+  },
+  {
+    effect: "Button press",
+    what: "Tactile scale on :active, plus hover / focus states",
+    principle: "spring easing, scale(0.95); GPU press feedback",
+  },
+  {
+    effect: "Ambient glow",
+    what: "Soft glow sweeps across the work logos",
+    principle: "opacity of a pseudo-element (not box-shadow) → GPU; reduced-motion",
+  },
+  {
+    effect: "Gradient-spin",
+    what: "Conic-gradient border rotates on the community +",
+    principle: "@property + linear (continuous motion); reduced-motion → static",
+  },
+  {
+    effect: "Smooth scroll",
+    what: "Eased scroll to anchor links",
+    principle: "rAF easeInOutQuart, interruptible; reduced-motion → instant jump",
+  },
+];
+---
+
+<BaseLayout
+  title="UI Kit — Spreent Academy"
+  description="Design system and component showcase for the Spreent Academy landing page."
+>
+  <main class="ui-kit">
+    <div class="container ui-kit__container">
+      <header class="ui-kit__header">
+        <h1 class="ui-kit__title">UI Kit</h1>
+        <p class="ui-kit__subtitle">
+          Design system &amp; components — Spreent Academy
+        </p>
+      </header>
+
+      <!-- Typography -->
+      <section class="ui-kit__section">
+        <h2 class="ui-kit__section-title">Typography</h2>
+
+        <div class="ui-kit__type-list">
+          <div class="ui-kit__type-row">
+            <span class="ui-kit__type-label">title-h1</span>
+            <p class="ui-kit__type-sample ui-kit__type-sample--h1">
+              Skills, practice, knowledge
+            </p>
+          </div>
+
+          <div class="ui-kit__type-row">
+            <span class="ui-kit__type-label">title-h2</span>
+            <p class="ui-kit__type-sample ui-kit__type-sample--h2">
+              Where Our Graduates Work
+            </p>
+          </div>
+
+          <div class="ui-kit__type-row">
+            <span class="ui-kit__type-label">title-h3</span>
+            <p class="ui-kit__type-sample ui-kit__type-sample--h3">Basic Plan</p>
+          </div>
+
+          <div class="ui-kit__type-row">
+            <span class="ui-kit__type-label">title-digit</span>
+            <p class="ui-kit__type-sample ui-kit__type-sample--digit">1000+</p>
+          </div>
+
+          <div class="ui-kit__type-row">
+            <span class="ui-kit__type-label">title-factoid</span>
+            <p class="ui-kit__type-sample ui-kit__type-sample--factoid">89%</p>
+          </div>
+
+          <div class="ui-kit__type-row">
+            <span class="ui-kit__type-label">text-lead</span>
+            <p class="ui-kit__type-sample ui-kit__type-sample--lead">
+              Aggregator that helps you find the right educational course.
+            </p>
+          </div>
+
+          <div class="ui-kit__type-row">
+            <span class="ui-kit__type-label">text-body</span>
+            <p class="ui-kit__type-sample ui-kit__type-sample--body">
+              Body copy — the default paragraph text used across the page.
+            </p>
+          </div>
+
+          <div class="ui-kit__type-row">
+            <span class="ui-kit__type-label">text-ui</span>
+            <p class="ui-kit__type-sample ui-kit__type-sample--ui">Get Started</p>
+          </div>
+
+          <div class="ui-kit__type-row">
+            <span class="ui-kit__type-label">text-small</span>
+            <p class="ui-kit__type-sample ui-kit__type-sample--small">
+              Small caption text, e.g. form disclaimers.
+            </p>
+          </div>
+
+          <div class="ui-kit__type-row">
+            <span class="ui-kit__type-label">text-tag</span>
+            <p class="ui-kit__type-sample ui-kit__type-sample--tag">Design</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Colors -->
+      <section class="ui-kit__section">
+        <h2 class="ui-kit__section-title">Colors</h2>
+
+        <div class="ui-kit__swatches">
+          {
+            colors.map((color) => (
+              <div class="ui-kit__swatch-item">
+                <div class={`ui-kit__swatch ui-kit__swatch--${color.mod}`}></div>
+                <p class="ui-kit__swatch-token">{color.token}</p>
+                <p class="ui-kit__swatch-role">{color.role}</p>
+                <p class="ui-kit__swatch-hex">{color.hex}</p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Buttons -->
+      <section class="ui-kit__section">
+        <h2 class="ui-kit__section-title">Buttons</h2>
+
+        <div class="ui-kit__buttons">
+          <div class="ui-kit__button-group">
+            <span class="ui-kit__button-label">btn--primary</span>
+            <div class="ui-kit__button-row">
+              <button class="btn btn--primary" type="button">Get Started</button>
+              <button class="btn btn--primary" type="button" disabled>
+                Disabled
+              </button>
+            </div>
+          </div>
+
+          <div class="ui-kit__button-group">
+            <span class="ui-kit__button-label">btn--secondary</span>
+            <div class="ui-kit__button-row">
+              <button class="btn btn--secondary" type="button">Send Request</button>
+              <button class="btn btn--secondary" type="button" disabled>
+                Disabled
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p class="ui-kit__note">
+          <code class="ui-kit__code">:hover</code>,
+          <code class="ui-kit__code">:active</code> and
+          <code class="ui-kit__code">:focus-visible</code> are interactive — hover,
+          click, or Tab to a button to see them.
+        </p>
+      </section>
+
+      <!-- Form Elements (shown on the footer's dark context) -->
+      <section class="ui-kit__section">
+        <h2 class="ui-kit__section-title">Form Elements</h2>
+
+        <div class="ui-kit__form-panel">
+          <div class="footer__form-fields ui-kit__form-fields">
+            <div class="footer__form-field">
+              <label class="visually-hidden" for="uikit-name">Name</label>
+              <input id="uikit-name" type="text" placeholder="Name" />
+            </div>
+
+            <div class="footer__form-field">
+              <label class="visually-hidden" for="uikit-email">Email</label>
+              <input
+                id="uikit-email"
+                class="is-invalid"
+                type="email"
+                value="wrong@"
+                placeholder="Email"
+              />
+              <span class="footer__form-error is-visible"
+                >Enter a valid email address</span
+              >
+            </div>
+
+            <div class="footer__form-field">
+              <label class="visually-hidden" for="uikit-disabled">
+                Disabled field
+              </label>
+              <input
+                id="uikit-disabled"
+                type="text"
+                placeholder="Disabled field"
+                disabled
+              />
+            </div>
+          </div>
+
+          <div class="ui-kit__notifications">
+            <div
+              class="footer__notification footer__notification--success ui-kit__notification"
+            >
+              <span class="footer__notification-icon">
+                <Icon name="check-mark" width="11" height="8" aria-hidden="true" />
+              </span>
+              <p>Thank you! We'll be in&nbsp;touch shortly.</p>
+            </div>
+
+            <div
+              class="footer__notification footer__notification--error ui-kit__notification"
+            >
+              <span class="footer__notification-icon">
+                <Icon name="close" width="14" height="14" aria-hidden="true" />
+              </span>
+              <p>Something went wrong. Please try&nbsp;again.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cards -->
+      <section class="ui-kit__section">
+        <h2 class="ui-kit__section-title">Cards</h2>
+
+        <div class="ui-kit__card-item">
+          <span class="ui-kit__label">price__card</span>
+
+          <div class="price__card">
+            <div class="price__card-inner">
+              <div class="price__plan">
+                <h3 class="price__plan-name">Basic Plan</h3>
+                <ul class="price__features">
+                  {features.map((feature) => <li>{feature}</li>)}
+                </ul>
+              </div>
+
+              <div class="price__pricing">
+                <p class="price__label">Price</p>
+                <div class="price__amounts">
+                  {
+                    amounts.map((amount, i) => (
+                      <>
+                        {i > 0 && <p class="price__or">or</p>}
+                        <p class="price__amount">
+                          <span class="price__current">{amount.current}</span>
+                          <span class="price__old">{amount.old}</span>
+                        </p>
+                      </>
+                    ))
+                  }
+                </div>
+                <a class="btn btn--primary price__btn" href="#">Buy Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui-kit__card-item">
+          <span class="ui-kit__label">certificate</span>
+
+          <div class="ui-kit__certificate-panel">
+            <div class="certificate ui-kit__certificate">
+              <div class="certificate__header">
+                <Icon
+                  class="certificate__logo"
+                  name="logo"
+                  width="106"
+                  height="23"
+                />
+                <span class="certificate__tag">Profession: Systems Analyst</span>
+              </div>
+
+              <p class="certificate__title">Certificate</p>
+              <p class="certificate__note">Top performance on the course</p>
+
+              <dl class="certificate__details">
+                <div class="certificate__field certificate__field--name">
+                  <dt>Awarded to</dt>
+                  <dd>Ilya Petrov</dd>
+                </div>
+                <div class="certificate__field">
+                  <dt>Completion date</dt>
+                  <dd>July 15, 2024</dd>
+                </div>
+                <div class="certificate__field">
+                  <dt>Course author</dt>
+                  <dd>Innokentiy Bodrov</dd>
+                </div>
+              </dl>
+
+              <CertificateStamp />
+            </div>
+          </div>
+        </div>
+
+        <p class="ui-kit__note">
+          The <code class="ui-kit__code">about</code> cards are decorative and
+          animation-driven (rotating logo, parallax) — see them live in the Motion
+          section below and on the landing.
+        </p>
+      </section>
+
+      <!-- Icons -->
+      <section class="ui-kit__section">
+        <h2 class="ui-kit__section-title">Icons</h2>
+
+        {
+          iconGroups.map((group) => (
+            <div class="ui-kit__icon-group">
+              <h3 class="ui-kit__subsection-title">{group.title}</h3>
+              <div class="ui-kit__icons">
+                {group.names.map((name) => (
+                  <div class="ui-kit__icon-item">
+                    <span class="ui-kit__icon">
+                      <Icon name={name} class="ui-kit__icon-svg" />
+                    </span>
+                    <span class="ui-kit__label">{name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </section>
+
+      <!-- Motion -->
+      <section class="ui-kit__section">
+        <h2 class="ui-kit__section-title">Motion</h2>
+
+        <p class="ui-kit__motion-intro">
+          Every animation is physics-based (strong easing / springs), runs only on
+          <code class="ui-kit__code">transform</code> &amp;
+          <code class="ui-kit__code">opacity</code> (GPU), and respects
+          <code class="ui-kit__code">prefers-reduced-motion</code>. Best experienced
+          live on the <a class="ui-kit__link" href="/">landing page</a>.
+        </p>
+
+        <div class="ui-kit__motion-table-wrap">
+          <table class="ui-kit__motion-table">
+            <thead>
+              <tr>
+                <th>Effect</th>
+                <th>What it does</th>
+                <th>Principle &amp; a11y</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                motion.map((row) => (
+                  <tr>
+                    <td>{row.effect}</td>
+                    <td>{row.what}</td>
+                    <td>{row.principle}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
