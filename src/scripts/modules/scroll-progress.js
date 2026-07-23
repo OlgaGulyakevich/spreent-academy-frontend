@@ -1,8 +1,8 @@
 /**
  * @fileoverview Header scroll progress bar.
- * Calculates document scroll percentage and writes it to CSS variable
- * `--scroll-progress` on `.header` element, so CSS can render
- * a visual indicator (bar width, gradient, etc.).
+ * Calculates document scroll ratio (0–1) and writes it to CSS variable
+ * `--scroll-progress` on `.header`, so CSS scales the bar via
+ * `transform: scaleX(var(--scroll-progress))` (GPU, no layout).
  */
 
 /**
@@ -19,15 +19,17 @@ const initScrollProgress = () => {
   }
 
   /**
-   * Calculates scroll percentage (0-100) and updates CSS variable
+   * Calculates scroll ratio (0-1) and updates CSS variable
    * `--scroll-progress` on header. Clamp prevents negative values
-   * and exceeding 100% on overscroll (iOS bounce).
+   * and exceeding 1 on overscroll (iOS bounce); guards a non-scrollable
+   * page (scrollHeight 0 → avoids NaN).
    */
   const updateProgress = () => {
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = Math.min(100, Math.max(0, (window.scrollY / scrollHeight) * 100));
+    const ratio = scrollHeight > 0 ? window.scrollY / scrollHeight : 0;
+    const progress = Math.min(1, Math.max(0, ratio));
 
-    header.style.setProperty('--scroll-progress', `${progress.toFixed(2)}%`);
+    header.style.setProperty('--scroll-progress', progress.toFixed(4));
   };
 
   window.addEventListener('scroll', () => {

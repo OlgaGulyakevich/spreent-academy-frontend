@@ -60,8 +60,8 @@ html:has(.scroll-lock) {
   opacity: 0;
   transform: translateY(50%);
   transition:
-    opacity $transition-medium $ease-out,
-    transform $transition-medium $ease-out;
+    opacity $transition-medium $ease-out-expo,
+    transform $transition-medium $ease-out-expo;
 }
 
 [data-reveal="true"].is-revealed {
@@ -69,12 +69,13 @@ html:has(.scroll-lock) {
   transform: translateY(0);
 }
 
-// Scale variant — element grows from 0 to full size (certificate image)
+// Scale variant — element grows in (certificate image). Starts at 0.9, not 0:
+// nothing in the real world appears from nothing, so 0.9 reads more naturally.
 [data-reveal-type="scale"].reveal-init {
   opacity: 0;
-  transform: scale(0);
+  transform: scale(0.9);
   transition:
-    opacity $transition-medium $ease-out,
+    opacity $transition-medium $ease-out-expo,
     transform $transition-slow $ease-out-expo;
 }
 
@@ -93,8 +94,8 @@ html:has(.scroll-lock) {
   clip-path: inset(0 0 calc(100% - 1em) 0);
   transform: translateY(100%);
   transition:
-    clip-path $transition-medium $ease-out,
-    transform $transition-medium $ease-out;
+    clip-path $transition-medium $ease-out-expo,
+    transform $transition-medium $ease-out-expo;
 }
 
 [data-reveal-type="clip"].is-revealed {

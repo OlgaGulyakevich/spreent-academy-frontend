@@ -3,6 +3,7 @@
  * Observes .community__factoids (threshold 0.5); on first intersection,
  * animates "78%" and "89%" from 0 with 250ms stagger between them.
  * Initial "0%" set at init time to avoid flash on reload.
+ * Respects prefers-reduced-motion — skips the count-up, leaves final values.
  * @module counter
  */
 
@@ -70,6 +71,12 @@ const animateCounter = (el) => {
  * on first intersection, animates factoid numbers with stagger.
  */
 const initCounter = () => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    return;
+  }
+
   const factoids = document.querySelector(FACTOIDS_SELECTOR);
 
   if (!factoids) {

@@ -9,6 +9,7 @@ import { initMagneticButton } from './modules/magnetic-button.js';
 import { initMobileMenu } from './modules/mobile-menu.js';
 import { initScrollProgress } from './modules/scroll-progress.js';
 import { initScrollReveal } from './modules/scroll-reveal.js';
+import { initShimmerCta } from './modules/shimmer-cta.js';
 import { initSmoothScroll } from './modules/smooth-scroll.js';
 
 // Enable :active pseudo-class on iOS Safari
@@ -34,5 +35,6 @@ window.addEventListener('load', () => {
   initMobileMenu();
   initScrollProgress();
   initScrollReveal();
+  initShimmerCta();
   initSmoothScroll();
 });

@@ -262,14 +262,52 @@
 }
 
 .footer__form-btn {
+  position: relative;
   flex-shrink: 0;
   max-width: 100%;
   white-space: normal;
+  overflow: hidden; // clip the shimmer sweep to the pill shape
   overflow-wrap: anywhere;
   padding: 14px 25px 15px;
 
   @include vp-1023 {
     padding: 14px 25px 16px;
+  }
+
+  // Signature shimmer: a single highlight glint sweeps across the button when it
+  // first enters the viewport, drawing the eye to the key conversion. shimmer-cta.js
+  // adds .is-shimmer via IntersectionObserver (once); reduced-motion users never get
+  // the class. Decorative one-shot → longer than the UI budget, on purpose.
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        100deg,
+        transparent 35%,
+        rgba($color-white, 0.55) 50%,
+        transparent 65%
+      );
+    transform: translateX(-100%);
+    pointer-events: none;
+  }
+}
+
+.footer__form-btn.is-shimmer::after {
+  animation: shimmer-sweep 0.9s $ease-out;
+}
+
+@keyframes shimmer-sweep {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+// Belt-and-suspenders: JS already skips the class under reduce, but guard the CSS too.
+@media (prefers-reduced-motion: reduce) {
+  .footer__form-btn.is-shimmer::after {
+    animation: none;
   }
 }
 

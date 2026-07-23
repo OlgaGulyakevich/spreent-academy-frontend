@@ -7,8 +7,8 @@
  *    all children [data-reveal="true"] inside reveal together with stagger delays.
  *
  * Animation variants (via data-reveal-type):
- * - default: translateY(20px→0) + opacity(0→1)
- * - "scale": scale(0→1) + opacity(0→1)
+ * - default: translateY(50%→0) + opacity(0→1)
+ * - "scale": scale(0.9→1) + opacity(0→1)
  *
  * Progressive enhancement: without JS elements stay visible.
  * @module scroll-reveal
@@ -29,7 +29,7 @@ const OBSERVER_OPTIONS = {
   rootMargin: '0px 0px -10% 0px',
 };
 
-const DEFAULT_STAGGER_MS = 120;
+const DEFAULT_STAGGER_MS = 70;
 const MOBILE_BREAKPOINT = 1024;
 
 /**

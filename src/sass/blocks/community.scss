@@ -155,7 +155,9 @@
     background $transition-default,
     color $transition-default,
     box-shadow $transition-default;
-  animation: gradient-spin 5s infinite $ease-material;
+
+  // Continuous loop → linear, so the spin runs at a steady speed (no per-cycle surge).
+  animation: gradient-spin 5s infinite linear;
 
   @include vp-1023 {
     animation: none;
@@ -197,6 +199,13 @@
 @keyframes gradient-spin {
   to {
     --bg-angle: 360deg;
+  }
+}
+
+// Reduced motion: stop the infinite border spin (continuous motion is a trigger).
+@media (prefers-reduced-motion: reduce) {
+  .community__join {
+    animation: none;
   }
 }
 

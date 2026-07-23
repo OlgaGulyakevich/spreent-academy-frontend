@@ -4,6 +4,8 @@
  * Uses requestAnimationFrame for throttling.
  * JS writes the angle to the CSS custom property `--rotation`;
  * the transform itself lives in about.scss (data/presentation split).
+ * Respects prefers-reduced-motion — skips the scroll loop entirely
+ * (about.scss also neutralizes the transform under reduce).
  * @module about-rotate
  */
 
@@ -14,6 +16,12 @@ const ROTATION_SPEED = 0.15;
  * Initializes scroll-driven rotation on the about section circle logo.
  */
 const initAboutRotate = () => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    return;
+  }
+
   const image = document.querySelector(SELECTOR);
 
   if (!image) {

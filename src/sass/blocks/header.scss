@@ -20,10 +20,14 @@
     position: absolute;
     bottom: -1px;
     left: 0;
-    width: var(--scroll-progress, 0%);
+    width: 100%;
     height: 2px;
     background-color: $color-blue;
-    transition: width 0.1s $ease-out;
+
+    // GPU-friendly progress: scaleX (0–1) instead of animating width (layout).
+    transform: scaleX(var(--scroll-progress, 0));
+    transform-origin: left;
+    transition: transform 0.1s $ease-out;
     z-index: 1;
   }
 }
@@ -98,10 +102,14 @@
     opacity: 0;
     visibility: hidden;
 
-    // Closing transition: gentle ease-in, opacity fades after grid starts collapsing
+    // Closing: fade the whole panel out first (uniform fade → no content clipping),
+    // then snap the height once it's already invisible. Collapsing the height WHILE
+    // the panel is still visible clips the last item ("Corporate Training") upward
+    // → visible flicker. Fade-then-snap hides the collapse entirely. Height is safe
+    // to snap because the panel is position:absolute (no page-layout impact).
     transition:
-      grid-template-rows $transition-fast $ease-in,
-      opacity $transition-fast $ease-in,
+      opacity $transition-fast $ease-out,
+      grid-template-rows 0s linear $transition-fast,
       visibility $transition-fast;
   }
 }
@@ -185,5 +193,16 @@
         opacity $transition-medium $ease-out-expo,
         visibility 0s;
     }
+  }
+}
+
+// Reduced motion: keep the menu's opacity fade, drop the height-grow movement
+// (grid-template-rows snaps instantly instead of animating).
+@media (prefers-reduced-motion: reduce) {
+  .header__nav,
+  .header:has(.burger[aria-expanded="true"]) .header__nav {
+    transition:
+      opacity $transition-fast,
+      visibility 0s;
   }
 }

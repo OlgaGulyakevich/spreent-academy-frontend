@@ -76,7 +76,7 @@ main {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 
-  transition: $transition-default;
+  transition: color $transition-default;
 
   &:focus-visible {
     outline: 2px solid $color-accent;

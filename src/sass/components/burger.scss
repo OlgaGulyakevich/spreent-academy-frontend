@@ -21,10 +21,11 @@
 
 // Icon swap: vertical collapse + scale grow
 .burger__icon {
+  // Return-to-hamburger (close): snappy spring pop, in sync with the menu (0.2s)
   transition:
-    opacity $transition-medium $ease-out,
-    transform $transition-medium $ease-spring;
-  transition-delay: 0.1s;
+    opacity $transition-fast $ease-out,
+    transform $transition-fast $ease-spring;
+  transition-delay: 0.05s;
 }
 
 .burger__close {
@@ -35,10 +36,10 @@
   // Start from a smaller size and slight tilt (the effect of opening from a bud)
   transform: scale(0.5) rotate(-15deg);
 
-  // By default (when the cross disappears) we do this instantly
+  // Hide-X (close): quick fade + shrink out, no delay
   transition:
-    opacity $transition-medium $ease-out,
-    transform $transition-medium $ease-out;
+    opacity $transition-fast $ease-out,
+    transform $transition-fast $ease-out;
   transition-delay: 0s;
 }
 
@@ -48,6 +49,11 @@
     opacity: 0;
     transform: scaleY(0);
     pointer-events: none;
+
+    // Collapse quickly on open
+    transition:
+      opacity $transition-fast $ease-out,
+      transform $transition-fast $ease-out;
     transition-delay: 0s;
   }
 
@@ -55,11 +61,27 @@
     opacity: 1;
     transform: scale(1) rotate(0);
     pointer-events: auto;
-    transition-delay: 0.3s;
-    transition-timing-function: $ease-spring;
+
+    // Spring in, landing together with the menu (~0.4s) — small lead-in delay
+    transition:
+      opacity $transition-base $ease-out,
+      transform $transition-base $ease-spring;
+    transition-delay: 0.1s;
   }
 
   @include hover {
     color: $color-error;
+  }
+}
+
+// Reduced motion: quick opacity crossfade only — no movement, and no stagger
+// delays (without motion the 0.1s/0.3s stagger would read as a lag on swap).
+@media (prefers-reduced-motion: reduce) {
+  .burger__icon,
+  .burger__close,
+  .burger[aria-expanded="true"] .burger__icon,
+  .burger[aria-expanded="true"] .burger__close {
+    transform: none;
+    transition: opacity $transition-fast;
   }
 }

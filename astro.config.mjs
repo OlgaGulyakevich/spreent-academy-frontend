@@ -8,5 +8,6 @@ export default defineConfig({
   output: 'static',
   server: {
     port: 3000,
+    host: true, // expose on the local network (phone testing via the printed Network URL)
   },
 });
