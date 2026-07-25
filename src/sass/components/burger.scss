@@ -76,7 +76,7 @@
 
 // Reduced motion: quick opacity crossfade only — no movement, and no stagger
 // delays (without motion the 0.1s/0.3s stagger would read as a lag on swap).
-@media (prefers-reduced-motion: reduce) {
+@include reduced-motion {
   .burger__icon,
   .burger__close,
   .burger[aria-expanded="true"] .burger__icon,

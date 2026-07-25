@@ -31,7 +31,7 @@
   }
 
   @include hover {
-    // Тонкое неоновое свечение всего блока
+    // Subtle neon glow of the entire block
     filter: drop-shadow(0 0 3px rgba($color-blue, 0.4));
 
     .logo__paint::before {
@@ -39,7 +39,7 @@
     }
   }
 
-  // Мобильный tap: моментальный color + glow отклик (без sweep)
+  // Mobile tap: instant color + glow response (without sweep)
   &:active {
     color: $color-blue;
     filter: drop-shadow(0 0 8px rgba($color-blue, 0.5));
@@ -80,7 +80,7 @@
   }
 }
 
-// Светлый логотип (подвал): gradient затемнён для контраста на тёмном фоне
+// Light logo (footer): gradient darkened for contrast on dark background
 .logo--light {
   color: $color-white;
 
@@ -89,7 +89,7 @@
     transition: filter 0.4s ease-out 0.4s;
   }
 
-  // Мобильный tap для футера: lime color + lime glow
+  // Mobile tap: lime color + lime glow
   &:active {
     color: $color-secondary;
     filter: drop-shadow(0 0 10px rgba($color-secondary, 0.5));
@@ -106,5 +106,15 @@
       transparent 100%);
 
     transition: transform 1.1s $ease-apple;
+  }
+}
+
+// Reduced-motion: keep the colour + glow, drop the sweeping paint motion
+// (fill still appears on hover/tap — it jumps instantly instead of sweeping).
+// `.logo ` prefix matches the footer's higher-specificity transition override too,
+// so both header and footer sweeps are dropped (not just the header's).
+@include reduced-motion {
+  .logo .logo__paint::before {
+    transition: none;
   }
 }

@@ -369,7 +369,7 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@include reduced-motion {
   .hero h1,
   .hero p,
   .hero__btn {

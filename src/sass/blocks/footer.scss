@@ -305,7 +305,7 @@
 }
 
 // Belt-and-suspenders: JS already skips the class under reduce, but guard the CSS too.
-@media (prefers-reduced-motion: reduce) {
+@include reduced-motion {
   .footer__form-btn.is-shimmer::after {
     animation: none;
   }

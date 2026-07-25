@@ -203,7 +203,7 @@
 }
 
 // Reduced motion: stop the infinite border spin (continuous motion is a trigger).
-@media (prefers-reduced-motion: reduce) {
+@include reduced-motion {
   .community__join {
     animation: none;
   }

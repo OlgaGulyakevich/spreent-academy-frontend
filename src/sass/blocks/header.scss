@@ -198,7 +198,7 @@
 
 // Reduced motion: keep the menu's opacity fade, drop the height-grow movement
 // (grid-template-rows snaps instantly instead of animating).
-@media (prefers-reduced-motion: reduce) {
+@include reduced-motion {
   .header__nav,
   .header:has(.burger[aria-expanded="true"]) .header__nav {
     transition:

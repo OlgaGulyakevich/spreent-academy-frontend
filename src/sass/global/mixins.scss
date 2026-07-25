@@ -133,6 +133,14 @@
   }
 }
 
+// Reduced-motion — wrap movement so it's dropped for users who prefer less motion.
+// Keep colour/opacity; strip only the moving parts (transform, keyframes, position).
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
 // -----------------------------------------------------------------------------
 // Layout Helpers
 // -----------------------------------------------------------------------------

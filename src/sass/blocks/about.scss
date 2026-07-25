@@ -542,7 +542,7 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@include reduced-motion {
   .about__card-logo img {
     transform: none;
   }
