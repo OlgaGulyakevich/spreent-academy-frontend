@@ -14,6 +14,65 @@
 }
 
 // ---------------------------------
+// Table of contents (sticky sidebar + scroll-spy)
+// ---------------------------------
+
+.ui-kit__container {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: start;
+
+  @include fluid-val(gap, 40px, 80px, 1024, 1440);
+
+  @include vp-1023 {
+    display: block; // single column — TOC hidden, sections read top-to-bottom
+  }
+}
+
+.ui-kit__toc {
+  position: sticky;
+  top: 90px; // clears the sticky site header
+
+  @include hide-below-desktop;
+}
+
+.ui-kit__toc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ui-kit__toc-link {
+  @include text-small;
+
+  display: block;
+  padding: 6px 12px;
+  border-left: $border-width-1 solid transparent;
+  border-radius: $radius-4;
+  color: $color-text-secondary;
+  transition:
+    color $transition-default,
+    border-color $transition-default,
+    background-color $transition-default;
+
+  @include hover {
+    color: $color-text-main;
+    background-color: $color-light;
+  }
+}
+
+.ui-kit__toc-link.is-active {
+  border-color: $color-blue;
+  color: $color-blue;
+  font-weight: $font-weight-semibold;
+}
+
+// Content column — min-width: 0 lets inner overflow-x containers (motion table) shrink
+.ui-kit__content {
+  min-width: 0;
+}
+
+// ---------------------------------
 // Page header
 // ---------------------------------
 

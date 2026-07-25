@@ -159,7 +159,7 @@ const motion = [
   {
     effect: "Gradient-spin",
     where: "Community",
-    what: "Conic-gradient border rotates on the community +",
+    what: "Conic-gradient border rotates on the community + icon",
     principle:
       "@property + linear (continuous motion); reduced-motion → static",
   },
@@ -199,6 +199,17 @@ const motion = [
       "rAF easeInOutQuart, interruptible; reduced-motion → instant jump",
   },
 ];
+
+// Table of contents — sticky sidebar; scroll-spy highlights the active section.
+const sections = [
+  { id: "typography", label: "Typography" },
+  { id: "colors", label: "Colors" },
+  { id: "buttons", label: "Buttons" },
+  { id: "form", label: "Form" },
+  { id: "cards", label: "Cards" },
+  { id: "icons", label: "Icons" },
+  { id: "motion", label: "Motion" },
+];
 ---
 
 <BaseLayout
@@ -207,362 +218,416 @@ const motion = [
 >
   <main class="ui-kit">
     <div class="container ui-kit__container">
-      <header class="ui-kit__header">
-        <h1 class="ui-kit__title">UI Kit</h1>
-        <p class="ui-kit__subtitle">
-          Design system &amp; components — Spreent Academy
-        </p>
-      </header>
+      <aside class="ui-kit__toc" aria-label="UI Kit sections">
+        <nav class="ui-kit__toc-nav">
+          <ul class="ui-kit__toc-list">
+            {
+              sections.map((s) => (
+                <li>
+                  <a class="ui-kit__toc-link" href={`#${s.id}`}>
+                    {s.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </aside>
 
-      <!-- Typography -->
-      <section class="ui-kit__section">
-        <h2 class="ui-kit__section-title">Typography</h2>
+      <div class="ui-kit__content">
+        <header class="ui-kit__header">
+          <h1 class="ui-kit__title">UI Kit</h1>
+          <p class="ui-kit__subtitle">
+            Design system &amp; components — Spreent Academy
+          </p>
+        </header>
 
-        <div class="ui-kit__type-list">
-          <div class="ui-kit__type-row">
-            <span class="ui-kit__type-label">title-h1</span>
-            <p class="ui-kit__type-sample ui-kit__type-sample--h1">
-              Skills, practice, knowledge
-            </p>
-          </div>
+        <!-- Typography -->
+        <section class="ui-kit__section" id="typography">
+          <h2 class="ui-kit__section-title">Typography</h2>
 
-          <div class="ui-kit__type-row">
-            <span class="ui-kit__type-label">title-h2</span>
-            <p class="ui-kit__type-sample ui-kit__type-sample--h2">
-              Where Our Graduates Work
-            </p>
-          </div>
-
-          <div class="ui-kit__type-row">
-            <span class="ui-kit__type-label">title-h3</span>
-            <p class="ui-kit__type-sample ui-kit__type-sample--h3">
-              Basic Plan
-            </p>
-          </div>
-
-          <div class="ui-kit__type-row">
-            <span class="ui-kit__type-label">title-digit</span>
-            <p class="ui-kit__type-sample ui-kit__type-sample--digit">1000+</p>
-          </div>
-
-          <div class="ui-kit__type-row">
-            <span class="ui-kit__type-label">title-factoid</span>
-            <p class="ui-kit__type-sample ui-kit__type-sample--factoid">89%</p>
-          </div>
-
-          <div class="ui-kit__type-row">
-            <span class="ui-kit__type-label">text-lead</span>
-            <p class="ui-kit__type-sample ui-kit__type-sample--lead">
-              Aggregator that helps you find the right educational course.
-            </p>
-          </div>
-
-          <div class="ui-kit__type-row">
-            <span class="ui-kit__type-label">text-body</span>
-            <p class="ui-kit__type-sample ui-kit__type-sample--body">
-              Body copy — the default paragraph text used across the page.
-            </p>
-          </div>
-
-          <div class="ui-kit__type-row">
-            <span class="ui-kit__type-label">text-ui</span>
-            <p class="ui-kit__type-sample ui-kit__type-sample--ui">
-              Get Started
-            </p>
-          </div>
-
-          <div class="ui-kit__type-row">
-            <span class="ui-kit__type-label">text-small</span>
-            <p class="ui-kit__type-sample ui-kit__type-sample--small">
-              Small caption text, e.g. form disclaimers.
-            </p>
-          </div>
-
-          <div class="ui-kit__type-row">
-            <span class="ui-kit__type-label">text-tag</span>
-            <p class="ui-kit__type-sample ui-kit__type-sample--tag">Design</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Colors -->
-      <section class="ui-kit__section">
-        <h2 class="ui-kit__section-title">Colors</h2>
-
-        <div class="ui-kit__swatches">
-          {
-            colors.map((color) => (
-              <div class="ui-kit__swatch-item">
-                <div class={`ui-kit__swatch ui-kit__swatch--${color.mod}`} />
-                <p class="ui-kit__swatch-token">{color.token}</p>
-                <p class="ui-kit__swatch-role">{color.role}</p>
-                <p class="ui-kit__swatch-hex">{color.hex}</p>
-              </div>
-            ))
-          }
-        </div>
-      </section>
-
-      <!-- Buttons -->
-      <section class="ui-kit__section">
-        <h2 class="ui-kit__section-title">Buttons</h2>
-
-        <div class="ui-kit__buttons">
-          <div class="ui-kit__button-group">
-            <span class="ui-kit__button-label">btn--primary</span>
-            <div class="ui-kit__button-row">
-              <button class="btn btn--primary" type="button">Get Started</button
-              >
-              <button class="btn btn--primary" type="button" disabled>
-                Disabled
-              </button>
-            </div>
-          </div>
-
-          <div class="ui-kit__button-group">
-            <span class="ui-kit__button-label">btn--secondary</span>
-            <div class="ui-kit__button-row">
-              <button class="btn btn--secondary" type="button"
-                >Send Request</button
-              >
-              <button class="btn btn--secondary" type="button" disabled>
-                Disabled
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <p class="ui-kit__note">
-          <code class="ui-kit__code">:hover</code>,
-          <code class="ui-kit__code">:active</code> and
-          <code class="ui-kit__code">:focus-visible</code> are interactive — hover,
-          click, or Tab to a button to see them.
-        </p>
-
-        <p class="ui-kit__note">
-          Motion is <strong>composite-only</strong>: press is a symmetric
-          <code class="ui-kit__code">scale(0.95)</code> on
-          <code class="ui-kit__code">:active</code> (same easing in and out); the
-          hover shadow-lift fades a <code class="ui-kit__code">::before</code> opacity
-          (GPU) instead of animating <code class="ui-kit__code">box-shadow</code
-          >
-          (which repaints); and the background darkens on press. The three button
-          flavours — magnetic (hero), shimmer (submit), and this base press — are
-          catalogued in Motion below.
-        </p>
-      </section>
-
-      <!-- Form Elements (shown on the footer's dark context) -->
-      <section class="ui-kit__section">
-        <h2 class="ui-kit__section-title">Form Elements</h2>
-
-        <div class="ui-kit__form-panel">
-          <div class="footer__form-fields ui-kit__form-fields">
-            <div class="footer__form-field">
-              <label class="visually-hidden" for="uikit-name">Name</label>
-              <input id="uikit-name" type="text" placeholder="Name" />
+          <div class="ui-kit__type-list">
+            <div class="ui-kit__type-row">
+              <span class="ui-kit__type-label">title-h1</span>
+              <p class="ui-kit__type-sample ui-kit__type-sample--h1">
+                Skills, practice, knowledge
+              </p>
             </div>
 
-            <div class="footer__form-field">
-              <label class="visually-hidden" for="uikit-email">Email</label>
-              <input
-                id="uikit-email"
-                class="is-invalid"
-                type="email"
-                value="wrong@"
-                placeholder="Email"
-              />
-              <span class="footer__form-error is-visible"
-                >Enter a valid email address</span
-              >
+            <div class="ui-kit__type-row">
+              <span class="ui-kit__type-label">title-h2</span>
+              <p class="ui-kit__type-sample ui-kit__type-sample--h2">
+                Where Our Graduates Work
+              </p>
             </div>
 
-            <div class="footer__form-field">
-              <label class="visually-hidden" for="uikit-disabled">
-                Disabled field
-              </label>
-              <input
-                id="uikit-disabled"
-                type="text"
-                placeholder="Disabled field"
-                disabled
-              />
+            <div class="ui-kit__type-row">
+              <span class="ui-kit__type-label">title-h3</span>
+              <p class="ui-kit__type-sample ui-kit__type-sample--h3">
+                Basic Plan
+              </p>
+            </div>
+
+            <div class="ui-kit__type-row">
+              <span class="ui-kit__type-label">title-digit</span>
+              <p class="ui-kit__type-sample ui-kit__type-sample--digit">
+                1000+
+              </p>
+            </div>
+
+            <div class="ui-kit__type-row">
+              <span class="ui-kit__type-label">title-factoid</span>
+              <p class="ui-kit__type-sample ui-kit__type-sample--factoid">
+                89%
+              </p>
+            </div>
+
+            <div class="ui-kit__type-row">
+              <span class="ui-kit__type-label">text-lead</span>
+              <p class="ui-kit__type-sample ui-kit__type-sample--lead">
+                Aggregator that helps you find the right educational course.
+              </p>
+            </div>
+
+            <div class="ui-kit__type-row">
+              <span class="ui-kit__type-label">text-body</span>
+              <p class="ui-kit__type-sample ui-kit__type-sample--body">
+                Body copy — the default paragraph text used across the page.
+              </p>
+            </div>
+
+            <div class="ui-kit__type-row">
+              <span class="ui-kit__type-label">text-ui</span>
+              <p class="ui-kit__type-sample ui-kit__type-sample--ui">
+                Get Started
+              </p>
+            </div>
+
+            <div class="ui-kit__type-row">
+              <span class="ui-kit__type-label">text-small</span>
+              <p class="ui-kit__type-sample ui-kit__type-sample--small">
+                Small caption text, e.g. form disclaimers.
+              </p>
+            </div>
+
+            <div class="ui-kit__type-row">
+              <span class="ui-kit__type-label">text-tag</span>
+              <p class="ui-kit__type-sample ui-kit__type-sample--tag">Design</p>
             </div>
           </div>
+        </section>
 
-          <div class="ui-kit__notifications">
-            <div
-              class="footer__notification footer__notification--success ui-kit__notification"
-            >
-              <span class="footer__notification-icon">
-                <Icon
-                  name="check-mark"
-                  width="11"
-                  height="8"
-                  aria-hidden="true"
-                />
-              </span>
-              <p>Thank you! We'll be in&nbsp;touch shortly.</p>
-            </div>
+        <!-- Colors -->
+        <section class="ui-kit__section" id="colors">
+          <h2 class="ui-kit__section-title">Colors</h2>
 
-            <div
-              class="footer__notification footer__notification--error ui-kit__notification"
-            >
-              <span class="footer__notification-icon">
-                <Icon name="close" width="14" height="14" aria-hidden="true" />
-              </span>
-              <p>Something went wrong. Please try&nbsp;again.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Cards -->
-      <section class="ui-kit__section">
-        <h2 class="ui-kit__section-title">Cards</h2>
-
-        <div class="ui-kit__card-item">
-          <span class="ui-kit__label">price__card</span>
-
-          <div class="price__card">
-            <div class="price__card-inner">
-              <div class="price__plan">
-                <h3 class="price__plan-name">Basic Plan</h3>
-                <ul class="price__features">
-                  {features.map((feature) => <li>{feature}</li>)}
-                </ul>
-              </div>
-
-              <div class="price__pricing">
-                <p class="price__label">Price</p>
-                <div class="price__amounts">
-                  {
-                    amounts.map((amount, i) => (
-                      <>
-                        {i > 0 && <p class="price__or">or</p>}
-                        <p class="price__amount">
-                          <span class="price__current">{amount.current}</span>
-                          <span class="price__old">{amount.old}</span>
-                        </p>
-                      </>
-                    ))
-                  }
+          <div class="ui-kit__swatches">
+            {
+              colors.map((color) => (
+                <div class="ui-kit__swatch-item">
+                  <div class={`ui-kit__swatch ui-kit__swatch--${color.mod}`} />
+                  <p class="ui-kit__swatch-token">{color.token}</p>
+                  <p class="ui-kit__swatch-role">{color.role}</p>
+                  <p class="ui-kit__swatch-hex">{color.hex}</p>
                 </div>
-                <a class="btn btn--primary price__btn" href="#">Buy Now</a>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Buttons -->
+        <section class="ui-kit__section" id="buttons">
+          <h2 class="ui-kit__section-title">Buttons</h2>
+
+          <div class="ui-kit__buttons">
+            <div class="ui-kit__button-group">
+              <span class="ui-kit__button-label">btn--primary</span>
+              <div class="ui-kit__button-row">
+                <button class="btn btn--primary" type="button"
+                  >Get Started</button
+                >
+                <button class="btn btn--primary" type="button" disabled>
+                  Disabled
+                </button>
+              </div>
+            </div>
+
+            <div class="ui-kit__button-group">
+              <span class="ui-kit__button-label">btn--secondary</span>
+              <div class="ui-kit__button-row">
+                <button class="btn btn--secondary" type="button"
+                  >Send Request</button
+                >
+                <button class="btn btn--secondary" type="button" disabled>
+                  Disabled
+                </button>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="ui-kit__card-item">
-          <span class="ui-kit__label">certificate</span>
+          <p class="ui-kit__note">
+            <code class="ui-kit__code">:hover</code>,
+            <code class="ui-kit__code">:active</code> and
+            <code class="ui-kit__code">:focus-visible</code> are interactive — hover,
+            click, or Tab to a button to see them.
+          </p>
 
-          <div class="ui-kit__certificate-panel">
-            <div class="certificate ui-kit__certificate">
-              <div class="certificate__header">
-                <Icon
-                  class="certificate__logo"
-                  name="logo"
-                  width="106"
-                  height="23"
+          <p class="ui-kit__note">
+            Press scales the button and darkens its background; hover fades in a
+            soft shadow via a <code class="ui-kit__code">::before</code> opacity —
+            <strong
+              >GPU, not an animated <code class="ui-kit__code">box-shadow</code
+              ></strong
+            >. The three button flavours — magnetic (hero), shimmer (submit),
+            and this base press — are in the Motion catalogue below.
+          </p>
+        </section>
+
+        <!-- Form Elements (shown on the footer's dark context) -->
+        <section class="ui-kit__section" id="form">
+          <h2 class="ui-kit__section-title">Form Elements</h2>
+
+          <div class="ui-kit__form-panel">
+            <div class="footer__form-fields ui-kit__form-fields">
+              <div class="footer__form-field">
+                <label class="visually-hidden" for="uikit-name">Name</label>
+                <input id="uikit-name" type="text" placeholder="Name" />
+              </div>
+
+              <div class="footer__form-field">
+                <label class="visually-hidden" for="uikit-email">Email</label>
+                <input
+                  id="uikit-email"
+                  class="is-invalid"
+                  type="email"
+                  value="wrong@"
+                  placeholder="Email"
                 />
-                <span class="certificate__tag">Profession: Systems Analyst</span
+                <span class="footer__form-error is-visible"
+                  >Enter a valid email address</span
                 >
               </div>
 
-              <p class="certificate__title">Certificate</p>
-              <p class="certificate__note">Top performance on the course</p>
-
-              <dl class="certificate__details">
-                <div class="certificate__field certificate__field--name">
-                  <dt>Awarded to</dt>
-                  <dd>Ilya Petrov</dd>
-                </div>
-                <div class="certificate__field">
-                  <dt>Completion date</dt>
-                  <dd>July 15, 2024</dd>
-                </div>
-                <div class="certificate__field">
-                  <dt>Course author</dt>
-                  <dd>Innokentiy Bodrov</dd>
-                </div>
-              </dl>
-
-              <CertificateStamp />
-            </div>
-          </div>
-        </div>
-
-        <p class="ui-kit__note">
-          The <code class="ui-kit__code">about</code> cards are decorative and animation-driven
-          (rotating logo, parallax) — catalogued in the Motion section below, seen
-          live on the landing.
-        </p>
-      </section>
-
-      <!-- Icons -->
-      <section class="ui-kit__section">
-        <h2 class="ui-kit__section-title">Icons</h2>
-
-        {
-          iconGroups.map((group) => (
-            <div class="ui-kit__icon-group">
-              <h3 class="ui-kit__subsection-title">{group.title}</h3>
-              <div class="ui-kit__icons">
-                {group.names.map((name) => (
-                  <div class="ui-kit__icon-item">
-                    <span class="ui-kit__icon">
-                      <Icon name={name} class="ui-kit__icon-svg" />
-                    </span>
-                    <span class="ui-kit__label">{name}</span>
-                  </div>
-                ))}
+              <div class="footer__form-field">
+                <label class="visually-hidden" for="uikit-disabled">
+                  Disabled field
+                </label>
+                <input
+                  id="uikit-disabled"
+                  type="text"
+                  placeholder="Disabled field"
+                  disabled
+                />
               </div>
             </div>
-          ))
-        }
-      </section>
 
-      <!-- Motion -->
-      <section class="ui-kit__section">
-        <h2 class="ui-kit__section-title">Motion</h2>
+            <div class="ui-kit__notifications">
+              <div
+                class="footer__notification footer__notification--success ui-kit__notification"
+              >
+                <span class="footer__notification-icon">
+                  <Icon
+                    name="check-mark"
+                    width="11"
+                    height="8"
+                    aria-hidden="true"
+                  />
+                </span>
+                <p>Thank you! We'll be in&nbsp;touch shortly.</p>
+              </div>
 
-        <p class="ui-kit__motion-intro">
-          Every animation is physics-based (strong easing / springs),
-          GPU-composited on
-          <code class="ui-kit__code">transform</code> &amp;
-          <code class="ui-kit__code">opacity</code> wherever it can, and respects
-          <code class="ui-kit__code">prefers-reduced-motion</code>. Best
-          experienced live on the <a class="ui-kit__link" href="/"
-            >landing&nbsp;page</a
-          >.
-        </p>
+              <div
+                class="footer__notification footer__notification--error ui-kit__notification"
+              >
+                <span class="footer__notification-icon">
+                  <Icon
+                    name="close"
+                    width="14"
+                    height="14"
+                    aria-hidden="true"
+                  />
+                </span>
+                <p>Something went wrong. Please try&nbsp;again.</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        <div class="ui-kit__motion-table-wrap">
-          <table class="ui-kit__motion-table">
-            <thead>
-              <tr>
-                <th>Effect</th>
-                <th>Where</th>
-                <th>What it does</th>
-                <th>Principle &amp; a11y</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                motion.map((row) => (
-                  <tr>
-                    <td>{row.effect}</td>
-                    <td class="ui-kit__motion-where">{row.where}</td>
-                    <td>{row.what}</td>
-                    <td>{row.principle}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        </div>
-      </section>
+        <!-- Cards -->
+        <section class="ui-kit__section" id="cards">
+          <h2 class="ui-kit__section-title">Cards</h2>
+
+          <div class="ui-kit__card-item">
+            <span class="ui-kit__label">price__card</span>
+
+            <div class="price__card">
+              <div class="price__card-inner">
+                <div class="price__plan">
+                  <h3 class="price__plan-name">Basic Plan</h3>
+                  <ul class="price__features">
+                    {features.map((feature) => <li>{feature}</li>)}
+                  </ul>
+                </div>
+
+                <div class="price__pricing">
+                  <p class="price__label">Price</p>
+                  <div class="price__amounts">
+                    {
+                      amounts.map((amount, i) => (
+                        <>
+                          {i > 0 && <p class="price__or">or</p>}
+                          <p class="price__amount">
+                            <span class="price__current">{amount.current}</span>
+                            <span class="price__old">{amount.old}</span>
+                          </p>
+                        </>
+                      ))
+                    }
+                  </div>
+                  <a class="btn btn--primary price__btn" href="#">Buy Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ui-kit__card-item">
+            <span class="ui-kit__label">certificate</span>
+
+            <div class="ui-kit__certificate-panel">
+              <div class="certificate ui-kit__certificate">
+                <div class="certificate__header">
+                  <Icon
+                    class="certificate__logo"
+                    name="logo"
+                    width="106"
+                    height="23"
+                  />
+                  <span class="certificate__tag"
+                    >Profession: Systems Analyst</span
+                  >
+                </div>
+
+                <p class="certificate__title">Certificate</p>
+                <p class="certificate__note">Top performance on the course</p>
+
+                <dl class="certificate__details">
+                  <div class="certificate__field certificate__field--name">
+                    <dt>Awarded to</dt>
+                    <dd>Ilya Petrov</dd>
+                  </div>
+                  <div class="certificate__field">
+                    <dt>Completion date</dt>
+                    <dd>July 15, 2024</dd>
+                  </div>
+                  <div class="certificate__field">
+                    <dt>Course author</dt>
+                    <dd>Innokentiy Bodrov</dd>
+                  </div>
+                </dl>
+
+                <CertificateStamp />
+              </div>
+            </div>
+          </div>
+
+          <p class="ui-kit__note">
+            The <code class="ui-kit__code">about</code> cards are decorative and animation-driven
+            (rotating logo, parallax) — catalogued in the Motion section below, seen
+            live on the landing.
+          </p>
+        </section>
+
+        <!-- Icons -->
+        <section class="ui-kit__section" id="icons">
+          <h2 class="ui-kit__section-title">Icons</h2>
+
+          {
+            iconGroups.map((group) => (
+              <div class="ui-kit__icon-group">
+                <h3 class="ui-kit__subsection-title">{group.title}</h3>
+                <div class="ui-kit__icons">
+                  {group.names.map((name) => (
+                    <div class="ui-kit__icon-item">
+                      <span class="ui-kit__icon">
+                        <Icon name={name} class="ui-kit__icon-svg" />
+                      </span>
+                      <span class="ui-kit__label">{name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </section>
+
+        <!-- Motion -->
+        <section class="ui-kit__section" id="motion">
+          <h2 class="ui-kit__section-title">Motion</h2>
+
+          <p class="ui-kit__motion-intro">
+            Every animation is physics-based (strong easing / springs),
+            GPU-composited on
+            <code class="ui-kit__code">transform</code> &amp;
+            <code class="ui-kit__code">opacity</code> wherever it can, and respects
+            <code class="ui-kit__code">prefers-reduced-motion</code>. Best
+            experienced live on the <a class="ui-kit__link" href="/"
+              >landing&nbsp;page</a
+            >.
+          </p>
+
+          <div class="ui-kit__motion-table-wrap">
+            <table class="ui-kit__motion-table">
+              <thead>
+                <tr>
+                  <th>Effect</th>
+                  <th>Where</th>
+                  <th>What it does</th>
+                  <th>Principle &amp; a11y</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  motion.map((row) => (
+                    <tr>
+                      <td>{row.effect}</td>
+                      <td class="ui-kit__motion-where">{row.where}</td>
+                      <td>{row.what}</td>
+                      <td>{row.principle}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
     </div>
   </main>
+
+  <script>
+    // Scroll-spy: highlight the TOC link of the section currently in view.
+    const links = Array.from(document.querySelectorAll(".ui-kit__toc-link"));
+    const linkById = new Map();
+    links.forEach((link) => {
+      const id = link.getAttribute("href")?.slice(1); // href is "#section" → id
+      if (id) linkById.set(id, link);
+    });
+    const sectionEls = document.querySelectorAll(".ui-kit__section[id]");
+
+    if (sectionEls.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            links.forEach((link) => link.classList.remove("is-active"));
+            linkById.get(entry.target.id)?.classList.add("is-active");
+          });
+        },
+        // Trigger when a section crosses the middle band of the viewport
+        { rootMargin: "-40% 0px -55% 0px" },
+      );
+
+      sectionEls.forEach((section) => observer.observe(section));
+    }
+  </script>
 </BaseLayout>
