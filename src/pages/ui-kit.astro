@@ -79,7 +79,7 @@ const iconGroups = [
 ];
 
 // Motion catalog — the public record of the site's animation engineering
-// (physics-based easing, GPU-only props, reduced-motion on every effect).
+// (physics-based easing, GPU-first props with justified exceptions, reduced-motion on every effect).
 // Ordered top → bottom of the landing (header → hero → … → footer), with the
 // cross-cutting effects grouped as "Global" at the end — so the catalog reads
 // as a scroll-map of the live page's motion.
@@ -187,9 +187,9 @@ const motion = [
   {
     effect: "Button press",
     where: "Global",
-    what: "Symmetric scale on :active + composite shadow-lift on hover",
+    what: "Scale on :active + shadow-lift on hover",
     principle:
-      "scale(0.95) ease-apple, symmetric both phases; shadow-lift via ::before opacity (composite, not box-shadow); press-darken bg; reduced-motion",
+      "scale(0.95) ease-apple; shadow-lift via ::before opacity (composite, not box-shadow); bg darkens on press; reduced-motion",
   },
   {
     effect: "Smooth scroll",
@@ -344,7 +344,8 @@ const motion = [
           <code class="ui-kit__code">scale(0.95)</code> on
           <code class="ui-kit__code">:active</code> (same easing in and out); the
           hover shadow-lift fades a <code class="ui-kit__code">::before</code> opacity
-          (GPU) instead of animating <code class="ui-kit__code">box-shadow</code>
+          (GPU) instead of animating <code class="ui-kit__code">box-shadow</code
+          >
           (which repaints); and the background darkens on press. The three button
           flavours — magnetic (hero), shimmer (submit), and this base press — are
           catalogued in Motion below.
@@ -494,8 +495,8 @@ const motion = [
 
         <p class="ui-kit__note">
           The <code class="ui-kit__code">about</code> cards are decorative and animation-driven
-          (rotating logo, parallax) — catalogued in the Motion section below, seen live
-          on the landing.
+          (rotating logo, parallax) — catalogued in the Motion section below, seen
+          live on the landing.
         </p>
       </section>
 
@@ -527,10 +528,10 @@ const motion = [
         <h2 class="ui-kit__section-title">Motion</h2>
 
         <p class="ui-kit__motion-intro">
-          Every animation is physics-based (strong easing / springs), runs only
-          on
+          Every animation is physics-based (strong easing / springs),
+          GPU-composited on
           <code class="ui-kit__code">transform</code> &amp;
-          <code class="ui-kit__code">opacity</code> (GPU), and respects
+          <code class="ui-kit__code">opacity</code> wherever it can, and respects
           <code class="ui-kit__code">prefers-reduced-motion</code>. Best
           experienced live on the <a class="ui-kit__link" href="/"
             >landing&nbsp;page</a
