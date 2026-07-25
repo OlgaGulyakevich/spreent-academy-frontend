@@ -187,8 +187,9 @@ const motion = [
   {
     effect: "Button press",
     where: "Global",
-    what: "Tactile scale on :active, plus hover / focus states",
-    principle: "spring easing, scale(0.95); GPU press feedback",
+    what: "Symmetric scale on :active + composite shadow-lift on hover",
+    principle:
+      "scale(0.95) ease-apple, symmetric both phases; shadow-lift via ::before opacity (composite, not box-shadow); press-darken bg; reduced-motion",
   },
   {
     effect: "Smooth scroll",
@@ -336,6 +337,17 @@ const motion = [
           <code class="ui-kit__code">:active</code> and
           <code class="ui-kit__code">:focus-visible</code> are interactive — hover,
           click, or Tab to a button to see them.
+        </p>
+
+        <p class="ui-kit__note">
+          Motion is <strong>composite-only</strong>: press is a symmetric
+          <code class="ui-kit__code">scale(0.95)</code> on
+          <code class="ui-kit__code">:active</code> (same easing in and out); the
+          hover shadow-lift fades a <code class="ui-kit__code">::before</code> opacity
+          (GPU) instead of animating <code class="ui-kit__code">box-shadow</code>
+          (which repaints); and the background darkens on press. The three button
+          flavours — magnetic (hero), shimmer (submit), and this base press — are
+          catalogued in Motion below.
         </p>
       </section>
 

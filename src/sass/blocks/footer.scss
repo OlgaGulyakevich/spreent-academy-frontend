@@ -274,6 +274,28 @@
     padding: 14px 25px 16px;
   }
 
+  // .btn animates its shadow-lift via ::before opacity (composite), but this
+  // button's overflow: hidden (shimmer clip) would clip that ::before shadow. So
+  // here the glow goes on the element (own box-shadow isn't clipped by own overflow),
+  // and we re-add its transition — the base .btn is composite-pure and drops box-shadow.
+  transition:
+    color $transition-default,
+    background-color $transition-default,
+    transform $transition-fast $ease-apple,
+    box-shadow $transition-default;
+
+  &::before {
+    display: none; // clipped shadow layer would be invisible — drop it
+  }
+
+  @include hover {
+    box-shadow: $shadow-btn-secondary-hover;
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+
   // Signature shimmer: a single highlight glint sweeps across the button when it
   // first enters the viewport, drawing the eye to the key conversion. shimmer-cta.js
   // adds .is-shimmer via IntersectionObserver (once); reduced-motion users never get

@@ -2,8 +2,17 @@
 // BUTTON COMPONENT
 // =============================================================================
 
+// Motion (composite-only):
+//   - press: transform scale(0.95) on :active — GPU, symmetric ease-apple
+//     (both press-in and release-out via one base transition)
+//   - hover shadow-lift: OPACITY of a ::before pseudo (composited), NOT an
+//     animated box-shadow (which repaints every frame)
+//   - press-darken: background-color shifts to the -active token
+// ::after is reserved for the footer submit shimmer, so the shadow lives on ::before.
+
 
 .btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -14,18 +23,37 @@
   border-radius: $radius-btn;
   white-space: nowrap;
   text-align: center;
+
+  // transform + opacity animate on the GPU; background-color is paint but cheap
+  // and expected for a button. ease-apple (strong ease-out), symmetric.
   transition:
     color $transition-default,
     background-color $transition-default,
-    box-shadow $transition-default,
-    transform $transition-fast $ease-spring;
+    transform $transition-fast $ease-apple;
+
+  // Shadow-lift layer — we fade its OPACITY (composited) instead of animating
+  // box-shadow. Colour of the shadow is set per-variant below.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity $transition-default $ease-apple;
+  }
 
   &:focus-visible {
     border-radius: $radius-btn;
   }
 
+  // Press: scale down + shadow drops out (button sinks)
   &:active {
     transform: scale(0.95);
+
+    &::before {
+      opacity: 0;
+    }
   }
 }
 
@@ -34,14 +62,20 @@
   background-color: $color-btn-primary;
   color: $color-text-white;
 
-  @include hover {
-    background-color: $color-btn-primary-hover;
+  &::before {
     box-shadow: $shadow-btn-primary-hover;
   }
 
+  @include hover {
+    background-color: $color-btn-primary-hover;
+
+    &::before {
+      opacity: 1; // shadow-lift fades in — GPU
+    }
+  }
+
   &:active {
-    background-color: $color-btn-primary-active;
-    box-shadow: none;
+    background-color: $color-btn-primary-active; // press-darken
   }
 }
 
@@ -56,14 +90,20 @@
   background-color: $color-btn-secondary;
   color: $color-text-dark;
 
-  @include hover {
-    background-color: $color-btn-secondary-hover;
+  &::before {
     box-shadow: $shadow-btn-secondary-hover;
   }
 
+  @include hover {
+    background-color: $color-btn-secondary-hover;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
   &:active {
-    background-color: $color-btn-secondary-active;
-    box-shadow: none;
+    background-color: $color-btn-secondary-active; // press-darken
   }
 }
 
