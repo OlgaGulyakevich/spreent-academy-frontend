@@ -85,6 +85,13 @@ const iconGroups = [
 // as a scroll-map of the live page's motion.
 const motion = [
   {
+    effect: "Logo paint-fill",
+    where: "Header + Footer",
+    what: "Brand colour paints across the wordmark, neon glow on hover + tap",
+    principle:
+      "two-layer masked reveal on transform (GPU, no repaint); blue (header) / lime (footer); mobile tap → instant colour + glow",
+  },
+  {
     effect: "Sticky header + blur",
     where: "Header",
     what: "Header sticks, gains a frosted blur once scrolled",
@@ -475,7 +482,7 @@ const motion = [
 
         <p class="ui-kit__note">
           The <code class="ui-kit__code">about</code> cards are decorative and animation-driven
-          (rotating logo, parallax) — see them live in the Motion section below and
+          (rotating logo, parallax) — catalogued in the Motion section below, seen live
           on the landing.
         </p>
       </section>

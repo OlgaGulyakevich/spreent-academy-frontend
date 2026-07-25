@@ -4,6 +4,15 @@
 // LOGO COMPONENT (Paint Fill & Reveal)
 // =============================================================================
 
+// Two layers so the reveal runs on the GPU:
+//   .logo__paint          — fixed mask window, clips to the wordmark silhouette
+//   .logo__paint::before  — the coloured gradient, swept in via `transform`
+//                           (translateX) → composited, zero per-frame repaint.
+
+// A single element can't do this: transforming it would carry its own mask
+// along, sliding the clip off the letterforms. Splitting "what clips" (parent,
+// fixed) from "what moves" (child, transform) keeps the reveal on the GPU.
+
 
 .logo {
   position: relative;
@@ -21,38 +30,13 @@
     fill: currentColor;
   }
 
-  // Слой "заливки" краской
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-
-    background:
-      linear-gradient(105deg,
-      color.adjust($color-blue, $lightness: -20%) 0%,
-      $color-blue 25%,
-      $color-blue 50%,
-      transparent 50%,
-      transparent 100%);
-    background-size: 250% 100%;
-    background-position: 100% 0;
-
-    mask-image: url("/img/logo.svg");
-    mask-repeat: no-repeat;
-    mask-position: 0 0;
-    mask-size: 100% 100%;
-
-    transition: background-position 0.9s $ease-apple;
-  }
-
   @include hover {
-    &::after {
-      background-position: 0 0;
-    }
-
     // Тонкое неоновое свечение всего блока
     filter: drop-shadow(0 0 3px rgba($color-blue, 0.4));
+
+    .logo__paint::before {
+      transform: translateX(0); // coloured half sweeps across — GPU
+    }
   }
 
   // Мобильный tap: моментальный color + glow отклик (без sweep)
@@ -63,37 +47,64 @@
   }
 }
 
-// Светлый логотип (подвал): gradient затемнён и размыт для контраста на тёмном фоне
-.logo--light {
-  color: $color-white;
+// Fixed mask window — clips the moving gradient to the wordmark silhouette
+.logo__paint {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
 
-  &::after {
+  mask-image: url("/img/logo.svg");
+  mask-repeat: no-repeat;
+  mask-position: 0 0;
+  mask-size: 100% 100%;
+
+  // Moving colour layer — 220% wide, coloured half / transparent half with the
+  // diagonal boundary that sweeps across as it translates (GPU, no repaint).
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 220%;
+
     background:
       linear-gradient(105deg,
-      color.adjust($color-secondary, $lightness: -30%) 0%,
-      color.adjust($color-secondary, $lightness: -10%) 20%,
-      $color-secondary 40%,
-      color.adjust($color-secondary, $lightness: 8%) 48%,
-      transparent 55%,
+      color.adjust($color-blue, $lightness: -20%) 0%,
+      $color-blue 25%,
+      $color-blue 50%,
+      transparent 50%,
       transparent 100%);
-    background-size: 250% 100%;
-    background-position: 100% 0;
 
-    transition: background-position 1.1s $ease-apple;
+    transform: translateX(-50%); // coloured half parked off to the left = hidden
+    transition: transform 0.9s $ease-apple;
   }
+}
+
+// Светлый логотип (подвал): gradient затемнён для контраста на тёмном фоне
+.logo--light {
+  color: $color-white;
 
   @include hover {
     filter: drop-shadow(0 0 3px rgba($color-secondary, 0.4));
     transition: filter 0.4s ease-out 0.4s;
-
-    &::after {
-      background-position: 0 0;
-    }
   }
 
   // Мобильный tap для футера: lime color + lime glow
   &:active {
     color: $color-secondary;
     filter: drop-shadow(0 0 10px rgba($color-secondary, 0.5));
+  }
+
+  .logo__paint::before {
+    background:
+      linear-gradient(105deg,
+      color.adjust($color-secondary, $lightness: -30%) 0%,
+      color.adjust($color-secondary, $lightness: -10%) 20%,
+      $color-secondary 40%,
+      color.adjust($color-secondary, $lightness: 8%) 48%,
+      transparent 50%,
+      transparent 100%);
+
+    transition: transform 1.1s $ease-apple;
   }
 }
