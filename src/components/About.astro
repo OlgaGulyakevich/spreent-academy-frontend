@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import AboutCard from "./AboutCard.astro";
 ---
 
 <section class="about" data-test="about">
@@ -9,13 +10,12 @@ import { Icon } from "astro-icon/components";
     </h2>
 
     <ul class="about__cards">
-      <li class="about__card about__card--teachers">
-        <div class="about__card-tag">Who will teach you?</div>
-        <h3>Expert Instructors</h3>
-        <p>
-          Courses are taught by practicing experts currently working
-          at&nbsp;industry-leading companies
-        </p>
+      <AboutCard
+        modifier="teachers"
+        tag="Who will teach you?"
+        title="Expert Instructors"
+        text={"Courses are taught by practicing experts currently working at industry-leading companies"}
+      >
         <div class="about__card-media" aria-hidden="true">
           <picture>
             <source
@@ -34,16 +34,14 @@ import { Icon } from "astro-icon/components";
             />
           </picture>
         </div>
-      </li>
+      </AboutCard>
 
-      <li class="about__card about__card--skills">
-        <div class="about__card-tag">What will I gain?</div>
-        <h3>Hands-On Skills</h3>
-        <p>
-          Hands-on, profession-specific knowledge. Train on&nbsp;real projects
-          and build your own product
-        </p>
-
+      <AboutCard
+        modifier="skills"
+        tag="What will I gain?"
+        title="Hands-On Skills"
+        text={"Hands-on, profession-specific knowledge. Train on real projects and build your own product"}
+      >
         <div class="about__card-decor" aria-hidden="true">
           <div class="about__card-decor-rect"></div>
           <div class="about__card-decor-circle"></div>
@@ -68,15 +66,14 @@ import { Icon } from "astro-icon/components";
             <span>UX Lead</span>
           </div>
         </div>
-      </li>
+      </AboutCard>
 
-      <li class="about__card about__card--knowledge">
-        <div class="about__card-tag">What will I learn?</div>
-        <h3>Modern Knowledge</h3>
-        <p>
-          We know what employers need and build curricula around current market
-          trends
-        </p>
+      <AboutCard
+        modifier="knowledge"
+        tag="What will I learn?"
+        title="Modern Knowledge"
+        text="We know what employers need and build curricula around current market trends"
+      >
         <div class="about__card-logo" aria-hidden="true">
           <img
             src="img/icons/spreent-circle.svg"
@@ -86,7 +83,7 @@ import { Icon } from "astro-icon/components";
             loading="lazy"
           />
         </div>
-      </li>
+      </AboutCard>
     </ul>
   </div>
 </section>

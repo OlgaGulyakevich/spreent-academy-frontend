@@ -355,8 +355,38 @@
   color: $color-text-light;
 }
 
-.ui-kit__card-item + .ui-kit__card-item {
+.ui-kit__card-item + .ui-kit__card-item,
+.ui-kit__note + .ui-kit__card-item {
   margin-top: 50px;
+}
+
+// About card scaffold — neutral demo of the reusable <AboutCard> (real cards are
+// decorative/animation-driven → best seen live; here just tag/title/text + the slot).
+.ui-kit__about-demo {
+  display: block; // override the about section's 3-col grid
+  max-width: 360px;
+}
+
+.about__card--demo {
+  min-height: auto; // override the real card's 500px
+  background-color: $color-light;
+
+  p {
+    margin-top: 14px; // real card pushes p to the bottom of 500px — not needed here
+  }
+}
+
+.ui-kit__about-slot {
+  @include ui-kit-mono;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  margin-top: 20px;
+  border: $border-width-1 dashed $color-stroke;
+  border-radius: $radius-8;
+  color: $color-text-light;
 }
 
 // Certificate is white → show it on the light-gray panel (its real footer context).

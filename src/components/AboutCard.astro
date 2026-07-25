@@ -1,0 +1,20 @@
+---
+// About card — shared scaffold (tag → title → text). The bespoke visual
+// (photo / decor composition / rotating logo) is projected through the <slot>,
+// so each card keeps its own artwork and animation while the structure stays DRY.
+interface Props {
+  tag: string;
+  title: string;
+  text: string;
+  modifier: string; // "teachers" | "skills" | "knowledge"
+}
+
+const { tag, title, text, modifier } = Astro.props;
+---
+
+<li class:list={["about__card", `about__card--${modifier}`]}>
+  <div class="about__card-tag">{tag}</div>
+  <h3>{title}</h3>
+  <p>{text}</p>
+  <slot />
+</li>

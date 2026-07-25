@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Icon } from "astro-icon/components";
 import CertificateStamp from "../components/CertificateStamp.astro";
+import AboutCard from "../components/AboutCard.astro";
 import { features, amounts } from "../data/pricing";
 
 // Core palette (swatch background comes from the real token via a modifier class —
@@ -458,6 +459,34 @@ const sections = [
           <h2 class="ui-kit__section-title">Cards</h2>
 
           <div class="ui-kit__card-item">
+            <span class="ui-kit__label">AboutCard</span>
+
+            <ul class="about__cards ui-kit__about-demo">
+              <AboutCard
+                modifier="demo"
+                tag="Card tag"
+                title="Card title"
+                text="Supporting copy — a line or two describing the card."
+              >
+                <div class="ui-kit__about-slot">visual → &lt;slot /&gt;</div>
+              </AboutCard>
+            </ul>
+          </div>
+
+          <p class="ui-kit__note">
+            The three <code class="ui-kit__code">about</code> cards share this reusable
+            <code class="ui-kit__code">&lt;AboutCard&gt;</code> scaffold —
+            <code class="ui-kit__code">tag</code>,
+            <code class="ui-kit__code">title</code>,
+            <code class="ui-kit__code">text</code> via props; each card's bespoke
+            visual (a photo, CSS-drawn decor, a rotating logo) is projected through
+            a
+            <code class="ui-kit__code">&lt;slot&gt;</code>. The full cards in
+            all their glory — catalogued in Motion below, seen live on the
+            landing.
+          </p>
+
+          <div class="ui-kit__card-item">
             <span class="ui-kit__label">price__card</span>
 
             <div class="price__card">
@@ -529,12 +558,6 @@ const sections = [
               </div>
             </div>
           </div>
-
-          <p class="ui-kit__note">
-            The <code class="ui-kit__code">about</code> cards are decorative and animation-driven
-            (rotating logo, parallax) — catalogued in the Motion section below, seen
-            live on the landing.
-          </p>
         </section>
 
         <!-- Icons -->
