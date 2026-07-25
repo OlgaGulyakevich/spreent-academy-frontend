@@ -532,7 +532,9 @@
   display: flex;
   align-items: flex-start;
   color: $color-white;
-  transition: opacity $transition-default;
+  transition:
+    opacity $transition-default,
+    scale $transition-fast $ease-spring;
   transform: translateY(-2px);
 
   @include vp-1023 {
@@ -550,6 +552,12 @@
 
   @include hover {
     opacity: 0.7;
+  }
+
+  // Tactile press — scale(0.95) like the main logo; the `scale` property composes
+  // with the base `transform: translateY(-2px)` (no override), fires on mobile tap.
+  &:active {
+    scale: 0.95;
   }
 
   @include vp-1023 {
