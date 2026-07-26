@@ -12,6 +12,12 @@ export default defineConfig({
     // that stays external anyway → zero perf impact.
     inlineStylesheets: 'never',
   },
+  vite: {
+    // Same reasoning for scripts: Astro inlines small hoisted <script> tags by
+    // default (e.g. ui-kit scroll-spy) as inline <script>, which a strict
+    // script-src 'self' (no 'unsafe-inline') blocks. 0 = never inline → external .js.
+    build: { assetsInlineLimit: 0 },
+  },
   server: {
     port: 3000,
     host: true, // expose on the local network (phone testing via the printed Network URL)
