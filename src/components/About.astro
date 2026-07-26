@@ -75,13 +75,28 @@ import AboutCard from "./AboutCard.astro";
         text="We know what employers need and build curricula around current market trends"
       >
         <div class="about__card-logo" aria-hidden="true">
-          <img
-            src="img/icons/spreent-circle.svg"
-            width="562"
-            height="552"
-            alt=""
-            loading="lazy"
-          />
+          <picture>
+            <source
+              type="image/avif"
+              width="563"
+              height="551"
+              srcset="img/icons/spreent-circle@1x.avif 1x, img/icons/spreent-circle@2x.avif 2x"
+            />
+            <source
+              type="image/webp"
+              width="563"
+              height="551"
+              srcset="img/icons/spreent-circle@1x.webp 1x, img/icons/spreent-circle@2x.webp 2x"
+            />
+            <img
+              src="img/icons/spreent-circle@1x.png"
+              srcset="img/icons/spreent-circle@2x.png 2x"
+              width="563"
+              height="551"
+              alt=""
+              loading="lazy"
+            />
+          </picture>
         </div>
       </AboutCard>
     </ul>
