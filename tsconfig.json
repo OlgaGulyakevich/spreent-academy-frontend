@@ -5,5 +5,5 @@
     "noImplicitOverride": true
   },
   "include": ["src/**/*", ".astro/types.d.ts"],
-  "exclude": ["dist", "node_modules", "node_modules.nosync", "backstop_data"]
+  "exclude": ["dist", "node_modules"]
 }

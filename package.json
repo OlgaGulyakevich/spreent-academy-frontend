@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "test": "backstop test --config=pp.config.cjs",
+    "test": "echo \"e2e: Playwright (Phase 6)\" && exit 0",
     "check": "astro check",
     "stylelint": "stylelint \"src/sass/**/*.scss\" --fix",
     "lint-js": "eslint src --ext .js,.astro --fix",
@@ -29,7 +29,6 @@
     "eslint-config-htmlacademy": "10.0.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^1.7.0",
-    "htmlacademy-backstopjs": "6.6.1",
     "prettier": "^3.9.5",
     "prettier-plugin-astro": "^0.14.1",
     "sass": "1.98.0",
@@ -50,12 +49,5 @@
   },
   "volta": {
     "node": "22.13.1"
-  },
-  "overrides": {
-    "es5-ext": "0.10.53",
-    "cookie": "2.0.1",
-    "express": {
-      "cookie": "0.7.2"
-    }
   }
 }

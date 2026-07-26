@@ -21,15 +21,12 @@ Thumbs.db
 *.sln
 
 # Dependencies
-# node_modules — symlink to node_modules.nosync (*.nosync not synced with iCloud)
 node_modules
-node_modules.nosync/
 
 # Build and Output
 dist/
 build/
 coverage/
-backstop_data/
 .cache/
 
 # Astro generated types
