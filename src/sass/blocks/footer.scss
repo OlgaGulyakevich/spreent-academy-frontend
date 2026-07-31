@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // =============================================
 // Footer — Certificate + Form + Bottom nav
 // =============================================
@@ -122,10 +124,6 @@
   margin-top: 5px;
   white-space: normal;
   overflow-wrap: anywhere;
-
-  @include vp-1023 {
-    margin-top: 5px;
-  }
 }
 
 .footer__certificate-card {
@@ -171,7 +169,7 @@
     flex-direction: column;
     flex: initial;
     width: 100%;
-    gap: 12px;
+    gap: 28px; // room for the absolutely-positioned error message under each stacked field
   }
 }
 
@@ -224,6 +222,130 @@
   border-color: $color-form-error-border;
 }
 
+// Browser autofill repaints inputs with its own light background + text colour, which made
+// the light-on-dark text unreadable. The box-shadow-inset trick keeps autofilled fields
+// on-theme (Chrome's autofill bg is otherwise unstyleable). iOS Safari ignores it — there the
+// autofilled input stays light, but the transparent flag segment just shows that through.
+.footer__form-fields input:-webkit-autofill,
+.footer__form-fields input:-webkit-autofill:hover,
+.footer__form-fields input:-webkit-autofill:focus,
+.footer__form-fields input:autofill {
+  box-shadow: 0 0 0 1000px color.mix($color-white, $color-bg-dark, 20%) inset;
+  -webkit-text-fill-color: $color-form-text;
+  caret-color: $color-form-text;
+}
+
+// intl-tel-input (international phone) — dark theme scoped to the footer form.
+// Themed through iti's own custom properties (opaque dark dropdown, subtle border,
+// light icons) rather than fighting individual third-party classes.
+.footer__form-fields .iti {
+  display: block;
+  width: 100%;
+
+  --iti-country-selector-bg: #{$color-bg-dark}; // opaque — a dropdown must not show through
+  --iti-hover-color: #{rgba($color-white, 0.1)};
+  --iti-border-color: #{rgba($color-white, 0.15)};
+  --iti-icon-color: #{$color-form-placeholder}; // arrow / search / clear icons
+}
+
+// Flag / dial-code "segment": no background of its own → the input's bg shows through, so it stays
+// seamless in every state (rest / hover / focus / autofill) with zero tracking. The inset lines the
+// flag up with the input's text padding (iti derives the input's left padding from this button).
+
+// `--iti-hover-color: transparent` turns the flag highlight OFF by default. iti paints it via two
+// paths — a real :hover and a dropdown-hover `:has(+.iti__country-selector:hover)`; the latter stuck
+// lit after a country change (Chromium :has(:hover) invalidation). Zeroing the var kills both,
+// regardless of specificity; the dropdown LIST keeps its hover (var on .iti untouched). B is
+// re-armed on a genuine flag hover in the next rule.
+.footer__form-fields .iti__selected-country {
+  padding-inline-start: 24px;
+
+  --iti-hover-color: transparent;
+}
+
+// Flag-button hover (variant B): a compact rounded highlight instead of a full-height bar
+// (iti paints the hover bg on this full-height primary — we reshape it here).
+.footer__form-fields .iti__selected-country-primary {
+  height: auto;
+  padding-block: 12px;
+  border-radius: $radius-8;
+
+  // Re-arm the var only on a genuine pointer hover of the flag itself → iti's own :hover rule
+  // then paints B. Off on touch (no sticky tap-hover) and immune to the stuck :has path above.
+  @include hover {
+    --iti-hover-color: #{rgba($color-white, 0.1)};
+  }
+}
+
+// Dropdown wrapper — rounded to echo the search pill, full input width, and clip the
+// scrolling list to the corners (last row was bleeding past the rounded corner).
+.footer__form-fields .iti__country-selector {
+  // matchDropdownWidth is off (see PHONE_INIT_OPTIONS) → iti no longer sets an inline
+  // width, so this tracks the fluid input width cleanly (no !important needed).
+  width: 100%;
+  padding: 8px; // inset search pill + list so the rounded overflow clip doesn't cut their side borders
+  border-radius: $radius-card;
+  overflow: hidden;
+}
+
+.footer__form-fields .iti__country-list {
+  color: $color-form-text;
+
+  // Subtle dark scrollbar — the default light track showed as a bright dot in the corner.
+  scrollbar-width: thin;
+  scrollbar-color: rgba($color-white, 0.25) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba($color-white, 0.25);
+    border-radius: $radius-4;
+  }
+}
+
+// Rounded, inset hover highlight on country rows (modern menu style — Linear/Vercel/
+// Raycast) instead of a sharp full-bleed bar.
+.footer__form-fields .iti__country {
+  border-radius: $radius-8;
+}
+
+// Drop the hard separator line after the search — a small gap separates instead.
+.footer__form-fields .iti__search-input-wrapper {
+  margin-bottom: 6px;
+  border-bottom: none;
+}
+
+.footer__form-fields .iti__selected-dial-code {
+  color: $color-form-placeholder;
+}
+
+// The dropdown search box inherits `.footer__form-fields input` (pill radius, 15/25
+// padding, blue focus ring). Re-style it as an on-theme rounded search pill with a
+// clean focus (brighten the border, no browser blue outline).
+.footer__form-fields .iti__search-input {
+  padding: 12px 20px 12px 42px; // room for the search icon on the left
+  background-color: rgba($color-white, 0.08);
+  border: $border-width-1 solid var(--iti-border-color);
+  border-radius: $radius-btn;
+  color: $color-form-text;
+
+  &::placeholder {
+    color: $color-form-placeholder;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    border-color: $color-form-input-border-focus;
+  }
+}
+
 .footer__form-error {
   @include text-tag;
 
@@ -240,8 +362,7 @@
     transform $transition-default;
 
   @include vp-1023 {
-    font-size: 12px;
-    top: 88%;
+    font-size: 12px; // smaller on mobile; room to sit below comes from the fields' 28px gap
   }
 }
 
@@ -257,7 +378,7 @@
 
   @include vp-1023 {
     flex-direction: column;
-    gap: 18px;
+    gap: 32px; // clear the last field's error message before the submit button
   }
 }
 

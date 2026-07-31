@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import "intl-tel-input/styles";
 ---
 
 <section class="footer__form-section" id="footer-form">
@@ -32,6 +33,7 @@ import { Icon } from "astro-icon/components";
             name="phone"
             placeholder="Phone"
             required
+            maxlength="18"
             autocomplete="tel"
           />
           <span class="footer__form-error" aria-live="polite"></span>
