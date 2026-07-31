@@ -73,7 +73,6 @@
 
   @include fluid-val(max-width, 450px, 500px);
 
-  // 1024–1279: колонка уже → карточке +50–70px ширины (печать не наезжает на контент)
   @include vp-min(1024px) {
     @include fluid-val(max-width, 400px, 500px, 1024, 1440);
   }
@@ -222,10 +221,6 @@
   border-color: $color-form-error-border;
 }
 
-// Browser autofill repaints inputs with its own light background + text colour, which made
-// the light-on-dark text unreadable. The box-shadow-inset trick keeps autofilled fields
-// on-theme (Chrome's autofill bg is otherwise unstyleable). iOS Safari ignores it — there the
-// autofilled input stays light, but the transparent flag segment just shows that through.
 .footer__form-fields input:-webkit-autofill,
 .footer__form-fields input:-webkit-autofill:hover,
 .footer__form-fields input:-webkit-autofill:focus,
@@ -248,30 +243,19 @@
   --iti-icon-color: #{$color-form-placeholder}; // arrow / search / clear icons
 }
 
-// Flag / dial-code "segment": no background of its own → the input's bg shows through, so it stays
-// seamless in every state (rest / hover / focus / autofill) with zero tracking. The inset lines the
-// flag up with the input's text padding (iti derives the input's left padding from this button).
-
-// `--iti-hover-color: transparent` turns the flag highlight OFF by default. iti paints it via two
-// paths — a real :hover and a dropdown-hover `:has(+.iti__country-selector:hover)`; the latter stuck
-// lit after a country change (Chromium :has(:hover) invalidation). Zeroing the var kills both,
-// regardless of specificity; the dropdown LIST keeps its hover (var on .iti untouched). B is
-// re-armed on a genuine flag hover in the next rule.
 .footer__form-fields .iti__selected-country {
   padding-inline-start: 24px;
 
   --iti-hover-color: transparent;
 }
 
-// Flag-button hover (variant B): a compact rounded highlight instead of a full-height bar
+// Flag-button hover: a compact rounded highlight instead of a full-height bar
 // (iti paints the hover bg on this full-height primary — we reshape it here).
 .footer__form-fields .iti__selected-country-primary {
   height: auto;
   padding-block: 12px;
   border-radius: $radius-8;
 
-  // Re-arm the var only on a genuine pointer hover of the flag itself → iti's own :hover rule
-  // then paints B. Off on touch (no sticky tap-hover) and immune to the stuck :has path above.
   @include hover {
     --iti-hover-color: #{rgba($color-white, 0.1)};
   }
@@ -280,10 +264,8 @@
 // Dropdown wrapper — rounded to echo the search pill, full input width, and clip the
 // scrolling list to the corners (last row was bleeding past the rounded corner).
 .footer__form-fields .iti__country-selector {
-  // matchDropdownWidth is off (see PHONE_INIT_OPTIONS) → iti no longer sets an inline
-  // width, so this tracks the fluid input width cleanly (no !important needed).
   width: 100%;
-  padding: 8px; // inset search pill + list so the rounded overflow clip doesn't cut their side borders
+  padding: 8px;
   border-radius: $radius-card;
   overflow: hidden;
 }
@@ -325,11 +307,8 @@
   color: $color-form-placeholder;
 }
 
-// The dropdown search box inherits `.footer__form-fields input` (pill radius, 15/25
-// padding, blue focus ring). Re-style it as an on-theme rounded search pill with a
-// clean focus (brighten the border, no browser blue outline).
 .footer__form-fields .iti__search-input {
-  padding: 12px 20px 12px 42px; // room for the search icon on the left
+  padding: 12px 20px 12px 42px;
   background-color: rgba($color-white, 0.08);
   border: $border-width-1 solid var(--iti-border-color);
   border-radius: $radius-btn;
@@ -395,10 +374,6 @@
     padding: 14px 25px 16px;
   }
 
-  // .btn animates its shadow-lift via ::before opacity (composite), but this
-  // button's overflow: hidden (shimmer clip) would clip that ::before shadow. So
-  // here the glow goes on the element (own box-shadow isn't clipped by own overflow),
-  // and we re-add its transition — the base .btn is composite-pure and drops box-shadow.
   transition:
     color $transition-default,
     background-color $transition-default,
@@ -664,10 +639,6 @@
 
   svg {
     width: 90px;
-
-    // flex-item: без запрета сжатия дефолтный flex-shrink: 1 + глобальный
-    // max-width: 100% давали min-content ≈ 0 — грид ужимал ячейку, лого мельчало.
-    // Теперь при нехватке места переносится копирайт (1fr), а лого держит 90px.
     flex-shrink: 0;
   }
 

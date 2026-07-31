@@ -1,13 +1,14 @@
 /**
  * @fileoverview Form Validation — international phone input, email placeholder swap, inline errors.
- * Phone: intl-tel-input (flag dropdown, per-country format + validation via lazy-loaded utils),
- * default country Switzerland. Utils/flags self-hosted (bundled) → works under strict CSP.
+ * Phone: intl-tel-input (flag dropdown, per-country format + validation via libphonenumber).
+ * The whole iti bundle (core + ~150 KB libphonenumber) is dynamically imported only when the
+ * footer form nears the viewport — it sits at the very bottom, so this keeps it out of the
+ * initial critical path (big mobile TBT win). Default country Switzerland; utils/flags
+ * self-hosted (bundled) → works under strict CSP.
  * Email: placeholder changes to example@domain.com on focus, back to "Email" on blur.
  * Errors: red border via .is-invalid + text message under each invalid field on blur.
  * @module form-validation
  */
-
-import intlTelInput from 'intl-tel-input';
 
 const PHONE_SELECTOR = '#form-phone';
 const EMAIL_SELECTOR = '#form-email';
@@ -16,6 +17,8 @@ const ERROR_CLASS = 'footer__form-error';
 const ERROR_VISIBLE_CLASS = 'is-visible';
 const INVALID_CLASS = 'is-invalid';
 const RESET_EVENT = 'form:reset';
+// Start loading iti this far before the form scrolls into view, so it's ready on arrival.
+const PHONE_LAZY_ROOT_MARGIN = '400px';
 const EMAIL_PLACEHOLDER_DEFAULT = 'Email';
 const EMAIL_PLACEHOLDER_FOCUS = 'example@domain.com';
 const PHONE_INIT_OPTIONS = {
@@ -206,9 +209,10 @@ const validatePhone = (input, iti) => {
 /**
  * Initializes the international phone input via intl-tel-input.
  * @param {HTMLInputElement} input
+ * @param {Function} intlTelInput - the dynamically imported iti factory
  * @returns {Object} intl-tel-input instance
  */
-const initPhone = (input) => {
+const initPhone = (input, intlTelInput) => {
   const iti = intlTelInput(input, PHONE_INIT_OPTIONS);
 
   // iti (AGGRESSIVE policy) fills the placeholder with a country example number and updates
@@ -238,6 +242,32 @@ const initPhone = (input) => {
   });
 
   return iti;
+};
+
+/**
+ * Dynamically imports intl-tel-input and initializes the phone field once the footer form
+ * approaches the viewport (IntersectionObserver). Keeps iti core + libphonenumber out of the
+ * initial bundle — the form is at the very bottom, so nothing loads until the user scrolls near.
+ * @param {HTMLInputElement} input
+ * @param {(iti: Object) => void} onReady - called with the iti instance once initialized
+ */
+const lazyInitPhone = (input, onReady) => {
+  const load = async () => {
+    const { default: intlTelInput } = await import('intl-tel-input');
+    onReady(initPhone(input, intlTelInput));
+  };
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        obs.disconnect();
+        load();
+      }
+    },
+    { rootMargin: PHONE_LAZY_ROOT_MARGIN },
+  );
+
+  observer.observe(input);
 };
 
 /**
@@ -311,7 +341,7 @@ const initSubmitValidation = (form, phoneData) => {
       if (!input.value.trim()) {
         showError(input, ERROR_MESSAGES.phone.valueMissing);
         firstInvalid = firstInvalid || input;
-      } else if (iti.isValidNumberPrecise() === false) {
+      } else if (iti && iti.isValidNumberPrecise() === false) {
         showError(input, getPhoneErrorMessage(iti));
         firstInvalid = firstInvalid || input;
       }
@@ -341,8 +371,13 @@ const initFormValidation = () => {
   let phoneData = null;
 
   if (phoneInput) {
-    const iti = initPhone(phoneInput);
-    phoneData = { input: phoneInput, iti };
+    // iti loads lazily — phoneData.iti stays null until the form nears the viewport, then the
+    // submit/reset handlers (which read it by reference) pick up the instance. The form can't be
+    // reached without scrolling it into view, so iti is always ready before a real submit.
+    phoneData = { input: phoneInput, iti: null };
+    lazyInitPhone(phoneInput, (iti) => {
+      phoneData.iti = iti;
+    });
   }
 
   if (emailInput) {
@@ -362,7 +397,7 @@ const initFormValidation = () => {
       inputs.forEach((input) => hideError(input));
 
       if (phoneData) {
-        phoneData.iti.setNumber('');
+        phoneData.iti?.setNumber('');
       }
     });
   }
