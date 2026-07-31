@@ -3,12 +3,11 @@
 // =============================================================================
 // Font files: source/fonts/
 // Order: woff2 first (optimal), woff as fallback
-// Only weights actually used in the project are loaded (CTS-CSS-06)
 // Loaded:
 //   "Loos Wide"  500  — headings, navigation, buttons
 //   "Manrope"    500  — body text, lead text
 //   "Manrope"    600  — tags, semibold UI elements
-//   "Inter"      500  — декоративные cursor-плашки (hero, about)
+//   "Inter"      500  — decorative cursor elements (hero, about)
 
 @font-face {
   font-family: "Loos Wide";

@@ -1,4 +1,4 @@
-// Pricing content: feature list + amounts (RUB / KZT).
+// Pricing content: feature list + amounts (CHF / EUR — Switzerland / EU markets).
 // \u00A0 = non-breaking space — in data we use the escape, not the &nbsp; entity
 // (an entity in a TS string would render as literal text). Keeps prices from
 // breaking mid-number and prevents orphan words, same as the original markup.
@@ -17,6 +17,6 @@ export const features: string[] = [
 ];
 
 export const amounts: PriceAmount[] = [
-  { current: "83\u00A0890\u00A0₽", old: "110\u00A0388\u00A0₽" },
-  { current: "419\u00A0000\u00A0₸", old: "552\u00A0000\u00A0₸" },
+  { current: "1\u00A0490\u00A0CHF", old: "1\u00A0960\u00A0CHF" }, // Switzerland, -24%
+  { current: "1\u00A0390\u00A0€", old: "1\u00A0830\u00A0€" }, // EU, -24%
 ];
