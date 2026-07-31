@@ -66,14 +66,16 @@ $shadow-btn-secondary-hover: 0 6px 20px rgb(217, 242, 67, 0.4); // Lime shadow o
 $btn-min-width: 160px;
 
 
-// Form — footer (тёмный фон $color-bg-dark)
-$color-form-input-bg: rgba($color-white, 0.2);          // Default
-$color-form-input-bg-hover: rgba($color-white, 0.25);   // Hover — чуть светлее
-$color-form-input-bg-focus: rgba($color-white, 0.28);   // Focus — ещё светлее
-$color-form-input-border-focus: rgba($color-white, 0.5); // Border при фокусе
-$color-form-input-bg-disabled: rgba($color-white, 0.1); // Disabled — почти невидим
-$color-form-placeholder: rgba($color-white, 0.5);        // Placeholder text
-$color-form-text: $color-white;                          // Введённый текст
+// Form — footer (B1: светлые off-white инпуты на тёмной секции $color-bg-dark).
+// Тёмный текст на светлом фоне → контраст AA + гармония с iOS-autofill (он всегда
+// рисует тёмное на светлом; при светлом инпуте состояния совпадают, «+41» не пропадает).
+$color-form-input-bg: rgba($color-white, 0.75);         // Default — frosted glass (translucent + backdrop-blur)
+$color-form-input-bg-hover: rgba($color-white, 0.85);   // Hover — ярче
+$color-form-input-bg-focus: rgba($color-white, 0.92);   // Focus — почти непрозрачный
+$color-form-input-border-focus: $color-blue;            // Border при фокусе — синий акцент
+$color-form-input-bg-disabled: rgba($color-white, 0.4); // Disabled — приглушённо-светлый (dimmer frost)
+$color-form-placeholder: $color-text-secondary;         // Placeholder — rgba(dark,.7), проходит 4.5:1
+$color-form-text: $color-dark;                           // Введённый текст — тёмный
 $color-form-error: #ff4949;                              // Ошибка валидации
 $color-error: $color-form-error;                         // alias → #ff4949 (semantic alias)
 $color-form-error-border: #ff4949;                       // Граница при ошибке

@@ -1,5 +1,3 @@
-@use "sass:color";
-
 // =============================================
 // Footer — Certificate + Form + Bottom nav
 // =============================================
@@ -183,6 +181,7 @@
   min-width: 0;
   padding: 15px 25px;
   background-color: $color-form-input-bg;
+  backdrop-filter: blur(12px); // frosted glass — the dark footer blurs through the translucent bg
   border: $border-width-1 solid transparent;
   border-radius: $radius-btn;
   color: $color-form-text;
@@ -221,26 +220,29 @@
   border-color: $color-form-error-border;
 }
 
+// Chrome's autofill bg (pale yellow) is unstyleable except via this box-shadow-inset trick —
+// pin it to the input's own off-white so autofilled fields stay on-theme; text/caret dark.
+// iOS ignores it but draws its own dark-on-light autofill, which now matches the light input.
 .footer__form-fields input:-webkit-autofill,
 .footer__form-fields input:-webkit-autofill:hover,
 .footer__form-fields input:-webkit-autofill:focus,
 .footer__form-fields input:autofill {
-  box-shadow: 0 0 0 1000px color.mix($color-white, $color-bg-dark, 20%) inset;
+  box-shadow: 0 0 0 1000px $color-stroke inset; // solid ≈ frosted rest (box-shadow can't be translucent)
   -webkit-text-fill-color: $color-form-text;
   caret-color: $color-form-text;
 }
 
-// intl-tel-input (international phone) — dark theme scoped to the footer form.
-// Themed through iti's own custom properties (opaque dark dropdown, subtle border,
-// light icons) rather than fighting individual third-party classes.
+// intl-tel-input (international phone) — light theme scoped to the footer form (B1).
+// Themed through iti's own custom properties (light dropdown, subtle stroke border,
+// dark icons) rather than fighting individual third-party classes.
 .footer__form-fields .iti {
   display: block;
   width: 100%;
 
-  --iti-country-selector-bg: #{$color-bg-dark}; // opaque — a dropdown must not show through
-  --iti-hover-color: #{rgba($color-white, 0.1)};
-  --iti-border-color: #{rgba($color-white, 0.15)};
-  --iti-icon-color: #{$color-form-placeholder}; // arrow / search / clear icons
+  --iti-country-selector-bg: #{rgba($color-white, 0.9)}; // frosted menu — shares the input's glass, higher opacity for readability
+  --iti-hover-color: #{rgba($color-dark, 0.06)};
+  --iti-border-color: #{$color-stroke};
+  --iti-icon-color: #{$color-form-placeholder}; // arrow / search / clear icons (now dark)
 }
 
 .footer__form-fields .iti__selected-country {
@@ -257,7 +259,7 @@
   border-radius: $radius-8;
 
   @include hover {
-    --iti-hover-color: #{rgba($color-white, 0.1)};
+    --iti-hover-color: #{rgba($color-dark, 0.06)};
   }
 }
 
@@ -268,6 +270,7 @@
   padding: 8px;
   border-radius: $radius-card;
   overflow: hidden;
+  backdrop-filter: blur(12px); // frosted menu — matches the input's glass language
 }
 
 .footer__form-fields .iti__country-list {
@@ -275,7 +278,7 @@
 
   // Subtle dark scrollbar — the default light track showed as a bright dot in the corner.
   scrollbar-width: thin;
-  scrollbar-color: rgba($color-white, 0.25) transparent;
+  scrollbar-color: rgba($color-dark, 0.25) transparent;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -286,7 +289,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba($color-white, 0.25);
+    background-color: rgba($color-dark, 0.25);
     border-radius: $radius-4;
   }
 }
@@ -309,7 +312,7 @@
 
 .footer__form-fields .iti__search-input {
   padding: 12px 20px 12px 42px;
-  background-color: rgba($color-white, 0.08);
+  background-color: $color-white; // clean white search field on the off-white dropdown
   border: $border-width-1 solid var(--iti-border-color);
   border-radius: $radius-btn;
   color: $color-form-text;
