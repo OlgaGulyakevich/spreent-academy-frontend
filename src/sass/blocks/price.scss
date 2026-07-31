@@ -144,6 +144,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  flex-shrink: 0; // keep the price column at its natural width so CHF fits inline (no wrap)
 
   @include fluid-val(padding-left, 15px, 42px);
 
@@ -217,8 +218,12 @@
 
 .price__old {
   @include title-h3;
+  // Smaller than the current price → reads as a "was" price and fits inline (no wrap on CHF).
+  @include fluid-val(font-size, 22px, 28px);
 
-  color: $color-text-light;
+  // AA contrast: $color-text-light (.4) was ~2.5:1 on the light card (desktop A11y fail);
+  // the smaller size + line-through de-emphasise it, so AA-passing $color-text-secondary works.
+  color: $color-text-secondary;
   text-decoration: line-through;
   overflow-wrap: anywhere;
 
