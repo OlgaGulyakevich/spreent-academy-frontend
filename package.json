@@ -21,6 +21,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@ls-lint/ls-lint": "2.3.1",
+    "@playwright/test": "^1.62.1",
     "@typescript-eslint/parser": "^8.64.0",
     "astro": "^7.1.2",
     "astro-icon": "^1.1.5",
@@ -37,7 +38,8 @@
     "stylelint-config-standard-scss": "16.0.0",
     "stylelint-selector-bem-pattern": "4.0.1",
     "svgo": "4.0.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10"
   },
   "browserslist": [
     "last 3 Chrome versions",
