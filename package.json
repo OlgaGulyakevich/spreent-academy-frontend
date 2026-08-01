@@ -15,7 +15,17 @@
     "lint-js": "eslint src --ext .js,.astro --fix",
     "ls-lint": "ls-lint",
     "format": "prettier --write \"src/**/*.{astro,ts}\" \"tests/**/*.ts\" \"*.config.ts\"",
-    "lint": "npm run format && npm run check && npm run stylelint && npm run lint-js && npm run ls-lint"
+    "lint": "npm run format && npm run check && npm run stylelint && npm run lint-js && npm run ls-lint",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.astro": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.ts": "prettier --write",
+    "*.js": "eslint --fix",
+    "*.scss": "stylelint --fix"
   },
   "dependencies": {
     "intl-tel-input": "^29.1.2"
@@ -32,7 +42,9 @@
     "eslint-config-htmlacademy": "10.0.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^1.7.0",
+    "husky": "^9.1.7",
     "jsdom": "^29.1.1",
+    "lint-staged": "^16.4.0",
     "prettier": "^3.9.5",
     "prettier-plugin-astro": "^0.14.1",
     "sass": "1.98.0",

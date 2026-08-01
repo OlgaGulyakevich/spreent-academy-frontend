@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality:
+    name: Lint · Types · Tests · Build · E2E
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Linters run in CHECK mode (no --fix): CI must fail on a problem, not silently repair it.
+      - name: Prettier (check)
+        run: npx prettier --check "src/**/*.{astro,ts}" "tests/**/*.ts" "*.config.ts"
+
+      - name: ESLint
+        run: npx eslint src --ext .js,.astro
+
+      - name: Stylelint
+        run: npx stylelint "src/sass/**/*.scss"
+
+      - name: File naming (ls-lint)
+        run: npm run ls-lint
+
+      - name: Astro check (TypeScript)
+        run: npm run check
+
+      - name: Unit tests (Vitest)
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      # Only the critical-path form e2e runs in CI. Visual regression is intentionally
+      # local-only: its baselines are platform-specific (macOS -darwin) and would not
+      # match Linux font rendering here.
+      - name: E2E (form, critical path)
+        run: npx playwright test tests/e2e/form.spec.ts
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
