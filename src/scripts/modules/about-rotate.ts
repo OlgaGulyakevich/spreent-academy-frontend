@@ -17,12 +17,13 @@ const ROTATION_SPEED = 0.15;
 /**
  * Initializes scroll-driven rotation on the about section circle logo.
  */
-const initAboutRotate = () => {
+const initAboutRotate = (): void => {
   if (prefersReducedMotion()) {
     return;
   }
 
-  const image = document.querySelector(SELECTOR);
+  // <img> → HTMLImageElement so `.style` is available (a bare Element has no `.style`).
+  const image = document.querySelector<HTMLImageElement>(SELECTOR);
 
   if (!image) {
     return;
@@ -32,7 +33,7 @@ const initAboutRotate = () => {
   let lastScrollY = window.scrollY;
   let ticking = false;
 
-  const handleScroll = () => {
+  const handleScroll = (): void => {
     if (ticking) {
       return;
     }
