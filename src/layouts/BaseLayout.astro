@@ -97,10 +97,10 @@ const { title, description } = Astro.props;
     <!-- Page content is injected here -->
     <slot />
 
-    <!-- Astro bundles main.js + 12 modules into one ES module; intl-tel-input is a lazy
+    <!-- Astro bundles main.ts + 13 modules into one ES module; intl-tel-input is a lazy
          chunk, dynamically imported only when the footer form nears the viewport -->
     <script>
-      import "../scripts/main.js";
+      import "../scripts/main.ts";
     </script>
   </body>
 </html>

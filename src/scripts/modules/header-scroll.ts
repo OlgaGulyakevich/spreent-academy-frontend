@@ -6,7 +6,7 @@
  */
 
 const SCROLL_THRESHOLD = 40;
-const HEADER_SCROLLED_CLASS = 'header--scrolled';
+const HEADER_SCROLLED_CLASS = "header--scrolled";
 
 /**
  * Initializes the header scroll effect. Attaches a single passive listener
@@ -15,17 +15,16 @@ const HEADER_SCROLLED_CLASS = 'header--scrolled';
  *
  * @example initHeaderScroll();
  */
-const initHeaderScroll = () => {
-  const header = document.querySelector('.header');
+const initHeaderScroll = (): void => {
+  // Only .classList is used here → a bare Element is enough (no <HTMLElement> generic needed).
+  const header = document.querySelector(".header");
 
   if (!header) {
     return;
   }
 
-  /**
-   * Scroll handler. Toggles `.header--scrolled` based on current `window.scrollY`.
-   */
-  const handleScroll = () => {
+  /** Toggles `.header--scrolled` based on current `window.scrollY`. */
+  const handleScroll = (): void => {
     if (window.scrollY > SCROLL_THRESHOLD) {
       header.classList.add(HEADER_SCROLLED_CLASS);
       return;
@@ -33,7 +32,7 @@ const initHeaderScroll = () => {
     header.classList.remove(HEADER_SCROLLED_CLASS);
   };
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener("scroll", handleScroll, { passive: true });
 
   // Initial state — in case the page is loaded already scrolled
   handleScroll();

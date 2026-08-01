@@ -7,13 +7,25 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "test": "echo \"e2e: Playwright (Phase 6)\" && exit 0",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
     "check": "astro check",
     "stylelint": "stylelint \"src/sass/**/*.scss\" --fix",
     "lint-js": "eslint src --ext .js,.astro --fix",
     "ls-lint": "ls-lint",
-    "format": "prettier --write \"src/**/*.{astro,ts}\"",
-    "lint": "npm run format && npm run check && npm run stylelint && npm run lint-js && npm run ls-lint"
+    "format": "prettier --write \"src/**/*.{astro,ts}\" \"tests/**/*.ts\" \"*.config.ts\"",
+    "lint": "npm run format && npm run check && npm run stylelint && npm run lint-js && npm run ls-lint",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.astro": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.ts": "prettier --write",
+    "*.js": "eslint --fix",
+    "*.scss": "stylelint --fix"
   },
   "dependencies": {
     "intl-tel-input": "^29.1.2"
@@ -21,6 +33,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@ls-lint/ls-lint": "2.3.1",
+    "@playwright/test": "^1.62.1",
     "@typescript-eslint/parser": "^8.64.0",
     "astro": "^7.1.2",
     "astro-icon": "^1.1.5",
@@ -29,6 +42,9 @@
     "eslint-config-htmlacademy": "10.0.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^1.7.0",
+    "husky": "^9.1.7",
+    "jsdom": "^29.1.1",
+    "lint-staged": "^16.4.0",
     "prettier": "^3.9.5",
     "prettier-plugin-astro": "^0.14.1",
     "sass": "1.98.0",
@@ -37,7 +53,8 @@
     "stylelint-config-standard-scss": "16.0.0",
     "stylelint-selector-bem-pattern": "4.0.1",
     "svgo": "4.0.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10"
   },
   "browserslist": [
     "last 3 Chrome versions",

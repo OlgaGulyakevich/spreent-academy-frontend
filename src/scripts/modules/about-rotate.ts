@@ -9,20 +9,21 @@
  * @module about-rotate
  */
 
-import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+import { prefersReducedMotion } from "../utils/prefers-reduced-motion.js";
 
-const SELECTOR = '.about__card-logo img';
+const SELECTOR = ".about__card-logo img";
 const ROTATION_SPEED = 0.15;
 
 /**
  * Initializes scroll-driven rotation on the about section circle logo.
  */
-const initAboutRotate = () => {
+const initAboutRotate = (): void => {
   if (prefersReducedMotion()) {
     return;
   }
 
-  const image = document.querySelector(SELECTOR);
+  // <img> → HTMLImageElement so `.style` is available (a bare Element has no `.style`).
+  const image = document.querySelector<HTMLImageElement>(SELECTOR);
 
   if (!image) {
     return;
@@ -32,7 +33,7 @@ const initAboutRotate = () => {
   let lastScrollY = window.scrollY;
   let ticking = false;
 
-  const handleScroll = () => {
+  const handleScroll = (): void => {
     if (ticking) {
       return;
     }
@@ -44,13 +45,13 @@ const initAboutRotate = () => {
 
       currentRotation += delta * ROTATION_SPEED;
       lastScrollY = window.scrollY;
-      image.style.setProperty('--rotation', `${currentRotation}deg`);
+      image.style.setProperty("--rotation", `${currentRotation}deg`);
 
       ticking = false;
     });
   };
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener("scroll", handleScroll, { passive: true });
 };
 
 export { initAboutRotate };

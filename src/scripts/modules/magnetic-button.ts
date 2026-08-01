@@ -10,10 +10,10 @@
  * @module magnetic-button
  */
 
-import { lerp } from '../utils/lerp.js';
-import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+import { lerp } from "../utils/lerp.js";
+import { prefersReducedMotion } from "../utils/prefers-reduced-motion.js";
 
-const BUTTON_SELECTOR = '.hero__btn';
+const BUTTON_SELECTOR = ".hero__btn";
 const ATTRACT_RADIUS = 120;
 const PULL_FACTOR = 0.4;
 const LERP_FACTOR = 0.15;
@@ -21,22 +21,26 @@ const LERP_FACTOR = 0.15;
 /**
  * Initializes magnetic button effect on hero CTA.
  */
-const initMagneticButton = () => {
-  const hasHover = window.matchMedia('(hover: hover)').matches;
+const initMagneticButton = (): void => {
+  const hasHover = window.matchMedia("(hover: hover)").matches;
 
   if (prefersReducedMotion() || !hasHover) {
     return;
   }
 
-  const button = document.querySelector(BUTTON_SELECTOR);
+  const button = document.querySelector<HTMLElement>(BUTTON_SELECTOR);
 
   if (!button) {
     return;
   }
 
-  button.addEventListener('animationend', () => {
-    button.style.animation = 'none';
-  }, { once: true });
+  button.addEventListener(
+    "animationend",
+    () => {
+      button.style.animation = "none";
+    },
+    { once: true },
+  );
 
   let currentX = 0;
   let currentY = 0;
@@ -44,33 +48,36 @@ const initMagneticButton = () => {
   let targetY = 0;
   let ticking = false;
 
-  const animate = () => {
+  const animate = (): void => {
     currentX = lerp(currentX, targetX, LERP_FACTOR);
     currentY = lerp(currentY, targetY, LERP_FACTOR);
 
-    if (Math.abs(currentX - targetX) > 0.1 || Math.abs(currentY - targetY) > 0.1) {
-      button.style.setProperty('--magnetic-x', `${currentX}px`);
-      button.style.setProperty('--magnetic-y', `${currentY}px`);
+    if (
+      Math.abs(currentX - targetX) > 0.1 ||
+      Math.abs(currentY - targetY) > 0.1
+    ) {
+      button.style.setProperty("--magnetic-x", `${currentX}px`);
+      button.style.setProperty("--magnetic-y", `${currentY}px`);
       requestAnimationFrame(animate);
     } else if (targetX === 0 && targetY === 0) {
-      button.style.removeProperty('--magnetic-x');
-      button.style.removeProperty('--magnetic-y');
+      button.style.removeProperty("--magnetic-x");
+      button.style.removeProperty("--magnetic-y");
       ticking = false;
     } else {
-      button.style.setProperty('--magnetic-x', `${targetX}px`);
-      button.style.setProperty('--magnetic-y', `${targetY}px`);
+      button.style.setProperty("--magnetic-x", `${targetX}px`);
+      button.style.setProperty("--magnetic-y", `${targetY}px`);
       ticking = false;
     }
   };
 
-  const startAnimation = () => {
+  const startAnimation = (): void => {
     if (!ticking) {
       ticking = true;
       requestAnimationFrame(animate);
     }
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: MouseEvent): void => {
     const rect = button.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
@@ -91,7 +98,7 @@ const initMagneticButton = () => {
     startAnimation();
   };
 
-  document.addEventListener('mousemove', handleMouseMove, { passive: true });
+  document.addEventListener("mousemove", handleMouseMove, { passive: true });
 };
 
 export { initMagneticButton };

@@ -140,12 +140,6 @@
   }
 }
 
-@include reduced-motion {
-  .work__logo-item::after {
-    animation: none;
-  }
-}
-
 // ---------------------------------
 // Desktop grid placement + mobile order
 // ---------------------------------
@@ -327,5 +321,16 @@
     border-right: 0;
     border-bottom-width: $border-width-logos-mobile;
     order: 7;
+  }
+}
+
+// ---------------------------------
+// Reduced motion: stop the ambient glow sweep (continuous motion is a vestibular
+// trigger). Placed after the per-cell --modifier rules so it wins on source order
+// at equal specificity — the base guard alone was overridden by the modifiers.
+// ---------------------------------
+@include reduced-motion {
+  .work__logo-item::after {
+    animation: none;
   }
 }

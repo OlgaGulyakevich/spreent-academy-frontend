@@ -6,6 +6,10 @@ export default defineConfig({
   // astro-icon: local SVGs from src/icons/ → <Icon name="…" /> 
   integrations: [icon()],
   output: 'static',
+  // Astro dev toolbar off: a dev/preview-only overlay (absent from the deployed static
+  // build) that otherwise renders into Playwright visual-regression screenshots. Committed
+  // here — unlike `astro preferences disable devToolbar`, which is local/gitignored (.astro/).
+  devToolbar: { enabled: false },
   build: {
     // Keep all CSS in external files (no inlined <style>) so the CSP can use a
     // strict style-src 'self' with no 'unsafe-inline'. Our CSS is one large bundle

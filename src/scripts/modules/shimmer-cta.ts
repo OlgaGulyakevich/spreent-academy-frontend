@@ -9,10 +9,10 @@
  * @module shimmer-cta
  */
 
-import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+import { prefersReducedMotion } from "../utils/prefers-reduced-motion.js";
 
-const BUTTON_SELECTOR = '.footer__form-btn';
-const SHIMMER_CLASS = 'is-shimmer';
+const BUTTON_SELECTOR = ".footer__form-btn";
+const SHIMMER_CLASS = "is-shimmer";
 const DWELL_DELAY_MS = 2000; // wait until the user has settled on the form and is deciding
 const OBSERVER_OPTIONS = { threshold: 1 };
 
@@ -21,7 +21,7 @@ const OBSERVER_OPTIONS = { threshold: 1 };
  * the user has dwelled without engaging. No-op under reduced-motion or if the
  * button is absent.
  */
-const initShimmerCta = () => {
+const initShimmerCta = (): void => {
   if (prefersReducedMotion()) {
     return;
   }
@@ -32,7 +32,7 @@ const initShimmerCta = () => {
     return;
   }
 
-  let dwellTimer;
+  let dwellTimer = 0; // window.setTimeout id (browser → number); 0 is a safe no-op sentinel
   let done = false;
 
   const observer = new IntersectionObserver((entries) => {
@@ -60,18 +60,22 @@ const initShimmerCta = () => {
 
   // Cancel-on-engage: someone who starts filling the form is already acting and
   // needs no nudge — stop before the sweep can fire.
-  const form = button.closest('form');
+  const form = button.closest("form");
 
   if (form) {
-    form.addEventListener('focusin', () => {
-      if (done) {
-        return;
-      }
+    form.addEventListener(
+      "focusin",
+      () => {
+        if (done) {
+          return;
+        }
 
-      done = true;
-      window.clearTimeout(dwellTimer);
-      observer.disconnect();
-    }, { once: true });
+        done = true;
+        window.clearTimeout(dwellTimer);
+        observer.disconnect();
+      },
+      { once: true },
+    );
   }
 };
 
