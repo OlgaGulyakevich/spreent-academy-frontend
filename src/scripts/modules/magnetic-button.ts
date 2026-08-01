@@ -21,22 +21,26 @@ const LERP_FACTOR = 0.15;
 /**
  * Initializes magnetic button effect on hero CTA.
  */
-const initMagneticButton = () => {
+const initMagneticButton = (): void => {
   const hasHover = window.matchMedia('(hover: hover)').matches;
 
   if (prefersReducedMotion() || !hasHover) {
     return;
   }
 
-  const button = document.querySelector(BUTTON_SELECTOR);
+  const button = document.querySelector<HTMLElement>(BUTTON_SELECTOR);
 
   if (!button) {
     return;
   }
 
-  button.addEventListener('animationend', () => {
-    button.style.animation = 'none';
-  }, { once: true });
+  button.addEventListener(
+    'animationend',
+    () => {
+      button.style.animation = 'none';
+    },
+    { once: true },
+  );
 
   let currentX = 0;
   let currentY = 0;
@@ -44,7 +48,7 @@ const initMagneticButton = () => {
   let targetY = 0;
   let ticking = false;
 
-  const animate = () => {
+  const animate = (): void => {
     currentX = lerp(currentX, targetX, LERP_FACTOR);
     currentY = lerp(currentY, targetY, LERP_FACTOR);
 
@@ -63,14 +67,14 @@ const initMagneticButton = () => {
     }
   };
 
-  const startAnimation = () => {
+  const startAnimation = (): void => {
     if (!ticking) {
       ticking = true;
       requestAnimationFrame(animate);
     }
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: MouseEvent): void => {
     const rect = button.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
