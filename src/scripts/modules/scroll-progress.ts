@@ -12,8 +12,8 @@
  *
  * @example initScrollProgress();
  */
-const initScrollProgress = () => {
-  const header = document.querySelector('.header');
+const initScrollProgress = (): void => {
+  const header = document.querySelector<HTMLElement>('.header');
   if (!header) {
     return;
   }
@@ -24,7 +24,7 @@ const initScrollProgress = () => {
    * and exceeding 1 on overscroll (iOS bounce); guards a non-scrollable
    * page (scrollHeight 0 → avoids NaN).
    */
-  const updateProgress = () => {
+  const updateProgress = (): void => {
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const ratio = scrollHeight > 0 ? window.scrollY / scrollHeight : 0;
     const progress = Math.min(1, Math.max(0, ratio));
@@ -32,11 +32,15 @@ const initScrollProgress = () => {
     header.style.setProperty('--scroll-progress', progress.toFixed(4));
   };
 
-  window.addEventListener('scroll', () => {
-    requestAnimationFrame(updateProgress);
-  }, {
-    passive: true,
-  });
+  window.addEventListener(
+    'scroll',
+    () => {
+      requestAnimationFrame(updateProgress);
+    },
+    {
+      passive: true,
+    },
+  );
 
   // Initial state — in case page is loaded already scrolled
   updateProgress();
