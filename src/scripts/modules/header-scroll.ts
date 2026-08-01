@@ -15,17 +15,16 @@ const HEADER_SCROLLED_CLASS = 'header--scrolled';
  *
  * @example initHeaderScroll();
  */
-const initHeaderScroll = () => {
+const initHeaderScroll = (): void => {
+  // Only .classList is used here → a bare Element is enough (no <HTMLElement> generic needed).
   const header = document.querySelector('.header');
 
   if (!header) {
     return;
   }
 
-  /**
-   * Scroll handler. Toggles `.header--scrolled` based on current `window.scrollY`.
-   */
-  const handleScroll = () => {
+  /** Toggles `.header--scrolled` based on current `window.scrollY`. */
+  const handleScroll = (): void => {
     if (window.scrollY > SCROLL_THRESHOLD) {
       header.classList.add(HEADER_SCROLLED_CLASS);
       return;

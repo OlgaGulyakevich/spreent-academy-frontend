@@ -21,7 +21,7 @@ const OBSERVER_OPTIONS = { threshold: 1 };
  * the user has dwelled without engaging. No-op under reduced-motion or if the
  * button is absent.
  */
-const initShimmerCta = () => {
+const initShimmerCta = (): void => {
   if (prefersReducedMotion()) {
     return;
   }
@@ -32,7 +32,7 @@ const initShimmerCta = () => {
     return;
   }
 
-  let dwellTimer;
+  let dwellTimer = 0; // window.setTimeout id (browser → number); 0 is a safe no-op sentinel
   let done = false;
 
   const observer = new IntersectionObserver((entries) => {
@@ -63,15 +63,19 @@ const initShimmerCta = () => {
   const form = button.closest('form');
 
   if (form) {
-    form.addEventListener('focusin', () => {
-      if (done) {
-        return;
-      }
+    form.addEventListener(
+      'focusin',
+      () => {
+        if (done) {
+          return;
+        }
 
-      done = true;
-      window.clearTimeout(dwellTimer);
-      observer.disconnect();
-    }, { once: true });
+        done = true;
+        window.clearTimeout(dwellTimer);
+        observer.disconnect();
+      },
+      { once: true },
+    );
   }
 };
 

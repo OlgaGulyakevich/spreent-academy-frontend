@@ -35,11 +35,11 @@ const DEFAULT_STAGGER_MS = 70;
 const MOBILE_BREAKPOINT = 1024;
 
 /**
- * Reveals a single element — applies delay and adds revealed class.
- * @param {Element} el - Element to reveal
+ * Reveals a single element — applies its delay and adds the revealed class.
+ * @param el - Element to reveal
  */
-const revealElement = (el) => {
-  const delay = parseInt(el.dataset.revealDelay, 10) || 0;
+const revealElement = (el: HTMLElement): void => {
+  const delay = parseInt(el.dataset.revealDelay ?? '', 10) || 0;
 
   if (delay > 0) {
     el.style.transitionDelay = `${delay}ms`;
@@ -50,21 +50,20 @@ const revealElement = (el) => {
 
 /**
  * Sets up group cascade reveals. Parent [data-reveal-stagger] is observed;
- * when it enters viewport, all children reveal with stagger delays.
+ * when it enters the viewport, all children reveal with stagger delays.
  * Children are marked so they skip individual observation.
- * @param {IntersectionObserver} _unused - Not used, groups create own observers
  */
-const initGroupReveals = () => {
-  const parents = document.querySelectorAll(SELECTORS.STAGGER);
+const initGroupReveals = (): void => {
+  const parents = document.querySelectorAll<HTMLElement>(SELECTORS.STAGGER);
 
   parents.forEach((parent) => {
-    const children = parent.querySelectorAll(SELECTORS.REVEAL);
+    const children = parent.querySelectorAll<HTMLElement>(SELECTORS.REVEAL);
 
     if (!children.length) {
       return;
     }
 
-    const step = parseInt(parent.dataset.revealStagger, 10) || DEFAULT_STAGGER_MS;
+    const step = parseInt(parent.dataset.revealStagger ?? '', 10) || DEFAULT_STAGGER_MS;
 
     children.forEach((child, index) => {
       if (!child.dataset.revealDelay) {
@@ -75,20 +74,23 @@ const initGroupReveals = () => {
     });
 
     const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
-    const mobileThreshold = parseFloat(parent.dataset.revealThresholdMobile);
-    const desktopThreshold = parseFloat(parent.dataset.revealThreshold);
+    const mobileThreshold = parseFloat(parent.dataset.revealThresholdMobile ?? '');
+    const desktopThreshold = parseFloat(parent.dataset.revealThreshold ?? '');
     const threshold = (isMobile && mobileThreshold) || desktopThreshold || OBSERVER_OPTIONS.threshold;
 
-    const groupObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
+    const groupObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
 
-        children.forEach(revealElement);
-        groupObserver.unobserve(parent);
-      });
-    }, { ...OBSERVER_OPTIONS, threshold });
+          children.forEach(revealElement);
+          groupObserver.unobserve(parent);
+        });
+      },
+      { ...OBSERVER_OPTIONS, threshold },
+    );
 
     groupObserver.observe(parent);
   });
@@ -96,12 +98,16 @@ const initGroupReveals = () => {
 
 /**
  * Handles intersection for standalone (non-group) elements.
- * @param {IntersectionObserverEntry[]} entries
- * @param {IntersectionObserver} observer
+ * @param entries - Observed entries
+ * @param observer - The observer, to unobserve once revealed
  */
-const handleIntersection = (entries, observer) => {
+const handleIntersection = (
+  entries: IntersectionObserverEntry[],
+  observer: IntersectionObserver,
+): void => {
   entries.forEach((entry) => {
-    if (!entry.isIntersecting) {
+    // entry.target is Element; instanceof narrows it to HTMLElement (revealElement needs .dataset/.style).
+    if (!entry.isIntersecting || !(entry.target instanceof HTMLElement)) {
       return;
     }
 
@@ -114,14 +120,14 @@ const handleIntersection = (entries, observer) => {
  * Initializes scroll reveal for all [data-reveal="true"] elements.
  * Respects prefers-reduced-motion — skips animation entirely.
  */
-const initScrollReveal = () => {
+const initScrollReveal = (): void => {
   if (prefersReducedMotion()) {
     return;
   }
 
   initGroupReveals();
 
-  const elements = document.querySelectorAll(SELECTORS.REVEAL);
+  const elements = document.querySelectorAll<HTMLElement>(SELECTORS.REVEAL);
 
   if (!elements.length) {
     return;
