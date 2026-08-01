@@ -9,10 +9,10 @@
  * @module shimmer-cta
  */
 
-import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+import { prefersReducedMotion } from "../utils/prefers-reduced-motion.js";
 
-const BUTTON_SELECTOR = '.footer__form-btn';
-const SHIMMER_CLASS = 'is-shimmer';
+const BUTTON_SELECTOR = ".footer__form-btn";
+const SHIMMER_CLASS = "is-shimmer";
 const DWELL_DELAY_MS = 2000; // wait until the user has settled on the form and is deciding
 const OBSERVER_OPTIONS = { threshold: 1 };
 
@@ -60,11 +60,11 @@ const initShimmerCta = (): void => {
 
   // Cancel-on-engage: someone who starts filling the form is already acting and
   // needs no nudge — stop before the sweep can fire.
-  const form = button.closest('form');
+  const form = button.closest("form");
 
   if (form) {
     form.addEventListener(
-      'focusin',
+      "focusin",
       () => {
         if (done) {
           return;

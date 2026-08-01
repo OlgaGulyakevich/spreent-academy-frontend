@@ -6,16 +6,16 @@
  * @module hero-parallax
  */
 
-import { lerp } from '../utils/lerp.js';
-import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+import { lerp } from "../utils/lerp.js";
+import { prefersReducedMotion } from "../utils/prefers-reduced-motion.js";
 
 const PHOTO_SELECTORS = [
-  { selector: '.hero__photo--artur', scrollSpeed: 0.06, mouseSpeed: 0.015 },
-  { selector: '.hero__photo--sergey', scrollSpeed: 0.03, mouseSpeed: 0.01 },
-  { selector: '.hero__photo--misha', scrollSpeed: 0.08, mouseSpeed: 0.02 },
+  { selector: ".hero__photo--artur", scrollSpeed: 0.06, mouseSpeed: 0.015 },
+  { selector: ".hero__photo--sergey", scrollSpeed: 0.03, mouseSpeed: 0.01 },
+  { selector: ".hero__photo--misha", scrollSpeed: 0.08, mouseSpeed: 0.02 },
 ];
 
-const SECTION_SELECTOR = '.hero';
+const SECTION_SELECTOR = ".hero";
 const MOBILE_BREAKPOINT = 1024;
 const LERP_FACTOR = 0.08;
 
@@ -49,24 +49,26 @@ const initHeroParallax = (): void => {
     return;
   }
 
-  const photos: Photo[] = PHOTO_SELECTORS.map(({ selector, scrollSpeed, mouseSpeed }) => {
-    const el = document.querySelector<HTMLElement>(selector);
+  const photos: Photo[] = PHOTO_SELECTORS.map(
+    ({ selector, scrollSpeed, mouseSpeed }) => {
+      const el = document.querySelector<HTMLElement>(selector);
 
-    return el
-      ? {
-          el,
-          scrollSpeed,
-          mouseSpeed,
-          currentX: 0,
-          currentY: 0,
-          targetX: 0,
-          targetY: 0,
-          scrollY: 0,
-          mouseX: 0,
-          mouseY: 0,
-        }
-      : null;
-  }).filter((photo): photo is Photo => photo !== null);
+      return el
+        ? {
+            el,
+            scrollSpeed,
+            mouseSpeed,
+            currentX: 0,
+            currentY: 0,
+            targetX: 0,
+            targetY: 0,
+            scrollY: 0,
+            mouseX: 0,
+            mouseY: 0,
+          }
+        : null;
+    },
+  ).filter((photo): photo is Photo => photo !== null);
 
   if (!photos.length) {
     return;
@@ -136,8 +138,8 @@ const initHeroParallax = (): void => {
     startAnimation();
   };
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  section.addEventListener('mousemove', handleMouseMove, { passive: true });
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  section.addEventListener("mousemove", handleMouseMove, { passive: true });
 };
 
 export { initHeroParallax };

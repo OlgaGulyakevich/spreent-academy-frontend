@@ -17,15 +17,16 @@
  * - Already at target (distance === 0) → focus immediately, no rAF
  */
 
-import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+import { prefersReducedMotion } from "../utils/prefers-reduced-motion.js";
 
 const MIN_DURATION = 900;
 const MAX_DURATION = 1800;
 const PX_PER_MS = 2.0;
 const MOBILE_MENU_DELAY = 350;
 const HEADER_OFFSET = 70;
-const SCROLL_LOCK_CLASS = 'scroll-lock';
-const FOCUSABLE_SELECTOR = 'a[href], button, input, select, textarea, [tabindex]';
+const SCROLL_LOCK_CLASS = "scroll-lock";
+const FOCUSABLE_SELECTOR =
+  "a[href], button, input, select, textarea, [tabindex]";
 const FIRST_FIELD_SELECTOR = 'input:not([type="hidden"]), textarea, select';
 
 /**
@@ -51,7 +52,10 @@ const easeInOutQuart = (t: number): number =>
  * @returns duration in ms
  */
 const getDuration = (distance: number): number =>
-  Math.min(MAX_DURATION, Math.max(MIN_DURATION, Math.abs(distance) / PX_PER_MS));
+  Math.min(
+    MAX_DURATION,
+    Math.max(MIN_DURATION, Math.abs(distance) / PX_PER_MS),
+  );
 
 /**
  * Animates window scroll from current position to target Y.
@@ -84,12 +88,18 @@ const animateScroll = (targetY: number, onComplete?: () => void): void => {
   const handleManualScroll = (): void => {
     cancelledByUser = true;
   };
-  window.addEventListener('wheel', handleManualScroll, { passive: true, once: true });
-  window.addEventListener('touchmove', handleManualScroll, { passive: true, once: true });
+  window.addEventListener("wheel", handleManualScroll, {
+    passive: true,
+    once: true,
+  });
+  window.addEventListener("touchmove", handleManualScroll, {
+    passive: true,
+    once: true,
+  });
 
   const cleanup = (): void => {
-    window.removeEventListener('wheel', handleManualScroll);
-    window.removeEventListener('touchmove', handleManualScroll);
+    window.removeEventListener("wheel", handleManualScroll);
+    window.removeEventListener("touchmove", handleManualScroll);
   };
 
   const step = (currentTime: number): void => {
@@ -127,8 +137,10 @@ const animateScroll = (targetY: number, onComplete?: () => void): void => {
  * @param target - element scrolled to
  */
 const focusTarget = (target: HTMLElement): void => {
-  const form = target.tagName === 'FORM' ? target : target.querySelector('form');
-  const firstField = form && form.querySelector<HTMLElement>(FIRST_FIELD_SELECTOR);
+  const form =
+    target.tagName === "FORM" ? target : target.querySelector("form");
+  const firstField =
+    form && form.querySelector<HTMLElement>(FIRST_FIELD_SELECTOR);
 
   if (firstField) {
     firstField.focus({ preventScroll: true });
@@ -138,11 +150,11 @@ const focusTarget = (target: HTMLElement): void => {
   const isFocusable = target.matches(FOCUSABLE_SELECTOR);
 
   if (!isFocusable) {
-    target.setAttribute('tabindex', '-1');
+    target.setAttribute("tabindex", "-1");
     target.addEventListener(
-      'blur',
+      "blur",
       () => {
-        target.removeAttribute('tabindex');
+        target.removeAttribute("tabindex");
       },
       { once: true },
     );
@@ -185,7 +197,7 @@ const handleAnchorClick = (evt: MouseEvent): void => {
     return;
   }
 
-  const href = link.getAttribute('href'); // getAttribute → `string | null`
+  const href = link.getAttribute("href"); // getAttribute → `string | null`
   if (!href) {
     return;
   }
@@ -198,7 +210,8 @@ const handleAnchorClick = (evt: MouseEvent): void => {
 
   evt.preventDefault();
 
-  const targetY = target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+  const targetY =
+    target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
   const wasMenuOpen = document.body.classList.contains(SCROLL_LOCK_CLASS);
   const delay = wasMenuOpen ? MOBILE_MENU_DELAY : 0;
 
@@ -219,7 +232,7 @@ const handleAnchorClick = (evt: MouseEvent): void => {
  * @example initSmoothScroll();
  */
 const initSmoothScroll = (): void => {
-  document.addEventListener('click', handleAnchorClick, true);
+  document.addEventListener("click", handleAnchorClick, true);
 };
 
 export { initSmoothScroll };

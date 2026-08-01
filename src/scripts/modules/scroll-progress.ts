@@ -13,7 +13,7 @@
  * @example initScrollProgress();
  */
 const initScrollProgress = (): void => {
-  const header = document.querySelector<HTMLElement>('.header');
+  const header = document.querySelector<HTMLElement>(".header");
   if (!header) {
     return;
   }
@@ -25,15 +25,16 @@ const initScrollProgress = (): void => {
    * page (scrollHeight 0 → avoids NaN).
    */
   const updateProgress = (): void => {
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
     const ratio = scrollHeight > 0 ? window.scrollY / scrollHeight : 0;
     const progress = Math.min(1, Math.max(0, ratio));
 
-    header.style.setProperty('--scroll-progress', progress.toFixed(4));
+    header.style.setProperty("--scroll-progress", progress.toFixed(4));
   };
 
   window.addEventListener(
-    'scroll',
+    "scroll",
     () => {
       requestAnimationFrame(updateProgress);
     },

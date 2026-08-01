@@ -9,6 +9,6 @@
  * @returns true if the user prefers reduced motion
  */
 const prefersReducedMotion = (): boolean =>
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export { prefersReducedMotion };

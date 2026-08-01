@@ -9,9 +9,9 @@
  * @module about-rotate
  */
 
-import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+import { prefersReducedMotion } from "../utils/prefers-reduced-motion.js";
 
-const SELECTOR = '.about__card-logo img';
+const SELECTOR = ".about__card-logo img";
 const ROTATION_SPEED = 0.15;
 
 /**
@@ -45,13 +45,13 @@ const initAboutRotate = (): void => {
 
       currentRotation += delta * ROTATION_SPEED;
       lastScrollY = window.scrollY;
-      image.style.setProperty('--rotation', `${currentRotation}deg`);
+      image.style.setProperty("--rotation", `${currentRotation}deg`);
 
       ticking = false;
     });
   };
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener("scroll", handleScroll, { passive: true });
 };
 
 export { initAboutRotate };

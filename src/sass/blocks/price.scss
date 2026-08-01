@@ -218,6 +218,7 @@
 
 .price__old {
   @include title-h3;
+
   // Smaller than the current price → reads as a "was" price and fits inline (no wrap on CHF).
   @include fluid-val(font-size, 22px, 28px);
 

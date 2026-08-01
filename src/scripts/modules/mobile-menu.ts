@@ -8,11 +8,11 @@
  * and overlay click (outside header area).
  */
 
-const SCROLL_LOCK_CLASS = 'scroll-lock';
-const LABEL_BURGER_OPEN = 'Open menu';
-const LABEL_BURGER_CLOSE = 'Close menu';
-const MENU_LINKS_SELECTOR = '.main-nav__link, .header__cta';
-const FOCUSABLE_IN_HEADER_SELECTOR = 'a[href], button';
+const SCROLL_LOCK_CLASS = "scroll-lock";
+const LABEL_BURGER_OPEN = "Open menu";
+const LABEL_BURGER_CLOSE = "Close menu";
+const MENU_LINKS_SELECTOR = ".main-nav__link, .header__cta";
+const FOCUSABLE_IN_HEADER_SELECTOR = "a[href], button";
 
 /**
  * Initializes mobile menu. Attaches listeners on burger, document
@@ -23,9 +23,9 @@ const FOCUSABLE_IN_HEADER_SELECTOR = 'a[href], button';
  */
 const initMobileMenu = (): void => {
   // HTMLElement: burger needs .focus(), header receives a typed 'click' listener.
-  const header = document.querySelector<HTMLElement>('.header');
-  const burger = document.querySelector<HTMLElement>('.burger');
-  const nav = document.querySelector('.header__nav');
+  const header = document.querySelector<HTMLElement>(".header");
+  const burger = document.querySelector<HTMLElement>(".burger");
+  const nav = document.querySelector(".header__nav");
 
   if (!header || !burger || !nav) {
     return;
@@ -35,15 +35,15 @@ const initMobileMenu = (): void => {
    * Checks whether the menu is currently open.
    * @returns `true` if `aria-expanded="true"` on burger
    */
-  const isOpen = (): boolean => burger.getAttribute('aria-expanded') === 'true';
+  const isOpen = (): boolean => burger.getAttribute("aria-expanded") === "true";
 
   /**
    * Opens menu: updates ARIA attributes on burger, locks background
    * scroll via `.scroll-lock` on body.
    */
   const openMenu = (): void => {
-    burger.setAttribute('aria-expanded', 'true');
-    burger.setAttribute('aria-label', LABEL_BURGER_CLOSE);
+    burger.setAttribute("aria-expanded", "true");
+    burger.setAttribute("aria-label", LABEL_BURGER_CLOSE);
     document.body.classList.add(SCROLL_LOCK_CLASS);
   };
 
@@ -51,8 +51,8 @@ const initMobileMenu = (): void => {
    * Closes menu: resets ARIA attributes and removes `.scroll-lock`.
    */
   const closeMenu = (): void => {
-    burger.setAttribute('aria-expanded', 'false');
-    burger.setAttribute('aria-label', LABEL_BURGER_OPEN);
+    burger.setAttribute("aria-expanded", "false");
+    burger.setAttribute("aria-label", LABEL_BURGER_OPEN);
     document.body.classList.remove(SCROLL_LOCK_CLASS);
   };
 
@@ -79,17 +79,19 @@ const initMobileMenu = (): void => {
       return;
     }
 
-    if (evt.key === 'Escape') {
+    if (evt.key === "Escape") {
       closeMenu();
       burger.focus();
       return;
     }
 
-    if (evt.key !== 'Tab') {
+    if (evt.key !== "Tab") {
       return;
     }
 
-    const focusables = header.querySelectorAll<HTMLElement>(FOCUSABLE_IN_HEADER_SELECTOR);
+    const focusables = header.querySelectorAll<HTMLElement>(
+      FOCUSABLE_IN_HEADER_SELECTOR,
+    );
     if (!focusables.length) {
       return;
     }
@@ -140,15 +142,15 @@ const initMobileMenu = (): void => {
       return;
     }
 
-    if (!evt.target.closest('.header') && isOpen()) {
+    if (!evt.target.closest(".header") && isOpen()) {
       closeMenu();
     }
   };
 
-  burger.addEventListener('click', handleBurgerClick);
-  document.addEventListener('keydown', handleKeyDown);
-  header.addEventListener('click', handleHeaderLinkClick);
-  document.addEventListener('click', handleOverlayClick);
+  burger.addEventListener("click", handleBurgerClick);
+  document.addEventListener("keydown", handleKeyDown);
+  header.addEventListener("click", handleHeaderLinkClick);
+  document.addEventListener("click", handleOverlayClick);
 };
 
 export { initMobileMenu };

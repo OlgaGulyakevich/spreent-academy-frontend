@@ -7,10 +7,10 @@
  * @module counter
  */
 
-import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+import { prefersReducedMotion } from "../utils/prefers-reduced-motion.js";
 
-const FACTOIDS_SELECTOR = '.community__factoids';
-const NUMBER_SELECTOR = '.community__factoid-number';
+const FACTOIDS_SELECTOR = ".community__factoids";
+const NUMBER_SELECTOR = ".community__factoid-number";
 const DURATION_MS = 1200;
 const STAGGER_MS = 250;
 const OBSERVER_THRESHOLD = 0.5;
@@ -42,7 +42,7 @@ const parseTarget = (text: string): ParsedTarget | null => {
 
   // Under noUncheckedIndexedAccess match[1]/[2] are `string | undefined`; the regex
   // guarantees both groups when it matched, so `?? ''` just satisfies the compiler.
-  return { value: parseInt(match[1] ?? '', 10), suffix: match[2] ?? '' };
+  return { value: parseInt(match[1] ?? "", 10), suffix: match[2] ?? "" };
 };
 
 /**
@@ -52,7 +52,7 @@ const parseTarget = (text: string): ParsedTarget | null => {
  */
 const animateCounter = (el: HTMLElement): void => {
   const raw = el.dataset.counterValue; // DOMStringMap → `string | undefined`
-  const suffix = el.dataset.counterSuffix ?? '';
+  const suffix = el.dataset.counterSuffix ?? "";
 
   if (!raw) {
     return;
@@ -105,7 +105,7 @@ const initCounter = (): void => {
   }
 
   numbers.forEach((el) => {
-    const parsed = parseTarget(el.textContent ?? ''); // textContent is `string | null`
+    const parsed = parseTarget(el.textContent ?? ""); // textContent is `string | null`
 
     if (parsed) {
       const zeroed = `0${parsed.suffix}`;

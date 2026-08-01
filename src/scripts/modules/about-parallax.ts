@@ -6,16 +6,16 @@
  * @module about-parallax
  */
 
-import { lerp } from '../utils/lerp.js';
-import { prefersReducedMotion } from '../utils/prefers-reduced-motion.js';
+import { lerp } from "../utils/lerp.js";
+import { prefersReducedMotion } from "../utils/prefers-reduced-motion.js";
 
 const CARD_SELECTORS = [
-  { selector: '.about__card--teachers', speed: 0.15 },
-  { selector: '.about__card--skills', speed: 0.04 },
-  { selector: '.about__card--knowledge', speed: 0.02 },
+  { selector: ".about__card--teachers", speed: 0.15 },
+  { selector: ".about__card--skills", speed: 0.04 },
+  { selector: ".about__card--knowledge", speed: 0.02 },
 ];
 
-const SECTION_SELECTOR = '.about';
+const SECTION_SELECTOR = ".about";
 const MOBILE_BREAKPOINT = 1024;
 const LERP_FACTOR = 0.08;
 
@@ -89,7 +89,7 @@ const initAboutParallax = (): void => {
     cards.forEach((card) => {
       card.currentY = 0;
       card.targetY = 0;
-      card.el.style.translate = '';
+      card.el.style.translate = "";
     });
     ticking = false;
   };
@@ -110,7 +110,7 @@ const initAboutParallax = (): void => {
     startAnimation();
   };
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener("scroll", handleScroll, { passive: true });
 };
 
 export { initAboutParallax };
