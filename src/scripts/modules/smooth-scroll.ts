@@ -39,20 +39,18 @@ let currentAnimationToken = 0;
 /**
  * easeInOutQuart — smooth acceleration and deceleration.
  * Softer than cubic; feels close to native browser smooth scroll.
- *
- * @param {number} t — progress from 0 to 1
- * @returns {number} eased progress
+ * @param t - progress from 0 to 1
+ * @returns eased progress
  */
-const easeInOutQuart = (t) =>
-  (t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2);
+const easeInOutQuart = (t: number): number =>
+  t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
 
 /**
  * Calculates animation duration based on scroll distance, clamped to [MIN, MAX].
- *
- * @param {number} distance — absolute scroll distance in pixels
- * @returns {number} duration in ms
+ * @param distance - absolute scroll distance in pixels
+ * @returns duration in ms
  */
-const getDuration = (distance) =>
+const getDuration = (distance: number): number =>
   Math.min(MAX_DURATION, Math.max(MIN_DURATION, Math.abs(distance) / PX_PER_MS));
 
 /**
@@ -60,11 +58,10 @@ const getDuration = (distance) =>
  * Supports cancellation on manual user scroll (wheel/touchmove)
  * and when a new animation is started on top. Calls `onComplete`
  * only on successful finish (not on cancel).
- *
- * @param {number} targetY — target scroll position in pixels
- * @param {Function} [onComplete] — callback invoked on animation end
+ * @param targetY - target scroll position in pixels
+ * @param onComplete - callback invoked on animation end
  */
-const animateScroll = (targetY, onComplete) => {
+const animateScroll = (targetY: number, onComplete?: () => void): void => {
   const startY = window.scrollY;
   const diff = targetY - startY;
 
@@ -84,18 +81,18 @@ const animateScroll = (targetY, onComplete) => {
 
   // Cancel on manual scroll
   let cancelledByUser = false;
-  const handleManualScroll = () => {
+  const handleManualScroll = (): void => {
     cancelledByUser = true;
   };
   window.addEventListener('wheel', handleManualScroll, { passive: true, once: true });
   window.addEventListener('touchmove', handleManualScroll, { passive: true, once: true });
 
-  const cleanup = () => {
+  const cleanup = (): void => {
     window.removeEventListener('wheel', handleManualScroll);
     window.removeEventListener('touchmove', handleManualScroll);
   };
 
-  const step = (currentTime) => {
+  const step = (currentTime: number): void => {
     if (myToken !== currentAnimationToken || cancelledByUser) {
       cleanup();
       return;
@@ -127,12 +124,11 @@ const animateScroll = (targetY, onComplete) => {
  * 1. If target is a form or contains `<form>` → focus first input field.
  * 2. Otherwise → focus target itself. If not natively focusable,
  *    temporarily adds `tabindex="-1"` and removes it on blur.
- *
- * @param {HTMLElement} target — element scrolled to
+ * @param target - element scrolled to
  */
-const focusTarget = (target) => {
+const focusTarget = (target: HTMLElement): void => {
   const form = target.tagName === 'FORM' ? target : target.querySelector('form');
-  const firstField = form && form.querySelector(FIRST_FIELD_SELECTOR);
+  const firstField = form && form.querySelector<HTMLElement>(FIRST_FIELD_SELECTOR);
 
   if (firstField) {
     firstField.focus({ preventScroll: true });
@@ -143,9 +139,13 @@ const focusTarget = (target) => {
 
   if (!isFocusable) {
     target.setAttribute('tabindex', '-1');
-    target.addEventListener('blur', () => {
-      target.removeAttribute('tabindex');
-    }, { once: true });
+    target.addEventListener(
+      'blur',
+      () => {
+        target.removeAttribute('tabindex');
+      },
+      { once: true },
+    );
   }
 
   target.focus({ preventScroll: true });
@@ -155,11 +155,10 @@ const focusTarget = (target) => {
  * Scrolls to target position respecting user preferences.
  * With `prefers-reduced-motion: reduce` — instant scroll,
  * otherwise — animated via `animateScroll`.
- *
- * @param {number} targetY — target Y position in pixels
- * @param {HTMLElement} target — element to focus after scroll
+ * @param targetY - target Y position in pixels
+ * @param target - element to focus after scroll
  */
-const scrollToTarget = (targetY, target) => {
+const scrollToTarget = (targetY: number, target: HTMLElement): void => {
   if (prefersReducedMotion()) {
     window.scrollTo(0, targetY);
     focusTarget(target);
@@ -173,16 +172,25 @@ const scrollToTarget = (targetY, target) => {
  * Anchor click handler. Calculates target Y accounting for header
  * height, delays start if mobile menu is open, then triggers scroll
  * (animated or instant depending on reduced-motion).
- *
- * @param {MouseEvent} evt
+ * @param evt - the click event
  */
-const handleAnchorClick = (evt) => {
+const handleAnchorClick = (evt: MouseEvent): void => {
+  // evt.target is `EventTarget | null` (very broad); narrow to Element to use `.closest()`.
+  if (!(evt.target instanceof Element)) {
+    return;
+  }
+
   const link = evt.target.closest('a[href^="#"]:not([href="#"])');
   if (!link) {
     return;
   }
 
-  const targetId = link.getAttribute('href').slice(1);
+  const href = link.getAttribute('href'); // getAttribute → `string | null`
+  if (!href) {
+    return;
+  }
+
+  const targetId = href.slice(1);
   const target = document.getElementById(targetId);
   if (!target) {
     return;
@@ -200,7 +208,7 @@ const handleAnchorClick = (evt) => {
 /**
  * Initializes smooth scroll. Attaches a single listener on `document`
  * in capture phase (delegation). Capture phase is needed to read
- * `scroll-lock` on body BEFORE `mobile-menu.js` removes it in
+ * `scroll-lock` on body BEFORE `mobile-menu.ts` removes it in
  * bubble phase — otherwise `wasMenuOpen` would always be `false`
  * on `.header__cta` click from open menu, and `MOBILE_MENU_DELAY`
  * wouldn't apply.
@@ -210,7 +218,7 @@ const handleAnchorClick = (evt) => {
  *
  * @example initSmoothScroll();
  */
-const initSmoothScroll = () => {
+const initSmoothScroll = (): void => {
   document.addEventListener('click', handleAnchorClick, true);
 };
 
