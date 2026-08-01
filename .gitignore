@@ -34,6 +34,11 @@ coverage/
 
 # Testing
 chrome/
+# Playwright: ignore run artifacts, but COMMIT the snapshot baselines (tests/e2e/*-snapshots/)
+test-results/
+playwright-report/
+blob-report/
+.playwright/
 
 # Logs
 logs
