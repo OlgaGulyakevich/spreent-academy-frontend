@@ -33,7 +33,7 @@ Motion is the signature of this build — physics-driven, not decorative. Every 
 
 **Engineered for accessibility & performance:**
 
-- ♿ `prefers-reduced-motion` guard on **every** animation (WCAG 2.3.3) — JS bails, CSS falls back
+- ♿ `prefers-reduced-motion` guard on **every** animation (WCAG 2.3.3) — JS skips the effect, CSS falls back to a static state
 - ⚡ GPU-only: `transform` / `opacity` exclusively — zero layout/paint per frame
 
 ▶ **See it live** → [landing](https://spreent-academy-frontend.vercel.app) · 📋 **Documented** → [/ui-kit](https://spreent-academy-frontend.vercel.app/ui-kit)
