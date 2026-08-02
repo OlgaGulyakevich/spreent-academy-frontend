@@ -1,112 +1,154 @@
-e # Spreent Academy
+# Spreent Academy — Landing Page
 
-Верстка главной страницы сервиса-агрегатора по подбору образовательных курсов.
-Конкурсная работа — [Чемпионат по верстке HTML Academy #3](https://up.htmlacademy.ru/olympics/4).
+[![CI](https://github.com/OlgaGulyakevich/spreent-academy-frontend/actions/workflows/ci.yml/badge.svg)](https://github.com/OlgaGulyakevich/spreent-academy-frontend/actions/workflows/ci.yml)
+[![Astro](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=white)](https://astro.build/)
+[![TypeScript strict](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Sass · BEM](https://img.shields.io/badge/Sass-BEM-CC6699?logo=sass&logoColor=white)](https://sass-lang.com/)
+[![Vitest](https://img.shields.io/badge/Vitest-6E9F18?logo=vitest&logoColor=white)](https://vitest.dev/)
+[![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
+[![PageSpeed 100](https://img.shields.io/badge/PageSpeed-100·100·100·100-00C853)](https://pagespeed.web.dev/)
 
-**Демо**: [spreent-academy-frontend.vercel.app](https://spreent-academy-frontend.vercel.app/)
+> Educational course aggregator — a single-page landing built for the **HTML Academy Frontend Championship #3** (April 2026), then **migrated to Astro** as a production-grade portfolio piece: component architecture, strict TypeScript, tests, and CI.
+
+[![Spreent Academy landing](docs/hero.png)](https://spreent-academy-frontend.vercel.app)
+
+## 🔗 Live Demo
+
+- **[Landing page](https://spreent-academy-frontend.vercel.app)** — the full experience
+- **[UI Kit](https://spreent-academy-frontend.vercel.app/ui-kit)** — component library + **Motion catalog** (17 effects, principles, a11y notes)
 
 ---
 
-## Стек
+## ✨ Motion & Interaction Craft
 
-HTML5 | SCSS (BEM) | Vanilla JS (ES Modules) | Vite | Node.js 22
+Motion is the signature of this build — physics-driven, not decorative. Every animation is deliberate: strong easing curves, an intentional _slow-in → snap-response_ asymmetry, and micro-interactions that reward attention.
+
+- **Parallax** — hero photos _and_ about cards drift on scroll + mouse (additive layers, lerp-eased for depth)
+- **Shimmer CTA** — a one-time glint nudges the Submit button _only_ once the user settles on it and hesitates; it cancels the moment they scroll away or start typing (IntersectionObserver + 2s dwell + cancel-on-engage)
+- **Magnetic button** — the hero CTA drifts toward the cursor (lerp + rAF, spring-like)
+- **Logo paint-fill** — brand colour paints across the wordmark with a neon glow (two-layer masked reveal on `transform`, no repaint)
+- **Gradient-spin border** — a conic-gradient ring rotates via CSS `@property`
+- **Mobile menu** — burger morphs to ✕ timed with the drawer, which fades-then-snaps shut
+- _Supporting cast:_ scroll-reveal · count-up · ambient glow · logo rotation · sticky/frosted header · nav underline · button press · smooth scroll
+
+**Engineered for accessibility & performance:**
+
+- ♿ `prefers-reduced-motion` guard on **every** animation (WCAG 2.3.3) — JS bails, CSS falls back
+- ⚡ GPU-only: `transform` / `opacity` exclusively — zero layout/paint per frame
+
+▶ **See it live** → [landing](https://spreent-academy-frontend.vercel.app) · 📋 **Documented** → [/ui-kit](https://spreent-academy-frontend.vercel.app/ui-kit)
+
+<!-- 🎬 Demo video: record 5–10s (scroll → parallax → reveal → magnetic hover),
+     compress with `optikit video compress --max`, then drag the .mp4 here in the GitHub editor. -->
 
 ---
 
-## Быстрый старт
+## 🏗️ From Championship to Production
+
+The original entry was hand-built (Vite, Handlebars, vanilla JS) to HTML Academy's strict pixel-perfect standard. This version is a **migration to Astro** that keeps that craft and adds production engineering:
+
+| Before (championship)      | After (this repo)                            |
+| -------------------------- | -------------------------------------------- |
+| Vite + Handlebars partials | **Astro** SSG, component architecture        |
+| Vanilla JS (ES modules)    | **TypeScript (strict)** — 13 typed modules   |
+| Manual `<use>` SVG sprite  | **astro-icon** (auto-sprite, `currentColor`) |
+| BackstopJS pixel tests     | **Vitest + Playwright** + **CI**             |
+| RU content                 | EN, international audience                   |
+
+Same pixel-perfect BEM/SCSS foundation — rebuilt on a component + type-safe architecture.
+
+---
+
+## 🛠️ Tech Stack
+
+| Category          | Tools                                                                 |
+| ----------------- | --------------------------------------------------------------------- |
+| **Framework**     | Astro 7 (static output)                                               |
+| **Language**      | TypeScript (strict, `noUncheckedIndexedAccess`)                       |
+| **Styles**        | SCSS · BEM · desktop-first fluid `clamp()` layout                     |
+| **Interactivity** | No framework, no animation library — motion hand-rolled in TypeScript |
+| **Icons**         | astro-icon (inlined SVG sprite)                                       |
+| **Forms**         | intl-tel-input (international phone + libphonenumber)                 |
+| **Testing**       | Vitest · Playwright                                                   |
+| **CI/CD**         | GitHub Actions · Vercel                                               |
+
+---
+
+## ✅ Quality & Engineering
+
+- **PageSpeed Insights 100 / 100 / 100 / 100** — Performance · Accessibility · Best Practices · SEO, on **desktop and mobile**
+- **TypeScript strict** across all 13 modules — `astro check` green
+- **Testing (trophy, not coverage-chasing):** Vitest for logic (form validation), Playwright for critical-path e2e + visual regression (480 / 1440)
+- **CI on every push / PR** — lint · types · unit tests · build · e2e
+- **Pre-commit hooks** (husky + lint-staged) — format & lint staged files before they land
+- **Strict CSP** (zero `unsafe-inline`) + security headers (COOP, HSTS); libphonenumber self-hosted to satisfy `script-src 'self'`
+
+![PageSpeed 100/100/100/100](docs/psi.png)
+
+---
+
+## ♿ Accessibility & Interface Craft
+
+Built to EU-grade accessibility, with attention to real edge cases — not just the happy path:
+
+- Semantic landmarks, `aria-live` notifications, `focus-visible` outlines
+- Mobile menu: focus trap, `Escape` to close, focus returned to trigger, scroll lock
+- `prefers-reduced-motion` respected on every animation
+- **International phone field** (default 🇨🇭 Switzerland, per-country validation via libphonenumber) with two real problems solved: **iOS autofill** (light frosted inputs keep entered text legible) and **WCAG AA contrast** on the dark footer
+
+---
+
+## 📁 Project Structure
+
+```text
+src/
+├── components/   # 7 section components (.astro)
+├── data/         # typed arrays (.ts): nav-links, footer-links, pricing, work-logos
+├── icons/        # SVGs for astro-icon (<Icon name="…" />)
+├── layouts/      # BaseLayout (head, fonts, global styles, main.ts)
+├── pages/        # index.astro · ui-kit.astro
+├── scripts/      # 13 TypeScript modules + utils
+└── sass/         # SCSS/BEM: variables, mixins, typography
+public/           # img/ · fonts/ · favicons
+```
+
+---
+
+## 🚀 Getting Started
 
 ```bash
 npm install
-npm run start        # dev-сервер на localhost:3000
-npm run build        # production-сборка -> dist/
-npm run preview      # предпросмотр сборки
+npm run dev      # dev server → localhost:3000
+npm run build    # production build → dist/
 ```
+
+Requires Node **22.x**.
+
+## Commands
+
+| Command            | What it does                                          |
+| ------------------ | ----------------------------------------------------- |
+| `npm run dev`      | Astro dev server → `localhost:3000`                   |
+| `npm run build`    | Production build → `dist/`                            |
+| `npm run preview`  | Serve the production build                            |
+| `npm test`         | Unit / integration tests (Vitest)                     |
+| `npm run test:e2e` | E2E + visual regression (Playwright)                  |
+| `npm run check`    | TypeScript type-check (`astro check`)                 |
+| `npm run lint`     | Prettier · astro check · Stylelint · ESLint · ls-lint |
 
 ---
 
-## Pixel Perfect тесты
+## 🙌 Acknowledgements
 
-Проект покрыт автоматическими PP-тестами через **BackstopJS**. Каждая из 7 секций тестируется на двух viewport: **480px** (mobile) и **1440px** (desktop).
+- **Design:** [Mish](https://mish.design/en)
+- **Organizer:** [HTML Academy](https://htmlacademy.ru/)
 
-```bash
-# dev-сервер должен быть запущен
-npm run test
-```
+## ⚖️ Disclaimers
 
-Референсные скриншоты — `source/bitmaps_reference/`. Секции таргетируются через `data-test` атрибуты. Допуск: 0.15% misMatchThreshold.
+- **Demo form** — submissions are not stored (test endpoint).
+- Single-page demo — secondary navigation links are illustrative.
+- All company names and logos are trademarks of their respective owners, used for illustrative purposes only in this non-commercial student project.
 
----
+## 👤 Author
 
-## Качество кода
-
-```bash
-npm run lint          # все линтеры последовательно
-npm run linthtml      # структура HTML
-npm run html-validate # семантика HTML
-npm run stylelint     # SCSS
-npm run lint-js       # ESLint
-npm run lint-bem      # BEM-дерево
-npm run w3c           # W3C HTML валидация
-```
-
-Все линтеры проходят с **0 ошибок**. Lighthouse: **90+** по всем категориям (desktop).
-
----
-
-## Особенности реализации
-
-### Fluid Layout
-
-Плавное масштабирование 480px - 1440px через `clamp()`. Минимальная ширина 320px, выше 1440px контент центрируется. Собственные инструменты `fluid-val($property, $min, $max)` и функция `fluid-val-value` обеспечивают плавное масштабирование размеров, отступов и типографики без промежуточных брейкпоинтов.
-
-### Интерактивные состояния (hover, focus, active, disabled)
-
-По ТЗ состояния **не отрисованы в макете** — реализованы самостоятельно:
-
-- **Кнопки**: затемнение фона + цветная тень на hover, `scale(0.95)` на active, полупрозрачность + `pointer-events: none` для disabled
-- **Ссылки навигации**: underline sweep слева направо через `::after` (`scaleX 0 -> 1`)
-- **Логотип**: Paint Fill & Reveal — эффект «заливки» букв через CSS `mask-image` + gradient sweep + `drop-shadow` glow
-- **Бургер**: морфинг collapse & bloom (схлопывание `scaleY(0)` -> появление крестика с rotate), цветовая семантика (синий на hover в закрытом, красный — в открытом)
-- **Header**: frosted glass при скролле — `backdrop-filter: blur(20px)` + полупрозрачный фон, scroll progress bar через CSS-переменную `--scroll-progress`
-- **focus-visible**: 2px solid accent outline на всех интерактивных элементах
-- **Hover** только через `@media (hover: hover)` — touch-устройства не затрагиваются
-
-### CSS-геометрия без изображений
-
-- **Community аватары**: overlapping через CSS custom properties (`--avatar-size`, `--ring`, `--overlap`) + прозрачное кольцо через `mask-image: radial-gradient(...)` — показывает градиент контейнера сквозь аватар
-- **About Skills UI-мокап**: декоративная композиция на карточке «Практические навыки» (круг, glass-прямоугольник, cursor-плашки) — полностью на CSS. Рамки с corner handles через 12 слоев `background-image`, glass-эффект через `backdrop-filter` + gradient overlay
-- **About карточки**: нахлест через CSS Grid с отрицательным `margin-left`, высота карточек адаптируется при увеличении текста с сохранением отступов (допзадание ТЗ)
-
-### Анимации
-
-По ТЗ: вращение круга в About,parallax в About, каскад сертификата (`clip-path` + `scale` reveal), анимация заголовка при скролле в Price.
-
-Дополнительно реализовано:
-
-- **Hero parallax**: scroll + mousemove, три фото с разной скоростью, lerp-сглаживание
-- **Scroll reveal**: заголовки H2 секций «выезжают» снизу через `translateY` + `opacity` при входе в viewport
-- **Counter count-up**: 78% и 89% анимируются от 0 с easeOutCubic + stagger
-- **Work logo glow**: волна `box-shadow: inset` пробегает по ячейкам с шагом 0.8s, цикл 9s
-- **Magnetic button**: CTA в Hero тянется за курсором (радиус 100px, смещение до 15px)
-- **Hero entry**: h1, текст и кнопка появляются с `translateY` + stagger при загрузке
-- **Community gradient-spin**: вращающаяся обводка кнопки Join через `conic-gradient` + `@property` (desktop)
-
-Все анимации отключаются при `prefers-reduced-motion: reduce`.
-
-### Валидация формы
-
-Кастомная валидация:
-
-- **Телефон**: маска `+7 (000) 000-00-00` через [imask](https://imask.js.org/) (единственная внешняя зависимость), автоподстановка +7, валидация по количеству цифр
-- **Email**: смена placeholder на `example@domain.com` при фокусе, pattern-валидация
-- **Ошибки**: inline-сообщения под каждым полем с анимацией появления, красная рамка `.is-invalid`
-- **Отправка**: `fetch` + `FormData`, уведомления об успехе/ошибке с автоскрытием через 5с
-- **Smooth scroll**: кастомная анимация с `easeInOutQuart`, учет фиксированного хедера и открытого мобильного меню
-
-### Прочее
-
-- **SVG-спрайт**: автосборка через `@spiriit/vite-plugin-svg-spritemap`
-- **WebP + retina**: все растровые изображения в 1x/2x + WebP через `<picture>`
-- **Доступность**: семантическая разметка, ARIA, focus trap в мобильном меню, keyboard navigation, `aria-live` на уведомлениях
-- **Кроссбраузерность**: Chrome, Firefox, Safari — `-webkit-backdrop-filter`, vendor prefixes
-- **content-visibility**: `auto` на тяжелых секциях (price, work, footer) для ускорения первой отрисовки
+**Olga Gulyakevich** — Frontend Developer
