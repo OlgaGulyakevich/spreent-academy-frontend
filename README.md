@@ -96,6 +96,8 @@ The original entry was hand-built (Vite, Handlebars, vanilla JS) to HTML Academy
 - **Pre-commit hooks** (husky + lint-staged) — format & lint staged files before they land
 - **Strict CSP** (zero `unsafe-inline`) + security headers (COOP, HSTS); libphonenumber self-hosted to satisfy `script-src 'self'`
 
+![PageSpeed 100/100/100/100](docs/psi.png)
+
 ---
 
 ## Accessibility & Interface Craft
@@ -147,6 +149,8 @@ Requires Node **22.x**.
 | `npm run check`    | TypeScript type-check (`astro check`)                 |
 | `npm run lint`     | Prettier · astro check · Stylelint · ESLint · ls-lint |
 
+*Note: Before running e2e tests for the first time, you must install Playwright browsers via `npx playwright install`.*
+
 ---
 
 ## Acknowledgements
@@ -162,4 +166,11 @@ Requires Node **22.x**.
 
 ## Author
 
-**Olga Gulyakevich** — Frontend Developer · [GitHub](https://github.com/OlgaGulyakevich) · [LinkedIn](https://www.linkedin.com/in/olga-gulyakevich-ab166674/)
+<a href="https://github.com/OlgaGulyakevich">
+  <img src="https://github.com/OlgaGulyakevich.png" width="48" height="48" alt="Olga Gulyakevich" align="left" style="border-radius: 50%; margin-right: 12px;">
+</a>
+
+**Olga Gulyakevich** — Frontend Developer<br>
+[GitHub](https://github.com/OlgaGulyakevich) · [LinkedIn](https://www.linkedin.com/in/olga-gulyakevich-ab166674/)
+
+<br clear="left"/>
