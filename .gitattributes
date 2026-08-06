@@ -1,0 +1,5 @@
+# Config files are tooling, not the project's language — keep them out of the
+# GitHub "Languages" bar so it reflects the actual source (SCSS · TypeScript · Astro).
+*.config.mjs linguist-detectable=false
+*.config.cjs linguist-detectable=false
+.stylelintrc.cjs linguist-detectable=false
