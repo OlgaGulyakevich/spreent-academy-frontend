@@ -1,7 +1,4 @@
 
-
-
-
 # Spreent Academy — Landing Page
 
 [![CI](https://github.com/OlgaGulyakevich/spreent-academy-frontend/actions/workflows/ci.yml/badge.svg)](https://github.com/OlgaGulyakevich/spreent-academy-frontend/actions/workflows/ci.yml)
@@ -12,10 +9,11 @@
 [![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 [![PageSpeed 100](https://img.shields.io/badge/PageSpeed-100·100·100·100-00C853)](https://pagespeed.web.dev/)
 
-> Educational course aggregator — a single-page landing built for the **HTML Academy Frontend Championship&nbsp;#3** (April&nbsp;2026).<br>
-> Then **migrated to Astro** as a production-grade portfolio piece: component architecture, strict TypeScript, tests, and CI.
+**A course-aggregator landing — hand-built to HTML Academy's pixel-perfect standard, then re-engineered on Astro for production.**
 
-https://github.com/user-attachments/assets/c544a48c-7b6f-4f82-9989-f741f1547a60
+<video src="https://github.com/user-attachments/assets/c544a48c-7b6f-4f82-9989-f741f1547a60" autoplay loop muted playsinline width="100%"></video>
+
+<sub><i>Live scroll-through of the landing — motion, sections, framed (muted · autoplay-loop).</i></sub>
 
 ## Live Demo
 
