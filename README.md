@@ -162,4 +162,4 @@ Requires Node **22.x**.
 
 ## Author
 
-**Olga Gulyakevich** — Frontend Developer
+**Olga Gulyakevich** — Frontend Developer · [GitHub](https://github.com/OlgaGulyakevich) · [LinkedIn](https://www.linkedin.com/in/olga-gulyakevich-ab166674/)
