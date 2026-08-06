@@ -11,9 +11,7 @@
 
 **A course-aggregator landing — hand-built to HTML Academy's pixel-perfect standard, then re-engineered on Astro for production.**
 
-<video src="https://github.com/user-attachments/assets/c544a48c-7b6f-4f82-9989-f741f1547a60" autoplay loop muted playsinline width="100%"></video>
-
-<sub><i>Live scroll-through of the landing — motion, sections, framed (muted · autoplay-loop).</i></sub>
+[![Live demo — scroll-through of the landing](docs/teaser-loop.gif)](https://spreent-academy-frontend.vercel.app)
 
 ## Live Demo
 
