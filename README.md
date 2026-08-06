@@ -10,40 +10,56 @@
 
 > Educational course aggregator — a single-page landing built for the **HTML Academy Frontend Championship #3** (April 2026), then **migrated to Astro** as a production-grade portfolio piece: component architecture, strict TypeScript, tests, and CI.
 
+<!-- ▶ DEMO VIDEO — on github.com: edit this README (pencil icon) and DRAG the file
+     notes/video/demo.mp4 right here. GitHub uploads & hosts it as an inline player.
+     Then delete the static hero image line just below (the video replaces it). -->
+
 [![Spreent Academy landing](docs/hero.png)](https://spreent-academy-frontend.vercel.app)
 
-## 🔗 Live Demo
+## Live Demo
 
 - **[Landing page](https://spreent-academy-frontend.vercel.app)** — the full experience
 - **[UI Kit](https://spreent-academy-frontend.vercel.app/ui-kit)** — component library + **Motion catalog** (17 effects, principles, a11y notes)
 
 ---
 
-## ✨ Motion & Interaction Craft
+## The Product Experience
 
-Motion is the signature of this build — physics-driven, not decorative. Every animation is deliberate: strong easing curves, an intentional _slow-in → snap-response_ asymmetry, and micro-interactions that reward attention.
+**Spreent Academy** is a modern aggregator for educational courses. The single-page interface is designed as a conversion funnel that guides prospective students from first interest to application:
 
-- **Parallax** — hero photos _and_ about cards drift on scroll + mouse (additive layers, lerp-eased for depth)
-- **Shimmer CTA** — a one-time glint nudges the Submit button _only_ once the user settles on it and hesitates; it cancels the moment they scroll away or start typing (IntersectionObserver + 2s dwell + cancel-on-engage)
-- **Magnetic button** — the hero CTA drifts toward the cursor (lerp + rAF, spring-like)
-- **Logo paint-fill** — brand colour paints across the wordmark with a neon glow (two-layer masked reveal on `transform`, no repaint)
-- **Gradient-spin border** — a conic-gradient ring rotates via CSS `@property`
-- **Mobile menu** — burger morphs to ✕ timed with the drawer, which fades-then-snaps shut
-- _Supporting cast:_ scroll-reveal · count-up · ambient glow · logo rotation · sticky/frosted header · nav underline · button press · smooth scroll
+- **Discovery** — academy benefits, alumni community stats, the learning process.
+- **Comparison** — transparent, side-by-side pricing tiers.
+- **Conversion** — a frictionless, accessible application form with real-time international phone validation.
 
-**Engineered for accessibility & performance:**
-
-- ♿ `prefers-reduced-motion` guard on **every** animation (WCAG 2.3.3) — JS skips the effect, CSS falls back to a static state
-- ⚡ GPU-only: `transform` / `opacity` exclusively — zero layout/paint per frame
-
-▶ **See it live** → [landing](https://spreent-academy-frontend.vercel.app) · 📋 **Documented** → [/ui-kit](https://spreent-academy-frontend.vercel.app/ui-kit)
-
-<!-- 🎬 Demo video: record 5–10s (scroll → parallax → reveal → magnetic hover),
-     compress with `optikit video compress --max`, then drag the .mp4 here in the GitHub editor. -->
+The aim: take a standard marketing flow and elevate it into a premium, interactive experience that builds trust and drives action.
 
 ---
 
-## 🏗️ From Championship to Production
+## Motion & Interaction Craft
+
+Motion here has a job — signal a premium, trustworthy product and carry the user through the funnel. It's physics-driven (real easing, lerp), never decorative; every effect is `prefers-reduced-motion`-guarded (WCAG 2.3.3) and GPU-only (`transform` / `opacity`, zero layout/paint per frame).
+
+**First impression** — the first seconds say "this is polished":
+
+- **Hero parallax** — photos drift on scroll + mouse for dual-axis depth
+- **Magnetic button** — the hero CTA leans toward the cursor (lerp + rAF)
+- **Logo paint-fill** — brand colour sweeps across the wordmark with a neon glow
+
+**Guides & builds trust** — as the user scrolls:
+
+- **Scroll reveal** eases sections in · **count-up** lands the credibility stats (78% / 89%) · **gradient-spin** + **ambient glow** add life
+
+**Nudges conversion** — at the form:
+
+- **Shimmer CTA** — a one-time glint draws the eye to Submit _only_ when the user settles on it and hesitates, and cancels the moment they engage (IntersectionObserver + 2s dwell + cancel-on-engage)
+
+**Polish, everywhere** — burger ↔ ✕ morph · button press · smooth scroll · frosted sticky header
+
+**See it live** → [landing](https://spreent-academy-frontend.vercel.app) · **documented** → [/ui-kit](https://spreent-academy-frontend.vercel.app/ui-kit)
+
+---
+
+## From Championship to Production
 
 The original entry was hand-built (Vite, Handlebars, vanilla JS) to HTML Academy's strict pixel-perfect standard. This version is a **migration to Astro** that keeps that craft and adds production engineering:
 
@@ -55,26 +71,26 @@ The original entry was hand-built (Vite, Handlebars, vanilla JS) to HTML Academy
 | BackstopJS pixel tests     | **Vitest + Playwright** + **CI**             |
 | RU content                 | EN, international audience                   |
 
-Same pixel-perfect BEM/SCSS foundation — rebuilt on a component + type-safe architecture.
+**Why Astro?** For a content-heavy landing page, shipping a full SPA framework (Next.js, React) is overkill. Astro's **Zero-JS by default** approach ships pure HTML/CSS, making a 100/100 Lighthouse baseline realistic to hit and hold. Interactivity (form validation, custom motion) is progressive enhancement via vanilla TypeScript modules — logic runs only where it's needed.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-| Category          | Tools                                                                 |
-| ----------------- | --------------------------------------------------------------------- |
-| **Framework**     | Astro 7 (static output)                                               |
-| **Language**      | TypeScript (strict, `noUncheckedIndexedAccess`)                       |
-| **Styles**        | SCSS · BEM · desktop-first fluid `clamp()` layout                     |
-| **Interactivity** | No framework, no animation library — motion hand-rolled in TypeScript |
-| **Icons**         | astro-icon (inlined SVG sprite)                                       |
-| **Forms**         | intl-tel-input (international phone + libphonenumber)                 |
-| **Testing**       | Vitest · Playwright                                                   |
-| **CI/CD**         | GitHub Actions · Vercel                                               |
+| Category          | Tools                                                                  |
+| ----------------- | ---------------------------------------------------------------------- |
+| **Framework**     | Astro 7 (static output)                                                |
+| **Language**      | TypeScript (strict, `noUncheckedIndexedAccess`)                        |
+| **Styles**        | SCSS · BEM · desktop-first fluid `clamp()` layout                      |
+| **Interactivity** | No framework, no animation library — motion hand-written in TypeScript |
+| **Icons**         | astro-icon (inlined SVG sprite)                                        |
+| **Forms**         | intl-tel-input (international phone + libphonenumber)                  |
+| **Testing**       | Vitest · Playwright                                                    |
+| **CI/CD**         | GitHub Actions · Vercel                                                |
 
 ---
 
-## ✅ Quality & Engineering
+## Quality & Engineering
 
 - **PageSpeed Insights 100 / 100 / 100 / 100** — Performance · Accessibility · Best Practices · SEO, on **desktop and mobile**
 - **TypeScript strict** across all 13 modules — `astro check` green
@@ -83,22 +99,20 @@ Same pixel-perfect BEM/SCSS foundation — rebuilt on a component + type-safe ar
 - **Pre-commit hooks** (husky + lint-staged) — format & lint staged files before they land
 - **Strict CSP** (zero `unsafe-inline`) + security headers (COOP, HSTS); libphonenumber self-hosted to satisfy `script-src 'self'`
 
-![PageSpeed 100/100/100/100](docs/psi.png)
-
 ---
 
-## ♿ Accessibility & Interface Craft
+## Accessibility & Interface Craft
 
 Built to EU-grade accessibility, with attention to real edge cases — not just the happy path:
 
 - Semantic landmarks, `aria-live` notifications, `focus-visible` outlines
 - Mobile menu: focus trap, `Escape` to close, focus returned to trigger, scroll lock
 - `prefers-reduced-motion` respected on every animation
-- **International phone field** (default 🇨🇭 Switzerland, per-country validation via libphonenumber) with two real problems solved: **iOS autofill** (light frosted inputs keep entered text legible) and **WCAG AA contrast** on the dark footer
+- **International phone field** (default Switzerland, per-country validation via libphonenumber) solving two real problems: **iOS autofill** (light frosted inputs keep entered text legible) and **WCAG AA contrast** on the dark footer
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 src/
@@ -114,7 +128,7 @@ public/           # img/ · fonts/ · favicons
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ```bash
 npm install
@@ -138,17 +152,17 @@ Requires Node **22.x**.
 
 ---
 
-## 🙌 Acknowledgements
+## Acknowledgements
 
 - **Design:** [Mish](https://mish.design/en)
 - **Organizer:** [HTML Academy](https://htmlacademy.ru/)
 
-## ⚖️ Disclaimers
+## Disclaimers
 
 - **Demo form** — submissions are not stored (test endpoint).
 - Single-page demo — secondary navigation links are illustrative.
 - All company names and logos are trademarks of their respective owners, used for illustrative purposes only in this non-commercial student project.
 
-## 👤 Author
+## Author
 
 **Olga Gulyakevich** — Frontend Developer
