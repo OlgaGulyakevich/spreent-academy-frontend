@@ -1,3 +1,7 @@
+
+
+
+
 # Spreent Academy — Landing Page
 
 [![CI](https://github.com/OlgaGulyakevich/spreent-academy-frontend/actions/workflows/ci.yml/badge.svg)](https://github.com/OlgaGulyakevich/spreent-academy-frontend/actions/workflows/ci.yml)
@@ -8,13 +12,10 @@
 [![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 [![PageSpeed 100](https://img.shields.io/badge/PageSpeed-100·100·100·100-00C853)](https://pagespeed.web.dev/)
 
-> Educational course aggregator — a single-page landing built for the **HTML Academy Frontend Championship #3** (April 2026), then **migrated to Astro** as a production-grade portfolio piece: component architecture, strict TypeScript, tests, and CI.
+> Educational course aggregator — a single-page landing built for the **HTML Academy Frontend Championship&nbsp;#3** (April&nbsp;2026).<br>
+> Then **migrated to Astro** as a production-grade portfolio piece: component architecture, strict TypeScript, tests, and CI.
 
-<!-- ▶ DEMO VIDEO — on github.com: edit this README (pencil icon) and DRAG the file
-     notes/video/demo.mp4 right here. GitHub uploads & hosts it as an inline player.
-     Then delete the static hero image line just below (the video replaces it). -->
-
-[![Spreent Academy landing](docs/hero.png)](https://spreent-academy-frontend.vercel.app)
+https://github.com/user-attachments/assets/c544a48c-7b6f-4f82-9989-f741f1547a60
 
 ## Live Demo
 
