@@ -16,7 +16,7 @@
 ## Live Demo
 
 - **[Landing page](https://spreent-academy-frontend.vercel.app)** — the full experience
-- **[UI Kit](https://spreent-academy-frontend.vercel.app/ui-kit)** — component library + **Motion catalog** (17 effects, principles, a11y notes)
+- **[UI Kit](https://spreent-academy-frontend.vercel.app/ui-kit)** — component library + **Motion catalog** (18 effects, principles, a11y notes)
 
 ---
 
@@ -44,7 +44,7 @@ Motion here has a job — signal a premium, trustworthy product and carry the us
 
 **Guides & builds trust** — as the user scrolls:
 
-- **Scroll reveal** eases sections in · **count-up** lands the credibility stats (78% / 89%) · **gradient-spin** + **ambient glow** add life
+- **Scroll reveal** — section headings fade & rise, and the certificate block cascades in (clip-path + scale, staggered) · **count-up** lands the credibility stats (78% / 89%) · **gradient-spin** + **ambient glow** add life
 
 **Nudges conversion** — at the form:
 
@@ -167,7 +167,7 @@ Requires Node **22.x**.
 ## Author
 
 <a href="https://github.com/OlgaGulyakevich">
-  <img src="https://github.com/OlgaGulyakevich.png" width="48" height="48" alt="Olga Gulyakevich" align="left" style="border-radius: 50%; margin-right: 12px;">
+  <img src="https://wsrv.nl/?url=github.com/OlgaGulyakevich.png&amp;w=96&amp;h=96&amp;mask=circle" width="48" height="48" alt="Olga Gulyakevich" align="left">
 </a>
 
 **Olga Gulyakevich** — Frontend Developer<br>

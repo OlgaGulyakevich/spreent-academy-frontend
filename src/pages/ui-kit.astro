@@ -179,9 +179,16 @@ const motion = [
       "IO + 2s dwell + cancel on scroll-away / form engage; GPU, reduced-motion",
   },
   {
+    effect: "Certificate cascade",
+    where: "Footer",
+    what: "The completion-certificate block reveals in sequence — heading, text, then the card",
+    principle:
+      "grouped scroll-reveal, 120ms stagger; clip-path wipe (heading) + scale (card) + fade; reduced-motion → static",
+  },
+  {
     effect: "Scroll-reveal",
     where: "Global",
-    what: "Sections fade & slide up as they enter view",
+    what: "Section headings fade & slide up as they enter view",
     principle:
       "IntersectionObserver, 70ms stagger; opacity/transform, reduced-motion",
   },
