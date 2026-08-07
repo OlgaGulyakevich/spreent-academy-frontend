@@ -108,6 +108,7 @@ Built to EU-grade accessibility, with attention to real edge cases — not just 
 - Mobile menu: focus trap, `Escape` to close, focus returned to trigger, scroll lock
 - `prefers-reduced-motion` respected on every animation
 - **International phone field** (default Switzerland, per-country validation via libphonenumber) solving two real problems: **iOS autofill** (light frosted inputs keep entered text legible) and **WCAG AA contrast** on the dark footer
+- **Zero-image decorative art** — the "Hands-On Skills" card's scene (frosted-glass panel, circle, and a Figma-style selection frame with corner handles) is drawn entirely in CSS — layered `background-image` gradients, `backdrop-filter`, pseudo-elements — with no raster assets; only the two cursors are inline SVG icons ([exhibited in the UI Kit](https://spreent-academy-frontend.vercel.app/ui-kit#cards))
 
 ---
 

@@ -367,6 +367,15 @@
   max-width: 360px;
 }
 
+// "skills" card exhibit — rendered near its real landing width so the CSS-drawn
+// decor (selection frame, corner handles, frosted-glass panel) lands as designed.
+// The decor is absolutely positioned against the full 500px card, not the narrow
+// neutral scaffold above, so it needs the real width to read correctly.
+.ui-kit__skills-demo {
+  display: block; // override the about section's 3-col grid
+  max-width: 570px;
+}
+
 .about__card--demo {
   min-height: auto; // override the real card's 500px
   background-color: $color-light;

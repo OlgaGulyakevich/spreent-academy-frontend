@@ -488,9 +488,70 @@ const sections = [
             <code class="ui-kit__code">text</code> via props; each card's bespoke
             visual (a photo, CSS-drawn decor, a rotating logo) is projected through
             a
-            <code class="ui-kit__code">&lt;slot&gt;</code>. The full cards in
-            all their glory — catalogued in Motion below, seen live on the
-            landing.
+            <code class="ui-kit__code">&lt;slot&gt;</code>. The full cards are
+            catalogued in Motion below and seen live on the landing — one of
+            them, the CSS-drawn "skills" card, is exhibited next.
+          </p>
+
+          <div class="ui-kit__card-item">
+            <span class="ui-kit__label"
+              >AboutCard · "skills" decor — pure CSS</span
+            >
+
+            <ul class="about__cards ui-kit__skills-demo">
+              <AboutCard
+                modifier="skills"
+                tag="What will I gain?"
+                title="Hands-On Skills"
+                text={"Hands-on, profession-specific knowledge. Train on real projects and build your own product"}
+              >
+                <div class="about__card-decor" aria-hidden="true">
+                  <div class="about__card-decor-rect"></div>
+                  <div class="about__card-decor-circle"></div>
+
+                  <div
+                    class="about__card-decor-label about__card-decor-label--you"
+                  >
+                    <Icon
+                      name="cursor-arrow"
+                      width="26"
+                      height="26"
+                      aria-hidden="true"
+                    />
+                    <span>You</span>
+                  </div>
+
+                  <div
+                    class="about__card-decor-label about__card-decor-label--ux"
+                  >
+                    <Icon
+                      name="cursor-hand"
+                      width="26"
+                      height="26"
+                      aria-hidden="true"
+                    />
+                    <span>UX Lead</span>
+                  </div>
+                </div>
+              </AboutCard>
+            </ul>
+          </div>
+
+          <p class="ui-kit__note">
+            The decorative scene is drawn <strong
+              >entirely in code — no images</strong
+            >. The circle (<code class="ui-kit__code">border-radius</code>), the
+            frosted-glass panel (<code class="ui-kit__code"
+              >backdrop-filter</code
+            >) and the Figma-style selection frame with four corner handles — a
+            single
+            <code class="ui-kit__code">::before</code> layering twelve
+            <code class="ui-kit__code">background-image</code> gradients, no
+            <code class="ui-kit__code">border</code> or
+            <code class="ui-kit__code">outline</code> — are all pure CSS. Only the
+            two cursors are inline SVG icons (<code class="ui-kit__code"
+              >&lt;Icon&gt;</code
+            >). It scales with the card and adds zero network requests.
           </p>
 
           <div class="ui-kit__card-item">
