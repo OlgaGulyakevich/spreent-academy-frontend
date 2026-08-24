@@ -52,7 +52,7 @@
     background-color: $color-dark;
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform $transition-medium $ease-in-out-sine;
+    transition: transform $transition-medium $ease-out-expo;
   }
 
   @include hover {

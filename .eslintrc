@@ -23,3 +23,15 @@ overrides:
     extends:
       - "plugin:astro/recommended"
       - "prettier"
+
+  # Script-блоки внутри .astro — тоже TypeScript, но astro-eslint-parser выносит
+  # их в отдельные виртуальные файлы с расширением .js, поэтому им нужен свой
+  # TS-парсер. (Glob-паттерны в комментариях писать нельзя — ломают js-yaml.)
+  - files: ["**/*.astro/*.js", "*.astro/*.js"]
+    parser: "@typescript-eslint/parser"
+    parserOptions:
+      sourceType: "module"
+    rules:
+      # TS-типы no-undef принимает за необъявленные переменные; несуществующие
+      # имена и так ловит компилятор, поэтому на TS-коде правило лишнее.
+      no-undef: off

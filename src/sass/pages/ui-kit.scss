@@ -9,12 +9,13 @@
 }
 
 .ui-kit {
+  overflow-x: clip;
   padding-top: 40px;
   padding-bottom: 80px;
 }
 
 // ---------------------------------
-// Table of contents (sticky sidebar + scroll-spy)
+// Table of contents (sticky sidebar on desktop, chips on mobile + scroll-spy)
 // ---------------------------------
 
 .ui-kit__container {
@@ -25,21 +26,30 @@
   @include fluid-val(gap, 40px, 80px, 1024, 1440);
 
   @include vp-1023 {
-    display: block; // single column — TOC hidden, sections read top-to-bottom
+    display: block;
   }
 }
 
 .ui-kit__toc {
   position: sticky;
-  top: 90px; // clears the sticky site header
+  top: 40px;
 
-  @include hide-below-desktop;
+  @include vp-1023 {
+    position: static;
+    margin-bottom: 40px;
+  }
 }
 
 .ui-kit__toc-list {
   display: flex;
   flex-direction: column;
   gap: 4px;
+
+  @include vp-1023 {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+  }
 }
 
 .ui-kit__toc-link {
@@ -59,12 +69,26 @@
     color: $color-text-main;
     background-color: $color-light;
   }
-}
 
-.ui-kit__toc-link.is-active {
-  border-color: $color-blue;
-  color: $color-blue;
-  font-weight: $font-weight-semibold;
+  @include vp-1023 {
+    padding: 6px 14px;
+    border-left: none;
+    border: $border-width-1 solid $color-stroke;
+    border-radius: $radius-pill;
+    background-color: $color-white;
+  }
+
+  &[aria-current="location"],
+  &.is-active {
+    border-color: $color-blue;
+    color: $color-blue;
+    font-weight: $font-weight-semibold;
+
+    @include vp-1023 {
+      border-color: $color-blue;
+      background-color: $color-light;
+    }
+  }
 }
 
 // Content column — min-width: 0 lets inner overflow-x containers (motion table) shrink
@@ -99,6 +123,7 @@
 
 .ui-kit__section {
   margin-bottom: 70px;
+  scroll-margin-top: 40px;
 }
 
 .ui-kit__section-title {
@@ -467,7 +492,7 @@
 }
 
 // ---------------------------------
-// Motion catalog
+// Motion catalog & physics tokens
 // ---------------------------------
 
 .ui-kit__motion-intro {
@@ -476,6 +501,67 @@
   max-width: 720px;
   margin-bottom: 30px;
   color: $color-text-secondary;
+}
+
+.ui-kit__motion-tokens {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.ui-kit__motion-token-card {
+  padding: 24px;
+  border: $border-width-1 solid $color-stroke;
+  border-radius: $radius-16;
+  background-color: $color-light;
+}
+
+.ui-kit__motion-token-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ui-kit__motion-token-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 14px;
+  border-bottom: $border-width-1 solid $color-stroke;
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.ui-kit__motion-token-name {
+  @include ui-kit-mono;
+
+  color: $color-blue;
+  font-weight: $font-weight-semibold;
+}
+
+.ui-kit__motion-token-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.ui-kit__motion-token-role {
+  @include text-small;
+
+  color: $color-text-secondary;
+}
+
+.ui-kit__motion-note {
+  margin-bottom: 40px;
+}
+
+.ui-kit__motion-table-title {
+  margin-bottom: 20px;
 }
 
 .ui-kit__link {

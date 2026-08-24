@@ -29,7 +29,7 @@
   transition:
     color $transition-default,
     background-color $transition-default,
-    transform $transition-fast $ease-apple;
+    transform $transition-fast $ease-out-expo;
 
   // Shadow-lift layer — we fade its OPACITY (composited) instead of animating
   // box-shadow. Colour of the shadow is set per-variant below.
@@ -40,7 +40,7 @@
     border-radius: inherit;
     opacity: 0;
     pointer-events: none;
-    transition: opacity $transition-default $ease-apple;
+    transition: opacity $transition-default $ease-out-expo;
   }
 
   &:focus-visible {

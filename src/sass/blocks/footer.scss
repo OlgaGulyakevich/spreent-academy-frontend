@@ -380,7 +380,7 @@
   transition:
     color $transition-default,
     background-color $transition-default,
-    transform $transition-fast $ease-apple,
+    transform $transition-fast $ease-out-expo,
     box-shadow $transition-default;
 
   &::before {

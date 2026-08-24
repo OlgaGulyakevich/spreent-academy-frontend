@@ -75,8 +75,13 @@
       transparent 50%,
       transparent 100%);
 
-    transform: translateX(-50%); // coloured half parked off to the left = hidden
-    transition: transform 0.9s $ease-apple;
+    // Parked off to the left = hidden. Not exactly -50%: the 105deg gradient makes
+    // the colour/transparent boundary a DIAGONAL, so it swings ±(height·tan15°)/2
+    // horizontally — 3.75px on the 28px header logo. At a flush -50% that overshoot
+    // pokes past the mask edge and a sliver of colour shows at rest. The extra 3%
+    // (~8px) clears it; the same value covers the footer, which shares the aspect ratio.
+    transform: translateX(-53%);
+    transition: transform 0.9s $ease-out-expo;
   }
 }
 
@@ -107,7 +112,7 @@
       transparent 50%,
       transparent 100%);
 
-    transition: transform 1.1s $ease-apple;
+    transition: transform 1.1s $ease-out-expo;
   }
 }
 
