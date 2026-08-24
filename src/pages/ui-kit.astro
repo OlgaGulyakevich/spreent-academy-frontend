@@ -305,7 +305,7 @@ const sections = [
         </header>
 
         <!-- Typography -->
-        <section class="ui-kit__section" id="typography">
+        <section class="ui-kit__section" tabindex="-1" id="typography">
           <h2 class="ui-kit__section-title">Typography</h2>
 
           <div class="ui-kit__type-list">
@@ -380,7 +380,7 @@ const sections = [
         </section>
 
         <!-- Colors -->
-        <section class="ui-kit__section" id="colors">
+        <section class="ui-kit__section" tabindex="-1" id="colors">
           <h2 class="ui-kit__section-title">Colors</h2>
 
           <div class="ui-kit__swatches">
@@ -398,7 +398,7 @@ const sections = [
         </section>
 
         <!-- Buttons -->
-        <section class="ui-kit__section" id="buttons">
+        <section class="ui-kit__section" tabindex="-1" id="buttons">
           <h2 class="ui-kit__section-title">Buttons</h2>
 
           <div class="ui-kit__buttons">
@@ -446,7 +446,7 @@ const sections = [
         </section>
 
         <!-- Form Elements (shown on the footer's dark context) -->
-        <section class="ui-kit__section" id="form">
+        <section class="ui-kit__section" tabindex="-1" id="form">
           <h2 class="ui-kit__section-title">Form Elements</h2>
 
           <div class="ui-kit__form-panel">
@@ -516,7 +516,7 @@ const sections = [
         </section>
 
         <!-- Cards -->
-        <section class="ui-kit__section" id="cards">
+        <section class="ui-kit__section" tabindex="-1" id="cards">
           <h2 class="ui-kit__section-title">Cards</h2>
 
           <div class="ui-kit__card-item">
@@ -683,7 +683,7 @@ const sections = [
         </section>
 
         <!-- Icons -->
-        <section class="ui-kit__section" id="icons">
+        <section class="ui-kit__section" tabindex="-1" id="icons">
           <h2 class="ui-kit__section-title">Icons</h2>
 
           {
@@ -706,7 +706,7 @@ const sections = [
         </section>
 
         <!-- Motion -->
-        <section class="ui-kit__section" id="motion">
+        <section class="ui-kit__section" tabindex="-1" id="motion">
           <h2 class="ui-kit__section-title">Motion</h2>
 
           <p class="ui-kit__motion-intro">
@@ -800,44 +800,90 @@ const sections = [
   </main>
 
   <script>
-    // Scroll-spy: highlight the TOC link of the section currently in view using aria-current="location".
-    // Section is considered active while its top is within the upper third of the viewport.
-    const ROOT_MARGIN = "0px 0px -66% 0px";
+    // Scroll-spy: highlights the TOC chip of the section currently being read.
+    //
+    // Computed from geometry every scroll frame rather than driven by
+    // IntersectionObserver events. The sections are tall and the observation band was
+    // only the top third of the viewport, which left two holes. With NO section inside
+    // the band (at the page top, or after scrolling back up) no event fired at all and
+    // the highlight froze on whatever was last set; with TWO sections inside it the
+    // winner was whichever the browser happened to list first, not the topmost one.
+    // Reading positions directly has neither hole and behaves identically up and down.
+    const ACTIVATION_RATIO = 1 / 3;
     const CURRENT = "location";
 
     const tocLinks = Array.from(
       document.querySelectorAll<HTMLAnchorElement>("[data-toc] a[href^='#']"),
     );
 
-    const setCurrent = (id: string) => {
+    // The type predicate is what drops `null` from the element type — `filter` alone
+    // would still hand back (HTMLElement | null)[].
+    const sections = tocLinks
+      .map((link) => document.getElementById(link.hash.slice(1)))
+      .filter((section): section is HTMLElement => section !== null);
+
+    /**
+     * Marks one TOC link as current and clears the rest.
+     *
+     * @param id - `id` of the section to mark; links are matched on their hash.
+     */
+    const setCurrent = (id: string): void => {
       tocLinks.forEach((link) => {
-        if (link.hash.slice(1) === id) {
+        const isCurrent = link.hash.slice(1) === id;
+        link.classList.toggle("is-active", isCurrent);
+
+        if (isCurrent) {
           link.setAttribute("aria-current", CURRENT);
-          link.classList.add("is-active");
           return;
         }
 
         link.removeAttribute("aria-current");
-        link.classList.remove("is-active");
       });
     };
 
-    const handleIntersect: IntersectionObserverCallback = (entries) => {
-      const visible = entries.find((entry) => entry.isIntersecting);
-      if (!visible) return;
+    /**
+     * Finds the last section whose top has crossed the activation line (a third of the
+     * way down the viewport). Before the first crossing the first section stays current,
+     * so the top of the page is never left without a highlight.
+     *
+     * @returns The current section, or `undefined` if the page has no sections.
+     */
+    const getCurrentSection = (): HTMLElement | undefined => {
+      const activationLine = window.innerHeight * ACTIVATION_RATIO;
+      let current = sections[0];
 
-      setCurrent(visible.target.id);
+      // Reads only, no writes in between: one layout pass, no thrashing.
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top > activationLine) break;
+        current = section;
+      }
+
+      return current;
     };
 
-    const observer = new IntersectionObserver(handleIntersect, {
-      rootMargin: ROOT_MARGIN,
-    });
+    let frameId = 0;
 
-    tocLinks.forEach((link) => {
-      const section = document.getElementById(link.hash.slice(1));
-      if (!section) return;
+    /** Recomputes the current section once per frame, coalescing bursts of events. */
+    const scheduleUpdate = (): void => {
+      if (frameId) return;
 
-      observer.observe(section);
-    });
+      frameId = requestAnimationFrame(() => {
+        frameId = 0;
+
+        const current = getCurrentSection();
+        if (!current) return;
+
+        setCurrent(current.id);
+      });
+    };
+
+    const handleScroll = (): void => scheduleUpdate();
+    const handleResize = (): void => scheduleUpdate();
+
+    if (sections.length > 0) {
+      scheduleUpdate(); // initial state, before any scrolling happens
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      window.addEventListener("resize", handleResize, { passive: true });
+    }
   </script>
 </BaseLayout>

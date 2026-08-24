@@ -124,6 +124,21 @@
 .ui-kit__section {
   margin-bottom: 70px;
   scroll-margin-top: 40px;
+
+  // tabindex="-1" makes the section a deliberate focus target for in-page links:
+  // WebKit (Safari, and Chrome on iOS — Apple mandates the engine) moves focus to the
+  // fragment target and draws its own ring on tap. Owning the focus lets us drop the ring
+  // for pointer-initiated focus while keeping it for keyboard, where landing on the
+  // section is exactly right — reading continues from there instead of the page top.
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 4px;
+    border-radius: $radius-4;
+  }
 }
 
 .ui-kit__section-title {
