@@ -125,19 +125,31 @@
   margin-bottom: 70px;
   scroll-margin-top: 40px;
 
-  // tabindex="-1" makes the section a deliberate focus target for in-page links:
-  // WebKit (Safari, and Chrome on iOS — Apple mandates the engine) moves focus to the
-  // fragment target and draws its own ring on tap. Owning the focus lets us drop the ring
-  // for pointer-initiated focus while keeping it for keyboard, where landing on the
-  // section is exactly right — reading continues from there instead of the page top.
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
+  // No grey flash on tap — the focus ring below is the only indicator we want.
+  -webkit-tap-highlight-color: transparent;
 
+  // tabindex="-1" makes the section a deliberate focus target for in-page links.
+  // WebKit (Safari, and Chrome on iOS — Apple mandates the engine) moves focus to the
+  // fragment target when you follow #section; owning that focus lets us draw the ring in
+  // the project accent instead of inheriting the UA one. Keeping it visible is the point,
+  // not a side effect: it tells the reader where the jump landed (WCAG 2.4.7), and with
+  // tabindex="-1" the section stays out of the tab order, so nothing else changes.
   &:focus-visible {
     outline: 2px solid $color-accent;
     outline-offset: 4px;
     border-radius: $radius-4;
+  }
+
+  // Touch: drop it. WebKit moves focus to the fragment target and :focus-visible matches
+  // even though the user tapped, so the ring appears around a whole block on iOS while
+  // Blink and Gecko — which never focus the target at all — show nothing anywhere. That
+  // is a platform artefact leaking through, not a design decision, and the scroll itself
+  // already answered "where did I land". Pointer devices keep the ring: that is where
+  // keyboard navigation lives, and there it carries real information.
+  @include touch {
+    &:focus-visible {
+      outline: none;
+    }
   }
 }
 

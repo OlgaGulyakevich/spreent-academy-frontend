@@ -133,6 +133,16 @@
   }
 }
 
+// Touch devices — the inverse of `hover`. For the rare rule that must differ by input
+// type rather than by width: pointer-only affordances that read as artefacts on a
+// touchscreen. Not a mobile breakpoint — a phone in landscape is still touch, and a
+// touchscreen laptop still is too.
+@mixin touch {
+  @media (hover: none) and (pointer: coarse) {
+    @content;
+  }
+}
+
 // Reduced-motion — wrap movement so it's dropped for users who prefer less motion.
 // Keep colour/opacity; strip only the moving parts (transform, keyframes, position).
 @mixin reduced-motion {
