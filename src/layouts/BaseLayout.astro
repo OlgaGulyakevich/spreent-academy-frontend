@@ -2,13 +2,23 @@
 // Global styles: importing .scss in the frontmatter makes Astro bundle it as global CSS
 import "../sass/style.scss";
 
-// Props each page passes in (title / description)
+// Props each page passes in (title / description, optional social preview image)
 interface Props {
   title: string;
   description: string;
+  ogImage?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, ogImage = "/og-image.jpg" } = Astro.props;
+
+// Absolute URLs for this page: og:url / canonical must point to the page itself,
+// otherwise LinkedIn and Google treat every page as a copy of the homepage.
+const SITE = "https://spreent-academy-frontend.vercel.app";
+// No trailing slash (except the root): /ui-kit is the address shared in the CV and LinkedIn,
+// and Vercel serves both /ui-kit and /ui-kit/ — canonical picks the one we link to.
+const path = Astro.url.pathname.replace(/(.)\/$/, "$1");
+const pageUrl = new URL(path, SITE).href;
+const imageUrl = new URL(ogImage, SITE).href;
 ---
 
 <!doctype html>
@@ -33,11 +43,8 @@ const { title, description } = Astro.props;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Spreent Academy" />
-    <meta
-      property="og:url"
-      content="https://spreent-academy-frontend.vercel.app/"
-    />
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={imageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
@@ -45,13 +52,10 @@ const { title, description } = Astro.props;
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta
-      name="twitter:url"
-      content="https://spreent-academy-frontend.vercel.app/"
-    />
-    <meta name="twitter:image" content="/og-image.jpg" />
+    <meta name="twitter:url" content={pageUrl} />
+    <meta name="twitter:image" content={imageUrl} />
 
-    <link rel="canonical" href="https://spreent-academy-frontend.vercel.app/" />
+    <link rel="canonical" href={pageUrl} />
 
     <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
